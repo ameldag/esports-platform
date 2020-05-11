@@ -7,20 +7,34 @@ class TeamController < ApplicationController
   def show
   end
 
-  def edit
-  end
-
+  # GET /teams/new
   def new
     @team = Team.new
   end
 
+  # GET /teams/1/edit
+  def edit
+  end
+
+  # POST /teams
+  # POST /teams.json
   def create
-    @team = Team.new(params[:team])
-    if @team.save
-      redirect_to team_show_path(@team.id)
-    else
-      render "new"
+    @team = Team.new(team_params)
+
+    respond_to do |format|
+      if @team.save
+        format.html { redirect_to @team, notice: 'Team was successfully created.' }
+        format.json { render :show, status: :created, location: @team }
+      else
+        format.html { render :new }
+        format.json { render json: @team.errors, status: :unprocessable_entity }
+      end
     end
-    
+  end
+
+  private
+
+  def team_params
+    params.permit(:name, :user_id)
   end
 end
