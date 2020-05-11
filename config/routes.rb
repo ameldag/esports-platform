@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'team/index'
+  get 'team/show'
+  get 'team/edit'
+  get 'team/create'
   devise_for :users
   get 'pages/index'
 
