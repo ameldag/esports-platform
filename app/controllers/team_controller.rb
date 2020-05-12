@@ -9,7 +9,7 @@ class TeamController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
-    @requests = Request.where('team_id = ? and user_id = ?', @team.id, current_user.id).all
+    @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
   end
 
   # GET /teams/new
@@ -40,7 +40,7 @@ class TeamController < ApplicationController
   def join_request
     @team = Team.find(params[:team_id])
 
-    if (Request.where('team_id = ? and user_id = ?', @team.id, current_user.id).count < 1)
+    if (Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count < 1)
 
       @request = Request.new
 
@@ -65,6 +65,20 @@ class TeamController < ApplicationController
         format.json { render :show, location: @team }
       end
 
+    end
+
+  end
+
+  def team_request_answer
+    @request = Request.find(params[:request_id])
+
+    if (params[:answer] == "yes")
+
+    elsif (params[:answer] == "no")
+      @request.status = "refused"
+      @request.save
+    else
+      return false
     end
 
   end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'team/new', to: "team#new", as: "new_team"
   post 'team/new', to: "team#create"
   get 'team/join/:team_id', to: "team#join_request", as: "team_join"
+  get 'team/request/:request_id', to: "team#team_request_answer", as: "team_request_answer"
   get 'team/:id', to: "team#show", as: "show_team"
 
   devise_for :users
