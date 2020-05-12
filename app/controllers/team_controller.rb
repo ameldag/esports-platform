@@ -2,12 +2,13 @@ class TeamController < ApplicationController
   before_action :authenticate_user!
 
   layout "in-app"
-  
+
   def index
     @teams = Team.all
   end
 
   def show
+    @team = Team.find(params[:id])
   end
 
   # GET /teams/new
