@@ -1,5 +1,8 @@
 class TeamController < ApplicationController
+  before_action :authenticate_user!
+
   layout "in-app"
+  
   def index
     @teams = Team.all
   end
@@ -35,6 +38,6 @@ class TeamController < ApplicationController
   private
 
   def team_params
-    params.permit(:name, :user_id)
+    params.permit(:name, :user_id, :website, :description, :avatar, :cover)
   end
 end

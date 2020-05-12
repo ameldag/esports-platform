@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  get 'team/index'
-  get 'team/show'
-  get 'team/edit'
-  get 'team/new'
+  get 'teams', to: "team#index", as: "teams"
+  get 'team/:id', to: "team#show", as: "show_team"
+  get 'team/edit', to: "team#edit", as: "edit_team"
+  get 'team/new', to: "team#new", as: "new_team"
   post 'team/new', to: "team#create"
-  
+
   devise_for :users
   get 'pages/index'
 
