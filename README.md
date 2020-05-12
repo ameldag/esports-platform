@@ -1,24 +1,11 @@
-# README
+# TODO
+- Add icons and covers to games
+- Add placeholder graphics for games and teams
+- Add oauth to devise
+- add tabs to teams
+- add js to top menu
+- add edit user
+- add profile
+- add join team
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# DONE
