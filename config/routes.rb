@@ -7,10 +7,10 @@ Rails.application.routes.draw do
 
   # teams routes
   get 'teams', to: "team#index", as: "teams"
-  get 'team/:id', to: "team#show", as: "show_team"
   get 'team/edit', to: "team#edit", as: "edit_team"
   get 'team/new', to: "team#new", as: "new_team"
   post 'team/new', to: "team#create"
+  get 'team/:id', to: "team#show", as: "show_team"
 
   devise_for :users
   get 'pages/index'

@@ -60,7 +60,7 @@
               GAMES
             </h3>
             <div class="mt-3">
-                <% Game.all.each do |game| %>
+                <% Game.where('active = ?', true).each do |game| %>
                 <a
                   href="<%= show_game_path(game.id) %>"
                   class="flex-shrink-0 group block focus:outline-none ml-3 mb-2"
