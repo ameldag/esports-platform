@@ -45,12 +45,8 @@ class="relative z-10 flex-shrink-0 flex h-16 bg-gray-800 shadow-md border-b-2 bo
 
     <!-- Profile dropdown -->
     <div
-      class="ml-3 relative"
-      @mouseover="UserDropDown = true"
-      @mouseleave="UserDropDown = false"
-      @keydown.enter="UserDropDown = !UserDropDown"
-    >
-      <div>
+      class="ml-3 relative" data-controller="dropdown">
+      <div data-action="click->dropdown#toggle click@window->dropdown#hide">
         <button
           class="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:shadow-outline"
           id="user-menu"
@@ -75,15 +71,16 @@ class="relative z-10 flex-shrink-0 flex h-16 bg-gray-800 shadow-md border-b-2 bo
             To: "transform opacity-0 scale-95"
       -->
       <div
-        class="origin-top-right absolute right-0 mt-0 w-48 rounded-md shadow-lg hidden"
-        v-show="UserDropDown"
+        class="origin-top-right absolute right-0 mt-0 w-60 rounded-md shadow-lg hidden"
+        data-target="dropdown.menu"
       >
         <div class="rounded-md bg-white shadow-xs">
           <div class="px-4 py-3" v-if="currentUser">
-            <p class="text-sm leading-5">Signed in with</p>
-            <p class="text-sm leading-5 font-medium text-gray-900">
-              <%= current_user.email %>
-            </p>
+            <p class="text-sm leading-5">Signed in with
+            <a class="tat-sm leading-5 font-bold text-gray-900 uppercase">
+              <%= current_user.username %>
+            </a>
+          </p>
           </div>
           <div class="border-t border-gray-100"></div>
           <div class="py-1">
