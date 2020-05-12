@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'team/edit', to: "team#edit", as: "edit_team"
   get 'team/new', to: "team#new", as: "new_team"
   post 'team/new', to: "team#create"
+  get 'team/join/:team_id', to: "team#join_request", as: "team_join"
   get 'team/:id', to: "team#show", as: "show_team"
 
   devise_for :users

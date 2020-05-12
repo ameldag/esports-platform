@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_12_002033) do
+ActiveRecord::Schema.define(version: 2020_05_12_154306) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 2020_05_12_002033) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.string "status"
+    t.integer "user_id", null: false
+    t.integer "team_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "target"
+    t.index ["team_id"], name: "index_requests_on_team_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.integer "user_id", null: false
@@ -61,10 +72,14 @@ ActiveRecord::Schema.define(version: 2020_05_12_002033) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "username"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "requests", "teams"
+  add_foreign_key "requests", "users"
   add_foreign_key "teams", "users"
 end
