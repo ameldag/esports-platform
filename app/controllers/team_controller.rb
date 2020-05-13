@@ -10,6 +10,8 @@ class TeamController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
+    
+    @current_user_request = Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count
   end
 
   # GET /teams/new
@@ -39,8 +41,9 @@ class TeamController < ApplicationController
 
   def join_request
     @team = Team.find(params[:team_id])
+    @current_user_request = Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count
 
-    if (Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count < 1)
+    if (@current_user_request < 1)
 
       @request = Request.new
 
