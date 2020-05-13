@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :requests
+  
+  has_many :users_teams
+  has_many :teams, through: :users_teams
 end

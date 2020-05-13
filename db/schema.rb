@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_12_154306) do
+ActiveRecord::Schema.define(version: 2020_05_13_072643) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -78,8 +78,21 @@ ActiveRecord::Schema.define(version: 2020_05_12_154306) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "users_teams", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "team_id", null: false
+    t.string "status"
+    t.datetime "left_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_users_teams_on_team_id"
+    t.index ["user_id"], name: "index_users_teams_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "requests", "teams"
   add_foreign_key "requests", "users"
   add_foreign_key "teams", "users"
+  add_foreign_key "users_teams", "teams"
+  add_foreign_key "users_teams", "users"
 end

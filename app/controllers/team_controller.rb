@@ -10,6 +10,7 @@ class TeamController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
+    @members = @team.users
     
     @current_user_request = Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count
   end
@@ -76,6 +77,24 @@ class TeamController < ApplicationController
     @request = Request.find(params[:request_id])
 
     if (params[:answer] == "yes")
+
+      @team_join = UsersTeam.new
+
+      @team_join.status = "member"
+      @team_join.user = current_user
+      @team_join.team = @request.team
+
+      respond_to do |format|
+        if @team_join.save
+
+          @request.destroy
+
+          return true
+          
+        else
+          return false
+        end
+      end
 
     elsif (params[:answer] == "no")
       @request.status = "refused"
