@@ -5,6 +5,8 @@
 
     <!-- members box -->
     <div class="members-box grid grid-cols-3">
+
+        <% @members.each do |member| %>
         <!-- member block -->
         <div class="member mb-5" v-for="n in 11" v-bind:key="n">
             <a href="#" class="flex-shrink-0 group block focus:outline-none">
@@ -16,7 +18,7 @@
                     </div>
                     <div class="ml-3">
                         <p class="text-sm leading-5 font-medium text-gray-700 group-hover:text-white">
-                            <%= @team.user.username %>
+                            <%= member.username %>
                         </p>
                         <p
                             class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-400 group-focus:underline transition ease-in-out duration-150">
@@ -27,6 +29,8 @@
             </a>
         </div>
         <!-- member block end -->
+        <% end %>
+
     </div>
     <!-- members box end -->
 </div>
