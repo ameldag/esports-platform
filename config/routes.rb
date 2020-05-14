@@ -18,7 +18,11 @@ Rails.application.routes.draw do
   get 'team/:id/members', to: "team#members", as: "show_team_members"
   get 'team/:id/requests', to: "team#requests", as: "show_team_requests"
 
+  # users routes
   devise_for :users
+  get 'user/:id/edit', to: "users#edit", as: "edit_user"
+  patch 'user/:id/edit', to: "users#update", as: "update_user"
+
   get 'pages/index'
 
   root 'pages#index'

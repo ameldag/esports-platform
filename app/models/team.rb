@@ -1,11 +1,11 @@
 class Team < ApplicationRecord
   belongs_to :user
-  has_many :requests
+  has_many :requests, dependent: :destroy
 
-  has_one_attached :avatar
-  has_one_attached :cover
+  has_one_attached :avatar, dependent: :destroy
+  has_one_attached :cover, dependent: :destroy
 
   
-  has_many :users_teams
+  has_many :users_teams, dependent: :destroy
   has_many :users, through: :users_teams
 end
