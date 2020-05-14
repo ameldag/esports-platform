@@ -45,9 +45,9 @@
                         <div class="flex-shrink-0">
                             <a href="<%= show_team_path(team) %>">
                                 <% if team.avatar.present? %>
-                                <img class="h-10 w-10 rounded-full" src="<%= url_for(team.avatar) %>" alt="" />
+                                <img class="h-10 w-10 rounded-full object-cover" src="<%= url_for(team.avatar) %>" alt="" />
                                 <% else %>
-                                <img class="h-10 w-10 rounded-full" src="/images/icons/no-game.png" alt="" />
+                                <img class="h-10 w-10 rounded-full object-cover" src="/images/icons/no-game.png" alt="" />
                                 <% end %>
                             </a>
                         </div>

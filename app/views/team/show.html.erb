@@ -17,7 +17,11 @@
     <div class="z-10 relative w-full team-infos grid grid-cols-3 -mt-40 text-white">
         <div class="col-span-3 mb-5">
             <div class=" flex flex-wrap justify-center content-center">
-                <img src="<%= url_for(@team.avatar) %>" alt="" class="h-36 w-36 rounded-lg border-4">
+                <% if @team.avatar.present? %>
+                <img src="<%= url_for(@team.avatar) %>" alt="" class="h-36 w-36 rounded-lg border-4 object-cover">
+                <% else %>
+                <img src="/images/icon/no-game.png" alt="" class="h-36 w-36 rounded-lg border-4 object-cover">
+                <% end %>
             </div>
             <div class=" flex flex-wrap justify-center content-center text-3xl text-white font-bold">
                 <%= @team.name %>
