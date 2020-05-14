@@ -27,7 +27,7 @@
             id="user-menu" aria-label="User menu" aria-haspopup="true">
             <% if current_user.avatar.attached? %>
             <img class="h-8 w-8 rounded-full" src="<%= url_for(current_user.avatar) %>" alt />
-            <% else %><img class="h-8 w-8 rounded-full object-cover" src="/images/icon/no-game.png" alt />
+            <% else %><img class="h-8 w-8 rounded-full object-cover" src="/images/icons/no-game.png" alt />
             <% end %>
 
           </button>
