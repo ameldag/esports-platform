@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   get 'team/join/:team_id', to: "team#join_request", as: "team_join"
   get 'team/request/:request_id', to: "team#team_request_answer", as: "team_request_answer"
   get 'team/:id', to: "team#show", as: "show_team"
+  get 'team/:id/stats', to: "team#stats", as: "show_team_stats"
+  get 'team/:id/members', to: "team#members", as: "show_team_members"
+  get 'team/:id/requests', to: "team#requests", as: "show_team_requests"
 
   devise_for :users
   get 'pages/index'
