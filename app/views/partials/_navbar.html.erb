@@ -1,66 +1,38 @@
-<div
-class="relative z-10 flex-shrink-0 flex h-16 bg-gray-800 shadow-md border-b-2 border-gray-900"
->
-<button
-  class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:bg-gray-100 focus:text-gray-600 md:hidden"
-  aria-label="Open sidebar"
->
-  <svg
-    class="h-6 w-6"
-    stroke="currentColor"
-    fill="none"
-    viewBox="0 0 24 24"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M4 6h16M4 12h16M4 18h7"
-    />
-  </svg>
-</button>
-<div class="flex-1 px-4 flex justify-between">
-  <div class="flex-1 flex"></div>
-  <div class="ml-4 flex items-center md:ml-6">
-      
-    <% if user_signed_in? %>
-    <button
-      class="p-1 text-gray-400 rounded-full hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:shadow-outline focus:text-gray-500"
-      aria-label="Notifications"
-    >
-      <svg
-        class="h-6 w-6"
-        stroke="currentColor"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-        />
-      </svg>
-    </button>
+<div class="relative z-10 flex-shrink-0 flex h-16 bg-gray-800 shadow-md border-b-2 border-gray-900">
+  <button
+    class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:bg-gray-100 focus:text-gray-600 md:hidden"
+    aria-label="Open sidebar">
+    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+    </svg>
+  </button>
+  <div class="flex-1 px-4 flex justify-between">
+    <div class="flex-1 flex"></div>
+    <div class="ml-4 flex items-center md:ml-6">
 
-    <!-- Profile dropdown -->
-    <div
-      class="ml-3 relative" data-controller="dropdown">
-      <div data-action="click->dropdown#toggle click@window->dropdown#hide">
-        <button
-          class="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:shadow-outline"
-          id="user-menu"
-          aria-label="User menu"
-          aria-haspopup="true"
-        >
-          <img
-            class="h-8 w-8 rounded-full"
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            alt
-          />
-        </button>
-      </div>
-      <!--
+      <% if user_signed_in? %>
+      <button
+        class="p-1 text-gray-400 rounded-full hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:shadow-outline focus:text-gray-500"
+        aria-label="Notifications">
+        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+        </svg>
+      </button>
+
+      <!-- Profile dropdown -->
+      <div class="ml-3 relative" data-controller="dropdown">
+        <div data-action="click->dropdown#toggle click@window->dropdown#hide">
+          <button class="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:shadow-outline"
+            id="user-menu" aria-label="User menu" aria-haspopup="true">
+            <% if current_user.avatar.attached? %>
+            <img class="h-8 w-8 rounded-full" src="<%= url_for(current_user.avatar) %>" alt />
+            <% else %><img class="h-8 w-8 rounded-full object-cover" src="/images/icon/no-game.png" alt />
+            <% end %>
+
+          </button>
+        </div>
+        <!--
           Profile dropdown panel, show/hide based on dropdown state.
 
           Entering: "transition ease-out duration-100"
@@ -70,51 +42,40 @@ class="relative z-10 flex-shrink-0 flex h-16 bg-gray-800 shadow-md border-b-2 bo
             From: "transform opacity-100 scale-100"
             To: "transform opacity-0 scale-95"
       -->
-      <div
-        class="origin-top-right absolute right-0 mt-0 w-60 rounded-md shadow-lg hidden"
-        data-target="dropdown.menu"
-      >
-        <div class="rounded-md bg-white shadow-xs">
-          <div class="px-4 py-3" v-if="currentUser">
-            <p class="text-sm leading-5">Signed in with
-            <a class="tat-sm leading-5 font-bold text-gray-900 uppercase">
-              <%= current_user.username %>
-            </a>
-          </p>
-          </div>
-          <div class="border-t border-gray-100"></div>
-          <div class="py-1">
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
-              >Account settings</a
-            >
-          </div>
-          <div class="border-t border-gray-100"></div>
-          <div class="py-1">
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
-              >Teams</a
-            >
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
-              >Support</a
-            >
-          </div>
-          <div class="border-t border-gray-100"></div>
-          <div class="py-1">
-                <%= link_to "Logout", destroy_user_session_path(), method: "delete", class: "block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" %>
+        <div class="origin-top-right absolute right-0 mt-0 w-60 rounded-md shadow-lg hidden"
+          data-target="dropdown.menu">
+          <div class="rounded-md bg-white shadow-xs">
+            <div class="px-4 py-3" v-if="currentUser">
+              <p class="text-sm leading-5">Signed in with
+                <a class="tat-sm leading-5 font-bold text-gray-900 uppercase">
+                  <%= current_user.username %>
+                </a>
+              </p>
+            </div>
+            <div class="border-t border-gray-100"></div>
+            <div class="py-1">
+              <a href="<%= edit_user_path(current_user.id) %>"
+                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">Account
+                settings</a>
+            </div>
+            <div class="border-t border-gray-100"></div>
+            <div class="py-1">
+              <a href="<%= teams_path %>"
+                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">Teams</a>
 
+            </div>
+            <div class="border-t border-gray-100"></div>
+            <div class="py-1">
+              <%= link_to "Logout", destroy_user_session_path(), method: "delete", class: "block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" %>
+
+            </div>
           </div>
         </div>
       </div>
+      <% else %>
+      <%= link_to "Login", user_session_path(), class: "p-1 text-gray-400 rounded-md font-bold px-3 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:shadow-outline focus:text-gray-500" %>
+      <%= link_to "Sign up", new_user_registration_path(), class: "p-1 text-gray-400 rounded-md font-bold px-3 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:shadow-outline focus:text-gray-500" %>
+      <% end %>
     </div>
-    <% else %>
-        <%= link_to "Login", user_session_path(), class: "p-1 text-gray-400 rounded-md font-bold px-3 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:shadow-outline focus:text-gray-500" %>
-        <%= link_to "Sign up", new_user_registration_path(), class: "p-1 text-gray-400 rounded-md font-bold px-3 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:shadow-outline focus:text-gray-500" %>
-    <% end %>
   </div>
-</div>
 </div>

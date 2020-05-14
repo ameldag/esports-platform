@@ -1,0 +1,25 @@
+<%= form_with(model: @user, url: update_user_path(@user.id), local: true) do |f| %>
+<%= f.text_field :username %>
+<br>
+<%= f.text_field :email %>
+<br>
+<%= f.text_field :first_name %>
+<br>
+<%= f.text_field :last_name %>
+<br>
+<% if current_user.avatar.attached? %>
+<img class="h-8 w-8 rounded-full object-cover" src="<%= url_for(current_user.avatar) %>" alt />
+<% else %><img class="h-8 w-8 rounded-full object-cover" src="/images/icons/no-game.png" alt />
+<% end %>
+</br>
+<%= f.file_field :avatar %>
+<br>
+<% if current_user.cover.attached? %>
+<img class="h-8 w-8 rounded-full object-cover" src="<%= url_for(current_user.cover) %>" alt />
+<% else %><img class="h-8 w-8 rounded-full object-cover" src="/images/icons/no-game.png" alt />
+<% end %>
+</br>
+<%= f.file_field :cover %>
+
+<button type="submit" class="bg-purple-800 rounded-md shadow py-2 px-5 font-bold text-white">Save</button>
+<% end %>
