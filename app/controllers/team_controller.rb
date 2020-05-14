@@ -15,6 +15,30 @@ class TeamController < ApplicationController
     @current_user_request = Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count
   end
 
+  def members
+    @team = Team.find(params[:id])
+    @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
+    @members = @team.users
+    
+    @current_user_request = Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count
+  end
+
+  def stats
+    @team = Team.find(params[:id])
+    @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
+    @members = @team.users
+    
+    @current_user_request = Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count
+  end
+  
+  def requests
+    @team = Team.find(params[:id])
+    @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
+    @members = @team.users
+    
+    @current_user_request = Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count
+  end
+
   # GET /teams/new
   def new
     @team = Team.new

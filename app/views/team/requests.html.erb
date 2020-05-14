@@ -64,8 +64,10 @@
     </div>
 
     <div class="bg-black text-white py-5 px-10">
-
-        <%= render "team/partials/overview" %>
+        
+        <% if (@team.user == current_user) %>
+            <%= render "team/partials/requests" %>
+        <% end %>
 
     </div>
 
