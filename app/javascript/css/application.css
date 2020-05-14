@@ -5,9 +5,15 @@
 @import "tailwindcss/utilities";
 
 html {
-    overflow-y:   scroll;
-  }
-  ::-webkit-scrollbar {
-      width: 0px;
-      background: transparent; /* make scrollbar transparent */
-  }
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    /* make scrollbar transparent */
+}
+
+.bg-gray-dark, body {
+    background-color: #1b1c23;
+}

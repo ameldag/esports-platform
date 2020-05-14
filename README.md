@@ -9,3 +9,10 @@
 
 # DONE
 - Add icons and covers to games
+
+
+# Guidelines
+
+## Colors
+- borders : bg-gray-600
+- purple : bg-purple-800
