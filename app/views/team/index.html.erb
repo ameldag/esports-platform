@@ -29,7 +29,7 @@
             <div class="bg-black rounded-md overflow-hidden shadow-md transform hover:scale-110 transition duration-150 ease-in-out">
                 <div class="team-cover relative">
 
-                    <% if team.avatar %>
+                    <% if team.avatar.attached? %>
                     <img src="<%= url_for(team.cover) %>" alt="" class="h-40 w-full object-cover">
                     <% else %>
                     <img src="/images/icons/no-game.png" alt="" class="h-40 w-full object-cover">
