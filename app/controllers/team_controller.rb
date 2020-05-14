@@ -53,15 +53,34 @@ class TeamController < ApplicationController
   def create
     @team = Team.new(team_params)
 
-    respond_to do |format|
       if @team.save
-        format.html { redirect_to show_team_path(@team), notice: 'Team was successfully created.' }
-        format.json { render :show, status: :created, location: @team }
+
+        @team_join = UsersTeam.new
+
+        @team_join.status = "member"
+        @team_join.user = current_user
+        @team_join.team = @team
+
+        respond_to do |format|
+          if @team_join.save
+
+            format.html { redirect_to show_team_path(@team), notice: 'Team was successfully created.' }
+            format.json { render :show, status: :created, location: @team }
+            
+          else
+            
+            format.html { render :new }
+            format.json { render json: @team.errors, status: :unprocessable_entity }
+
+          end
+        end
+
+
       else
         format.html { render :new }
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
-    end
+      
   end
 
   def join_request
