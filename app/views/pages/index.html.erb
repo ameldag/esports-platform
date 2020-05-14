@@ -44,81 +44,32 @@
       </div>
 
       <div
-        class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-6 lg:max-w-none"
+        class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-<%= @games.count %> lg:max-w-none"
       >
-        <router-link to="/game">
+        <% @games.each do |game| %>
           <div
             class="flex flex-col rounded-lg shadow-lg overflow-hidden transform hover:scale-110 transition duration-150 ease-in-out"
           >
             <div class="flex-shrink-0">
+              <a href="<%= show_game_path(game.id) %>">
+              <% if game.card.present? %>
               <img
                 class="h-64 w-full object-cover"
-                src="https://dmarket.com/blog/best-dota2-wallpapers/dota2heroes9_hu9c86aa7e6a6fc7a27835e96ba206b0fc_211614_1920x1080_resize_q75_lanczos.jpg"
+                src="<%= url_for(game.card) %>"
                 alt=""
               />
+              <% else %>
+              <img
+                class="h-64 w-full object-cover"
+                src="/images/icons/no-game.png"
+                alt=""
+              />
+              <% end %>
+            </a>>
             </div>
           </div>
-        </router-link>
+        <% end %>
 
-        <div
-          class="flex flex-col rounded-lg shadow-lg overflow-hidden transform hover:scale-110 transition duration-150 ease-in-out"
-        >
-          <div class="flex-shrink-0">
-            <img
-              class="h-64 w-full object-cover"
-              src="https://dmarket.com/blog/best-dota2-wallpapers/dota2phantomassassin_hu7a55cc9c70812f84eda5310b22712062_575826_1920x1080_resize_q75_lanczos.jpg"
-              alt=""
-            />
-          </div>
-        </div>
-
-        <div
-          class="flex flex-col rounded-lg shadow-lg overflow-hidden transform hover:scale-110 transition duration-150 ease-in-out"
-        >
-          <div class="flex-shrink-0">
-            <img
-              class="h-64 w-full object-cover"
-              src="https://dmarket.com/blog/best-dota2-wallpapers/roshan3_hu855bbe0a9c47ac557e5b09db74fa3b06_304916_1920x1080_resize_q75_lanczos.jpg"
-              alt=""
-            />
-          </div>
-        </div>
-
-        <div
-          class="flex flex-col rounded-lg shadow-lg overflow-hidden transform hover:scale-110 transition duration-150 ease-in-out"
-        >
-          <div class="flex-shrink-0">
-            <img
-              class="h-64 w-full object-cover"
-              src="https://dmarket.com/blog/best-dota2-wallpapers/ta3_hu57f00f40b252761d2fb000954fdfbfd1_1813447_1920x1080_resize_q75_lanczos.jpg"
-              alt=""
-            />
-          </div>
-        </div>
-
-        <div
-          class="flex flex-col rounded-lg shadow-lg overflow-hidden transform hover:scale-110 transition duration-150 ease-in-out"
-        >
-          <div class="flex-shrink-0">
-            <img
-              class="h-64 w-full object-cover"
-              src="https://dmarket.com/blog/best-dota2-wallpapers/thronedota2_hu86556be67ed8227140fc57b4b574d8ea_865668_1920x1080_resize_q75_lanczos.jpg"
-              alt=""
-            />
-          </div>
-        </div>
-
-        <div
-          class="flex flex-col rounded-lg shadow-lg overflow-hidden transform hover:scale-110 transition duration-150 ease-in-out"
-        >
-          <div class="flex-shrink-0">
-            <img
-              class="h-64 w-full object-cover"
-              src="https://dmarket.com/blog/best-dota2-wallpapers/dota2-wallpaper_hu31917621871d6938079df7983401a375_826273_1920x1080_resize_q75_lanczos.jpg"
-              alt=""
-            />
-          </div>
-        </div>
       </div>
 
       <!-- Recommended Tournaments -->
