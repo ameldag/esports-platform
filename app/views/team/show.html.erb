@@ -2,7 +2,11 @@
 
     <div class="z-0 header w-full relative h-64">
         <!-- <div class="cover"> -->
+            <% if @team.cover.present? %>
         <img src="<%= url_for(@team.cover) %>" alt="" class="object-cover h-60 w-full">
+        <% else %>
+        <img src="/images/icon/no-game.png" alt="" class="object-cover h-60 w-full">
+        <% end %>
         <!-- </div> -->
         <div class="overlay absolute top-0 left-0 bottom-0 right-0 dark-gradient"
             style="background: linear-gradient(rgba(17,18,23,0),#000);">
