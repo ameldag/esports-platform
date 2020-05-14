@@ -22,7 +22,7 @@
                         </p>
                         <p
                             class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-400 group-focus:underline transition ease-in-out duration-150">
-                            Signed up 3 months ago
+                            Signed up <%= time_ago_in_words(member.created_at) %>
                         </p>
                     </div>
                 </div>
