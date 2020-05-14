@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # games routes
   get 'game/:id', to: "game#show", as: "show_game"
+  get 'game/:id/tournaments', to: "game#tournaments", as: "show_game_tournaments"
 
   # admin routes
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
