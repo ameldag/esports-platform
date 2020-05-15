@@ -3,8 +3,8 @@
 
   <div class="relative bg-gray-800 mt-0 mb-0">
     <div class="h-72 sm:h-72 md:absolute md:left-0 md:h-full md:w-full">
-      <% if @last_tournament.cover.attached? %>
-      <img class="w-full object-cover" src="<%= url_for(@last_tournament.cover) %>" alt="" />
+      <% if @featured.cover.attached? %>
+      <img class="w-full object-cover" src="<%= url_for(@featured.cover) %>" alt="" />
       <% else %>
       <img class="w-full h-full object-cover" src="/images/icons/no-game.png" alt="" />
       <% end %>
@@ -15,10 +15,17 @@
 
     </div>
 
-    <div class="relative w-full mx-0 py-12 bg-dark-gradient lg:py-16">
-      <div class="md:ml-auto md:w-full pt-60 px-5 mt-0">
-        <h2 class="mt-0 text-white text-3xl leading-9 font-extrabold tracking-tight sm:text-4xl sm:leading-10">
-          Counter-Strike : Global Offensive
+    <div class="relative w-full mx-0 pt-12 bg-dark-gradient lg:pt-12">
+      <div class="md:ml-auto md:w-full pt-16 px-5 mt-0">
+        <a href="<%= show_game_path(@featured.tournament.game.id) %>">
+          <% if @featured.tournament.game.card.present? %>
+          <img class="h-64 w-42 rounded-md object-cover" src="<%= url_for(@featured.tournament.game.card) %>" alt="" />
+          <% else %>
+          <img class="h-64 w-42 rounded-md object-cover" src="/images/icons/no-game.png" alt="" />
+          <% end %>
+        </a>
+        <h2 class="mt-5 text-white text-5xl leading-9 font-extrabold tracking-tight sm:text-4xl sm:leading-10">
+          <%= @featured.name %>
         </h2>
       </div>
     </div>
