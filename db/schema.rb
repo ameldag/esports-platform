@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_224612) do
+ActiveRecord::Schema.define(version: 2020_05_15_001809) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 2020_05_14_224612) do
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
+  create_table "seasons", force: :cascade do |t|
+    t.integer "number"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "game_id", null: false
+    t.index ["game_id"], name: "index_seasons_on_game_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.integer "user_id", null: false
@@ -59,6 +69,26 @@ ActiveRecord::Schema.define(version: 2020_05_14_224612) do
     t.string "website"
     t.text "description"
     t.index ["user_id"], name: "index_teams_on_user_id"
+  end
+
+  create_table "tournaments", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.date "start_date"
+    t.date "end_date"
+    t.string "status"
+    t.boolean "active"
+    t.integer "slots"
+    t.integer "user_id", null: false
+    t.integer "season_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "game_id", null: false
+    t.integer "prize"
+    t.integer "entry_fee"
+    t.index ["game_id"], name: "index_tournaments_on_game_id"
+    t.index ["season_id"], name: "index_tournaments_on_season_id"
+    t.index ["user_id"], name: "index_tournaments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
