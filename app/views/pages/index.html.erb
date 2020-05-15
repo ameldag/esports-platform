@@ -19,9 +19,9 @@
       <div class="md:ml-auto md:w-full pt-16 px-5 mt-0">
         <a href="<%= show_game_path(@featured.tournament.game.id) %>">
           <% if @featured.tournament.game.card.present? %>
-          <img class="h-64 w-42 rounded-md object-cover" src="<%= url_for(@featured.tournament.game.card) %>" alt="" />
+          <img class="h-64 w-42 rounded-md object-cover shadow" src="<%= url_for(@featured.tournament.game.card) %>" alt="" />
           <% else %>
-          <img class="h-64 w-42 rounded-md object-cover" src="/images/icons/no-game.png" alt="" />
+          <img class="h-64 w-42 rounded-md object-cover shadow" src="/images/icons/no-game.png" alt="" />
           <% end %>
         </a>
         <h2 class="mt-5 text-white text-5xl leading-9 font-extrabold tracking-tight sm:text-4xl sm:leading-10">
