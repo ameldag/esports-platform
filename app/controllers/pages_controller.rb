@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   layout "in-app"
   def index
     @games = Game.where('active = ?', true).all
-    @last_tournament = Tournament.where('active = ?', true).second
+    @featured = Featured.where('active = ?', true).last
 
     # Listing tournaments in the home page
     @tournaments = Tournament.where('active = ?', true).last(8)
