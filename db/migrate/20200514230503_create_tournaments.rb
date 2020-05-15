@@ -8,7 +8,7 @@ class CreateTournaments < ActiveRecord::Migration[6.0]
       t.string :status
       t.boolean :active
       t.integer :slots
-      t.references :user, null: false
+      t.references :user, null: true
       t.references :season, null: false
 
       t.timestamps

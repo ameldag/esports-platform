@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_001809) do
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "game_id", null: false
+    t.integer "game_id"
     t.index ["game_id"], name: "index_seasons_on_game_id"
   end
 
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_001809) do
     t.string "status"
     t.boolean "active"
     t.integer "slots"
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.integer "season_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
