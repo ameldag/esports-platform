@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   # admin routes
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
+  # tournaments routes
+  get 'tournament/:id', to: "tournaments#show", as: "show_tournament"
+
   # teams routes
   get 'teams', to: "team#index", as: "teams"
   get 'team/edit', to: "team#edit", as: "edit_team"

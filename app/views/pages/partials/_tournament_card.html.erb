@@ -14,7 +14,9 @@
         </time>
 
         <h3 class="uppercase text-sm text-gray-200 font-bold mb-0">
-          <%= tournament.name %>
+          <a href="<%= show_tournament_path(tournament.id) %>">
+            <%= tournament.name %>
+          </a>
           <span
             class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium leading-5 bg-purple-800 text-purple-100">
             <%= tournament.slots %> Slots

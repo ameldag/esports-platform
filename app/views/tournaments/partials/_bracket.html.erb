@@ -1,0 +1,59 @@
+<% competitors = [
+    {"name"=>"Team", "score"=> 270, "result"=>"won", "level" => 0},
+    {"name"=>"Team", "score"=> 14, "result"=>"defeat", "level" => 0},
+    {"name"=>"Team", "score"=> 311, "result"=>"defat", "level" => 0},
+    {"name"=>"Team", "score"=> 672, "result"=>"won", "level" => 0},
+    {"name"=>"Team", "score"=> 10, "result"=>"won", "level" => 0},
+    {"name"=>"Team", "score"=> 10, "result"=>"defeat", "level" => 0},
+    {"name"=>"Team", "score"=> 10, "result"=>"won", "level" => 0},
+    {"name"=>"Team", "score"=> 10, "result"=>"defeat", "level" => 0},
+    {"name"=>"Team", "score"=> 10, "result"=>"defeat", "level" => 1},
+    {"name"=>"Team", "score"=> 10, "result"=>"won", "level" => 1},
+    {"name"=>"Team", "score"=> 10, "result"=>"won", "level" => 1},
+    {"name"=>"Team", "score"=> 10, "result"=>"defeat", "level" => 1},
+    {"name"=>"Team", "score"=> 10, "result"=>"defeat", "level" => 2},
+    {"name"=>"Team", "score"=> 10, "result"=>"won", "level" => 2}] %>
+
+<% slice_bracket = competitors.each_slice(2).to_a %>
+<% number_of_rounds = (slice_bracket.count / 2) %>
+
+<div class="bracket-box w-full grid grid-cols-<%= number_of_rounds %> gap-0">
+    <% number_of_rounds.times do |index| %>
+
+    <% right_border = "" %>
+    <% unless (index > (number_of_rounds - 2)) %>
+    <% right_border = "border-r-2 border-dashed" %>
+    <% end %>
+    <div class="phase p-10 <%= right_border %>">
+        <h2 class="font-bold text-2xl text-center text-gray-800 mb-10">Phase <%= index %></h2>
+        <div class="w-full flex flex-col justify-center h-full">
+            <% slice_bracket.each do |bracket| %>
+            <% if bracket[0]['level'] == index %>
+            <div class="bg-gray-600 w-full rounded-md overflow-hidden mb-10 shadow-lg">
+                <% bracket.each do |team| %>
+                <% if team['result'] == "won" %>
+                <% color = "bg-green-500 hover:bg-teal-600" %>
+                <% else %>
+                <% color = "" %>
+                <% end %>
+                <div class="font-bold text-gray-200 hover:bg-gray-900 p-2 grid grid-cols-6 <%= color %>">
+                    <img src="/images/icons/no-game.png" alt=""
+                        class="inline h-8 w-8 object-cover col-span-1 rounded-full">
+                    <div class="inline col-span-4"><%= team['name'] %></div>
+                    <div class="inline col-span-1"><%= team['score'] %></div>
+                </div>
+                <% end %>
+            </div>
+            <% else %>
+            <!-- <div class="bg-transparent w-full rounded-md overflow-hidden mb-10">
+                <div class="font-bold text-gray-200 p-2 grid grid-cols-6">
+                    <div class="inline col-span-4">&nbsp;</div>
+                    <div class="inline col-span-1">&nbsp;</div>
+                </div>
+            </div> -->
+            <% end %>
+            <% end %>
+        </div>
+    </div>
+    <% end %>
+</div>
