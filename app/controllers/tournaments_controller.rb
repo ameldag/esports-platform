@@ -7,6 +7,7 @@ class TournamentsController < ApplicationController
   end
 
   def show
+    @similar_tournaments = Tournament.where("game_id = ?", @tournament.id).last(4)
   end
 
   def subscribe

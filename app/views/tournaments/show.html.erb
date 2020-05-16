@@ -1,1 +1,60 @@
-<%= render "tournaments/partials/bracket" %>
+<div class="relative bg-black h-screen pt-0 pb-0 px-0 sm:px-0 lg:pt-0 lg:pb-0 lg:px-0">
+
+<!-- Tournament header -->
+<div class="tournament-header relative w-full p-10">
+    
+
+    <!-- Tournament image background -->
+    <div class="absolute top-0 left-0 bottom-0 right-0 dark-gradient overflow-hidden">
+        <% if @tournament.cover.attached? %>
+        <img class="w-full object-cover" src="<%= url_for(@tournament.cover) %>" alt="" />
+        <% else %>
+        <img class="w-full object-cover" src="/images/icons/no-game.png" alt="" />
+        <% end %>
+      </div>
+    <!-- Tournament image background end -->
+
+    <!-- Tournament image overlay -->
+    <div class="overlay absolute top-0 left-0 bottom-0 right-0 dark-gradient"
+      style="background: linear-gradient(rgba(17,18,23,0),#000);">
+
+    </div>
+    <!-- Tournament image overlay end -->
+
+    <!-- Tournament info -->
+    <div class="pt-10 relative">
+        <!-- Tournament logo -->
+        <div class="inline-block logo">
+            <img src="<%= url_for(@tournament.game.card) %>" alt="" class="h-42 w-32 object-cover rounded-md shadow">
+        </div>
+        <!-- Tournament logo end -->
+
+        <!-- Tournament header text -->
+        <div class="inline-block tournament-text-infos pl-5">
+            <!-- Kind -->
+            <h3 class="text-gray-200 font-thin uppercase text-sm">Tournament</h3>
+
+            <!-- Name -->
+            <h1 class="text-gray-100 font-bold uppercase text-3xl"><%= @tournament.name %></h3>
+
+            <!-- Time and status -->
+            <h2 class="text-gray-300">Yesterday at 19:00 CEST &bull; <span class="bg-green-700 text-white text-xs px-2 py-1 rounded-full">Completed</span> </h2>
+        </div>
+        <!-- Tournament header text end -->
+    </div>
+    <!-- Tournament info end -->
+
+</div>
+<!-- Tournament header end -->
+
+<!-- Tournament tab -->
+<%= render "tournaments/partials/tab" %>
+
+<!-- Tournament tab end -->
+
+<!-- Overview render -->
+<div class="relative w-full mx-0 px-5 pb-10 bg-black">
+    <%= render "tournaments/partials/overview" %>
+</div>
+
+</div>
