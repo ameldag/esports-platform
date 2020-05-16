@@ -7,7 +7,8 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    @similar_tournaments = Tournament.where("game_id = ?", @tournament.id).last(4)
+    @similar_tournaments = Tournament.where("game_id = ?", @tournament.game.id).last(4)
+    @similar_tournaments = @similar_tournaments.delete_if {|tournament| tournament.id == @tournament.id }
   end
 
   def subscribe
@@ -16,6 +17,6 @@ class TournamentsController < ApplicationController
   private
 
   def set_tournament
-    @tournament = Tournament.find(params[:id])
+    @tournament = Tournament.friendly.find(params[:id])
   end
 end
