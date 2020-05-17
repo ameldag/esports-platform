@@ -1,5 +1,6 @@
 class TeamController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_team, except: [:index, :new, :create, :join_request, :team_request_answer]
 
   layout "in-app"
 
@@ -8,7 +9,7 @@ class TeamController < ApplicationController
   end
 
   def show
-    @team = Team.find(params[:id])
+    
     @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
     @members = @team.users
     
@@ -16,7 +17,7 @@ class TeamController < ApplicationController
   end
 
   def members
-    @team = Team.find(params[:id])
+    
     @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
     @members = @team.users
     
@@ -24,7 +25,7 @@ class TeamController < ApplicationController
   end
 
   def stats
-    @team = Team.find(params[:id])
+    
     @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
     @members = @team.users
     
@@ -32,7 +33,7 @@ class TeamController < ApplicationController
   end
   
   def requests
-    @team = Team.find(params[:id])
+    
     @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
     @members = @team.users
     
@@ -149,6 +150,10 @@ class TeamController < ApplicationController
   end
 
   private
+
+  def set_team
+    @team = Team.friendly.find(params[:id])
+  end
 
   def team_params
     params.permit(:name, :user_id, :website, :description, :avatar, :cover)
