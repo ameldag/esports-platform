@@ -1,12 +1,20 @@
 class GameController < ApplicationController
+  before_action :set_team
+
   layout "in-app"
 
   def show
-    @game = Game.find(params[:id])
+    
   end
 
   def tournaments
-    @game = Game.find(params[:id])
+    
+  end
+
+  private
+
+  def set_game
+    @game = Game.friendly.find(params[:id])
   end
   
 end
