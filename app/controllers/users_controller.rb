@@ -1,30 +1,23 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
+    before_action :set_user, except: [:index]
   
     layout "in-app"
   
     def index
-      @teams = Team.all
+      @users = User.all
     end
   
     def show
-        @team = Team.find(params[:id])
-        @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
-        @members = @team.users
-        
-        @current_user_request = Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count
     end
 
       
     def edit
-        @user = User.find(params[:id])
     end
 
     # PATCH/PUT /users/1
     # PATCH/PUT /users/1.json
     def update
-
-        @user = User.find(params[:id])
 
         respond_to do |format|
             
@@ -41,6 +34,10 @@ class UsersController < ApplicationController
 
   
     private
+
+    def set_user
+        @user = User.friendly.find(params[:id])
+    end
 
     def user_params
         params.require(:user).permit(:username, :first_name, :last_name, :avatar, :cover)

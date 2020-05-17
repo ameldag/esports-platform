@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :teams, through: :users_teams, dependent: :destroy
   
   
+  extend FriendlyId
+  friendly_id :username, use: :slugged
 
   has_one_attached :avatar, dependent: :destroy
   has_one_attached :cover, dependent: :destroy
