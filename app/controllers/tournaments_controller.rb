@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-  before_action :set_tournament, only: [:show]
+  before_action :set_tournament, except: [:index]
 
   layout "in-app"
 
@@ -7,6 +7,16 @@ class TournamentsController < ApplicationController
   end
 
   def show
+    @similar_tournaments = Tournament.where("game_id = ?", @tournament.game.id).last(4)
+    @similar_tournaments = @similar_tournaments.delete_if {|tournament| tournament.id == @tournament.id }
+  end
+
+  def bracket
+    @similar_tournaments = Tournament.where("game_id = ?", @tournament.game.id).last(4)
+    @similar_tournaments = @similar_tournaments.delete_if {|tournament| tournament.id == @tournament.id }
+  end
+
+  def matches
     @similar_tournaments = Tournament.where("game_id = ?", @tournament.game.id).last(4)
     @similar_tournaments = @similar_tournaments.delete_if {|tournament| tournament.id == @tournament.id }
   end

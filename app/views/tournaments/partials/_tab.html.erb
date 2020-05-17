@@ -2,15 +2,15 @@
 
     <div class="grid grid-cols-2 gap-4 py-2">
         <div class="">
-            <a href=""
+            <a href="<%= show_tournament_path(@tournament) %>"
                 class="whitespace-no-wrap py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-200 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
                 Overview
             </a>
-            <a href=""
+            <a href="<%= show_tournament_bracket_path(@tournament) %>"
                 class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-200 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
                 Bracket
             </a>
-            <a href=""
+            <a href="<%= show_tournament_matches_path(@tournament) %>"
                 class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-200 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
                 Matches
             </a>

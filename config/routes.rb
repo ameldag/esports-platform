@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   # tournaments routes
   get 'tournament/:id', to: "tournaments#show", as: "show_tournament"
+  get 'tournament/:id/bracket', to: "tournaments#bracket", as: "show_tournament_bracket"
+  get 'tournament/:id/matches', to: "tournaments#matches", as: "show_tournament_matches"
 
   # teams routes
   get 'teams', to: "team#index", as: "teams"
