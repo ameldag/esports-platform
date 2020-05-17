@@ -1,0 +1,460 @@
+<% if (@similar_tournaments.present? and (@similar_tournaments.count > 0)) %>
+<div class="md:flex md:items-center md:justify-between">
+    <div class="flex-1 min-w-0">
+        <h2 class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-10">
+            Similar Tournaments
+        </h2>
+    </div>
+</div>
+
+<div class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none">
+
+    <% @similar_tournaments.each do |tournament| %>
+    <%= render "pages/partials/tournament_card", tournament: tournament %>
+    <% end %>
+
+</div>
+<% end %>
+
+<div class="bg-transparent mx-0 py-2 my-0 px-0">
+    <!-- Main columns container -->
+    <div class="grid grid-cols-3 gap-5">
+
+        <!-- Details column -->
+        <div class="col-span-2">
+
+            <!-- Format -->
+            <div class="format w-full">
+                <div class="md:flex md:items-center md:justify-between">
+                    <div class="flex-1 min-w-0">
+                        <h2
+                            class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-10 mb-5">
+                            Format
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-5 text-gray-400">
+
+                    <div class="border border-gray-300 rounded-md p-5">
+                        <div class="game-icon">
+                            <svg class="" width="1em" height="1em" viewBox="0 0 1024 1024" fill="currentColor">
+                                <path
+                                    d="M854.4 800.9c.2-.3.5-.6.7-.9C920.6 722.1 960 621.7 960 512s-39.4-210.1-104.8-288c-.2-.3-.5-.5-.7-.8-1.1-1.3-2.1-2.5-3.2-3.7-.4-.5-.8-.9-1.2-1.4l-4.1-4.7-.1-.1c-1.5-1.7-3.1-3.4-4.6-5.1l-.1-.1c-3.2-3.4-6.4-6.8-9.7-10.1l-.1-.1-4.8-4.8-.3-.3c-1.5-1.5-3-2.9-4.5-4.3-.5-.5-1-1-1.6-1.5-1-1-2-1.9-3-2.8-.3-.3-.7-.6-1-1C736.4 109.2 629.5 64 512 64s-224.4 45.2-304.3 119.2c-.3.3-.7.6-1 1-1 .9-2 1.9-3 2.9-.5.5-1 1-1.6 1.5-1.5 1.4-3 2.9-4.5 4.3l-.3.3-4.8 4.8-.1.1c-3.3 3.3-6.5 6.7-9.7 10.1l-.1.1c-1.6 1.7-3.1 3.4-4.6 5.1l-.1.1c-1.4 1.5-2.8 3.1-4.1 4.7-.4.5-.8.9-1.2 1.4-1.1 1.2-2.1 2.5-3.2 3.7-.2.3-.5.5-.7.8C103.4 301.9 64 402.3 64 512s39.4 210.1 104.8 288c.2.3.5.6.7.9l3.1 3.7c.4.5.8.9 1.2 1.4l4.1 4.7c0 .1.1.1.1.2 1.5 1.7 3 3.4 4.6 5l.1.1c3.2 3.4 6.4 6.8 9.6 10.1l.1.1c1.6 1.6 3.1 3.2 4.7 4.7l.3.3c3.3 3.3 6.7 6.5 10.1 9.6 80.1 74 187 119.2 304.5 119.2s224.4-45.2 304.3-119.2a300 300 0 0 0 10-9.6l.3-.3c1.6-1.6 3.2-3.1 4.7-4.7l.1-.1c3.3-3.3 6.5-6.7 9.6-10.1l.1-.1c1.5-1.7 3.1-3.3 4.6-5 0-.1.1-.1.1-.2 1.4-1.5 2.8-3.1 4.1-4.7.4-.5.8-.9 1.2-1.4a99 99 0 0 0 3.3-3.7zm4.1-142.6c-13.8 32.6-32 62.8-54.2 90.2a444.07 444.07 0 0 0-81.5-55.9c11.6-46.9 18.8-98.4 20.7-152.6H887c-3 40.9-12.6 80.6-28.5 118.3zM887 484H743.5c-1.9-54.2-9.1-105.7-20.7-152.6 29.3-15.6 56.6-34.4 81.5-55.9A373.86 373.86 0 0 1 887 484zM658.3 165.5c39.7 16.8 75.8 40 107.6 69.2a394.72 394.72 0 0 1-59.4 41.8c-15.7-45-35.8-84.1-59.2-115.4 3.7 1.4 7.4 2.9 11 4.4zm-90.6 700.6c-9.2 7.2-18.4 12.7-27.7 16.4V697a389.1 389.1 0 0 1 115.7 26.2c-8.3 24.6-17.9 47.3-29 67.8-17.4 32.4-37.8 58.3-59 75.1zm59-633.1c11 20.6 20.7 43.3 29 67.8A389.1 389.1 0 0 1 540 327V141.6c9.2 3.7 18.5 9.1 27.7 16.4 21.2 16.7 41.6 42.6 59 75zM540 640.9V540h147.5c-1.6 44.2-7.1 87.1-16.3 127.8l-.3 1.2A445.02 445.02 0 0 0 540 640.9zm0-156.9V383.1c45.8-2.8 89.8-12.5 130.9-28.1l.3 1.2c9.2 40.7 14.7 83.5 16.3 127.8H540zm-56 56v100.9c-45.8 2.8-89.8 12.5-130.9 28.1l-.3-1.2c-9.2-40.7-14.7-83.5-16.3-127.8H484zm-147.5-56c1.6-44.2 7.1-87.1 16.3-127.8l.3-1.2c41.1 15.6 85 25.3 130.9 28.1V484H336.5zM484 697v185.4c-9.2-3.7-18.5-9.1-27.7-16.4-21.2-16.7-41.7-42.7-59.1-75.1-11-20.6-20.7-43.3-29-67.8 37.2-14.6 75.9-23.3 115.8-26.1zm0-370a389.1 389.1 0 0 1-115.7-26.2c8.3-24.6 17.9-47.3 29-67.8 17.4-32.4 37.8-58.4 59.1-75.1 9.2-7.2 18.4-12.7 27.7-16.4V327zM365.7 165.5c3.7-1.5 7.3-3 11-4.4-23.4 31.3-43.5 70.4-59.2 115.4-21-12-40.9-26-59.4-41.8 31.8-29.2 67.9-52.4 107.6-69.2zM165.5 365.7c13.8-32.6 32-62.8 54.2-90.2 24.9 21.5 52.2 40.3 81.5 55.9-11.6 46.9-18.8 98.4-20.7 152.6H137c3-40.9 12.6-80.6 28.5-118.3zM137 540h143.5c1.9 54.2 9.1 105.7 20.7 152.6a444.07 444.07 0 0 0-81.5 55.9A373.86 373.86 0 0 1 137 540zm228.7 318.5c-39.7-16.8-75.8-40-107.6-69.2 18.5-15.8 38.4-29.7 59.4-41.8 15.7 45 35.8 84.1 59.2 115.4-3.7-1.4-7.4-2.9-11-4.4zm292.6 0c-3.7 1.5-7.3 3-11 4.4 23.4-31.3 43.5-70.4 59.2-115.4 21 12 40.9 26 59.4 41.8a373.81 373.81 0 0 1-107.6 69.2z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <label class="font-bold">
+                            Game
+                        </label>
+
+                        <h3>
+                            CSGO
+                        </h3>
+                    </div>
+
+                    <div class="border border-gray-300 rounded-md p-5">
+                        <div class="game-icon">
+                            <svg class="" width="1em" height="1em" viewBox="0 0 1024 1024" fill="currentColor">
+                                <path
+                                    d="M824.2 699.9a301.55 301.55 0 0 0-86.4-60.4C783.1 602.8 812 546.8 812 484c0-110.8-92.4-201.7-203.2-200-109.1 1.7-197 90.6-197 200 0 62.8 29 118.8 74.2 155.5a300.95 300.95 0 0 0-86.4 60.4C345 754.6 314 826.8 312 903.8a8 8 0 0 0 8 8.2h56c4.3 0 7.9-3.4 8-7.7 1.9-58 25.4-112.3 66.7-153.5A226.62 226.62 0 0 1 612 684c60.9 0 118.2 23.7 161.3 66.8C814.5 792 838 846.3 840 904.3c.1 4.3 3.7 7.7 8 7.7h56a8 8 0 0 0 8-8.2c-2-77-33-149.2-87.8-203.9zM612 612c-34.2 0-66.4-13.3-90.5-37.5a126.86 126.86 0 0 1-37.5-91.8c.3-32.8 13.4-64.5 36.3-88 24-24.6 56.1-38.3 90.4-38.7 33.9-.3 66.8 12.9 91 36.6 24.8 24.3 38.4 56.8 38.4 91.4 0 34.2-13.3 66.3-37.5 90.5A127.3 127.3 0 0 1 612 612zM361.5 510.4c-.9-8.7-1.4-17.5-1.4-26.4 0-15.9 1.5-31.4 4.3-46.5.7-3.6-1.2-7.3-4.5-8.8-13.6-6.1-26.1-14.5-36.9-25.1a127.54 127.54 0 0 1-38.7-95.4c.9-32.1 13.8-62.6 36.3-85.6 24.7-25.3 57.9-39.1 93.2-38.7 31.9.3 62.7 12.6 86 34.4 7.9 7.4 14.7 15.6 20.4 24.4 2 3.1 5.9 4.4 9.3 3.2 17.6-6.1 36.2-10.4 55.3-12.4 5.6-.6 8.8-6.6 6.3-11.6-32.5-64.3-98.9-108.7-175.7-109.9-110.9-1.7-203.3 89.2-203.3 199.9 0 62.8 28.9 118.8 74.2 155.5-31.8 14.7-61.1 35-86.5 60.4-54.8 54.7-85.8 126.9-87.8 204a8 8 0 0 0 8 8.2h56.1c4.3 0 7.9-3.4 8-7.7 1.9-58 25.4-112.3 66.7-153.5 29.4-29.4 65.4-49.8 104.7-59.7 3.9-1 6.5-4.7 6-8.7z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <label class="font-bold">
+                            Team Size
+                        </label>
+
+                        <h3>
+                            5v5 - 4 substitutes
+                        </h3>
+                    </div>
+
+                    <div class="border border-gray-300 rounded-md p-5">
+                        <div class="game-icon">
+                            <svg class="" width="1em" height="1em" viewBox="0 0 1024 1024" fill="currentColor">
+                                <path
+                                    d="M620,606.8c22.1,0,40,17.9,40,40s-17.9,40-40,40s-40-17.9-40-40S597.9,606.8,620,606.8z M880,326.8h-65.7h-23.5l11.5-10.6
+                                c15.2-14.2,16.1-38,2-53.3L624.8,69.3c-14.1-15.3-38-16.2-53.3-2L291.4,326.8H144c-17.7,0-32,14.3-32,32v576c0,17.7,14.3,32,32,32
+                                h736c17.7,0,32-14.3,32-32v-576C912,341.1,897.7,326.8,880,326.8z M674.1,177.9l102.6,110.7l-41.3,38.2h-222L674.1,177.9z
+                                 M597.2,94.9l25.7,27.7L402.5,326.8H347C426.9,252.7,597.2,94.9,597.2,94.9z M840,458.8v256v180H184v-496h656V458.8z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <label class="font-bold">
+                            Entry Fee
+                        </label>
+
+                        <h3>
+                            $25
+                        </h3>
+                    </div>
+
+                    <div class="border border-gray-300 rounded-md p-5">
+                        <div class="game-icon">
+                            <svg class="" width="1em" height="1em" viewBox="0 0 1024 1024" fill="currentColor">
+                                <path
+                                    d="M868 160h-92v-40c0-4.4-3.6-8-8-8H256c-4.4 0-8 3.6-8 8v40h-92a44 44 0 0 0-44 44v148c0 81.7 60 149.6 138.2 162C265.7 630.2 359 721.7 476 734.5v105.2H280c-17.7 0-32 14.3-32 32V904c0 4.4 3.6 8 8 8h512c4.4 0 8-3.6 8-8v-32.3c0-17.7-14.3-32-32-32H548V734.5C665 721.7 758.3 630.2 773.8 514 852 501.6 912 433.7 912 352V204a44 44 0 0 0-44-44zM184 352V232h64v207.6a91.99 91.99 0 0 1-64-87.6zm520 128c0 49.1-19.1 95.4-53.9 130.1-34.8 34.8-81 53.9-130.1 53.9h-16c-49.1 0-95.4-19.1-130.1-53.9-34.8-34.8-53.9-81-53.9-130.1V184h384v296zm136-128c0 41-26.9 75.8-64 87.6V232h64v120z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <label class="font-bold">
+                            Prize Pool
+                        </label>
+
+                        <h3>
+                            $1000
+                        </h3>
+                    </div>
+
+                    <div class="border border-gray-300 rounded-md p-5">
+                        <div class="game-icon">
+                            <svg class="" width="1em" height="1em" viewBox="0 0 1024 1024" fill="currentColor">
+                                <path d="M434,908V804h102c4.4000244,0,8-3.5999756,8-8V548h46v108c0,8.7999878,7.2000122,16,16,16h338
+                                c8.7999878,0,16-7.2000122,16-16V368c0-8.7999878-7.2000122-16-16-16H606c-8.7999878,0-16,7.2000122-16,16v108h-46V228
+                                c0-4.3999939-3.6000366-8-8-8H434V116c0-8.8000031-7.2000122-16-16-16H80c-8.7999878,0-16,7.1999969-16,16v288
+                                c0,8.7999878,7.2000122,16,16,16h338c8.7999878,0,16-7.2000122,16-16V292h38v440h-38V620c0-8.7999878-7.2000122-16-16-16H80
+                                c-8.7999878,0-16,7.2000122-16,16v288c0,8.7999878,7.2000122,16,16,16h338C426.7999878,924,434,916.7999878,434,908z M358,344H140
+                                V176h218V344z M666,428h218v168H666V428z M140,848V680h218v168H140z"></path>
+                            </svg>
+                        </div>
+
+                        <label class="font-bold">
+                            Tournament Format
+                        </label>
+
+                        <h3>
+                            Single Elimination
+                        </h3>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Regions -->
+            <div class="regions border-t border-gray-600 pt-0 mt-10 w-full">
+                <div class="md:flex md:items-center md:justify-between">
+                    <div class="flex-1 min-w-0">
+                        <h2
+                            class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-5 mb-5">
+                            Regions
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="covered_regions">
+
+                    <div class="grid grid-cols-3">
+
+                        <% 5.times do %>
+
+                        <a href="#" class="flex-shrink-0 group block focus:outline-none mb-10">
+                            <div class="flex items-center">
+                                <div>
+                                    <img class="inline-block h-12 w-12 rounded-full" src="/images/flags/france.svg"
+                                        alt="" />
+                                </div>
+                                <div class="ml-3">
+                                    <p
+                                        class="text-sm leading-5 font-medium uppercase text-gray-300 group-hover:text-gray-500">
+                                        France
+                                    </p>
+                                    <p
+                                        class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-300 group-focus:underline transition ease-in-out duration-150">
+                                        Western Europe
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <% end %>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Informations -->
+            <div class="informations border-t border-gray-600 pt-0 mt-5 w-full">
+                <div class="md:flex md:items-center md:justify-between">
+                    <div class="flex-1 min-w-0">
+                        <h2
+                            class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-5 mb-5">
+                            Informations
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="covered_regions">
+
+                    <p class="text-gray-300 font-sm">
+                        Some informations about the tournament itself and it's presence outside of the platform
+                    </p>
+
+                </div>
+            </div>
+
+            <!-- Participating Teams -->
+            <div class="participating_teams border-t border-gray-600 pt-0 mt-10 w-full">
+                <div class="md:flex md:items-center md:justify-between">
+                    <div class="flex-1 min-w-0">
+                        <h2
+                            class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-5 mb-5">
+                            Participating teams
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="teams_list">
+
+                    <div class="grid grid-cols-4">
+
+                        <% Team.all.each do |team| %>
+
+                        <a href="#" class="flex-shrink-0 group block focus:outline-none mb-5">
+                            <div class="flex items-center">
+                                <div>
+                                    <img class="inline-block h-12 w-12 rounded-full" src="<%= url_for(team.avatar) %>"
+                                        alt="" />
+                                </div>
+                                <div class="ml-3">
+                                    <p
+                                        class="text-sm leading-5 font-medium uppercase text-gray-300 group-hover:text-gray-500">
+                                        <%= team.name %>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <% end %>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Specifications -->
+            <div class="specifications border-t border-gray-600 pt-0 mt-10 w-full">
+                <div class="md:flex md:items-center md:justify-between">
+                    <div class="flex-1 min-w-0">
+                        <h2
+                            class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-5 mb-5">
+                            Specifications
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="specs_list">
+
+                    <div class="grid grid-cols-4">
+
+                        <% 6.times do %>
+
+                        <div class="mb-5">
+                            <p
+                                class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-300 group-focus:underline transition ease-in-out duration-150">
+                                Checkin-period
+                                <span class="inline-block">
+                                    <svg class="" width="1em" height="1em" viewBox="0 0 1024 1024" fill="currentColor">
+                                        <path
+                                            d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z">
+                                        </path>
+                                        <path
+                                            d="M623.6 316.7C593.6 290.4 554 276 512 276s-81.6 14.5-111.6 40.7C369.2 344 352 380.7 352 420v7.6c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V420c0-44.1 43.1-80 96-80s96 35.9 96 80c0 31.1-22 59.6-56.1 72.7-21.2 8.1-39.2 22.3-52.1 40.9-13.1 19-19.9 41.8-19.9 64.9V620c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-22.7a48.3 48.3 0 0 1 30.9-44.8c59-22.7 97.1-74.7 97.1-132.5.1-39.3-17.1-76-48.3-103.3zM472 732a40 40 0 1 0 80 0 40 40 0 1 0-80 0z">
+                                        </path>
+                                    </svg>
+                                </span>
+                            </p>
+                            <p class="text-sm leading-5 font-medium text-gray-300 group-hover:text-gray-500">
+                                45 minutes before start
+                            </p>
+                        </div>
+
+                        <% end %>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Recap Section -->
+        <div class="col-span-1">
+
+            <!-- Teams -->
+            <div class="team w-full">
+
+                <div class="format w-full">
+                    <div class="md:flex md:items-center md:justify-between">
+                        <div class="flex-1 min-w-0">
+                            <h2
+                                class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-10 mb-5">
+                                Teams
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-gray-300 rounded-md grid grid-cols-3 text-center">
+
+                    <div class="text-gray-400 p-5">
+                        <h4 class="font-medium">Registered</h4>
+                        <p class="font-bold text-1xl">14</p>
+                    </div>
+
+
+                    <div class="text-gray-400 p-5">
+                        <h4 class="font-medium">Confirmed</h4>
+                        <p class="font-bold text-1xl">6</p>
+                    </div>
+
+
+                    <div class="text-gray-400 p-5">
+                        <h4 class="font-medium">Slots</h4>
+                        <p class="font-bold text-1xl">2</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Ranks -->
+            <div class="ranks border-t border-gray-600 pt-0 mt-10 w-full">
+                <div class="md:flex md:items-center md:justify-between">
+                    <div class="flex-1 min-w-0">
+                        <h2
+                            class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-5 mb-5">
+                            Ranks
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="winners w-full">
+                    <% Team.last(3).each do |team| %>
+                    <div class="winner border-b border-gray-600 grid grid-cols-4">
+                        <div class="prize col-span-1 flex items-center p-1 pr-3">
+                            <svg class="inline-block bg-yellow-400 mr-5 rounded-md h-8 w-8 p-2" viewBox="0 0 1024 1024"
+                                fill="">
+                                <path
+                                    d="M868 160h-92v-40c0-4.4-3.6-8-8-8H256c-4.4 0-8 3.6-8 8v40h-92a44 44 0 0 0-44 44v148c0 81.7 60 149.6 138.2 162C265.7 630.2 359 721.7 476 734.5v105.2H280c-17.7 0-32 14.3-32 32V904c0 4.4 3.6 8 8 8h512c4.4 0 8-3.6 8-8v-32.3c0-17.7-14.3-32-32-32H548V734.5C665 721.7 758.3 630.2 773.8 514 852 501.6 912 433.7 912 352V204a44 44 0 0 0-44-44zM184 352V232h64v207.6a91.99 91.99 0 0 1-64-87.6zm520 128c0 49.1-19.1 95.4-53.9 130.1-34.8 34.8-81 53.9-130.1 53.9h-16c-49.1 0-95.4-19.1-130.1-53.9-34.8-34.8-53.9-81-53.9-130.1V184h384v296zm136-128c0 41-26.9 75.8-64 87.6V232h64v120z">
+                                </path>
+                            </svg>
+
+                            <div class="inline-block text-gray-200 flex items-center">#1st</div>
+                        </div>
+                        <div class="team col-span-3 p-1 flex items-center">
+                            <a href="#" class="flex-shrink-0 group block focus:outline-none">
+                                <div class="flex items-center">
+                                    <div>
+                                        <img class="inline-block h-12 w-12 rounded-full"
+                                            src="<%= url_for(team.avatar) %>" alt="" />
+                                    </div>
+                                    <div class="ml-3">
+                                        <p
+                                            class="text-sm leading-5 font-medium uppercase text-gray-300 group-hover:text-gray-500">
+                                            <%= team.name %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+
+                <!-- Game settings -->
+                <div class="ranks w-full">
+                    <div class="md:flex md:items-center md:justify-between">
+                        <div class="flex-1 min-w-0">
+                            <h2
+                                class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-5 mb-5">
+                                Game Settings
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="settings w-full">
+                        <div class="map_image h-40 w-full bg-gray-600 rounded-md mb-4 overflow-hidden">
+                            <img src="/images/map_pool.jpg" alt="" class="h-40 w-auto object-cover">
+                        </div>
+
+                        <div class="settings_list grid grid-cols-2 gap-1">
+
+                            <div class="mb-4">
+                                <p
+                                    class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-300 group-focus:underline transition ease-in-out duration-150">
+                                    Maps Pool
+                                    <span class="inline-block">
+                                        <svg class="" width="1em" height="1em" viewBox="0 0 1024 1024"
+                                            fill="currentColor">
+                                            <path
+                                                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z">
+                                            </path>
+                                            <path
+                                                d="M623.6 316.7C593.6 290.4 554 276 512 276s-81.6 14.5-111.6 40.7C369.2 344 352 380.7 352 420v7.6c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V420c0-44.1 43.1-80 96-80s96 35.9 96 80c0 31.1-22 59.6-56.1 72.7-21.2 8.1-39.2 22.3-52.1 40.9-13.1 19-19.9 41.8-19.9 64.9V620c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-22.7a48.3 48.3 0 0 1 30.9-44.8c59-22.7 97.1-74.7 97.1-132.5.1-39.3-17.1-76-48.3-103.3zM472 732a40 40 0 1 0 80 0 40 40 0 1 0-80 0z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </p>
+                                <p class="text-sm leading-5 font-medium text-gray-300 group-hover:text-gray-500">
+                                    Competitive de_* maps
+                                </p>
+                            </div>
+
+
+                            <div class="mb-4">
+                                <p
+                                    class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-300 group-focus:underline transition ease-in-out duration-150">
+                                    Game Mode
+                                    <span class="inline-block">
+                                        <svg class="" width="1em" height="1em" viewBox="0 0 1024 1024"
+                                            fill="currentColor">
+                                            <path
+                                                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z">
+                                            </path>
+                                            <path
+                                                d="M623.6 316.7C593.6 290.4 554 276 512 276s-81.6 14.5-111.6 40.7C369.2 344 352 380.7 352 420v7.6c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V420c0-44.1 43.1-80 96-80s96 35.9 96 80c0 31.1-22 59.6-56.1 72.7-21.2 8.1-39.2 22.3-52.1 40.9-13.1 19-19.9 41.8-19.9 64.9V620c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-22.7a48.3 48.3 0 0 1 30.9-44.8c59-22.7 97.1-74.7 97.1-132.5.1-39.3-17.1-76-48.3-103.3zM472 732a40 40 0 1 0 80 0 40 40 0 1 0-80 0z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </p>
+                                <p class="text-sm leading-5 font-medium text-gray-300 group-hover:text-gray-500">
+                                    Defuse the bomb
+                                </p>
+                            </div>
+
+
+                            <div class="mb-4">
+                                <p
+                                    class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-300 group-focus:underline transition ease-in-out duration-150">
+                                    Number of rounds
+                                    <span class="inline-block">
+                                        <svg class="" width="1em" height="1em" viewBox="0 0 1024 1024"
+                                            fill="currentColor">
+                                            <path
+                                                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z">
+                                            </path>
+                                            <path
+                                                d="M623.6 316.7C593.6 290.4 554 276 512 276s-81.6 14.5-111.6 40.7C369.2 344 352 380.7 352 420v7.6c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V420c0-44.1 43.1-80 96-80s96 35.9 96 80c0 31.1-22 59.6-56.1 72.7-21.2 8.1-39.2 22.3-52.1 40.9-13.1 19-19.9 41.8-19.9 64.9V620c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-22.7a48.3 48.3 0 0 1 30.9-44.8c59-22.7 97.1-74.7 97.1-132.5.1-39.3-17.1-76-48.3-103.3zM472 732a40 40 0 1 0 80 0 40 40 0 1 0-80 0z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </p>
+                                <p class="text-sm leading-5 font-medium text-gray-300 group-hover:text-gray-500">
+                                    Best of 30 rounds
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
