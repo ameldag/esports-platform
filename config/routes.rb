@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'team/:id/stats', to: "team#stats", as: "show_team_stats"
   get 'team/:id/members', to: "team#members", as: "show_team_members"
   get 'team/:id/requests', to: "team#requests", as: "show_team_requests"
+  get 'team/:id/quit', to: "team#quit", as: "team_quit"
 
   # users routes
   devise_for :users

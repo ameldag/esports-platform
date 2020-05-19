@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_093316) do
+ActiveRecord::Schema.define(version: 2020_05_19_115741) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -87,14 +87,13 @@ ActiveRecord::Schema.define(version: 2020_05_17_093316) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "website"
     t.text "description"
     t.string "slug"
+    t.integer "owner_id"
     t.index ["slug"], name: "index_teams_on_slug", unique: true
-    t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
   create_table "tournaments", force: :cascade do |t|
@@ -133,9 +132,11 @@ ActiveRecord::Schema.define(version: 2020_05_17_093316) do
     t.string "provider"
     t.string "uid"
     t.string "slug"
+    t.integer "team_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
+    t.index ["team_id"], name: "index_users_on_team_id"
   end
 
   create_table "users_teams", force: :cascade do |t|

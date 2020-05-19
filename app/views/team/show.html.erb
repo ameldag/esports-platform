@@ -2,7 +2,7 @@
 
     <div class="z-0 header w-full relative h-64">
         <!-- <div class="cover"> -->
-            <% if @team.cover.present? %>
+        <% if @team.cover.present? %>
         <img src="<%= url_for(@team.cover) %>" alt="" class="object-cover h-60 w-full">
         <% else %>
         <img src="/images/icon/no-game.png" alt="" class="object-cover h-60 w-full">
@@ -46,8 +46,8 @@
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
                     Stats
                 </a>
-                
-                <% if (@team.user == current_user) %>
+
+                <% if (@team.owner_id == current_user.id) %>
                 <a href="<%= show_team_requests_path(@team.id) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
                     Requests (Only you can see this tab)
@@ -56,7 +56,8 @@
             </div>
 
             <div class="text-right">
-                <% if (@team.user != current_user) %>
+                <% unless (current_user.team.present?) %>
+                <% if (@team.owner_id != current_user.id) %>
                 <% if (@current_user_request < 1) %>
                 <%= link_to "Join Team", team_join_path(@team.id),
                     class: "px-3 py-2 font-medium text-sm leading-5 rounded-md transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow" %>
@@ -64,6 +65,19 @@
                 <%= link_to "Join Request Pending", team_join_path(@team.id),
                 class: "px-3 py-2 font-medium text-sm leading-5 rounded-md transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow" %>
                 <% end %>
+                <% end %>
+                <% end %>
+
+
+                <% if ((current_user.team.present?) and (current_user.team == @team)) %>
+
+                <span class="inline-flex rounded-md shadow-sm">
+                    <a href="<%= team_quit_path(@team.id) %>"
+                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                        Quit Team
+                    </a>
+                </span>
+
                 <% end %>
 
             </div>
