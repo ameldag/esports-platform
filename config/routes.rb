@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # Roster routes
-  get 'team/:id/rosters', to: "roster#list", as: "team_rosters"
+  get 'team/:team_id/rosters', to: "roster#list", as: "team_rosters"
   get 'team/:team_id/roster/:id', to: "roster#show", as: "show_roster"
   get 'roster/join'
   get 'roster/quit'
