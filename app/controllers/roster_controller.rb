@@ -2,7 +2,7 @@ class RosterController < ApplicationController
   before_action :authenticate_user!
   layout "in-app"
   def list
-    @team = Team.find(params['team_id'])
+    @team = Team.friendly.find(params['team_id'])
     @rosters = @team.rosters  
   end
 

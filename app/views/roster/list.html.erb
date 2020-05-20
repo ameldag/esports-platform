@@ -1,5 +1,5 @@
-<%= @team.name %>
+<%= link_to @team.name, show_team(@team) %>
 <br>
 <% @rosters.each do |roster| %>
-  <%= roster.name %>
+  <%= link_to roster.name, show_roster_path(roster) %> <br>
 <% end %>
