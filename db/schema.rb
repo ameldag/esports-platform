@@ -96,6 +96,19 @@ ActiveRecord::Schema.define(version: 2020_05_20_082806) do
     t.index ["game_id"], name: "index_seasons_on_game_id"
   end
 
+  create_table "servers", force: :cascade do |t|
+    t.string "ip"
+    t.integer "port"
+    t.string "rcon"
+    t.string "password"
+    t.integer "game_id", null: false
+    t.integer "tournament_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_servers_on_game_id"
+    t.index ["tournament_id"], name: "index_servers_on_tournament_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -140,8 +153,6 @@ ActiveRecord::Schema.define(version: 2020_05_20_082806) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "username"
-    t.string "provider"
-    t.string "uid"
     t.string "slug"
     t.integer "team_id"
     t.index ["email"], name: "index_users_on_email", unique: true

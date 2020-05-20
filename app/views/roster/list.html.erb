@@ -1,2 +1,5 @@
-<h1>Roster#list</h1>
-<p>Find me in app/views/roster/list.html.erb</p>
+<%= @team.name %>
+<br>
+<% @rosters.each do |roster| %>
+  <%= roster.name %>
+<% end %>

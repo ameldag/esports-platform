@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
 
   # Roster routes
-  get 'roster/list'
-  get 'roster/show'
+  get 'roster/:id/list', to: "roster#list", as: "team_roster"
+  get 'roster/:id/show', to: "roster#show", as: "show_roster"
   get 'roster/join'
   get 'roster/quit'
   get 'roster/add'
-  get 'roster/edit'
-  get 'roster/update'
-  get 'roster/new'
-  get 'roster/create'
-  get 'roster/delete'
+  get 'roster/:id/edit', to: "roster#edit", as: "edit_roster"
+  put 'roster/:id/update', to: "roster#update"
+  get 'roster/new', to: "roster#new", as: "new_roster"
+  post 'roster/new', to: "roster#create"
+  get 'roster/:id/delete', to: "roster#delete", as: "delete_roster"
 
 
   get 'tournaments/index'
