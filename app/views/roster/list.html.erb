@@ -1,4 +1,4 @@
-<%= link_to @team.name, show_team(@team) %>
+<%= link_to @team.name, show_team_path(@team) %>
 <br>
 <% @rosters.each do |roster| %>
   <%= link_to roster.name, show_roster_path(roster) %> <br>
