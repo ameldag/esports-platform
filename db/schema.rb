@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_115741) do
+ActiveRecord::Schema.define(version: 2020_05_20_082806) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -73,6 +73,17 @@ ActiveRecord::Schema.define(version: 2020_05_19_115741) do
     t.string "target"
     t.index ["team_id"], name: "index_requests_on_team_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
+  create_table "rosters", force: :cascade do |t|
+    t.integer "team_id"
+    t.string "name"
+    t.integer "game_id"
+    t.integer "limit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_rosters_on_game_id"
+    t.index ["team_id"], name: "index_rosters_on_team_id"
   end
 
   create_table "seasons", force: :cascade do |t|
@@ -152,4 +163,6 @@ ActiveRecord::Schema.define(version: 2020_05_19_115741) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "featureds", "tournaments"
+  add_foreign_key "rosters", "games"
+  add_foreign_key "rosters", "teams"
 end

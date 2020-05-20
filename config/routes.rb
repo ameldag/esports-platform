@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+
+  # Roster routes
+  get 'roster/list'
+  get 'roster/show'
+  get 'roster/join'
+  get 'roster/quit'
+  get 'roster/add'
+  get 'roster/edit'
+  get 'roster/update'
+  get 'roster/new'
+  get 'roster/create'
+  get 'roster/delete'
+
+
   get 'tournaments/index'
   get 'tournaments/show'
   get 'tournaments/subscribe'

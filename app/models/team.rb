@@ -8,5 +8,6 @@ class Team < ApplicationRecord
   has_one_attached :cover, dependent: :destroy
 
   has_many :users
+  has_many :rosters
   
 end
