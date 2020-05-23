@@ -1,4 +1,24 @@
+<div class="relative bg-black min-h-screen p-5">
+    <h1 class="text-white font-bold text-3xl mb-5">Browse Tournaments</h1>
+
 <!-- Browse games box -->
+<h2 class="text-white font-sm text-2xl mb-2">Choose your game</h2>
+
+<div class="list-games grid grid-cols-12 gap-4">
+    <% 3.times do %>
+        <% Game.all.each do |game| %>
+        <% if ((@selected_game_id == game.id.to_s)) %>
+                <a href="<%= tournaments_path() %>" class="game-icon transform hover:scale-110 transition duration-150 ease-in-out">
+                <% active = "border-indigo-800" %>
+            <% else %>
+                <a href="<%= game_tournaments_path(game.id) %>" class="game-icon transform hover:scale-110 transition duration-150 ease-in-out">
+                <% active == "" %>
+            <% end %>
+            <img class="inline-block h-auto w-auto rounded-md border-4 <%= active %>" src="<%= url_for(game.icon) %>" alt="" />
+        </a>
+        <% end %>
+    <% end %>
+</div>
 <!-- Browse games box end -->
 
 <!-- Tournaments list -->
@@ -7,6 +27,25 @@
     <!-- Tournaments filters box end -->
 
     <!-- Tournaments cards -->
+
+    
+    <div class="md:flex md:items-center md:justify-between">
+        <div class="flex-1 min-w-0">
+          <h2 class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-10">
+            Listed Tournaments
+          </h2>
+        </div>
+      </div>
+  
+      <div class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none">
+        
+        <% @tournaments.each do |tournament| %>
+          <%= render "pages/partials/tournament_card", tournament: tournament %>
+        <% end %>
+  
+      </div>
+  
     <!-- Tournaments cards end -->
 
 <!-- Tournaments list end -->
+</div>

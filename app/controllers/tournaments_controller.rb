@@ -4,6 +4,13 @@ class TournamentsController < ApplicationController
   layout "in-app"
 
   def index
+    if params[:game_id]
+      @selected_game_id = params[:game_id]
+      @tournaments = Tournament.where('game_id = ?', @selected_game_id)
+    else
+      @selected_game_id = nil
+      @tournaments = Tournament.all
+    end
   end
 
   def show
