@@ -1,5 +1,5 @@
 
-<%= form_with(url: roster_new_path, local: true) do |f| %>
+<%= form_with(url: new_roster_path, local: true) do |f| %>
 
 <div class="bg-gray-800 min-h-screen-full pb-10">
     <div class="md:flex md:items-center md:justify-between px-10 py-5 bg-orange-500">
@@ -39,6 +39,8 @@
                 </div>
               </div>
             </div>
+
+            <%= select("roster", "game_id", Game.all.collect {|u| [ u.name, u.id ] }, { include_blank: false }, {class: ""}) %>
 
 
             <!-- <div class="col-span-6 sm:col-span-3 mt-6">

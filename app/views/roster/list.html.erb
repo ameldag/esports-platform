@@ -1,5 +1,9 @@
 <%= link_to @team.name, show_team_path(@team) %>
 <br>
 <% @rosters.each do |roster| %>
-  <%= link_to roster.name, show_roster_path(roster) %> <br>
+  <%= link_to roster.name, show_roster_path(@team, roster) %> 
+  <%= link_to 'edit roster', edit_roster_path(roster), class: 'button alt' %>
+  <%= link_to 'deleteroster', delete_roster_path(roster), class: 'button alt' %>
+  
+  <br>
 <% end %>

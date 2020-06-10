@@ -1,5 +1,5 @@
 
-<%= form_with model: @roster, local: true do |f| %>
+<%= form_with(url: update_roster_path, method: :put, local: true) do |f| %>
 
 <div class="bg-gray-800 min-h-screen-full pb-10">
     <div class="md:flex md:items-center md:justify-between px-10 py-5 bg-orange-500">

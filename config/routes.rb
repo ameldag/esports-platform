@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
 
   # Roster routes
-  get 'team/:team_id/rosters', to: "roster#list", as: "team_rosters"
   get 'team/:team_id/roster/:id', to: "roster#show", as: "show_roster"
-  get 'roster/join'
-  get 'roster/quit'
+  get 'team/:team_id/rosters', to: "roster#list", as: "team_rosters"
+  get 'team/roster/:id/join', to: "roster#join", as:"join_roster"
+  get 'team/roster/:id/quit', to: "roster#quit", as:"quit_roster"
   get 'roster/add'
-  get 'roster/:id/edit', to: "roster#edit", as: "edit_roster"
-  put 'roster/:id/update', to: "roster#update"
-  get 'roster/new', to: "roster#new", as: "new_roster"
-  post 'roster/new', to: "roster#create"
+  get 'team/roster/:id/edit', to: "roster#edit", as: "edit_roster"
+  put 'team/roster/:id/edit', to: "roster#update", as: "update_roster"
+  get 'team/roster/new', to: "roster#new", as: "new_roster"
+  post 'team/roster/new', to: "roster#create", as: "send_new_roster"
   get 'roster/:id/delete', to: "roster#delete", as: "delete_roster"
+
 
 
   get 'tournaments/index'
@@ -32,7 +33,7 @@ Rails.application.routes.draw do
   get 'teams', to: "team#index", as: "teams"
   get 'team/edit', to: "team#edit", as: "edit_team"
   get 'team/new', to: "team#new", as: "new_team"
-  post 'team/new', to: "team#create"
+  post 'team/new', to: "team#create", as: 'send_new_team'
   get 'team/join/:team_id', to: "team#join_request", as: "team_join"
   get 'team/request/:request_id', to: "team#team_request_answer", as: "team_request_answer"
   get 'team/:id', to: "team#show", as: "show_team"

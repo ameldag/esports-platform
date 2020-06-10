@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_082806) do
+ActiveRecord::Schema.define(version: 2020_06_09_111555) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -71,8 +71,17 @@ ActiveRecord::Schema.define(version: 2020_05_20_082806) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "target"
+    t.integer "roster_id"
+    t.index ["roster_id"], name: "index_requests_on_roster_id"
     t.index ["team_id"], name: "index_requests_on_team_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
+  create_table "roster_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "roster_id"
+    t.index ["roster_id"], name: "index_roster_users_on_roster_id"
+    t.index ["user_id"], name: "index_roster_users_on_user_id"
   end
 
   create_table "rosters", force: :cascade do |t|
@@ -94,19 +103,6 @@ ActiveRecord::Schema.define(version: 2020_05_20_082806) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "game_id"
     t.index ["game_id"], name: "index_seasons_on_game_id"
-  end
-
-  create_table "servers", force: :cascade do |t|
-    t.string "ip"
-    t.integer "port"
-    t.string "rcon"
-    t.string "password"
-    t.integer "game_id", null: false
-    t.integer "tournament_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["game_id"], name: "index_servers_on_game_id"
-    t.index ["tournament_id"], name: "index_servers_on_tournament_id"
   end
 
   create_table "teams", force: :cascade do |t|

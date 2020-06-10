@@ -2,8 +2,9 @@
 
 one:
   team: one
-  name: MyString
+  name: 'roster faze'
   game: one
+  team: one
   limit: 1
 
 two:
