@@ -22,7 +22,11 @@
     <div class="pt-10 relative">
         <!-- Tournament logo -->
         <div class="inline-block logo">
+            <% if @tournament.game.card.attached? %>
             <img src="<%= url_for(@tournament.game.card) %>" alt="" class="h-42 w-32 object-cover rounded-md shadow">
+            <% else %>
+            <img class="h-42 w-32 object-cover rounded-md shadow" src="/images/icons/no-game.png" alt="" />
+            <% end %>
         </div>
         <!-- Tournament logo end -->
 

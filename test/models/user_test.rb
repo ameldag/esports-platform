@@ -5,8 +5,9 @@ class UserTest < ActiveSupport::TestCase
     user = User.new
     assert_not user.save
   end
-  test "ensure email existing" do
-    user = User.new
-    assert user.save
-  end
+
+  # test "ensure email existing" do
+  #   user = User.new
+  #   assert user.save
+  # end
 end

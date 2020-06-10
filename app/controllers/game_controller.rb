@@ -1,5 +1,5 @@
 class GameController < ApplicationController
-  before_action :set_team
+  before_action :set_game
 
   layout "in-app"
 

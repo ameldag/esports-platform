@@ -2,9 +2,10 @@ require 'test_helper'
 
 class GameControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
-  test "should get index" do
+
+  test "should show game" do
     sign_in users(:one)
-    get (show_game_path)
+    get (show_game_path(games(:one)))
     assert_response :success
   end
 

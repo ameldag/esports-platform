@@ -2,9 +2,9 @@ require 'test_helper'
 
 class TournamentsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
-  test "should get index" do
+  test "should get show" do
     sign_in users(:one)
-    get (show_tournament_path(games(:one)))
+    get (show_tournament_path(tournaments(:one)))
     assert_response :success
   end
 
