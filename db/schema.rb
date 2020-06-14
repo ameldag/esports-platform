@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_09_111555) do
+ActiveRecord::Schema.define(version: 2020_06_12_080324) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -75,6 +75,13 @@ ActiveRecord::Schema.define(version: 2020_06_09_111555) do
     t.index ["roster_id"], name: "index_requests_on_roster_id"
     t.index ["team_id"], name: "index_requests_on_team_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
+  create_table "roster_tournaments", force: :cascade do |t|
+    t.integer "roster_id"
+    t.integer "tournament_id"
+    t.index ["roster_id"], name: "index_roster_tournaments_on_roster_id"
+    t.index ["tournament_id"], name: "index_roster_tournaments_on_tournament_id"
   end
 
   create_table "roster_users", force: :cascade do |t|

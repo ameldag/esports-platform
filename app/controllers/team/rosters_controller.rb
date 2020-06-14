@@ -1,149 +1,100 @@
 class Team::RostersController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  
   before_action :authenticate_user!
+  before_action :check_user_team
+
   layout "in-app"
+
   def list
     @team = Team.friendly.find(params['team_id'])
     @rosters = @team.rosters  
   end
 
   def show
-    @roster = Roster.find(params['id'])
+    @roster = Roster.find(params[:id])
   end
+
+  def add_user_to_roster 
+    @roster = Roster.find(params[:id])
+    @user = User.find(params[:user_id])
+
+    if((@user.team != @roster.team) and (@user.team.present?))
+      return respond_to do |format|
+        format.html { redirect_to team_show_roster_path(@roster.team), notice: 'User has his own team.'  }
+      end
+    end
+
+    if(@user.rosters.exists?(@roster.id))
+      return respond_to do |format|
+        format.html { redirect_to team_show_roster_path(@roster.team), notice: 'User is already membre in this roster.'  }
+      end
+    end
+
+    if(@roster.users.count >= @roster.limit)
+      return respond_to do |format|
+        format.html { redirect_to team_show_roster_path(@roster.team), notice: 'Roster is full.'  }
+      end
+    end
+
+    if(!@user.team.present?)
+      @user.team = @roster.team
+      @user.rosters << @roster 
+      if (@user.save)
+        return respond_to do |format|
+          format.html { redirect_to team_show_roster_path(@roster.team), notice: 'User is succesfully added in this roster.'  }
+        end
+      else 
+        return respond_to do |format|
+          format.html { redirect_to team_show_roster_path(@roster.team), alert: 'It appears there has been an error while saving changes.'  }
+        end
+      end
+    end
+
+  end
+
 
   def join
     @roster = Roster.find(params[:id])
-    # verifier si le roster en question existe ou non
-    # autrement rediriger vers la page de la team et dire que le roster recherché n'existe pas
-    
-    # verifier si l'utilisateur appartient à une team
-      # appartient à une team
-      # si c'est la meme team
-        # doit verifier request de type roster 
-        # Actuellement il faut verifier si l'utilisateur a une request pour rejoindre CE roster
-        @current_user_request = Request.where('user_id = ? and status = ? and target = ? and roster = ?',current_user.id, "pending", "roster", @roster).count 
-        
-        # si l'utilisateur a déjà une request en cours
-          # le rediriger vers la page du roster et lui dire que sa demande est toujours en cours
-        # autrement
-          # verifier si l'utilisateur est déjà membre de roster
-            # rediriger vers la page du roster et lui dire qu'il est deja membre
-          # autrement
-            # creer une request
-            # envoyer un email pour dire que la requete est bien faite
-            # envoyer un email au manager de la team
-            # envoyer une notification au manager de la team
-            # rediriger vers la page du roster
-          #end
-        # end
-      # si autre team
-        # rediriger et dire bye bye habibi
-      # end
-    # end
-    if (!current_user.team.rosters.nil?)
-      respond_to do |format|
-        format.html { redirect_to show_roster_path(current_user.team, @roster), alert: 'You already belong to this roster' }
-        # format.json { render :show, location: @team }
-      end
 
-    else
+    if(current_user.team != @roster.team)
+      raise ApplicationController::NotAuthorized
+    end
 
-      if (@current_user_request < 1)
+    @current_user_request = Request.where(
+      user: current_user,
+      roster: @roster,
+      target: :roster,
+      status: :pending
+    )
 
-        @request = Request.new
-
-        @request.target = "roster"
-        @request.status = "pending"
-        @request.user = current_user
-        @request.roster = @roster
-
-        respond_to do |format|
-          if @request.save
-            format.html { redirect_to show_roster_path(current_user.team, @roster), notice: 'Your request was successfully sent.' }
-            # format.json { render :show, status: :created, location: @team }
-          else
-            format.html { render :new }
-            # format.json { render json: @team.errors, status: :unprocessable_entity }
-          end
-        end
-
-      else
-        respond_to do |format|
-          format.html { redirect_to show_roster_path(current_user.team, @roster), alert: 'You already requested to join this roster' }
-          # format.json { render :show, location: @team }
-        end
-
+    if(@current_user_request.exists? || current_user.rosters.exists?(@roster.id)) 
+      return respond_to do |format|
+        format.html { redirect_to team_show_roster_path(@roster.team) }
       end
     end
-  end
 
-  def join_request_answer
-    # verifier si current_user is team owner
-      # si oui
-        # verifier si la request existe
-          # verifier que le roster visé appartient à la team
-          # si la réponse est positive
-            # verifier si l'utisateur est membre de la team
-              # si oui
-                # ajouter au roster
-                # effacer la request
-                # redirect to requests page
-              # si false
-                # si il est membre d'une autre team
-                  # supprimer la request
-                  # rediriger vers la page de requests et dire que l'utilisateur "l'utilisateur est déjà membre d'une autre team et ne peux rejoindre le roster de la votre"
-                  # email au submitter pour dire que la demande ne peut aboutir car il appartient déjà à une autre team
-          # si la réponse est négative
-            # supprimer la request
-            # envoyer un email à l'utilisateur
-            # rediriger vers la page de requests
-        # si la request n'existe pas
-          # rediriger et dire que la request n'existe pas
-      # si non
-        # rediriger et dire que vous n'avez suffisament de droits pour effectuer cette action
-    # end
+    @request = Request.create(
+      target: :roster,
+      status: :pending,
+      user: current_user,
+      roster: @roster
+    )
 
+    respond_to do |format|
+      format.html { redirect_to team_show_roster_path(current_user.team, @roster), notice: 'Your request was successfully sent.' }
+    end
   end
 
   def quit
     @roster = Roster.find(params[:id])
-    # verifier si le roster en question existe ou non
-    # autrement rediriger vers la page de la team et dire que le roster recherché n'existe pas
-
-    # verifier si current_user appartient au roster ou non
-      # current user appartient, on le enleve le record correspondant au user and au roster de la table de jointure
-      # on redirige vers la page du roster, et dire que l'utilisateur a quitté le roster
-    # autrement
-      # rediriger vers la page du roster
-      # dire que l'utilisateur n'appartient pas à ce roster pour pouvoir le quitter
-    # end
-
-    if (@roster.team.owner_id == current_user.id)
-      respond_to do |format|
-        format.html { redirect_to show_roster_path(@roster), alert: 'You cannot quit the as a founder until you designate another team owner' }
-        format.json { render :show, location: @roster }
-      end
-    elsif (current_user.rosters.present?)
+    if(current_user.rosters.exists?(@roster.id))
       current_user.rosters.delete(@roster)
-
-      if current_user.update(user_params)        
-        respond_to do |format|
-          format.html { redirect_to show_roster_path(@roster), notice: 'You successfully quit the roster' }
-          format.json { render :show, location: @roster }
-        end
-
-      else        
-        respond_to do |format|
-          format.html { redirect_to show_roster_path(@roster), alert: 'It appears there have been an error while quitting, please retry later' }
-          format.json { render :show, location: @roster }
-        end
-
-      end
-    else       
-      respond_to do |format|
-        format.html { redirect_to show_roster_path(@roster), alert: 'It appears there have been an error while quitting, please retry later' }
-        format.json { render :show, location: @roster }
-      end
-      
+    end
+    current_user.update(user_params)        
+    respond_to do |format|
+    format.html { redirect_to team_show_roster_path(@roster), notice: 'You successfully quit the roster' }
+    format.json { render :show, location: @roster } 
     end
   end
 
@@ -206,5 +157,8 @@ class Team::RostersController < ApplicationController
   end
   def user_params
     params.permit(:first_name, :last_name, :created_at, :updated_at, :email, :username, :provider, :uid, :team)
+  end
+  def record_not_found(exception)
+    exception_redirect(show_team_path(current_user.team), exception)
   end
 end

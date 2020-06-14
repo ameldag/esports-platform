@@ -5,6 +5,9 @@ class Tournament < ApplicationRecord
   belongs_to :season
   belongs_to :game
 
+  has_many :roster_tournaments
+  has_many :rosters, through: :roster_tournaments
+
   has_one_attached :cover, dependent: :destroy
 
   validates :season, presence: true

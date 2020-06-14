@@ -1,5 +1,8 @@
 class TournamentsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_tournament, except: [:index]
+  
 
   layout "in-app"
 
@@ -22,6 +25,20 @@ class TournamentsController < ApplicationController
   end
 
   def subscribe
+    if (current_user.team.owner_id == current_user.id )
+      if((current_user.rosters.present?) and (current_user.rosters.where("game_id = ?", @tournament.game.id)))
+        @tournament.rosters << current_user.rosters.where("game_id = ?", @tournament.game.id)
+        if(@tournament.save)
+          return respond_to do |format|
+            format.html { redirect_to show_tournament_path(@tournament), notice: 'Team is succesfully subscribe to this tournament.'  }
+          end
+        end
+      else
+        return respond_to do |format|
+          format.html { redirect_to show_tournament_path(@tournament), alert: 'It appears there is no roster for this game in this team.'  }
+        end
+      end
+    end
   end
 
   private

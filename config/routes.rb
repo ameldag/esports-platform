@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'tournament/:id', to: "tournaments#show", as: "show_tournament"
   get 'tournament/:id/bracket', to: "tournaments#bracket", as: "show_tournament_bracket"
   get 'tournament/:id/matches', to: "tournaments#matches", as: "show_tournament_matches"
+  get 'tournament/:id/subscribe', to: "tournaments#subscribe", as: "subscribe_tournament_matches"
 
   # teams routes
   get 'teams', to: "team#index", as: "teams"
@@ -31,21 +32,25 @@ Rails.application.routes.draw do
   get 'team/:id/requests', to: "team#requests", as: "show_team_requests"
   get 'team/:id/quit', to: "team#quit", as: "team_quit"
 
-    # Roster routes
+  
+  # Roster routes
   
 namespace :team do
-  get ':team_id/roster/:id', to: "roster#show", as: "show_roster"
-  get ':team_id/rosters', to: "roster#list", as: "rosters"
-  get 'roster/:id/join', to: "roster#join", as:"join_roster"
-  get 'roster/:id/quit', to: "roster#quit", as:"quit_roster"
-  get 'roster/add'
-  get 'roster/:id/edit', to: "roster#edit", as: "edit_roster"
-  put 'roster/:id/edit', to: "roster#update", as: "update_roster"
-  get 'roster/new', to: "roster#new", as: "new_roster"
-  post 'roster/new', to: "roster#create", as: "send_new_roster"
-  get 'roster/:id/delete', to: "roster#delete", as: "delete_roster"
+  get ':team_id/roster/:id', to: "rosters#show", as: "show_roster"
+  get ':team_id/rosters', to: "rosters#list", as: "rosters"
+  get 'roster/:id/join', to: "rosters#join", as:"join_roster"
+  get 'roster/:id/quit', to: "rosters#quit", as:"quit_roster"
+  get '/:user_id/roster/:id/add', to: "rosters#add_user_to_roster", as:"add_roster"
+  get 'roster/:id/edit', to: "rosters#edit", as: "edit_roster"
+  put 'roster/:id/edit', to: "rosters#update", as: "update_roster"
+  get 'roster/new', to: "rosters#new", as: "new_roster"
+  post 'roster/new', to: "rosters#create", as: "send_new_roster"
+  get 'roster/:id/delete', to: "rosters#delete", as: "delete_roster"
 end
 
+# request routes
+get 'request/:id/accept', to: "request#accept", as: 'request_accept'
+get 'request/:id/reject', to: "request#reject", as: 'request_reject'
 
   # users routes
   devise_for :users
