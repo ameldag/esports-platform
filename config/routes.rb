@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'tournament/:id/bracket', to: "tournaments#bracket", as: "show_tournament_bracket"
   get 'tournament/:id/matches', to: "tournaments#matches", as: "show_tournament_matches"
   get 'tournament/:id/subscribe', to: "tournaments#subscribe", as: "subscribe_tournament_matches"
+  get 'tournament/:id/confirm_subscribtion', to: "tournaments#confirm_subscribtion", as: "confirm_subscribtion_tournament_matches"
 
   # teams routes
   get 'teams', to: "team#index", as: "teams"

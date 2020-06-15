@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_080324) do
+ActiveRecord::Schema.define(version: 2020_06_12_103452) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_080324) do
   create_table "roster_tournaments", force: :cascade do |t|
     t.integer "roster_id"
     t.integer "tournament_id"
+    t.datetime "confirmed_subscribtion_at"
     t.index ["roster_id"], name: "index_roster_tournaments_on_roster_id"
     t.index ["tournament_id"], name: "index_roster_tournaments_on_tournament_id"
   end

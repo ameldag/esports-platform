@@ -41,6 +41,33 @@ class TournamentsController < ApplicationController
     end
   end
 
+  def confirm_subscribtion
+    if (current_user.team.owner_id == current_user.id )
+      @roster = current_user.rosters.find_by(game_id: @tournament.game.id)
+      if current_user.rosters.present? and @roster
+        if DateTime.current.between?(@tournament.start_date - 3.days, @tournament.start_date - 1.days)
+          @confirmed = RosterTournament.find_by(roster: @roster, tournament: @tournament)
+          @confirmed.update(confirmed_subscribtion_at: DateTime.current)
+          if(@confirmed.save)
+            return respond_to do |format|
+              format.html { redirect_to show_tournament_path(@tournament), notice: 'Subscribtion is succesfully confirmed to this tournament.'  }
+            end
+          else
+            return respond_to do |format|
+              format.html { redirect_to show_tournament_path(@tournament), notice: 'It appears there is no roster for this game in this team.'  }
+            end
+          end
+        else
+          return respond_to do |format|
+            format.html { redirect_to show_tournament_path(@tournament), alert: 'It appears you missed the confirmaton period.'  }
+          end
+        end
+      end
+    end
+  end
+
+
+
   private
 
   def set_tournament
