@@ -66,6 +66,17 @@ class TournamentsController < ApplicationController
     end
   end
 
+  def participation
+    @user = current_user
+    @roster = params[:participation][:roster]
+    @type = params[:participation][:type]
+    if( @type != '1v1')
+      @is_private = true
+    end
+    @tournament.participate(@user, @roster, @is_private)
+    @tournament.save
+  end
+
 
 
   private

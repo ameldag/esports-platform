@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_103452) do
+ActiveRecord::Schema.define(version: 2020_06_16_135728) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -124,6 +124,26 @@ ActiveRecord::Schema.define(version: 2020_06_12_103452) do
     t.index ["slug"], name: "index_teams_on_slug", unique: true
   end
 
+  create_table "tournament_team_participants", force: :cascade do |t|
+    t.integer "tournament_team_id"
+    t.integer "user_id"
+    t.datetime "confirmed_participation_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tournament_team_id"], name: "index_tournament_team_participants_on_tournament_team_id"
+    t.index ["user_id"], name: "index_tournament_team_participants_on_user_id"
+  end
+
+  create_table "tournament_teams", force: :cascade do |t|
+    t.integer "tournament_id"
+    t.string "roster"
+    t.boolean "is_private"
+    t.string "invitation_code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tournament_id"], name: "index_tournament_teams_on_tournament_id"
+  end
+
   create_table "tournaments", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -180,4 +200,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_103452) do
   add_foreign_key "featureds", "tournaments"
   add_foreign_key "rosters", "games"
   add_foreign_key "rosters", "teams"
+  add_foreign_key "tournament_team_participants", "tournament_teams"
+  add_foreign_key "tournament_team_participants", "users"
+  add_foreign_key "tournament_teams", "tournaments"
 end
