@@ -2,10 +2,12 @@ Rails.application.routes.draw do
 
 
 
-
+  
   get 'tournaments/index'
   # get 'tournaments/show'
   # get 'tournaments/subscribe'
+
+
   # games routes
   get 'game/:id', to: "game#show", as: "show_game"
   get 'game/:id/tournaments', to: "game#tournaments", as: "show_game_tournaments"
@@ -20,6 +22,14 @@ Rails.application.routes.draw do
   get 'tournament/:id/subscribe', to: "tournaments#subscribe", as: "subscribe_tournament_matches"
   get 'tournament/:id/confirm_subscribtion', to: "tournaments#confirm_subscribtion", as: "confirm_subscribtion_tournament_matches"
   get 'tournament/:id/participation', to: "tournaments#participation", as: "participation_tournament_matches"
+
+  #challenges routes
+  get ':game_id/challenge', to: "challenge#challenges", as:"challenges"
+  get ':game_id/challenge/show', to: "challenge#show", as:"show_challenge"
+  get ':game_id/challenge/join/:slots_per_team/:kind', to: "challenge#join", as:"join_challenge"
+  get ':game_id/challenge/:id/compose/:ivited_id', to: "challenge#compose_team", as:"compose_team_challenge"
+  get ':game_id/challenge/:id/participants', to: "challenge#participants", as:"participants_challenge"
+  get ':game_id/challenge/:id/feed', to: "challenge#feed", as:"feed_challenge"
 
   # teams routes
   get 'teams', to: "team#index", as: "teams"

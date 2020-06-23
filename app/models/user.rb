@@ -15,6 +15,9 @@ class User < ApplicationRecord
   belongs_to :team
   has_many :roster_users
   has_many :rosters, through: :roster_users
+
+  has_many :challenge_participants
+  has_many :challenges, through: :challenge_participants
   
   has_one_attached :avatar, dependent: :destroy
   has_one_attached :cover, dependent: :destroy

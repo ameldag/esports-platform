@@ -17,23 +17,23 @@ class Tournament < ApplicationRecord
   validates :game, presence: true
 
 
-  def participate(@user, @roster, @is_private, @type)
-    if(@is_private)
-      @invitation_code = SecureRandom.hex
-    end
-    case @type
-    when '1v1'
-      Tournament_teams.find_or_create_by(tournament: id) do |tournament_team|
-        tournament_team.participant = @user
-    when 
+  # def participate(@user, @roster, @is_private, @type)
+  #   if(@is_private)
+  #     @invitation_code = SecureRandom.hex
+  #   end
+  #   case @type
+  #   when '1v1'
+  #     Tournament_teams.find_or_create_by(tournament: id) do |tournament_team|
+  #       tournament_team.participant = @user
+  #   when 
       
-    else
+  #   else
       
-    end
-    Tournament_teams.find_or_create_by(tournament: id) do |tournament_team|
-      tournament_team.last_name = 'Johansson'
-    end
+  #   end
+  #   Tournament_teams.find_or_create_by(tournament: id) do |tournament_team|
+  #     tournament_team.last_name = 'Johansson'
+  #   end
 
-  end
+  # end
 
 end

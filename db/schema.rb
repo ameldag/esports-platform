@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_16_135728) do
+ActiveRecord::Schema.define(version: 2020_06_22_092837) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,35 @@ ActiveRecord::Schema.define(version: 2020_06_16_135728) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "challenge_participants", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "challenge_id"
+    t.string "confirmation_code"
+    t.string "status"
+    t.integer "kills"
+    t.integer "deaths"
+    t.integer "score"
+    t.string "result"
+    t.string "side"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["challenge_id"], name: "index_challenge_participants_on_challenge_id"
+    t.index ["user_id"], name: "index_challenge_participants_on_user_id"
+  end
+
+  create_table "challenges", force: :cascade do |t|
+    t.integer "game_id"
+    t.string "kind"
+    t.integer "slots_per_team"
+    t.string "status"
+    t.datetime "start_date"
+    t.string "server_ip"
+    t.string "rcon_pwd"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_challenges_on_game_id"
   end
 
   create_table "featureds", force: :cascade do |t|
