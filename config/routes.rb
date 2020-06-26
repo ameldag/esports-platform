@@ -27,7 +27,8 @@ Rails.application.routes.draw do
   get ':game_id/challenge', to: "challenge#challenges", as:"challenges"
   get ':game_id/challenge/show', to: "challenge#show", as:"show_challenge"
   get ':game_id/challenge/join/:slots_per_team/:kind', to: "challenge#join", as:"join_challenge"
-  get ':game_id/challenge/:id/compose/:ivited_id', to: "challenge#compose_team", as:"compose_team_challenge"
+  get ':game_id/challenge/:id/compose/:invited_id', to: "challenge#compose_team", as:"compose_team_challenge"
+  get ':game_id/challenge/:id/confirm/:confirmation_code', to: "challenge#confirm_challenge_invitation", as:"confirm_challenge_invitation"
   get ':game_id/challenge/:id/participants', to: "challenge#participants", as:"participants_challenge"
   get ':game_id/challenge/:id/feed', to: "challenge#feed", as:"feed_challenge"
 
