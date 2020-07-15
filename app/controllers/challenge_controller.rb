@@ -2,6 +2,7 @@ require 'securerandom'
 class ChallengeController < ApplicationController
   before_action :authenticate_user!
   before_action :set_game
+  before_action :set_challenge, only: :show
 
   layout "in-app"
   def challenges
@@ -9,6 +10,7 @@ class ChallengeController < ApplicationController
   end
 
   def show
+    
   end
 
   def participants
@@ -18,14 +20,14 @@ class ChallengeController < ApplicationController
   end
 
   def join
-    participation = Challenge.pending_for_user(current_user, params[:game_id], params[:slots_per_team], params[:kind]).first
+    @participation = Challenge.pending_for_user(current_user, params[:game_id], params[:slots_per_team], params[:kind]).first
 
-    if(!participation)
-      participation = Challenge.join(current_user, params[:game_id], params[:slots_per_team], params[:kind])
+    if(!@participation)
+      @participation = Challenge.join(current_user, params[:game_id], params[:slots_per_team], params[:kind])
     end
 
     return respond_to do |format|
-      format.html { redirect_to show_challenge_path(@game, participation.challenge) }
+      format.html { redirect_to show_challenge_path(@game, @participation.challenge) }
     end
   end
 
@@ -77,6 +79,9 @@ class ChallengeController < ApplicationController
   end
 
   private
+  def set_challenge
+    @challenge = Challenge.find(params[:format].to_i)
+  end
 
   def set_game
     @game = Game.friendly.find(params[:game_id])

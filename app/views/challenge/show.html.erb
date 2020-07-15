@@ -1,9 +1,26 @@
-<%if @challenge %>
-  <%= @challenge %>
-<br>
-<%= @challenge.kind %>
-<br>
-<%= @challenge.slots_per_teamt %>
-<% else %>
-  <p>we have not challenge yet </p>
-<% end %>
+<div class="relative bg-black pt-0 pb-0 px-0 sm:px-0 lg:pt-0 lg:pb-0 lg:px-0 h-full">
+
+    <div class="z-0 header w-full relative h-64">
+        
+        <% if @challenge.game.cover.present? %>
+          <img src="<%= url_for(@challenge.game.cover) %>" alt="" class="object-cover h-60 w-full">
+          <p class="text-white font-bold text-1xl mb-2 lg:col-span-2">game : <%= @challenge.game.name %></p>
+          <p class="text-white font-bold text-1xl mb-2 lg:col-span-2">kind : <%= @challenge.kind %></p>
+          <p class="text-white font-bold text-1xl mb-2 lg:col-span-2">status : <%= @challenge.status %></p>
+          <p class="text-white font-bold text-1xl mb-2 lg:col-span-2">slots_per_team : <%= @challenge.slots_per_team %></p>
+          <p class="text-white font-bold text-1xl mb-2 lg:col-span-2">start_date : <%= @challenge.start_date.present? ? @challenge.start_date : 'NA/NA/NA' %></p>
+        <% else %>
+        <img src="/images/icon/no-game.png" alt="" class="object-cover h-60 w-full">
+          <p>we have not challenge yet</p>
+        <% end %>
+        
+        <div class="overlay absolute top-0 left-0 bottom-0 right-0 dark-gradient"
+            style="background: linear-gradient(rgba(17,18,23,0),#000);">
+
+        </div>
+    </div>
+  <div class="bg-black text-white py-5 px-10">
+  </div>
+
+</div>
+

@@ -21,7 +21,7 @@
 <h2>My Challenges</h2>
 <div class="grid grid-cols-3 gap-4">
 <% @challenges.each do |challenge| %>
-    <a href="<%= show_challenge_path(@game, @challenge)%>">
+    <a href="<%= show_challenge_path(@game, challenge)%>">
         <div class="w-full bg-purple-600 p-10 rounded-md shadow">
             this is a <%= challenge.slots_per_team%> vs <%= challenge.slots_per_team%> challenge
         </div>
