@@ -1,7 +1,7 @@
 require 'securerandom'
 class ChallengeController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_game
+  before_action :set_game, except: :show
   before_action :set_challenge, only: :show
 
   layout "in-app"
@@ -78,9 +78,19 @@ class ChallengeController < ApplicationController
 
   end
 
+  def members
+    @challenge = Challenge.find(params[:id].to_i)
+    @members = @challenge.users
+  end
+
+  def stats
+    @challenge = Challenge.find(params[:id].to_i)
+    @members = @challenge
+  end
+
   private
   def set_challenge
-    @challenge = Challenge.find(params[:format].to_i)
+    @challenge = Challenge.find(params[:id])
   end
 
   def set_game

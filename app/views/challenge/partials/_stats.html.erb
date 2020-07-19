@@ -1,0 +1,54 @@
+<div class="stats">
+    <!-- GAME SECTION -->
+    <div class="mb-10 bg-gray-900 rounded-md py-5 px-5 shadow" v-for="i in 4" v-bind:key="i">
+
+        <!-- GAME TITLE -->
+        <h2 class="text-white font-bold text-2xl mb-3">Counter Strike</h2>
+        <!-- GAME TITLE END -->
+
+        <!-- STAT DATA -->
+            <% @members.challenge_participants.each do |member| %>
+            <div class="grid grid-cols-3 border-opacity-50">
+                <div class="col-span-1 py-3 font-bold uppercase border-b border-t">
+                    Score: 
+                </div>
+                <div class="col-span-2 py-3 border-b border-t">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-yellow-100 text-yellow-800">
+                        <%= member.score ? member.score : 'Nill' %>
+                    </span>
+                </div>
+
+                <div class="col-span-1 py-3 font-bold uppercase border-b">
+                   Result: 
+                </div>
+                <div class="col-span-2 py-3 border-b border-t">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-yellow-100 text-yellow-800">
+                        <%= member.result ? member.result : 'Nill' %>
+                    </span>
+                </div>
+                
+
+                <div class="col-span-1 py-3 font-bold uppercase border-b">
+                    Kills: 
+                </div>
+                <div class="col-span-2 py-3 border-b border-t">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-yellow-100 text-yellow-800">
+                        <%= member.kills ? member.kills : 'Nill' %>
+                    </span>
+                </div>
+
+                <div class="col-span-2 py-3 font-bold uppercase border-b">
+                    Deaths: 
+                </div>
+                <div class="col-span-2 py-3 border-b border-t">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-yellow-100 text-yellow-800">
+                        <%= member.deaths ? member.deaths : 'Nill' %>
+                    </span>
+                </div>
+            </div>
+        <% end %>
+        <!-- STAT DATA END -->
+
+    </div>
+    <!-- GAME SECTION END -->
+</div>
