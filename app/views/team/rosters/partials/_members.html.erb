@@ -6,28 +6,27 @@
     <!-- members box -->
     <div class="members-box grid grid-cols-3">
 
-        <% @members.each do |member| %>
+        <% @rosters.each do |roster| %>
         <!-- member block -->
         <div class="member mb-5" v-for="n in 11" v-bind:key="n">
             <a href="#" class="flex-shrink-0 group block focus:outline-none">
                 <div class="flex items-center">
                     <div>
-                        <% if member.avatar.attached? %>
-                        <img class="inline-block h-12 w-12 rounded-full object-cover" src="<%= url_for(member.avatar) %>" alt />
-                        <% else %>
                         <img class="inline-block h-12 w-12 rounded-full object-cover" src="/images/icons/no-game.png" alt />
-                        <% end %>
                     </div>
                     <div class="ml-3">
                         <p class="text-sm leading-5 font-medium text-gray-700 group-hover:text-white">
-                            <%= link_to show_team_path(member.team_id), class:"whitespace-no-wrap py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800" do %>
-                                <%= member.username %>
-                            <%end%>
+                            <%= roster.name %>
                         </p>
                         <p
                             class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-400 group-focus:underline transition ease-in-out duration-150">
-                            Signed up <%= time_ago_in_words(member.created_at) %>
+                            Signed up <%= time_ago_in_words(roster.created_at) %>
                         </p>
+                    </div>
+                    <div class="ml-3">
+                        <%= link_to team_edit_roster_path(@rosters.first.id) do %>
+                            <button> Edit </button>
+                        <%end%>
                     </div>
                 </div>
             </a>

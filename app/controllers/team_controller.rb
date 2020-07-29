@@ -47,7 +47,7 @@ class TeamController < ApplicationController
     if ((@current_user_teams.count > 0))
       respond_to do |format|
 
-          format.html { redirect_to root_path(), alert: 'You already have a team, you cannot create another one.' }
+        format.html { redirect_to root_path(), alert: 'You already have a team, you cannot create another one.' }
 
       end
     else
@@ -182,16 +182,11 @@ class TeamController < ApplicationController
       current_user.team = nil
 
       if current_user.update(user_params)
-        byebug
-        
-        respond_to do |format|
+          respond_to do |format|
           format.html { redirect_to show_team_path(@team), notice: 'You successfully quit the team' }
           format.json { render :show, location: @team }
         end
-
       else
-        byebug
-        
         respond_to do |format|
           format.html { redirect_to show_team_path(@team), alert: 'It appears there have been an error while quitting, please retry later' }
           format.json { render :show, location: @team }
@@ -199,8 +194,6 @@ class TeamController < ApplicationController
 
       end
     else
-      byebug
-        
       respond_to do |format|
         format.html { redirect_to show_team_path(@team), alert: 'It appears there have been an error while quitting, please retry later' }
         format.json { render :show, location: @team }
@@ -216,7 +209,7 @@ class TeamController < ApplicationController
   end
 
   def team_params
-    params.permit(:name, :user_id, :website, :description, :avatar, :cover, :owner_id)
+    params.permit(:name, :website, :description, :avatar, :cover, :owner_id)
   end
 
   def user_params

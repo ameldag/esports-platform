@@ -104,12 +104,16 @@ class Team::RostersController < ApplicationController
 
   def update
     @roster = Roster.find(params[:id])
+    @roster.limit = params[:roster][:limit]
+    @roster.name = params[:roster][:name]    
+    @roster.game_id = params[:roster][:game]    
 
     if @roster.update(roster_params)
-    redirect_to team_rosters_path(@roster.team)
+      redirect_to team_rosters_path(@roster.team)
     else
       render 'edit'
     end
+
   end
 
   def new
@@ -126,13 +130,18 @@ class Team::RostersController < ApplicationController
   end
 
   def create
-    @roster = Roster.new(roster_params)
+
+    @roster = Roster.new()
+    
+    @roster.name = params[:name]
+    @roster.limit = params[:limit]
+    @roster.game_id = params[:game].to_i
     # control number of restor per game for that team
     @roster.team = current_user.team
+    
     if @roster.save
       respond_to do |format|
-          format.html { redirect_to show_roster_path(@roster.team, @roster), notice: 'Roster was successfully created.' }
-
+        format.html { redirect_to team_show_roster_path(@roster.team, @roster), notice: 'Roster was successfully created.' }
       end
     else 
       respond_to do |format|

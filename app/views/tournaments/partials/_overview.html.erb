@@ -23,7 +23,6 @@
 
         <!-- Details column -->
         <div class="col-span-2">
-
             <!-- Format -->
             <div class="format w-full">
                 <div class="md:flex md:items-center md:justify-between">
@@ -51,7 +50,7 @@
                         </label>
 
                         <h3>
-                            CSGO
+                            <%= @tournament.game.name%>
                         </h3>
                     </div>
 
@@ -69,7 +68,7 @@
                         </label>
 
                         <h3>
-                            5v5 - 4 substitutes
+                            <%= @tournament.slots%>
                         </h3>
                     </div>
 
@@ -90,7 +89,7 @@
                         </label>
 
                         <h3>
-                            $25
+                            $<%= @tournament.entry_fee%>
                         </h3>
                     </div>
 
@@ -108,7 +107,7 @@
                         </label>
 
                         <h3>
-                            $1000
+                            $<%= @tournament.prize%>
                         </h3>
                     </div>
 
@@ -213,7 +212,6 @@
                 <div class="teams_list">
 
                     <div class="grid grid-cols-4">
-
                         <% Team.all.each do |team| %>
 
                         <a href="#" class="flex-shrink-0 group block focus:outline-none mb-5">
@@ -255,7 +253,7 @@
 
                     <div class="grid grid-cols-4">
 
-                        <% 6.times do %>
+                        <% 1.times do %>
 
                         <div class="mb-5">
                             <p
@@ -273,7 +271,7 @@
                                 </span>
                             </p>
                             <p class="text-sm leading-5 font-medium text-gray-300 group-hover:text-gray-500">
-                                45 minutes before start
+                                <%=@tournament.start_date - 1.days%>
                             </p>
                         </div>
 
@@ -307,19 +305,19 @@
 
                     <div class="text-gray-400 p-5">
                         <h4 class="font-medium">Registered</h4>
-                        <p class="font-bold text-1xl">14</p>
+                        <%= @tournament.rosters.count%>
                     </div>
 
 
                     <div class="text-gray-400 p-5">
                         <h4 class="font-medium">Confirmed</h4>
-                        <p class="font-bold text-1xl">6</p>
+                        <%= @tournament.roster_tournaments.count%>
                     </div>
 
 
                     <div class="text-gray-400 p-5">
                         <h4 class="font-medium">Slots</h4>
-                        <p class="font-bold text-1xl">2</p>
+                        <%= @tournament.slots - @tournament.roster_tournaments.count %>
                     </div>
 
                 </div>
