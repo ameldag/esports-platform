@@ -68,7 +68,9 @@ get 'request/:id/accept', to: "request#accept", as: 'request_accept'
 get 'request/:id/reject', to: "request#reject", as: 'request_reject'
 
   # users routes
-  devise_for :users
+  devise_for :users, controllers:{
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
   get 'user/:id/edit', to: "users#edit", as: "edit_user"
   patch 'user/:id/edit', to: "users#update", as: "update_user"
 

@@ -30,6 +30,7 @@
 
             <div class="mt-1 grid grid-cols-3 gap-3">
               <div>
+                <%= link_to user_facebook_omniauth_authorize_path do%>
                 <span class="w-full inline-flex rounded-md shadow-sm">
                   <button
                     type="button"
@@ -49,6 +50,7 @@
                     </svg>
                   </button>
                 </span>
+                <%end%>
               </div>
 
               <div>

@@ -5,6 +5,9 @@ ruby '2.7.1'
 
 gem 'devise'
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 gem 'rails_admin'
 
 gem "sentry-raven"

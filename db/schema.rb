@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_092837) do
+ActiveRecord::Schema.define(version: 2020_08_04_094201) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -142,6 +142,20 @@ ActiveRecord::Schema.define(version: 2020_06_22_092837) do
     t.index ["game_id"], name: "index_seasons_on_game_id"
   end
 
+  create_table "services", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "provider"
+    t.string "uid"
+    t.string "access_token"
+    t.string "access_token_secret"
+    t.string "refresh_token"
+    t.datetime "expires_at"
+    t.text "auth"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_services_on_user_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -208,6 +222,8 @@ ActiveRecord::Schema.define(version: 2020_06_22_092837) do
     t.string "username"
     t.string "slug"
     t.integer "team_id"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
