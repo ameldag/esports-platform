@@ -43,7 +43,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if service.present?
         service.update(service_attrs)
       else
-        byebug
         user.services.create(service_attrs)
       end
 
