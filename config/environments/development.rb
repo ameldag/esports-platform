@@ -35,7 +35,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
-  config.hosts = ["d00f4bc38ac3.ngrok.io", "localhost"]
+  config.hosts = ["3099eab1cbd7.ngrok.io", "localhost"]
   
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
