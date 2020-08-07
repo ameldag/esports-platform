@@ -66,7 +66,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def set_user
       if user_signed_in?
         @user = current_user
-      elsif service.present?
+      elsif service.present? && service.user
         @user = service.user
       elsif User.where(email: auth.info.email).any?
         # 5. User is logged out and they login to a new account which doesn't match their old one
