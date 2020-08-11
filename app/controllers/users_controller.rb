@@ -21,14 +21,18 @@ class UsersController < ApplicationController
     def update
 
         respond_to do |format|
-            
-            if @user.update(user_params)
-                format.html { redirect_to root_path, notice: 'Your profile was successfully updated.' }
-                format.json { render :show, status: :ok, location: @user }
+            if(user_params['password'] != params[:user][:confirm_password])
+                format.html { redirect_to update_user_path(current_user.id), alert: 'Check your password confirmation.' }
             else
-                format.html { render :edit }
-                format.json { render json: @user.errors, status: :unprocessable_entity }
+                if @user.update(user_params)
+                    format.html { redirect_to root_path, notice: 'Your profile was successfully updated.' }
+                    format.json { render :show, status: :ok, location: @user }
+                else
+                    format.html { render :edit }
+                    format.json { render json: @user.errors, status: :unprocessable_entity }
+                end
             end
+            
 
         end
     end
@@ -41,7 +45,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:username, :first_name, :last_name, :avatar, :cover, :team_id)
+        params.require(:user).permit(:username, :first_name, :last_name, :password, :avatar, :cover, :team_id)
     end
 
 end
