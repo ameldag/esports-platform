@@ -1,30 +1,32 @@
+<!-- TOURNAMENT BLOCK -->
+<div class="flex flex-col overflow-hidden transform hover:scale-110 transition duration-150 ease-in-out">
+  <div class="flex-shrink-0 rounded-lg shadow-lg overflow-hidden">
+  <%= link_to show_tournament_path(tournament) do %>
+    <% if tournament.cover.attached? %>
+    <img class="h-48 w-full object-cover" src="<%= url_for(tournament.cover) %>" alt="" />
+    <% else %>
+    <img class="h-48 w-full object-cover" src="/images/icons/no-game.png" alt="" />
+    <% end %>
+  <% end %>
 
-      <!-- TOURNAMENT BLOCK -->
-      <div class="flex flex-col overflow-hidden transform hover:scale-110 transition duration-150 ease-in-out">
-        <div class="flex-shrink-0 rounded-lg shadow-lg overflow-hidden">
-          <% if tournament.cover.attached? %>
-          <img class="h-48 w-full object-cover" src="<%= url_for(tournament.cover) %>" alt="" />
-          <% else %>
-          <img class="h-48 w-full object-cover" src="/images/icons/no-game.png" alt="" />
-          <% end %>
-        </div>
+  </div>
 
-        <time class="uppercase text-xs text-gray-500 font-bold mt-1">
-          Today 18:30
-        </time>
+  <time class="uppercase text-xs text-gray-500 font-bold mt-1">
+    Today 18:30
+  </time>
 
-        <h3 class="uppercase text-sm text-gray-200 font-bold mb-0">
-          <a href="<%= show_tournament_path(tournament) %>">
-            <%= tournament.name %>
-          </a>
-          <span
-            class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium leading-5 bg-purple-800 text-purple-100">
-            <%= tournament.slots %> Slots
-          </span>
-        </h3>
+  <h3 class="uppercase text-sm text-gray-200 font-bold mb-0">
+    <a href="<%= show_tournament_path(tournament) %>">
+      <%= tournament.name %>
+    </a>
+    <span
+      class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium leading-5 bg-purple-800 text-purple-100">
+      <%= tournament.slots %> Slots
+    </span>
+  </h3>
 
-        <p class="uppercase text-xs text-gray-500 font-bold">
-          EU &bull; 1v1
-        </p>
-      </div>
-      <!-- TOURNAMENT BLOCK END -->
+  <p class="uppercase text-xs text-gray-500 font-bold">
+    EU &bull; 1v1
+  </p>
+</div>
+<!-- TOURNAMENT BLOCK END -->

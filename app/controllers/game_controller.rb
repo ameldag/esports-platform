@@ -4,7 +4,8 @@ class GameController < ApplicationController
   layout "in-app"
 
   def show
-    
+    # Listing tournaments in the home page
+    @ongoing_tournaments = Tournament.where('active = ? and game_id = ?', true, @game.id).where('end_date > ?', Date.today).last(4)
   end
 
   def tournaments
