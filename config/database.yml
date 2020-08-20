@@ -12,13 +12,9 @@ default: &default
 development:
   <<: *default
   # database: db/development.sqlite3
+  encoding: unicode$
   adapter: postgresql
-  encoding: unicode
-  database: postgres
-  pool: 5
-  username: postgres
-  password: postgres
-  hostname: host.docker.internal
+  url: <%= ENV["DATABASE_URL"] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
