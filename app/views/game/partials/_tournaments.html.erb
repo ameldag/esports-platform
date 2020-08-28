@@ -34,7 +34,6 @@
 </div>
 
 <!-- Ongoing Tournaments -->
-
 <div v-if="this.tabname == this.ongoingtab">
     <div class="md:flex md:items-center md:justify-between">
         <div class="flex-1 min-w-0">
@@ -45,30 +44,9 @@
     </div>
 
     <div class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none pb-10">
-        <div class="flex flex-col overflow-hidden transform hover:scale-110 transition duration-150 ease-in-out"
-            v-for="n in 12" v-bind:key="n">
-            <div class="flex-shrink-0 rounded-lg shadow-lg overflow-hidden">
-                <img class="h-34 w-full object-cover"
-                    src="https://dmarket.com/blog/best-dota2-wallpapers/roshan3_hu855bbe0a9c47ac557e5b09db74fa3b06_304916_1920x1080_resize_q75_lanczos.jpg"
-                    alt="" />
-            </div>
-
-            <time class="uppercase text-xs text-gray-500 font-bold mt-1">
-                Today 18:30
-            </time>
-
-            <h3 class="uppercase text-sm text-gray-800 font-bold mb-0">
-                Tournament Name
-                <span
-                    class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium leading-5 bg-purple-800 text-purple-100">
-                    16 Slots
-                </span>
-            </h3>
-
-            <p class="uppercase text-xs text-gray-500 font-bold">
-                EU &bull; 1v1
-            </p>
-        </div>
+        <% @ongoing_tournaments.each do |tournament| %>
+        <%= render "pages/partials/tournament_card", tournament: tournament %>
+        <% end %>
     </div>
 </div>
 
@@ -83,30 +61,21 @@
         </div>
     </div>
 
-    <div class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none pb-10">
-        <div class="flex flex-col overflow-hidden transform hover:scale-110 transition duration-150 ease-in-out"
-            v-for="n in 12" v-bind:key="n">
-            <div class="flex-shrink-0 rounded-lg shadow-lg overflow-hidden">
-                <img class="h-34 w-full object-cover"
-                    src="https://dmarket.com/blog/best-dota2-wallpapers/roshan3_hu855bbe0a9c47ac557e5b09db74fa3b06_304916_1920x1080_resize_q75_lanczos.jpg"
-                    alt="" />
-            </div>
-
-            <time class="uppercase text-xs text-gray-500 font-bold mt-1">
-                Today 18:30
-            </time>
-
-            <h3 class="uppercase text-sm text-gray-800 font-bold mb-0">
-                Tournament Name
-                <span
-                    class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium leading-5 bg-purple-800 text-purple-100">
-                    16 Slots
-                </span>
-            </h3>
-
-            <p class="uppercase text-xs text-gray-500 font-bold">
-                EU &bull; 1v1
-            </p>
-        </div>
+<div class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none pb-10">
+        <% @past_tournaments.each do |tournament| %>
+        <%= render "pages/partials/tournament_card", tournament: tournament %>
+        <% end %>
     </div>
 </div>
+ <div class="grid grid-cols-2 gap-4 py-2">
+    <div class="">
+       <a href="<%= show_challenge_path(@challenge.id) %>"
+            class="whitespace-no-wrap py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
+                    Ongoing Tournaments
+        </a>
+        <a href="<%= show_challenge_members_path(@game, @challenge.id) %>"
+            class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
+                    Past Tournaments
+        </a>
+    </div>
+ </div>

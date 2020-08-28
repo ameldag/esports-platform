@@ -5,11 +5,12 @@ class GameController < ApplicationController
 
   def show
     # Listing tournaments in the home page
-    @ongoing_tournaments = Tournament.where('active = ? and game_id = ?', true, @game.id).where('end_date > ?', Date.today).last(4)
+
   end
 
   def tournaments
-    
+    @ongoing_tournaments = Tournament.where("active = ?", true).where("end_date > ? and start_date < ?", Date.today, Date.today).last(4)
+    @past_tournaments = Tournament.where("active = ?", true).where("end_date < ?", Date.today).last(4)
   end
 
   private
@@ -17,5 +18,4 @@ class GameController < ApplicationController
   def set_game
     @game = Game.friendly.find(params[:id])
   end
-  
 end
