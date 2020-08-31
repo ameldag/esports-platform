@@ -4,12 +4,17 @@ class GameController < ApplicationController
   layout "in-app"
 
   def show
-    # Listing tournaments in the home page
-
   end
 
   def tournaments
     @ongoing_tournaments = Tournament.where("active = ?", true).where("end_date > ? and start_date < ?", Date.today, Date.today).last(4)
+  end
+
+  def ongoing_tournament
+    @ongoing_tournaments = Tournament.where("active = ?", true).where("end_date > ? and start_date < ?", Date.today, Date.today).last(4)
+  end
+
+  def past_tournament
     @past_tournaments = Tournament.where("active = ?", true).where("end_date < ?", Date.today).last(4)
   end
 
