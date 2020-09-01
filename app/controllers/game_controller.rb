@@ -7,7 +7,7 @@ class GameController < ApplicationController
   end
 
   def tournaments
-    @ongoing_tournaments = Tournament.where("active = ?", true).where("end_date > ? and start_date < ?", Date.today, Date.today).last(4)
+    redirect_to ongoing_tournament_path
   end
 
   def ongoing_tournament

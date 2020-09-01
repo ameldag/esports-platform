@@ -9,7 +9,7 @@ class TeamController < ApplicationController
   end
 
   def show
-    
+    @overview = true
     @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
     @members = @team.users
     
@@ -17,7 +17,7 @@ class TeamController < ApplicationController
   end
 
   def members
-    
+    @membre = true
     @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
     @members = @team.users
     
@@ -25,7 +25,7 @@ class TeamController < ApplicationController
   end
 
   def stats
-    
+    @stat = true
     @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
     @members = @team.users
     
@@ -33,7 +33,7 @@ class TeamController < ApplicationController
   end
   
   def requests
-    
+    @request =true
     @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
     @members = @team.users
     

@@ -27,20 +27,4 @@
      </nav>
    </div>
  </div>
-   <div class="px-4 bg-black my-0">
 
-     <!-- Ongoin Tournaments -->
-     <div class="md:flex md:items-center md:justify-between">
-       <div class="flex-1 min-w-0">
-         <h2 class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-10">
-           Ongoing Tournaments
-         </h2>
-       </div>
-     </div>
-
-     <div class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none pb-10">
-       <% @ongoing_tournaments.each do |tournament| %>
-       <%= render "pages/partials/tournament_card", tournament: tournament %>
-       <% end %>
-     </div>
-   </div>

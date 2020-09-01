@@ -8,10 +8,18 @@
         <div class="mt-4 flex md:mt-0 md:ml-4">
             <span class="ml-3 shadow-sm rounded-md">
                 <a href="<%= new_team_path() %>">
-                    <button type="button"
-                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-700 hover:bg-gray-600 focus:outline-none focus:shadow-outline-gray focus:border-gray-600 active:bg-gray-600 transition duration-150 ease-in-out">
-                        Create New Team
-                    </button>
+
+                    <span class="hidden sm:block shadow-sm rounded-md">
+                        <button type="button"
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-600 hover:bg-gray-500 focus:outline-none focus:shadow-outline-gray focus:border-gray-700 active:bg-gray-700 transition duration-150 ease-in-out">
+                            <svg class="-ml-1 mr-2 h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M10 5C10.5523 5 11 5.44772 11 6V9L14 9C14.5523 9 15 9.44772 15 10C15 10.5523 14.5523 11 14 11H11V14C11 14.5523 10.5523 15 10 15C9.44771 15 9 14.5523 9 14V11H6C5.44772 11 5 10.5523 5 10C5 9.44771 5.44772 9 6 9L9 9V6C9 5.44772 9.44771 5 10 5Z"
+                                    fill="#FFFAF0" />
+                            </svg>
+                            Create New Team
+                        </button>
+                    </span>
                 </a>
             </span>
         </div>
@@ -26,7 +34,8 @@
             <% 1.times do %>
             <% @teams.each do |team| %>
 
-            <div class="bg-black rounded-md overflow-hidden shadow-md transform hover:scale-110 transition duration-150 ease-in-out">
+            <div
+                class="bg-black rounded-md overflow-hidden shadow-md transform hover:scale-110 transition duration-150 ease-in-out">
                 <div class="team-cover relative">
 
                     <% if team.cover.attached? %>
@@ -47,7 +56,8 @@
                                 <% if team.avatar.attached? %>
                                 <img class="h-10 w-10 rounded-full" src="<%= url_for(team.avatar) %>" alt="" />
                                 <% else %>
-                                <img class="h-10 w-10 rounded-full object-cover" src="/images/icons/no-game.png" alt="" />
+                                <img class="h-10 w-10 rounded-full object-cover" src="/images/icons/no-game.png"
+                                    alt="" />
                                 <% end %>
                             </a>
                         </div>
@@ -59,7 +69,7 @@
                             </p>
                             <div class="flex text-sm leading-5 text-gray-500">
                                 <time datetime="2020-03-16">
-                                    Joined on <%= team.created_at.strftime('%F') %>
+                                    Joined on <%= team.created_at.strftime("%F") %>
                                 </time>
                             </div>
                         </div>
