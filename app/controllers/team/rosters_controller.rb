@@ -131,6 +131,7 @@ class Team::RostersController < ApplicationController
     @roster.name = params[:name]
     @roster.limit = params[:limit]
     @roster.game_id = params[:game].to_i
+    @roster.cover = params[:cover]
     # control number of restor per game for that team
     @roster.team = current_user.team
 
