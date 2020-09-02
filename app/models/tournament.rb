@@ -11,6 +11,8 @@ class Tournament < ApplicationRecord
   has_many :roster_tournaments
   has_many :rosters, through: :roster_tournaments
 
+  belongs_to :mode
+
   has_one_attached :cover, dependent: :destroy
 
   validates :season, presence: true
