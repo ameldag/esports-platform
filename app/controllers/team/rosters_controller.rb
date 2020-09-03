@@ -106,6 +106,7 @@ class Team::RostersController < ApplicationController
     @roster.limit = params[:roster][:limit]
     @roster.name = params[:roster][:name]
     @roster.game_id = params[:roster][:game]
+    @roster.cover.attach(params[:roster][:cover])
 
     if @roster.update(roster_params)
       redirect_to team_rosters_path(@roster.team)
@@ -131,7 +132,7 @@ class Team::RostersController < ApplicationController
     @roster.name = params[:name]
     @roster.limit = params[:limit]
     @roster.game_id = params[:game].to_i
-    @roster.cover = params[:cover]
+    @roster.cover.attach(params[:roster][:cover])
     # control number of restor per game for that team
     @roster.team = current_user.team
 
@@ -158,7 +159,7 @@ class Team::RostersController < ApplicationController
   private
 
   def roster_params
-    params.permit(:name, :limit, :game, :team)
+    params.permit(:name, :limit, :game, :team, :cover)
   end
 
   def user_params
