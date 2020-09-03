@@ -12,6 +12,8 @@ class Tournament < ApplicationRecord
   has_many :rosters, through: :roster_tournaments
 
   belongs_to :mode
+  has_many :region_tournaments
+  has_many :regions, through: :region_tournaments
 
   has_one_attached :cover, dependent: :destroy
 

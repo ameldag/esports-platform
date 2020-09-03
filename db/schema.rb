@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_160052) do
+ActiveRecord::Schema.define(version: 2020_09_03_131009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,22 @@ ActiveRecord::Schema.define(version: 2020_08_31_160052) do
 
   create_table "modes", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "region_tournaments", force: :cascade do |t|
+    t.bigint "region_id"
+    t.bigint "tournament_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["region_id"], name: "index_region_tournaments_on_region_id"
+    t.index ["tournament_id"], name: "index_region_tournaments_on_tournament_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "continent"
+    t.string "country"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -228,6 +244,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_160052) do
     t.integer "entry_fee"
     t.string "slug"
     t.bigint "modes_id"
+    t.string "rules"
     t.index ["game_id"], name: "index_tournaments_on_game_id"
     t.index ["modes_id"], name: "index_tournaments_on_modes_id"
     t.index ["season_id"], name: "index_tournaments_on_season_id"
@@ -271,6 +288,8 @@ ActiveRecord::Schema.define(version: 2020_08_31_160052) do
   add_foreign_key "featureds", "tournaments"
   add_foreign_key "game_modes", "games"
   add_foreign_key "game_modes", "modes", column: "modes_id"
+  add_foreign_key "region_tournaments", "regions"
+  add_foreign_key "region_tournaments", "tournaments"
   add_foreign_key "rosters", "games"
   add_foreign_key "rosters", "teams"
   add_foreign_key "tournament_team_participants", "tournament_teams"

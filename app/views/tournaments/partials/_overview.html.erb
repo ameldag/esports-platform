@@ -110,48 +110,58 @@
                             $<%= @tournament.prize%>
                         </h3>
                     </div>
+                    <div class="border border-gray-300 rounded-md p-5">
+                        <div class="game-icon">
+                            <svg class="" width="1em" height="1em" viewBox="0 0 1024 1024" fill="currentColor">
+                                <path
+                                    d="M868 160h-92v-40c0-4.4-3.6-8-8-8H256c-4.4 0-8 3.6-8 8v40h-92a44 44 0 0 0-44 44v148c0 81.7 60 149.6 138.2 162C265.7 630.2 359 721.7 476 734.5v105.2H280c-17.7 0-32 14.3-32 32V904c0 4.4 3.6 8 8 8h512c4.4 0 8-3.6 8-8v-32.3c0-17.7-14.3-32-32-32H548V734.5C665 721.7 758.3 630.2 773.8 514 852 501.6 912 433.7 912 352V204a44 44 0 0 0-44-44zM184 352V232h64v207.6a91.99 91.99 0 0 1-64-87.6zm520 128c0 49.1-19.1 95.4-53.9 130.1-34.8 34.8-81 53.9-130.1 53.9h-16c-49.1 0-95.4-19.1-130.1-53.9-34.8-34.8-53.9-81-53.9-130.1V184h384v296zm136-128c0 41-26.9 75.8-64 87.6V232h64v120z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <label class="font-bold">
+                            Region
+                        </label>
+                        <% byebug %>
+                        <% if @tournament.regions.present? %>
+                            <% @tournament.regions.each do |region| %>
+                                <h3>
+                                    <%= region.country%>
+                                </h3>
+                            <%end %>
+                        <% else %>
+                            <h3>
+                                NA
+                            </h3>
+                        <% end %>
+                    </div>
                 </div>
             </div>
 
-            <!-- Regions -->
-            <div class="regions border-t border-gray-600 pt-0 mt-10 w-full">
-                <div class="md:flex md:items-center md:justify-between">
+            <!-- Rules -->
+            <div class="informations border-t border-gray-600 pt-0 mt-5 w-full">
+
+                <div class="covered_rules">
+                    <div class="md:flex md:items-center md:justify-between">
                     <div class="flex-1 min-w-0">
                         <h2
                             class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-5 mb-5">
-                            Regions
+                            Rules
                         </h2>
                     </div>
                 </div>
 
-                <div class="covered_regions">
-
-                    <div class="grid grid-cols-3">
-
-                        <% 5.times do %>
-
-                        <a href="#" class="flex-shrink-0 group block focus:outline-none mb-10">
-                            <div class="flex items-center">
-                                <div>
-                                    <img class="inline-block h-12 w-12 rounded-full" src="/images/flags/france.svg"
-                                        alt="" />
-                                </div>
-                                <div class="ml-3">
-                                    <p
-                                        class="text-sm leading-5 font-medium uppercase text-gray-300 group-hover:text-gray-500">
-                                        France
-                                    </p>
-                                    <p
-                                        class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-300 group-focus:underline transition ease-in-out duration-150">
-                                        Western Europe
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-
+                <div class="covered_rules">
+                    <p class="text-gray-300 font-sm">
+                        <% if @tournament.rules.present? %>
+                                <%= @tournament.rules%>
+                        <% else %>
+                                Free for all
                         <% end %>
+                    </p>
 
-                    </div>
+                </div>
+
 
                 </div>
             </div>
