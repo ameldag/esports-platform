@@ -9,51 +9,43 @@ class TeamController < ApplicationController
   end
 
   def show
-    @overview = true
-    @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
+    @requests = Request.where("team_id = ? and user_id != ? and status = ?", @team.id, current_user.id, "pending").all
     @members = @team.users
-    
-    @current_user_request = Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count
+
+    @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
   end
 
   def members
-    @membre = true
-    @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
+    @requests = Request.where("team_id = ? and user_id != ? and status = ?", @team.id, current_user.id, "pending").all
     @members = @team.users
-    
-    @current_user_request = Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count
+
+    @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
   end
 
   def stats
-    @stat = true
-    @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
+    @requests = Request.where("team_id = ? and user_id != ? and status = ?", @team.id, current_user.id, "pending").all
     @members = @team.users
-    
-    @current_user_request = Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count
+
+    @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
   end
-  
+
   def requests
-    @request =true
-    @requests = Request.where('team_id = ? and user_id != ? and status = ?', @team.id, current_user.id, "pending").all
+    @requests = Request.where("team_id = ? and user_id != ? and status = ?", @team.id, current_user.id, "pending").all
     @members = @team.users
-    
-    @current_user_request = Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count
+
+    @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
   end
 
   # GET /teams/new
   def new
-
-    @current_user_teams = Team.where('owner_id = ?', current_user.id).all
+    @current_user_teams = Team.where("owner_id = ?", current_user.id).all
     if ((@current_user_teams.count > 0))
       respond_to do |format|
-
-        format.html { redirect_to root_path(), alert: 'You already have a team, you cannot create another one.' }
-
+        format.html { redirect_to root_path(), alert: "You already have a team, you cannot create another one." }
       end
     else
       @team = Team.new
     end
-
   end
 
   # GET /teams/1/edit
@@ -67,7 +59,6 @@ class TeamController < ApplicationController
     @team.owner_id = current_user.id
 
       if @team.save
-
         current_user.team = @team
 
         respond_to do |format|
@@ -75,7 +66,6 @@ class TeamController < ApplicationController
 
             format.html { redirect_to show_team_path(@team), notice: 'Team was successfully created.' }
             format.json { render :show, status: :created, location: @team }
-            
           else
             
             format.html { render :new }
@@ -89,18 +79,18 @@ class TeamController < ApplicationController
         format.html { render :new }
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
-      
   end
 
   def join_request
     @team = Team.find(params[:team_id])
-    @current_user_request = Request.where('team_id = ? and user_id = ? and status = ?', @team.id, current_user.id, "pending").count
+    @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
 
     if (current_user.team.present?)
-      
       respond_to do |format|
-        format.html { redirect_to show_team_path(@team), alert: 'You already belong to a team' }
+        format.html { redirect_to show_team_path(@team), alert: "You already belong to a team" }
         format.json { render :show, location: @team }
+        render "modal_confirmation"
+
       end
 
     else
@@ -146,21 +136,17 @@ class TeamController < ApplicationController
       return false
     else
       if (params[:answer] == "yes")
-
         @requesting_user.team = @team
 
         respond_to do |format|
           if @requesting_user.save
-
             @request.destroy
 
             return true
-            
           else
             return false
           end
         end
-
       elsif (params[:answer] == "no")
         @request.status = "refused"
         @request.save
@@ -191,14 +177,12 @@ class TeamController < ApplicationController
           format.html { redirect_to show_team_path(@team), alert: 'It appears there have been an error while quitting, please retry later' }
           format.json { render :show, location: @team }
         end
-
       end
     else
       respond_to do |format|
         format.html { redirect_to show_team_path(@team), alert: 'It appears there have been an error while quitting, please retry later' }
         format.json { render :show, location: @team }
       end
-      
     end
   end
 

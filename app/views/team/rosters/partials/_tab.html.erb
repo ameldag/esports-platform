@@ -29,27 +29,13 @@
         </div>
 
     </div>
-  <div class="text-right">
-
-        <% if @overview %>
-
-        <% if ((current_user.team.present?) and (current_user.team == @team)) %>
-        <span class="inline-flex rounded-md shadow-sm">
-            <a href="<%= team_quit_path(@team.id) %>"
-                class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
-                Give Ownership
-            </a>
-        </span>
-        <% end %>
-        <% end %>
-        <% if @membre || @stat || @request || @roster %>
-        <% if (@team.owner_id != current_user) %>
+    <div class="text-right">
+        <% if (@team.owner_id != current_user.id) %>
         <%= link_to "Join Team", team_join_path(@team.id),
                     class: "px-3 py-2 font-medium text-sm leading-5 rounded-md transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow" %>
         <% else %>
         <%= link_to "Join Request Pending", team_join_path(@team.id),
-                class: "px-3 py-2 font-medium text-sm leading-5 rounded-md transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow" %>
-        <% end %>
+                    class: "px-3 py-2 font-medium text-sm leading-5 rounded-md transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow" %>
         <% end %>
     </div>
 
