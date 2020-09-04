@@ -29,8 +29,8 @@
         </div>
 
     </div>
-    <div class="text-right">
 
+    <div class="text-right">
         <% if ((current_user.team.present?) and (current_user.team == @team)) %>
         <span class="inline-flex rounded-md shadow-sm">
             <a href="<%= team_quit_path(@team.id) %>"
@@ -39,22 +39,20 @@
             </a>
         </span>
         <% end %>
-    
-        <% if (@team.owner_id != current_user.id) %>
-            <% if (@current_user_request < 1) %>
-                 <%= link_to "Join Team", team_join_path(@team.id),
-                    class: "px-3 py-2 font-medium text-sm leading-5 rounded-md transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow" %>
-            <% else %>
 
-             <%= link_to "Join Request Pending", team_join_path(@team.id),
-                class: "px-3 py-2 font-medium text-sm leading-5 rounded-md transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow" %>
-            <% end %>
+        <% if (@team.owner_id != current_user.id) %>
+        <% if (@current_user_request < 1) %>
+
+        <!--  <%= link_to team_join_path(@team.id), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150" do %>
+        Join Team
+        <% end %>-->
+        <% end %>
         <% end %>
     </div>
 
     <div class="bg-transparent border-b border-gray-600 mx-5 py-2 my-5 px-5">
 
-        <div class="grid grid-cols-2 gap-4 py-2">
+        <div class="gap-4 py-2">
             <div class="">
                 <a href="<%= show_team_path(@team.id) %>"
                     class="whitespace-no-wrap py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">

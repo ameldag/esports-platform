@@ -38,3 +38,6 @@ application.register('modal', Modal)
 application.register('tabs', Tabs)
 application.register('popover', Popover)
 application.register('toggle', Toggle)
+
+//Import Alpine.js
+import 'alpinejs'
