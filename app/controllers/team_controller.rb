@@ -89,8 +89,6 @@ class TeamController < ApplicationController
       respond_to do |format|
         format.html { redirect_to show_team_path(@team), alert: "You already belong to a team" }
         format.json { render :show, location: @team }
-        render "modal_confirmation"
-
       end
 
     else
