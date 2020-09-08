@@ -33,22 +33,22 @@
     <div class="text-right">
         <% if ((current_user.team.present?) and (current_user.team == @team)) %>
         <% if (@team.owner_id == current_user.id) %>
-        <span class="inline-flex rounded-md shadow-sm">
-            <a href="<%= team_quit_path(@team.id) %>"
-                class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
-                Give Ownership
-            </a>
-        </span>
+        <button
+            class="modal-open bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full">
+            Give Ownership
+        </button>
+
+        <%= render partial: "team/partials/modal_giveOwnerShip", locals: { team: @team } %>
+
         <% else %>
-        <span class="inline-flex rounded-md shadow-sm">
-            <a href="<%= team_quit_path(@team.id) %>"
-                class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
-                Quit Team
-            </a>
-        </span>
+        <a href="<%= team_quit_path(@team.id) %>"
+            class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+            Quit Team
+        </a>
+
         <% end %>
         <% end %>
-        
+
         <% unless (current_user.team.present?) %>
         <% if (@team.owner_id != current_user.id) %>
         <% if (@current_user_request < 1) %>
@@ -61,9 +61,9 @@
         <% end %>
     </div>
 
-    <div class="bg-transparent border-b border-gray-600 mx-5 py-2 my-5 px-5">
+    <div class="bg-transparent border-b border-gray-600 ">
 
-        <div class="gap-4 py-2">
+        <div class="">
             <div class="">
                 <a href="<%= show_team_path(@team.id) %>"
                     class="whitespace-no-wrap py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
