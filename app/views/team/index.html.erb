@@ -59,13 +59,21 @@
                                 <img class="h-10 w-10 rounded-full object-cover" src="/images/icons/no-game.png"
                                     alt="" />
                                 <% end %>
-                            </a>
+
                         </div>
                         <div class="ml-3">
                             <p class="text-sm leading-5 font-bold text-gray-200">
                                 <a href="<%= show_team_path(team) %>" class="">
                                     <%= team.name %>
                                 </a>
+                                <% if ((current_user.team.present?) and (current_user.team == team)) %>
+                                <% if (team.owner_id == current_user.id) %>
+                                <span
+                                    class="ml-4 inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-red-200 text-red-800">
+                                    Owner
+                                </span>
+                                <% end %>
+                                <% end %>
                             </p>
                             <div class="flex text-sm leading-5 text-gray-500">
                                 <time datetime="2020-03-16">
@@ -75,6 +83,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <% end %>
