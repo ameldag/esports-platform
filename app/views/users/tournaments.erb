@@ -54,7 +54,12 @@
     </div>
     <div class="bg-black text-white py-5 px-10">
 
-        <%= render "users/partials/tournaments" %>
+         <div class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none">
+      
+            <% @tournaments.each do |tournament| %>
+                <%= render "pages/partials/tournament_card", tournament: tournament %>
+            <% end %>
 
+        </div>
     </div>
 </div>
