@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   get "team/:id/requests", to: "team#requests", as: "show_team_requests"
   get "team/:id/quit", to: "team#quit", as: "team_quit"
   get "team/:id/giveownership/:user_id", to: "team#give_ownerShip", as: "give_ownerShip"
-
+  get "search", to: "team#search", as: "search_page"
   # Roster routes
 
   namespace :team do

@@ -1,6 +1,6 @@
 class TeamController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_team, except: [:index, :new, :create, :join_request, :team_request_answer, :quit]
+  before_action :set_team, except: [:index, :new, :create, :join_request, :team_request_answer, :quit, :search]
 
   layout "in-app"
 
@@ -189,6 +189,15 @@ class TeamController < ApplicationController
     end
   end
 
+  def search
+    if params[:search].blank?
+      redirect_to teams_path, alert: "No results"
+    else
+      @parameter = params[:search].downcase
+      @results = Team.all.where("lower(name) LIKE :search", search: "%#{@parameter}%")
+    end
+  end
+
   private
 
   def set_team
@@ -196,7 +205,7 @@ class TeamController < ApplicationController
   end
 
   def team_params
-    params.permit(:name, :website, :description, :avatar, :cover, :owner_id)
+    params.require(:team).permit(:name, :website, :description, :avatar, :cover, :owner_id)
   end
 
   def user_params
