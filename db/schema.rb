@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_04_094201) do
+ActiveRecord::Schema.define(version: 2020_09_14_163915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,7 +62,9 @@ ActiveRecord::Schema.define(version: 2020_08_04_094201) do
     t.string "rcon_pwd"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "tournament_id"
     t.index ["game_id"], name: "index_challenges_on_game_id"
+    t.index ["tournament_id"], name: "index_challenges_on_tournament_id"
   end
 
   create_table "featureds", force: :cascade do |t|
@@ -87,6 +89,21 @@ ActiveRecord::Schema.define(version: 2020_08_04_094201) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "game_game_modes", force: :cascade do |t|
+    t.string "name_mode"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "game_modes", force: :cascade do |t|
+    t.bigint "game_id"
+    t.bigint "modes_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_game_modes_on_game_id"
+    t.index ["modes_id"], name: "index_game_modes_on_modes_id"
+  end
+
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.boolean "active"
@@ -94,6 +111,45 @@ ActiveRecord::Schema.define(version: 2020_08_04_094201) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["slug"], name: "index_games_on_slug", unique: true
+  end
+
+  create_table "map_tournaments", force: :cascade do |t|
+    t.bigint "tournament_id"
+    t.bigint "map_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["map_id"], name: "index_map_tournaments_on_map_id"
+    t.index ["tournament_id"], name: "index_map_tournaments_on_tournament_id"
+  end
+
+  create_table "maps", force: :cascade do |t|
+    t.string "name"
+    t.bigint "game_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_maps_on_game_id"
+  end
+
+  create_table "modes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "region_tournaments", force: :cascade do |t|
+    t.bigint "region_id"
+    t.bigint "tournament_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["region_id"], name: "index_region_tournaments_on_region_id"
+    t.index ["tournament_id"], name: "index_region_tournaments_on_tournament_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "continent"
+    t.string "country"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "requests", force: :cascade do |t|
@@ -146,7 +202,7 @@ ActiveRecord::Schema.define(version: 2020_08_04_094201) do
   end
 
   create_table "services", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "provider"
     t.string "uid"
     t.string "access_token"
@@ -206,7 +262,12 @@ ActiveRecord::Schema.define(version: 2020_08_04_094201) do
     t.integer "prize"
     t.integer "entry_fee"
     t.string "slug"
+    t.bigint "modes_id"
+    t.string "rules"
+    t.bigint "regions_id"
     t.index ["game_id"], name: "index_tournaments_on_game_id"
+    t.index ["modes_id"], name: "index_tournaments_on_modes_id"
+    t.index ["regions_id"], name: "index_tournaments_on_regions_id"
     t.index ["season_id"], name: "index_tournaments_on_season_id"
     t.index ["slug"], name: "index_tournaments_on_slug", unique: true
     t.index ["user_id"], name: "index_tournaments_on_user_id"
@@ -245,10 +306,20 @@ ActiveRecord::Schema.define(version: 2020_08_04_094201) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "challenges", "tournaments"
   add_foreign_key "featureds", "tournaments"
+  add_foreign_key "game_modes", "games"
+  add_foreign_key "game_modes", "modes", column: "modes_id"
+  add_foreign_key "map_tournaments", "maps"
+  add_foreign_key "map_tournaments", "tournaments"
+  add_foreign_key "maps", "games"
+  add_foreign_key "region_tournaments", "regions"
+  add_foreign_key "region_tournaments", "tournaments"
   add_foreign_key "rosters", "games"
   add_foreign_key "rosters", "teams"
   add_foreign_key "tournament_team_participants", "tournament_teams"
   add_foreign_key "tournament_team_participants", "users"
   add_foreign_key "tournament_teams", "tournaments"
+  add_foreign_key "tournaments", "modes", column: "modes_id"
+  add_foreign_key "tournaments", "regions", column: "regions_id"
 end
