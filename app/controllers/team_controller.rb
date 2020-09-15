@@ -5,7 +5,7 @@ class TeamController < ApplicationController
   layout "in-app"
 
   def index
-    @teams = Team.all
+    @teams = Team.order(:name).page params[:page]
   end
 
   def show
