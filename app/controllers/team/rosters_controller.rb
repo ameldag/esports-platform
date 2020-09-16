@@ -14,6 +14,7 @@ class Team::RostersController < ApplicationController
 
   def show
     @roster = Roster.find(params[:id])
+    @current_user_request = Request.where("roster_id = ? and user_id = ? and status = ?", @roster.id, current_user.id, "pending").count
   end
 
   def add_user_to_roster
@@ -55,33 +56,35 @@ class Team::RostersController < ApplicationController
 
   def join
     @roster = Roster.find(params[:id])
+    @current_user_request = Request.where("roster_id = ? and user_id = ? and status = ?", @roster.id, current_user.id, "pending").count
 
     if (current_user.team != @roster.team)
       raise ApplicationController::NotAuthorized
     end
 
-    @current_user_request = Request.where(
-      user: current_user,
-      roster: @roster,
-      target: :roster,
-      status: :pending,
-    )
+    if (current_user.team.present?)
+      respond_to do |format|
+        format.html { redirect_to show_roster_path(@roster.team_id, @roster.id), alert: "You already belong to a team" }
+        format.json { render :show, location: @team }
+      end
+    else
+      if (@current_user_request < 1)
+        @request = Request.new
 
-    if (@current_user_request.exists? || current_user.rosters.exists?(@roster.id))
-      return respond_to do |format|
-               format.html { redirect_to team_show_roster_path(@roster.team) }
-             end
-    end
-
-    @request = Request.create(
-      target: :roster,
-      status: :pending,
-      user: current_user,
-      roster: @roster,
-    )
-
-    respond_to do |format|
-      format.html { redirect_to team_show_roster_path(current_user.team, @roster), notice: "Your request was successfully sent." }
+        @request.target = "team"
+        @request.status = "pending"
+        @request.user = current_user
+        @request.roster = @roster,
+        respond_to do |format|
+          if @request.save
+            format.html { redirect_to show_roster_path(current_user.team, @roster.id), notice: "Your request was successfully sent." }
+            format.json { render :show, status: :created, location: @roster }
+          else
+            format.html { render :new }
+            format.json { render json: @roster.errors, status: :unprocessable_entity }
+          end
+        end
+      end
     end
   end
 

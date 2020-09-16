@@ -1,6 +1,6 @@
 <div class="relative bg-black pt-0 pb-0 px-0 sm:px-0 lg:pt-0 lg:pb-0 lg:px-0 h-full">
 
-    <div class="z-0 header w-full relative h-64">
+    <div class="header w-full relative h-64">
         <!-- <div class="cover"> -->
         <% if @team.cover.present? %>
         <img src="<%= url_for(@team.cover) %>" alt="" class="object-cover h-60 w-full">
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="z-10 relative w-full team-infos grid grid-cols-3 -mt-40 text-white">
+    <div class="relative w-full team-infos grid grid-cols-3 -mt-40 text-white">
         <div class="col-span-3 mb-5">
             <div class=" flex flex-wrap justify-center content-center">
                 <% if @team.avatar.present? %>
@@ -39,10 +39,9 @@
         <% end %>
     </div>
 
-    <div class="bg-transparent border-b border-gray-600 mx-5 py-2 my-5 px-5">
-
-        <div class="gap-4 py-2">
-            <div class="">
+    <div class="hidden sm:block">
+        <div class="border-b border-gray-600">
+            <div class="-mb-px flex">
                 <a href="<%= show_team_path(@team.id) %>"
                     class="whitespace-no-wrap py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
                     Overview
@@ -74,10 +73,19 @@
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
                     Requests
                 </a>
+                <% else %>
+                <!-- show this tab only for member have a team -->
+                <% if ((current_user.team.present?) and (current_user.team == @team)) %>
+                <% if current_user.team_id != nil %>
+                <a href="<%= team_rosters_path (@team) %>"
+                    class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
+                    Rosters
+                </a>
+                <% end %>
+                <% end %>
                 <% end %>
                 <!--end block -->
             </div>
-
 
         </div>
 

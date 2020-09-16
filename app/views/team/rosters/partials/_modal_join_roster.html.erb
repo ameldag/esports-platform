@@ -17,7 +17,7 @@
         <div class="modal-content py-4 text-left px-6">
             <!--Title-->
             <div class="flex justify-between items-center pb-3">
-                <p class=" text-gray-600 text-2xl font-bold "> Quit Team</p>
+                <p class=" text-gray-600 text-2xl font-bold "> Join Roster</p>
                 <div class="modal-close cursor-pointer z-50">
                     <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                         viewBox="0 0 18 18">
@@ -30,13 +30,11 @@
 
             <!--Body-->
             <p class=" text-gray-600">
-                Are you sure you want to quit your team? And join <%= team.name %>Team.
+                Are you sure you want to join <%= @roster.name %> Roster .
             </p>
-
             <!--Footer-->
             <div class="flex justify-end pt-2">
-
-                <%= link_to "Join Team", team_join_path(team.id),
+                <%= link_to "Join Roster", team_join_roster_path(@roster.team_id, @roster.id),
                             class: "px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2" %>
                 <button
                     class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button>
