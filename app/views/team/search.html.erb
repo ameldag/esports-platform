@@ -36,11 +36,12 @@
         </div>
     </div>
 
-    <% if (@results.count > 0) %>
-    <% @results.each do |result| %>
     <div class="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 md:px-2 py-10">
-        <div class="mt-2 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none">
+        <% if (@results.count > 0) %>
 
+        <div class="mt-2 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none">
+            <% 1.times do %>
+            <% @results.each do |result| %>
             <div
                 class="bg-black rounded-md overflow-hidden shadow-md transform hover:scale-110 transition duration-150 ease-in-out">
                 <div class="team-cover relative">
@@ -83,12 +84,11 @@
                     </div>
                 </div>
             </div>
-
+            <% end %>
+            <% end %>
         </div>
 
     </div>
-
-    <% end %>
     <% else %>
     <div class="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 md:px-2 py-10 flex  justify-center content-center">
         <div class=" mx-auto lg:grid-cols-4 lg:max-w-none">
