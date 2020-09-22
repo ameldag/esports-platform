@@ -1,34 +1,37 @@
 <div class="members pb-60">
     <!-- Title name -->
-    <h2 class="text-white font-bold text-2xl mb-3"><%= @team.name %>'s team members</h2>
+    <h2 class="text-white font-bold text-2xl mb-3"><%= @team.name %>'s team rosters</h2>
     <!-- Title name end -->
 
     <!-- members box -->
-    <div class="members-box grid grid-cols-3">
+    <div class="members-box grid grid-cols-4 text-center ">
 
         <% @rosters.each do |roster| %>
         <!-- member block -->
-        <div class="member mb-5" v-for="n in 11" v-bind:key="n">
+        <div class="flex-1 flex flex-col mt-6">
             <a href="#" class="flex-shrink-0 group block focus:outline-none">
-                <div class="flex items-center">
-                    <div>
-                        <img class="inline-block h-12 w-12 rounded-full object-cover" src="/images/icons/no-game.png" alt />
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm leading-5 font-medium text-gray-700 group-hover:text-white">
-                            <%= roster.name %>
-                        </p>
-                        <p
-                            class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-400 group-focus:underline transition ease-in-out duration-150">
-                            Signed up <%= time_ago_in_words(roster.created_at) %>
-                        </p>
-                    </div>
-                    <div class="ml-3">
-                        <%= link_to team_edit_roster_path(@rosters.first.id) do %>
-                            <button> Edit </button>
-                        <%end%>
-                    </div>
-                </div>
+                <% if roster.cover.attached? %>
+                <img class="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full" src="<%= url_for(roster.cover) %>"
+                    alt />
+                <% else %><img class="h-8 w-8 rounded-full object-cover" src="/images/icons/no-game.png" alt />
+                <% end %>
+                <h3
+                    class="mt-6 text-white-900 text-sm leading-5 group-hover:text-gray-400 group-focus:underline transition ease-in-out duration-150 font-medium">
+                    <%= roster.name %></h3>
+                <dl class="mt-1 flex-grow flex flex-col justify-between">
+                    <dt class="sr-only">Title</dt>
+                    <dd class="text-gray-500 text-sm leading-5"> Signed up <%= time_ago_in_words(roster.created_at) %>
+                    </dd>
+                    <dt class="sr-only">Role</dt>
+                    <dd class="mt-3">
+                        <%= link_to team_edit_roster_path(roster.id) do %>
+
+                        <span class="px-2 py-1 text-teal-800 text-xs leading-4 font-medium bg-teal-100 rounded-full">
+                            Edit
+                        </span>
+                        <% end %>
+                    </dd>
+                </dl>
             </a>
         </div>
         <!-- member block end -->

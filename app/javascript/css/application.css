@@ -1,9 +1,6 @@
 @import "tailwindcss/base";
-
 @import "tailwindcss/components";
-
 @import "tailwindcss/utilities";
-
 html {
     overflow-y: scroll;
 }
@@ -14,6 +11,6 @@ html {
     /* make scrollbar transparent */
 }
 
-.bg-gray-dark, body {
-    background-color: #1b1c23;
+.fileInput {
+    display: none;
 }
