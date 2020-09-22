@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_03_151327) do
+ActiveRecord::Schema.define(version: 2020_09_14_163915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,7 +62,9 @@ ActiveRecord::Schema.define(version: 2020_09_03_151327) do
     t.string "rcon_pwd"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "tournament_id"
     t.index ["game_id"], name: "index_challenges_on_game_id"
+    t.index ["tournament_id"], name: "index_challenges_on_tournament_id"
   end
 
   create_table "featureds", force: :cascade do |t|
@@ -304,6 +306,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_151327) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "challenges", "tournaments"
   add_foreign_key "featureds", "tournaments"
   add_foreign_key "game_modes", "games"
   add_foreign_key "game_modes", "modes", column: "modes_id"

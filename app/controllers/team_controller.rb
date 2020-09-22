@@ -11,7 +11,6 @@ class TeamController < ApplicationController
   def show
     @requests = Request.where("team_id = ? and user_id != ? and status = ?", @team.id, current_user.id, "pending").all
     @members = @team.users
-
     @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
   end
 
@@ -30,9 +29,9 @@ class TeamController < ApplicationController
   end
 
   def requests
-    @requests = Request.where("team_id = ? and user_id != ? and status = ?", @team.id, current_user.id, "pending").all
-    @members = @team.users
+    @requests = Request.where("user_id != ? and status = ?", current_user.id, "pending").all
 
+    @members = @team.users
     @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
   end
 
@@ -117,30 +116,23 @@ class TeamController < ApplicationController
 
     @team = @request.team
     @requesting_user = @request.user
+    if (params[:answer] == "yes")
+      @requesting_user.team = @team
 
-    if (@team.owner_id == @requesting_user)
-      return false
-    elsif (@requesting_user.team.present?)
-      return false
-    else
-      if (params[:answer] == "yes")
-        @requesting_user.team = @team
+      respond_to do |format|
+        if @requesting_user.save
+          @request.destroy
 
-        respond_to do |format|
-          if @requesting_user.save
-            @request.destroy
-
-            return true
-          else
-            return false
-          end
+          return true
+        else
+          return false
         end
-      elsif (params[:answer] == "no")
-        @request.status = "refused"
-        @request.save
-      else
-        return false
       end
+    elsif (params[:answer] == "no")
+      @request.status = "refused"
+      @request.save
+    else
+      return false
     end
   end
 

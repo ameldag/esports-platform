@@ -1,8 +1,9 @@
-require 'securerandom'
+require "securerandom"
+
 class Tournament < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
-  
+
   belongs_to :season
   belongs_to :game
 
@@ -19,11 +20,11 @@ class Tournament < ApplicationRecord
   has_many :map_tournaments
   has_many :maps, through: :map_tournaments
 
+  has_many :challenge
   has_one_attached :cover, dependent: :destroy
 
   validates :season, presence: true
   validates :game, presence: true
-
 
   # def participate(@user, @roster, @is_private, @type)
   #   if(@is_private)
@@ -33,10 +34,10 @@ class Tournament < ApplicationRecord
   #   when '1v1'
   #     Tournament_teams.find_or_create_by(tournament: id) do |tournament_team|
   #       tournament_team.participant = @user
-  #   when 
-      
+  #   when
+
   #   else
-      
+
   #   end
   #   Tournament_teams.find_or_create_by(tournament: id) do |tournament_team|
   #     tournament_team.last_name = 'Johansson'

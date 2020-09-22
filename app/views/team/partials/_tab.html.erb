@@ -46,18 +46,18 @@
         <% if ((current_user.team.present?) and (current_user.team == @team)) %>
         <% if (@team.owner_id == current_user.id) %>
         <button
-            class="modal-open bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full">
+            class="modal-open px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
             Give Ownership
         </button>
         <%= render partial: "team/partials/modal_giveOwnerShip", locals: { team: @team } %>
 
         <% else %>
         <button
-            class="modal-open bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full">
+            class="modal-open px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
             Quit Team
         </button>
-        <!--<%= render partial: "team/partials/modal_quitTeam", locals: { team: @team } %>
-        -->
+        <%= render partial: "team/partials/modal_quit_team", locals: { team: @team } %>
+
         <% end %>
         <% end %>
 
@@ -66,7 +66,7 @@
         <% if (@team.owner_id != current_user.id) %>
         <% if (@current_user_request < 1) %>
         <button
-            class="modal-open bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full">
+            class="modal-open px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
             Join Team</button>
         <%= render partial: "team/partials/modal_confirmation", locals: { team: @team } %>
         <% else %>
@@ -104,14 +104,41 @@
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
                     Create Roster
                 </a>
-            </span>
-            <% end %>
-            <a href="<%= show_team_requests_path(@team.id) %>"
-                class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                Requests
-            </a>
-            <% end %>
-            <!--end block -->
-        </nav>
+                <!-- show this block only for admin -->
+                <% if (@team.owner_id == current_user.id) %>
+                <% if (@team.rosters.present?) %>
+                <a href="<%= team_rosters_path(@team) %>"
+                    class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
+                    Rosters
+                </a>
+                <% else %>
+                <span class="inline-flex rounded-md shadow-sm">
+                    <a href=<%= team_new_roster_path() %>
+                        class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
+                        Create Roster
+                    </a>
+                </span>
+                <% end %>
+                <a href="<%= show_team_requests_path(@team.id) %>"
+                    class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
+                    Requests
+                </a>
+                <% else %>
+                <!-- show this tab only for member have a team -->
+                <% if ((current_user.team.present?) and (current_user.team == @team)) %>
+                <% if current_user.team_id != nil %>
+                <a href="<%= team_rosters_path (@team) %>"
+                    class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
+                    Rosters
+                </a>
+                <% end %>
+                <% end %>
+                <% end %>
+                <!--end block -->
+
     </div>
+
+</div>
+
+</div>
 </div>
