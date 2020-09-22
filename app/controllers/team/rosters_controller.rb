@@ -138,6 +138,7 @@ class Team::RostersController < ApplicationController
     @roster.game_id = params[:game].to_i
     # control number of restor per game for that team
     @roster.team = current_user.team
+    @roster.users << current_user
     
     if @roster.save
       respond_to do |format|

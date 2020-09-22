@@ -73,6 +73,8 @@ get 'request/:id/reject', to: "request#reject", as: 'request_reject'
   }
   get 'user/:id/edit', to: "users#edit", as: "edit_user"
   patch 'user/:id/edit', to: "users#update", as: "update_user"
+  get 'user/:id', to:"users#show", as:"show_user"
+  get 'user/:id/tournaments', to: "users#tournaments", as: "show_user_tournaments"
 
   get 'pages/index'
 

@@ -5,6 +5,7 @@
                 Teams
             </h2>
         </div>
+        <%= paginate @teams%>
         <div class="mt-4 flex md:mt-0 md:ml-4">
             <span class="ml-3 shadow-sm rounded-md">
                 <a href="<%= new_team_path() %>">
@@ -79,5 +80,5 @@
     </div>
     <% end %>
     <!-- /End replace -->
-</div>
+    </div>
 </div>

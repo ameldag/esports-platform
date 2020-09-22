@@ -326,6 +326,7 @@ DEPENDENCIES
   dotenv-rails
   friendly_id
   jbuilder (~> 2.7)
+  kaminari
   listen (>= 3.0.5, < 3.2)
   omniauth
   omniauth-facebook
