@@ -14,6 +14,7 @@ class Team::RostersController < ApplicationController
 
   def show
     @roster = Roster.find(params[:id])
+    @team = Team.friendly.find(params["team_id"])
     @current_user_request = Request.where("roster_id = ? and user_id = ? and status = ?", @roster.id, current_user.id, "pending").count
   end
 
@@ -57,32 +58,26 @@ class Team::RostersController < ApplicationController
   def join
     @roster = Roster.find(params[:id])
     @current_user_request = Request.where("roster_id = ? and user_id = ? and status = ?", @roster.id, current_user.id, "pending").count
+    @team = @roster.team
 
     if (current_user.team != @roster.team)
       raise ApplicationController::NotAuthorized
     end
+    if (@current_user_request < 1)
+      @request = Request.new
 
-    if (current_user.team.present?)
+      @request.target = "roster"
+      @request.status = "pending"
+      @request.user = current_user
+      @request.team = @team
+      @request.roster = @roster
       respond_to do |format|
-        format.html { redirect_to show_roster_path(@roster.team_id, @roster.id), alert: "You already belong to a team" }
-        format.json { render :show, location: @team }
-      end
-    else
-      if (@current_user_request < 1)
-        @request = Request.new
-
-        @request.target = "team"
-        @request.status = "pending"
-        @request.user = current_user
-        @request.roster = @roster,
-        respond_to do |format|
-          if @request.save
-            format.html { redirect_to show_roster_path(current_user.team, @roster.id), notice: "Your request was successfully sent." }
-            format.json { render :show, status: :created, location: @roster }
-          else
-            format.html { render :new }
-            format.json { render json: @roster.errors, status: :unprocessable_entity }
-          end
+        if @request.save
+          format.html { redirect_to team_show_roster_path(current_user.team_id, @roster.id), notice: "Your request was successfully sent." }
+          format.json { render :show, status: :created, location: @roster }
+        else
+          format.html { render :new }
+          format.json { render json: @roster.errors, status: :unprocessable_entity }
         end
       end
     end
