@@ -8,6 +8,17 @@
     </div>
 </div>
 
+<div class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none pb-10">
+    <% if @featured_tournaments.present? %>
+        <% @featured_tournaments.each do |tournament| %>
+            <%= render "pages/partials/tournament_card", tournament: tournament %>
+        <% end %>
+    <% else %>
+        <p class="text-gray-300 font-sm">
+            Featured Tournaments will be offer soon 
+        </p>
+    <% end %>
+</div>
 <!-- Game Types Call to action -->
 <div class="relative w-full grid grid-cols-4 gap-10">
     <div class="col-span-1 text-white border border-gray-800 rounded-lg p-10">

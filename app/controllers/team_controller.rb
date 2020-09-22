@@ -1,17 +1,16 @@
 class TeamController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_team, except: [:index, :new, :create, :join_request, :team_request_answer, :quit]
+  before_action :set_team, except: [:index, :new, :create, :join_request, :team_request_answer, :quit, :search]
 
   layout "in-app"
 
   def index
-    @teams = Team.all
+    @teams = Team.order(:name).page params[:page]
   end
 
   def show
     @requests = Request.where("team_id = ? and user_id != ? and status = ?", @team.id, current_user.id, "pending").all
     @members = @team.users
-
     @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
   end
 
@@ -30,9 +29,9 @@ class TeamController < ApplicationController
   end
 
   def requests
-    @requests = Request.where("team_id = ? and user_id != ? and status = ?", @team.id, current_user.id, "pending").all
-    @members = @team.users
+    @requests = Request.where("user_id != ? and status = ?", current_user.id, "pending").all
 
+    @members = @team.users
     @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
   end
 
@@ -117,30 +116,23 @@ class TeamController < ApplicationController
 
     @team = @request.team
     @requesting_user = @request.user
+    if (params[:answer] == "yes")
+      @requesting_user.team = @team
 
-    if (@team.owner_id == @requesting_user)
-      return false
-    elsif (@requesting_user.team.present?)
-      return false
-    else
-      if (params[:answer] == "yes")
-        @requesting_user.team = @team
+      respond_to do |format|
+        if @requesting_user.save
+          @request.destroy
 
-        respond_to do |format|
-          if @requesting_user.save
-            @request.destroy
-
-            return true
-          else
-            return false
-          end
+          return true
+        else
+          return false
         end
-      elsif (params[:answer] == "no")
-        @request.status = "refused"
-        @request.save
-      else
-        return false
       end
+    elsif (params[:answer] == "no")
+      @request.status = "refused"
+      @request.save
+    else
+      return false
     end
   end
 
@@ -189,6 +181,15 @@ class TeamController < ApplicationController
     end
   end
 
+  def search
+    if params[:search].blank?
+      redirect_to teams_path, alert: "No results"
+    else
+      @parameter = params[:search].downcase
+      @results = Team.all.where("lower(name) LIKE :search", search: "%#{@parameter}%")
+    end
+  end
+
   private
 
   def set_team
@@ -196,7 +197,7 @@ class TeamController < ApplicationController
   end
 
   def team_params
-    params.permit(:name, :website, :description, :avatar, :cover, :owner_id)
+    params.require(:team).permit(:name, :website, :description, :avatar, :cover, :owner_id)
   end
 
   def user_params

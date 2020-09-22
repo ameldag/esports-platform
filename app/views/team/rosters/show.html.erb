@@ -1,35 +1,48 @@
 <div class="relative bg-black pt-0 pb-0 px-0 sm:px-0 lg:pt-0 lg:pb-0 lg:px-0 h-full">
 
-    <div class="z-0 header w-full relative h-64">
+    <div class="header relative h-64">
         <!-- <div class="cover"> -->
-        <% if (@roster.team.cover.attached?) %>
-            <img src="<%= url_for(@roster.team.cover) %>" alt="" class="object-cover h-60 w-full">
-        <%else%>
-            <img src="/images/1v1.jpg" alt="" class="object-cover h-60 w-full">
-        <%end%>
-        <!-- </div> -->
-        <div class="overlay absolute top-0 left-0 bottom-0 right-0 dark-gradient"
-            style="background: linear-gradient(rgba(17,18,23,0),#000);">
 
+        <% if (@roster.cover.present?) %>
+        <img src="<%= url_for(@roster.cover) %>" alt="" class="object-cover h-64 w-full">
+        <% else %>
+        <img src="/images/1v1.jpg" alt="" class="object-cover h-64 w-full">
+        <% end %>
+        <!-- </div> -->
+        <div class="overlay absolute top-10 left-0 bottom-0 right-0 dark-gradient"
+            style="background: linear-gradient(rgba(17,18,23,0),#000);">
         </div>
     </div>
 
-    <div class="z-10 relative w-full team-infos grid grid-cols-3 -mt-40 text-white">
-        <div class="col-span-3 mb-5">
-            <div class=" flex flex-wrap justify-center content-center">
-                
-            </div>
+    <div class="relative w-full team-infos grid grid-cols-3 -mt-10 text-white">
+        <div class="col-span-3 mb-0">
             <div class=" flex flex-wrap justify-center content-center text-3xl text-white font-bold">
                 <%= @roster.name %>
             </div>
         </div>
 
     </div>
+    <div class="px-10 text-right">
+        <% if (@team.owner_id != current_user.id) %>
+        <% if (@roster.team_id == current_user.team_id) %>
+        <% if (@current_user_request < 1) %>
+        <button
+            class="modal-open bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-2 rounded-full">
+            Join Roster </button>
+        <%= render "team/rosters/partials/modal_join_roster", rosters: @rosters %>
 
-    <div class="bg-transparent border-b border-gray-600 mx-5 py-2 my-5 px-5">
+        <% else %>
+        <button
+            class="modal-open bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-2 rounded-full">
+            Join Roster Pending </button>
+        <% end %>
+        <% end %>
+        <% end %>
+    </div>
 
-        <div class="grid grid-cols-2 gap-4 py-2">
-            <div class="">
+    <div class="px-10 hidden sm:block">
+        <div class="border-b border-gray-600">
+            <nav class="-mb-px flex">
                 <a href="<%= show_team_path(@roster.team_id) %>"
                     class="whitespace-no-wrap py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
                     Overview
@@ -42,11 +55,11 @@
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
                     Stats
                 </a>
-                
-            </div>
 
-            
         </div>
+
+
+        </nav>
 
     </div>
 

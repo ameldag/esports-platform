@@ -58,5 +58,9 @@ class User < ApplicationRecord
         )
     end
     user
-end
+  end
+
+  def tournaments
+    Tournament.includes(:rosters => :users).where(rosters: { users: { id: self.id } }) 
+  end
 end

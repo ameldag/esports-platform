@@ -44,13 +44,13 @@ Rails.application.routes.draw do
   get "team/:id/requests", to: "team#requests", as: "show_team_requests"
   get "team/:id/quit", to: "team#quit", as: "team_quit"
   get "team/:id/giveownership/:user_id", to: "team#give_ownerShip", as: "give_ownerShip"
-
+  get "search", to: "team#search", as: "search_page"
   # Roster routes
 
   namespace :team do
     get ":team_id/roster/:id", to: "rosters#show", as: "show_roster"
+    get ":team_id/roster/:id/join", to: "rosters#join", as: "join_roster"
     get ":team_id/rosters", to: "rosters#list", as: "rosters"
-    get "roster/:id/join", to: "rosters#join", as: "join_roster"
     get "roster/:id/quit", to: "rosters#quit", as: "quit_roster"
     get "/:user_id/roster/:id/add", to: "rosters#add_user_to_roster", as: "add_roster"
     get "roster/:id/edit", to: "rosters#edit", as: "edit_roster"
@@ -65,11 +65,13 @@ Rails.application.routes.draw do
   get "request/:id/reject", to: "request#reject", as: "request_reject"
 
   # users routes
-  devise_for :users, controllers: {
-                       omniauth_callbacks: "users/omniauth_callbacks",
-                     }
-  get "user/:id/edit", to: "users#edit", as: "edit_user"
-  patch "user/:id/edit", to: "users#update", as: "update_user"
+  devise_for :users, controllers:{
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
+  get 'user/:id/edit', to: "users#edit", as: "edit_user"
+  patch 'user/:id/edit', to: "users#update", as: "update_user"
+  get 'user/:id', to:"users#show", as:"show_user"
+  get 'user/:id/tournaments', to: "users#tournaments", as: "show_user_tournaments"
 
   get "pages/index"
 

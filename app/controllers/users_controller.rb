@@ -9,9 +9,11 @@ class UsersController < ApplicationController
     end
   
     def show
-        
     end
 
+    def tournaments
+        @tournaments =  @user.tournaments
+    end
       
     def edit
     end
