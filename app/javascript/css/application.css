@@ -14,3 +14,17 @@ html {
 .fileInput {
     display: none;
 }
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    text-align: center;
+    padding: 0px 6px;
+    position: absolute;
+    z-index: 100;
+    background-color: black;
+    color: gray;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+}
