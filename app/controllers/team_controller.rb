@@ -123,7 +123,8 @@ class TeamController < ApplicationController
         if @requesting_user.save
           @request.destroy
 
-          return true
+          format.html { redirect_to show_team_path(@team), notice: "Your request was successfully sent." }
+          format.json { render :show, status: :created, location: @team }
         else
           return false
         end
