@@ -182,6 +182,8 @@ class TeamController < ApplicationController
   end
 
   def search
+    @teams = Team.order(:name).page params[:page]
+    
     if params[:search].blank?
       redirect_to teams_path, alert: "No results"
     else
