@@ -115,9 +115,16 @@ class TeamController < ApplicationController
     @request = Request.find(params[:request_id])
 
     @team = @request.team
+    @roster = @request.roster
+
     @requesting_user = @request.user
+
     if (params[:answer] == "yes")
-      @requesting_user.team = @team
+      if (@request.target == "team")
+        @requesting_user.team = @team
+      elsif (@request.target == "roster")
+        @requesting_user.rosters << @roster
+      end
 
       respond_to do |format|
         if @requesting_user.save
@@ -184,7 +191,7 @@ class TeamController < ApplicationController
 
   def search
     @teams = Team.order(:name).page params[:page]
-    
+
     if params[:search].blank?
       redirect_to teams_path, alert: "No results"
     else

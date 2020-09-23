@@ -51,7 +51,7 @@ Rails.application.routes.draw do
     get ":team_id/roster/:id", to: "rosters#show", as: "show_roster"
     get ":team_id/roster/:id/join", to: "rosters#join", as: "join_roster"
     get ":team_id/rosters", to: "rosters#list", as: "rosters"
-    get "roster/:id/quit", to: "rosters#quit", as: "quit_roster"
+    get ":team_id/roster/:id/quit", to: "rosters#quit", as: "quit_roster"
     get "/:user_id/roster/:id/add", to: "rosters#add_user_to_roster", as: "add_roster"
     get "roster/:id/edit", to: "rosters#edit", as: "edit_roster"
     put "roster/:id/edit", to: "rosters#update", as: "update_roster"
