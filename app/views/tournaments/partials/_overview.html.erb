@@ -223,20 +223,20 @@
                 <div class="teams_list">
 
                     <div class="grid grid-cols-4">
-                        <% Team.all.each do |team| %>
+                        <% (@tournament.rosters).each do |roster| %>
 
                         <a href="#" class="flex-shrink-0 group block focus:outline-none mb-5">
                             <div class="flex items-center">
                                 <div>
-                                    <% if team.avatar.attached? %>
-                                    <img class="inline-block h-12 w-12 rounded-full" src="<%= url_for(team.avatar) %>"
+                                    <% if roster.team.avatar.attached? %>
+                                    <img class="inline-block h-12 w-12 rounded-full" src="<%= url_for(roster.team.avatar) %>"
                                         alt="" />
                                     <% end %>
                                 </div>
                                 <div class="ml-3">
                                     <p
                                         class="text-sm leading-5 font-medium uppercase text-gray-300 group-hover:text-gray-500">
-                                        <%= team.name %>
+                                        <%= roster.team.name %>
                                     </p>
                                 </div>
                             </div>
