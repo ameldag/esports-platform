@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   get "team/new", to: "team#new", as: "new_team"
   post "team/new", to: "team#create", as: "send_new_team"
   get "team/join/:team_id", to: "team#join_request", as: "team_join"
-  get "team/request/:request_id", to: "team#team_request_answer", as: "team_request_answer"
+  post "team/request/:request_id", to: "team#team_request_answer", as: "team_request_answer"
   get "team/:id", to: "team#show", as: "show_team"
   get "team/:id/stats", to: "team#stats", as: "show_team_stats"
   get "team/:id/members", to: "team#members", as: "show_team_members"
@@ -65,13 +65,13 @@ Rails.application.routes.draw do
   get "request/:id/reject", to: "request#reject", as: "request_reject"
 
   # users routes
-  devise_for :users, controllers:{
-    omniauth_callbacks: 'users/omniauth_callbacks'
-  }
-  get 'user/:id/edit', to: "users#edit", as: "edit_user"
-  patch 'user/:id/edit', to: "users#update", as: "update_user"
-  get 'user/:id', to:"users#show", as:"show_user"
-  get 'user/:id/tournaments', to: "users#tournaments", as: "show_user_tournaments"
+  devise_for :users, controllers: {
+            omniauth_callbacks: "users/omniauth_callbacks",
+          }
+  get "user/:id/edit", to: "users#edit", as: "edit_user"
+  patch "user/:id/edit", to: "users#update", as: "update_user"
+  get "user/:id", to: "users#show", as: "show_user"
+  get "user/:id/tournaments", to: "users#tournaments", as: "show_user_tournaments"
 
   get "pages/index"
 

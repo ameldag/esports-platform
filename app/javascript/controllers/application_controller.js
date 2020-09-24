@@ -1,5 +1,5 @@
 import { Controller } from 'stimulus'
-import StimulusReflex from 'stimulus_reflex'
+
 
 /* This is your application's ApplicationController.
  * All StimulusReflex controllers should inherit from this class.
@@ -16,9 +16,6 @@ export default class extends Controller {
 
     static targets = ["content"];
 
-    connect() {
-        StimulusReflex.register(this)
-    }
 
     /* Application wide lifecycle methods.
      * Use these methods to handle lifecycle concerns for the entire application.
