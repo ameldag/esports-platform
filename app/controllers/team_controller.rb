@@ -129,7 +129,7 @@ class TeamController < ApplicationController
       respond_to do |format|
         if @requesting_user.save
           @request.destroy
-
+          format.js
           format.html { redirect_to show_team_path(@team), notice: "Your request was successfully sent." }
           format.json { render :show, status: :created, location: @team }
         else
