@@ -58,7 +58,7 @@
             class="modal-open px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
             Quit Team
         </button>
-        <%= render partial: "team/partials/modal_quit_team", locals: { team: @team } %>
+        <%= render partial: "team/partials/modal_confirmation", locals: { team: @team, target: "quit" } %>
 
         <% end %>
         <% end %>
@@ -69,7 +69,7 @@
         <button
             class="modal-open px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
             Join Team</button>
-        <%= render partial: "team/partials/modal_confirmation", locals: { team: @team } %>
+        <%= render partial: "team/partials/modal_confirmation", locals: { team: @team, target: "join" } %>
         <% else %>
         <button
             class="px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
