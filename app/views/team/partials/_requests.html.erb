@@ -3,20 +3,27 @@
     <div class="requests pb-60">
         <h2 class="text-white font-bold text-2xl mb-3"><%= @team.name %>'s team requests</h2>
         <!-- Title name end -->
+        <!-- hide our loading gif image so that we show it when making ajax call via jquery -->
+        <div class="loading-gif" style="display:none;margin-left: 33rem;">
 
+            <%= image_tag "ajax-load.gif", size: "80x80" %>
+
+            <div class="pt-6 pl-2" style="font-size: 14px; line-height: 1.5; color: #5e6170;">
+                Loading...
+            </div>
+        </div>
         <!-- requests box -->
         <div class="requests-box grid grid-cols-3">
-            <!-- request block -->
-            <ul>
+            <ul id="requests">
                 <% @requests.each do |request| %>
-
                 <li data-controller='application'>
-                    <div data-target="application.content" class="grid grid-rows-3 grid-flow-col gap-2">
-                        <div class="row-span-3 ...">
+                    <div data-target="application.content" class="grid grid-rows-3 grid-flow-col gap-2" id="requests">
+                        <div class="row-span-3 ">
                             <% if request.user.avatar.present? %>
                             <img class="inline-block h-12 w-12 rounded-full" src="<%= url_for(request.user.avatar) %>"
                                 alt="" />
                             <% else %>
+
                             <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                 alt="" class="inline-block h-12 w-12 rounded-full">
                             <% end %>
@@ -29,11 +36,8 @@
                             class="row-span-2 col-span-3 text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-400 group-focus:underline transition ease-in-out duration-150">
                             Submitted <%= time_ago_in_words(request.created_at) %>
                         </div>
-
                         <div class="row-span-2 col-span-8">
-
-
-                            <button class="request-btn" data-attr='<%=request.id %>' data-answer="yes"
+                            <button class="request-btn" data-attr='<%= request.id %>' data-answer="yes"
                                 data-action="application#toggle">
                                 <svg class="inline justify-end h-5 w-5 text-green-600" viewBox="0 0 512 512"
                                     fill="currentColor">
@@ -60,23 +64,24 @@
                                 </svg>
                             </button>
 
-                            <button class="request-btn" data-attr='<%=request.id %>' data-answer="no"
+                            <button class="request-btn" data-attr='<%= request.id %>' data-answer="no"
                                 data-action="application#toggle">
                                 <svg class="inline justify-end h-5 w-5 text-red-600" viewBox="0 0 512 512"
                                     fill="currentColor">
                                     <g>
                                         <g>
                                             <path d="M256,0C114.508,0,0,114.497,0,256c0,141.493,114.497,256,256,256c141.492,0,256-114.497,256-256
-			C512,114.507,397.503,0,256,0z M256,472c-119.384,0-216-96.607-216-216c0-119.385,96.607-216,216-216
-			c119.384,0,216,96.607,216,216C472,375.385,375.393,472,256,472z" />
+                                    C512,114.507,397.503,0,256,0z M256,472c-119.384,0-216-96.607-216-216c0-119.385,96.607-216,216-216
+                                    c119.384,0,216,96.607,216,216C472,375.385,375.393,472,256,472z" />
                                         </g>
                                     </g>
                                     <g>
                                         <g>
-                                            <path d="M343.586,315.302L284.284,256l59.302-59.302c7.81-7.81,7.811-20.473,0.001-28.284c-7.812-7.811-20.475-7.81-28.284,0
-			L256,227.716l-59.303-59.302c-7.809-7.811-20.474-7.811-28.284,0c-7.81,7.811-7.81,20.474,0.001,28.284L227.716,256
-			l-59.302,59.302c-7.811,7.811-7.812,20.474-0.001,28.284c7.813,7.812,20.476,7.809,28.284,0L256,284.284l59.303,59.302
-			c7.808,7.81,20.473,7.811,28.284,0C351.398,335.775,351.397,323.112,343.586,315.302z" />
+                                            <path
+                                                d="M343.586,315.302L284.284,256l59.302-59.302c7.81-7.81,7.811-20.473,0.001-28.284c-7.812-7.811-20.475-7.81-28.284,0
+                                    L256,227.716l-59.303-59.302c-7.809-7.811-20.474-7.811-28.284,0c-7.81,7.811-7.81,20.474,0.001,28.284L227.716,256
+                                    l-59.302,59.302c-7.811,7.811-7.812,20.474-0.001,28.284c7.813,7.812,20.476,7.809,28.284,0L256,284.284l59.303,59.302
+                                    c7.808,7.81,20.473,7.811,28.284,0C351.398,335.775,351.397,323.112,343.586,315.302z" />
                                         </g>
                                     </g>
                                 </svg>
@@ -85,7 +90,6 @@
                         </div>
 
                     </div>
-                    </a>
                 </li>
                 <% end %>
             </ul>
@@ -116,16 +120,22 @@
 <script>
     $(document).on('click', '.request-btn', function (e) {
         e.preventDefault();
-
         var item_id = $(this).data('attr')
-        var answer = $(this).data('answer');
+        var answer = $(this).data('answer')
+        // hide requests link
+        $('#requests').hide();
+        // show loading gif
+        $('.loading-gif').show();
+
         $.ajax({
             url: '/team/request/' + item_id + '?answer=' + answer,
             type: 'POST',
             success: function (response) {
-                console.log("msg");
+                // hide the loading gif
+                $('.loading-gif').hide();
+                // show our requests 
+                $('#requests').show();
             }
         });
-
     });
 </script>
