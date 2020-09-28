@@ -1,4 +1,4 @@
-<div class="request">
+<div class="request" data-module="team">
     <% if (@requests.count > 0) %>
     <div class="requests pb-60">
         <h2 class="text-white font-bold text-2xl mb-3"><%= @team.name %>'s team requests</h2>
@@ -116,26 +116,3 @@
 
     <% end %>
 </div>
-
-<script>
-    $(document).on('click', '.request-btn', function (e) {
-        e.preventDefault();
-        var item_id = $(this).data('attr')
-        var answer = $(this).data('answer')
-        // hide requests link
-        $('#requests').hide();
-        // show loading gif
-        $('.loading-gif').show();
-
-        $.ajax({
-            url: '/team/request/' + item_id + '?answer=' + answer,
-            type: 'POST',
-            success: function (response) {
-                // hide the loading gif
-                $('.loading-gif').hide();
-                // show our requests 
-                $('#requests').show();
-            }
-        });
-    });
-</script>

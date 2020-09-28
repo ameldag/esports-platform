@@ -6,6 +6,16 @@ class TeamController < ApplicationController
 
   def index
     @teams = Team.order(:name).page params[:page]
+
+    if params[:search]
+      @parameter = params[:search].downcase
+      @results = Team.all.where("lower(name) LIKE :search", search: "%#{@parameter}%")
+      respond_to do |format|
+        format.js { render partial: "search-results" }
+      end
+    else
+      @team = Team.all
+    end
   end
 
   def show
@@ -129,7 +139,7 @@ class TeamController < ApplicationController
       respond_to do |format|
         if @requesting_user.save
           @request.destroy
-          format.html {}
+          format.html { }
           format.json { render :show, status: :created, location: @team }
         else
           return false
@@ -185,17 +195,6 @@ class TeamController < ApplicationController
         format.html { render :show }
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def search
-    @teams = Team.order(:name).page params[:page]
-
-    if params[:search].blank?
-      redirect_to teams_path, alert: "No results"
-    else
-      @parameter = params[:search].downcase
-      @results = Team.all.where("lower(name) LIKE :search", search: "%#{@parameter}%")
     end
   end
 
