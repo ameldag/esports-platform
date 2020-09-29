@@ -5,8 +5,6 @@ class TeamController < ApplicationController
   layout "in-app"
 
   def index
-    @teams = Team.order(:name).page params[:page]
-
     if params[:search]
       @parameter = params[:search].downcase
       @results = Team.all.where("lower(name) LIKE :search", search: "%#{@parameter}%")
@@ -14,7 +12,10 @@ class TeamController < ApplicationController
         format.js { render partial: "search-results" }
       end
     else
-      @team = Team.all
+      @teams = Team.order(:name).page params[:page]
+      # ajax request will result in request.xhr? not nil
+      # layout will be true if request is not an ajax request
+      render action: :index, layout: request.xhr? == nil
     end
   end
 
