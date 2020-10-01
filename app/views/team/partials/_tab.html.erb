@@ -42,6 +42,7 @@
         </div>
 
     </div>
+
     <div class="text-right">
         <% if ((current_user.team.present?) and (current_user.team == @team)) %>
         <% if (@team.owner_id == current_user.id) %>
@@ -94,7 +95,6 @@
                     Stats
                 </a>
                 <!-- show this block only for admin -->
-                <% if ((current_user.team.present?) and (current_user.team == @team)) %>
                 <% if (@team.owner_id == current_user.id) %>
                 <% if (@team.rosters.present?) %>
                 <a href="<%= team_rosters_path(@team) %>"
@@ -115,6 +115,7 @@
                 </a>
                 <% else %>
                 <!-- show this tab only for member have a team -->
+                <% if ((current_user.team.present?) and (current_user.team == @team)) %>
                 <% if current_user.team_id != nil %>
                 <a href="<%= team_rosters_path (@team) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">

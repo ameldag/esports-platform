@@ -23,6 +23,7 @@ class TeamController < ApplicationController
     @requests = Request.where("team_id = ? and user_id != ? and status = ?", @team.id, current_user.id, "pending").all
     @members = @team.users
     @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
+    @users = User.where("id != ? and team_id = ?", current_user.id, @team.id).all
   end
 
   def members
@@ -190,11 +191,8 @@ class TeamController < ApplicationController
 
     respond_to do |format|
       if @team.save
-        format.html { redirect_to show_team_path(@team), notice: "Ownership was successfully assigned ." }
-        format.json { render :show, status: :created, location: @team }
-      else
-        format.html { render :show }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
+        format.html { }
+        format.js { }
       end
     end
   end

@@ -18,3 +18,18 @@ $(document).on('click', '.request-btn', function(e) {
         }
     });
 });
+$(document).on('click', '#user', function(e) {
+    e.preventDefault();
+    var user_id = $(this).data('owner')
+    var team_id = $(this).data('team')
+
+    $.ajax({
+        url: team_id + '/giveownership/' + user_id,
+        type: 'GET',
+        complete: function(response) {
+            $('.modal').hide();
+            window.location.reload();
+
+        },
+    });
+});

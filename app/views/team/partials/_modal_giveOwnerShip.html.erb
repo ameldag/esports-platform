@@ -1,4 +1,4 @@
-<div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+<div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center" data-module="team">
     <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
     <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
@@ -29,12 +29,10 @@
             </div>
 
             <!--Body-->
-            <% @team.users.each do |user| %>
+            <% @users.each do |user| %>
             <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
                 <ul class="w-full max-w-md">
-
-                    <%= link_to give_ownerShip_path(team.id, user.id) do %>
-                    <li
+                    <li data-team='<%= @team.id %>' data-owner='<%= user.id %>' id="user"
                         class="p-2 mb-3 flex justify-between items-center bg-white shadow rounded-lg cursor-move border border-white">
                         <div class="flex items-center">
                             <% if user.avatar.present? %>
@@ -56,7 +54,6 @@
                             </div>
                         </div>
                     </li>
-                    <% end %>
                 </ul>
             </div>
 
