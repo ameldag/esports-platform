@@ -15,7 +15,7 @@ class Team::RostersController < ApplicationController
   def show
     @roster = Roster.find(params[:id])
     @team = Team.friendly.find(params["team_id"])
-    @current_user_request = Request.where("roster_id = ? and user_id = ? and status = ?", @roster.id, current_user.id, "pending").count
+    @current_user_request = Request.count_request(@roster.id, current_user.id, "pending").count
   end
 
   def add_user_to_roster
@@ -57,7 +57,7 @@ class Team::RostersController < ApplicationController
 
   def join
     @roster = Roster.find(params[:id])
-    @current_user_request = Request.where("roster_id = ? and user_id = ? and status = ?", @roster.id, current_user.id, "pending").count
+    @current_user_request = Request.count_request(@roster.id, current_user.id, "pending").count
     @team = @roster.team
 
     if (current_user.team != @roster.team)

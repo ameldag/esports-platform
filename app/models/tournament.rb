@@ -25,6 +25,11 @@ class Tournament < ApplicationRecord
 
   validates :season, presence: true
   validates :game, presence: true
+  scope :tournaments, ->(active) { where("active = ?", active) }
+  scope :ongoing_tournaments, ->(active, game_id) { where("active = ? and game_id = ?", active, game_id) }
+  scope :similar_tournaments, ->(game_id) { where("game_id = ?", game_id).last(4) }
+
+  
 
   # def participate(@user, @roster, @is_private, @type)
   #   if(@is_private)

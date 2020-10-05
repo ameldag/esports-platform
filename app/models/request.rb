@@ -7,12 +7,12 @@ class Request < ApplicationRecord
 
   def accept
     send("accept_#{target}_request")
-    self.status = 'accepted'
+    self.status = "accepted"
   end
 
   def reject
     send("reject_#{target}_request")
-    self.status = 'refused'
+    self.status = "refused"
   end
 
   private
@@ -29,7 +29,7 @@ class Request < ApplicationRecord
 
   def reject_roster_request
   end
-  
+
   # def send_notifications
   #   case self.status
   #   when 'accepted'
@@ -38,4 +38,7 @@ class Request < ApplicationRecord
   #     # rejected
   #   end
   # end
+
+  scope :all_request, ->(team_id, user_id, status) { where("team_id = ? and user_id = ? and status = ?", team_id, user_id, status) }
+  scope :count_request, ->(team_id, user_id, status) { where("team_id = ? and user_id = ? and status = ?", team_id, user_id, status) }
 end

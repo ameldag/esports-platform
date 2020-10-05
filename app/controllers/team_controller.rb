@@ -20,31 +20,28 @@ class TeamController < ApplicationController
   end
 
   def show
-    @requests = Request.where("team_id = ? and user_id != ? and status = ?", @team.id, current_user.id, "pending").all
+    @requests = Request.all_request(@team.id, current_user.id, "pending").all
     @members = @team.users
-    @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
     @users = User.where("id != ? and team_id = ?", current_user.id, @team.id).all
+    @current_user_request = Request.count_request(@team.id, current_user.id, "pending").count
   end
 
   def members
-    @requests = Request.where("team_id = ? and user_id != ? and status = ?", @team.id, current_user.id, "pending").all
+    @requests = Request.all_request(@team.id, current_user.id, "pending")
     @members = @team.users
-
-    @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
+    @current_user_request = Request.count_request(@team.id, current_user.id, "pending").count
   end
 
   def stats
-    @requests = Request.where("team_id = ? and user_id != ? and status = ?", @team.id, current_user.id, "pending").all
+    @requests = Request.all_request(@team.id, current_user.id, "pending")
     @members = @team.users
-
-    @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
+    @current_user_request = Request.count_request(@team.id, current_user.id, "pending").count
   end
 
   def requests
     @requests = Request.where("user_id != ? and status = ?", current_user.id, "pending").all
-
+    @current_user_request = Request.count_request(@team.id, current_user.id, "pending").count
     @members = @team.users
-    @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
   end
 
   # GET /teams/new
@@ -89,8 +86,7 @@ class TeamController < ApplicationController
 
   def join_request
     @team = Team.find(params[:team_id])
-    @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
-
+    @current_user_request = Request.count_request(@team.id, current_user.id, "pending").count
     if (current_user.team.present?)
       respond_to do |format|
         format.html { redirect_to show_team_path(@team), alert: "You already belong to a team" }

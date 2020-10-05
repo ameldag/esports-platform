@@ -9,12 +9,12 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    @similar_tournaments = Tournament.where("game_id = ?", @tournament.game.id).last(4)
+    @similar_tournaments = Tournament.similar_tournaments(@tournament.game.id)
     @similar_tournaments = @similar_tournaments.delete_if { |tournament| tournament.id == @tournament.id }
   end
 
   def bracket
-    @similar_tournaments = Tournament.where("game_id = ?", @tournament.game.id).last(4)
+    @similar_tournaments = Tournament.similar_tournaments(@tournament.game.id)
     @similar_tournaments = @similar_tournaments.delete_if { |tournament| tournament.id == @tournament.id }
   end
 
