@@ -5,13 +5,25 @@ class TeamController < ApplicationController
   layout "in-app"
 
   def index
-    @teams = Team.order(:name).page params[:page]
+    if params[:search]
+      @parameter = params[:search].downcase
+      @results = Team.all.where("lower(name) LIKE :search", search: "%#{@parameter}%")
+      respond_to do |format|
+        format.js { render partial: "search-results" }
+      end
+    else
+      @teams = Team.order(:name).page params[:page]
+      # ajax request will result in request.xhr? not nil
+      # layout will be true if request is not an ajax request
+      render action: :index, layout: request.xhr? == nil
+    end
   end
 
   def show
     @requests = Request.where("team_id = ? and user_id != ? and status = ?", @team.id, current_user.id, "pending").all
     @members = @team.users
     @current_user_request = Request.where("team_id = ? and user_id = ? and status = ?", @team.id, current_user.id, "pending").count
+    @users = User.where("id != ? and team_id = ?", current_user.id, @team.id).all
   end
 
   def members
@@ -129,8 +141,7 @@ class TeamController < ApplicationController
       respond_to do |format|
         if @requesting_user.save
           @request.destroy
-          format.js
-          format.html { redirect_to show_team_path(@team), notice: "Your request was successfully sent." }
+          format.html { }
           format.json { render :show, status: :created, location: @team }
         else
           return false
@@ -180,23 +191,9 @@ class TeamController < ApplicationController
 
     respond_to do |format|
       if @team.save
-        format.html { redirect_to show_team_path(@team), notice: "Ownership was successfully assigned ." }
-        format.json { render :show, status: :created, location: @team }
-      else
-        format.html { render :show }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
+        format.html { }
+        format.js { }
       end
-    end
-  end
-
-  def search
-    @teams = Team.order(:name).page params[:page]
-
-    if params[:search].blank?
-      redirect_to teams_path, alert: "No results"
-    else
-      @parameter = params[:search].downcase
-      @results = Team.all.where("lower(name) LIKE :search", search: "%#{@parameter}%")
     end
   end
 

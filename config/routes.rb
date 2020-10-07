@@ -44,7 +44,6 @@ Rails.application.routes.draw do
   get "team/:id/requests", to: "team#requests", as: "show_team_requests"
   get "team/:id/quit", to: "team#quit", as: "team_quit"
   get "team/:id/giveownership/:user_id", to: "team#give_ownerShip", as: "give_ownerShip"
-  get "search", to: "team#search", as: "search_page"
   # Roster routes
 
   namespace :team do
@@ -66,8 +65,8 @@ Rails.application.routes.draw do
 
   # users routes
   devise_for :users, controllers: {
-            omniauth_callbacks: "users/omniauth_callbacks",
-          }
+                       omniauth_callbacks: "users/omniauth_callbacks",
+                     }
   get "user/:id/edit", to: "users#edit", as: "edit_user"
   patch "user/:id/edit", to: "users#update", as: "update_user"
   get "user/:id", to: "users#show", as: "show_user"
