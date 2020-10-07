@@ -29,35 +29,37 @@
             </div>
 
             <!--Body-->
-            <% @users.each do |user| %>
-            <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
-                <ul class="w-full max-w-md">
-                    <li data-team='<%= @team.id %>' data-owner='<%= user.id %>' id="user"
-                        class="p-2 mb-3 flex justify-between items-center bg-white shadow rounded-lg cursor-move border border-white">
-                        <div class="flex items-center">
-                            <% if user.avatar.present? %>
-                            <img class="w-10 h-10 rounded-full" src="<%= url_for(user.avatar) %>" alt="" />
-                            <% else %>
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt="" class="w-10 h-10 rounded-full">
-                            <% end %>
-                            <div class="font-medium text-lg leading-6 space-y-1">
-                                <% if user.first_name != nil %>
-                                <h4 class="ml-2 text-gray-500 text-sm font-bold">
-                                    <%= user.first_name %> <%= user.last_name %>
-                                </h4>
+            <% if @users.count > 0  %>
+                <% @users.each do |user| %>
+                <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
+                    <ul class="w-full max-w-md">
+                        <li data-team='<%= @team.id %>' data-owner='<%= user.id %>' id="user"
+                            class="p-2 mb-3 flex justify-between items-center bg-white shadow rounded-lg cursor-move border border-white">
+                            <div class="flex items-center">
+                                <% if user.avatar.present? %>
+                                <img class="w-10 h-10 rounded-full" src="<%= url_for(user.avatar) %>" alt="" />
                                 <% else %>
-                                <h4 class="ml-2 text-gray-500 text-sm font-bold">
-                                    <%= user.username %>
-                                </h4>
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                    alt="" class="w-10 h-10 rounded-full">
                                 <% end %>
+                                <div class="font-medium text-lg leading-6 space-y-1">
+                                    <% if user.first_name != nil %>
+                                    <h4 class="ml-2 text-gray-500 text-sm font-bold">
+                                        <%= user.first_name %> <%= user.last_name %>
+                                    </h4>
+                                    <% else %>
+                                    <h4 class="ml-2 text-gray-500 text-sm font-bold">
+                                        <%= user.username %>
+                                    </h4>
+                                    <% end %>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
+                        </li>
+                    </ul>
+                </div>
             <% end %>
+            <% end %>
+          
 
             <!--Footer-->
 

@@ -1,6 +1,6 @@
 class TeamController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_team, except: [:index, :new, :create, :join_request, :team_request_answer, :quit, :search]
+  before_action :set_team, :set_users, except: [:index, :new, :create, :join_request, :team_request_answer, :quit, :search]
 
   layout "in-app"
 
@@ -22,7 +22,6 @@ class TeamController < ApplicationController
   def show
     @requests = Request.all_request(@team.id, current_user.id, "pending").all
     @members = @team.users
-    @users = User.where("id != ? and team_id = ?", current_user.id, @team.id).all
     @current_user_request = Request.count_request(@team.id, current_user.id, "pending").count
   end
 
@@ -200,10 +199,14 @@ class TeamController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :website, :description, :avatar, :cover, :owner_id)
+    params.permit(:name, :website, :description, :avatar, :cover, :owner_id)
   end
 
   def user_params
     params.permit(:first_name, :last_name, :created_at, :updated_at, :email, :username, :provider, :uid, :team)
+  end
+
+  def set_users
+    @users = User.where("id != ? and team_id = ?", current_user.id, @team.id).all
   end
 end

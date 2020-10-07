@@ -47,7 +47,7 @@
           <div class="rounded-md bg-white shadow-xs">
             <div class="px-4 py-3" v-if="currentUser">
               <p class="text-sm leading-5">Signed in with
-                <a class="tat-sm leading-5 font-bold text-gray-900 uppercase">
+                <a href="<%= show_user_path(current_user.id) %>" class="tat-sm leading-5 font-bold text-gray-900 uppercase">
                   <%= current_user.username %>
                 </a>
               </p>
