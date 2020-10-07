@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  get "tournaments/index"
-  # get 'tournaments/show'
-  # get 'tournaments/subscribe'
-
+  get 'tournaments', to: "tournaments#index", as: "tournaments"
+  get 'tournaments/:game_id', to: "tournaments#index", as: "game_tournaments"
+  get 'tournaments/subscribe'
   # games routes
   get "game/:id", to: "game#show", as: "show_game"
   get "game/:id/tournaments", to: "game#tournaments", as: "show_game_tournaments"
