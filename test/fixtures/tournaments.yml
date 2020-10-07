@@ -1,23 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: ZummerZadness
+  game: :one
   description: MyText
   start_date: 2020-05-15
   end_date: 2020-05-15
   status: MyString
   active: false
   slots: 1
-  user: one
   season: one
 
 two:
   name: MyString
+  game: :one
   description: MyText
   start_date: 2020-05-15
   end_date: 2020-05-15
   status: MyString
   active: false
   slots: 1
-  user: two
   season: two

@@ -1,9 +1,8 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  user: one
+  name: 'faze'
+  slug: 'faze'
 
 two:
-  name: MyString
-  user: two
+  name: 'nrg'

@@ -1,9 +1,6 @@
 @import "tailwindcss/base";
-
 @import "tailwindcss/components";
-
 @import "tailwindcss/utilities";
-
 html {
     overflow-y: scroll;
 }
@@ -14,6 +11,20 @@ html {
     /* make scrollbar transparent */
 }
 
-.bg-gray-dark, body {
-    background-color: #1b1c23;
+.fileInput {
+    display: none;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    text-align: center;
+    padding: 0px 6px;
+    position: absolute;
+    z-index: 100;
+    background-color: black;
+    color: gray;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
 }

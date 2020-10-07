@@ -1,0 +1,8 @@
+<h1>Team::Rosters#index</h1>
+<p>Find me in app/views/team/rosters/index.html.erb</p>
+
+<ul>
+<% @team.rosters.each do |roster| %>
+    <li><%= roster.game %></li>
+<% end %>
+</ul>

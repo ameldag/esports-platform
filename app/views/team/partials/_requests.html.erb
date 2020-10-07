@@ -1,86 +1,118 @@
-<div class="requests pb-60">
-    <!-- Title name -->
-    <h2 class="text-white font-bold text-2xl mb-3"><%= @team.name %>'s team requests</h2>
-    <!-- Title name end -->
+<div class="request" data-module="team">
+    <% if (@requests.count > 0) %>
+    <div class="requests pb-60">
+        <h2 class="text-white font-bold text-2xl mb-3"><%= @team.name %>'s team requests</h2>
+        <!-- Title name end -->
+        <!-- hide our loading gif image so that we show it when making ajax call via jquery -->
+        <div class="loading-gif" style="display:none;margin-left: 33rem;">
 
-    <!-- requests box -->
-    <div class="requests-box grid grid-cols-3">
-        <!-- request block -->
-        <div data-controller='toggle' class="request mb-5" v-for="n in 11" v-bind:key="n">
-            <% @requests.each do |request| %>
-            <a data-target='toggle.toggleable' href="#" class="flex-shrink-0 group block focus:outline-none">
-                <div data-target='toggle.toggleable' class="flex items-center">
-                    <div>
-                        <img class="inline-block h-12 w-12 rounded-full"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt="" />
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm leading-5 font-medium text-gray-700 group-hover:text-white">
-                            <%= request.user.username %>
+            <%= image_tag "ajax-load.gif", size: "80x80" %>
 
-                        </p>
-                        <p
-                            class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-400 group-focus:underline transition ease-in-out duration-150">
-                            Submitted <%= time_ago_in_words(request.created_at) %>
-                        </p>
-                        <p data-action='click->toggle#toggle touch->toggle#toggle'>
-                            <%= link_to(team_request_answer_path(request.id, :answer => "yes"), remote: true) do %>
-                            <svg class="inline justify-end h-5 w-5 text-green-600" viewBox="0 0 512 512"
-                                fill="currentColor">
-
-                                <g>
-                                    <title>background</title>
-                                    <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1" />
-                                </g>
-                                <g>
-                                    <title>Layer 1</title>
-                                    <g id="svg_1">
-                                        <g id="svg_2">
-                                            <path id="svg_3"
-                                                d="m256,0c-141.492,0 -256,114.497 -256,256c0,141.493 114.497,256 256,256c141.492,0 256,-114.497 256,-256c0,-141.493 -114.497,-256 -256,-256zm0,472c-119.384,0 -216,-96.607 -216,-216c0,-119.385 96.607,-216 216,-216c119.384,0 216,96.607 216,216c0,119.385 -96.607,216 -216,216z" />
-                                        </g>
-                                    </g>
-                                    <g id="svg_4">
-                                        <g id="svg_5">
-                                            <path id="svg_6"
-                                                d="m393.586191,183.777941c7.81,-7.81 7.811,-20.473 0.001,-28.284c-7.812,-7.811 -20.475,-7.81 -28.284,0l-159.303,150.302l-59.303,-59.302c-7.809,-7.811 -20.474,-7.811 -28.284,0c-7.81,7.811 -7.81,20.474 0.001,28.284l87.586,87.586l89.586,-87.586z" />
-                                        </g>
-                                    </g>
-
-                            </svg>
-                            <% end %>
-
-                            
-                            <%= link_to(team_request_answer_path(request.id, :answer => "no"), remote: true) do %>
-                            <svg class="inline justify-end h-5 w-5 text-red-600" viewBox="0 0 512 512"
-                                fill="currentColor">
-                                <g>
-                                    <g>
-                                        <path d="M256,0C114.508,0,0,114.497,0,256c0,141.493,114.497,256,256,256c141.492,0,256-114.497,256-256
-			C512,114.507,397.503,0,256,0z M256,472c-119.384,0-216-96.607-216-216c0-119.385,96.607-216,216-216
-			c119.384,0,216,96.607,216,216C472,375.385,375.393,472,256,472z" />
-                                    </g>
-                                </g>
-                                <g>
-                                    <g>
-                                        <path d="M343.586,315.302L284.284,256l59.302-59.302c7.81-7.81,7.811-20.473,0.001-28.284c-7.812-7.811-20.475-7.81-28.284,0
-			L256,227.716l-59.303-59.302c-7.809-7.811-20.474-7.811-28.284,0c-7.81,7.811-7.81,20.474,0.001,28.284L227.716,256
-			l-59.302,59.302c-7.811,7.811-7.812,20.474-0.001,28.284c7.813,7.812,20.476,7.809,28.284,0L256,284.284l59.303,59.302
-			c7.808,7.81,20.473,7.811,28.284,0C351.398,335.775,351.397,323.112,343.586,315.302z" />
-                                    </g>
-                                </g>
-
-                            </svg>
-                            <% end %>
-
-                        </p>
-                    </div>
-                </div>
-            </a>
-            <% end %>
+            <div class="pt-6 pl-2" style="font-size: 14px; line-height: 1.5; color: #5e6170;">
+                Loading...
+            </div>
         </div>
-        <!-- request block end -->
+        <!-- requests box -->
+        <div class="requests-box grid grid-cols-3">
+            <ul id="requests">
+                <% @requests.each do |request| %>
+                <li data-controller='application'>
+                    <div data-target="application.content" class="grid grid-rows-3 grid-flow-col gap-2" id="requests">
+                        <div class="row-span-3 ">
+                            <% if request.user.avatar.present? %>
+                            <img class="inline-block h-12 w-12 rounded-full" src="<%= url_for(request.user.avatar) %>"
+                                alt="" />
+                            <% else %>
+
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                alt="" class="inline-block h-12 w-12 rounded-full">
+                            <% end %>
+                        </div>
+                        <div
+                            class="row-span-1 col-span-2  text-sm leading-5 font-medium text-gray-700 group-hover:text-white">
+                            <%= request.user.username %>
+                        </div>
+                        <div
+                            class="row-span-2 col-span-3 text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-400 group-focus:underline transition ease-in-out duration-150">
+                            Submitted <%= time_ago_in_words(request.created_at) %>
+                        </div>
+                        <div class="row-span-2 col-span-8">
+                            <button class="request-btn" data-attr='<%= request.id %>' data-answer="yes"
+                                data-action="application#toggle">
+                                <svg class="inline justify-end h-5 w-5 text-green-600" viewBox="0 0 512 512"
+                                    fill="currentColor">
+                                    <g>
+                                        <title>background</title>
+                                        <rect fill="none" id="canvas_background" height="402" width="582" y="-1"
+                                            x="-1" />
+                                    </g>
+                                    <g>
+                                        <title>Layer 1</title>
+                                        <g id="svg_1">
+                                            <g id="svg_2">
+                                                <path id="svg_3"
+                                                    d="m256,0c-141.492,0 -256,114.497 -256,256c0,141.493 114.497,256 256,256c141.492,0 256,-114.497 256,-256c0,-141.493 -114.497,-256 -256,-256zm0,472c-119.384,0 -216,-96.607 -216,-216c0,-119.385 96.607,-216 216,-216c119.384,0 216,96.607 216,216c0,119.385 -96.607,216 -216,216z" />
+                                            </g>
+                                        </g>
+                                        <g id="svg_4">
+                                            <g id="svg_5">
+                                                <path id="svg_6"
+                                                    d="m393.586191,183.777941c7.81,-7.81 7.811,-20.473 0.001,-28.284c-7.812,-7.811 -20.475,-7.81 -28.284,0l-159.303,150.302l-59.303,-59.302c-7.809,-7.811 -20.474,-7.811 -28.284,0c-7.81,7.811 -7.81,20.474 0.001,28.284l87.586,87.586l89.586,-87.586z" />
+                                            </g>
+                                        </g>
+
+                                </svg>
+                            </button>
+
+                            <button class="request-btn" data-attr='<%= request.id %>' data-answer="no"
+                                data-action="application#toggle">
+                                <svg class="inline justify-end h-5 w-5 text-red-600" viewBox="0 0 512 512"
+                                    fill="currentColor">
+                                    <g>
+                                        <g>
+                                            <path d="M256,0C114.508,0,0,114.497,0,256c0,141.493,114.497,256,256,256c141.492,0,256-114.497,256-256
+                                    C512,114.507,397.503,0,256,0z M256,472c-119.384,0-216-96.607-216-216c0-119.385,96.607-216,216-216
+                                    c119.384,0,216,96.607,216,216C472,375.385,375.393,472,256,472z" />
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M343.586,315.302L284.284,256l59.302-59.302c7.81-7.81,7.811-20.473,0.001-28.284c-7.812-7.811-20.475-7.81-28.284,0
+                                    L256,227.716l-59.303-59.302c-7.809-7.811-20.474-7.811-28.284,0c-7.81,7.811-7.81,20.474,0.001,28.284L227.716,256
+                                    l-59.302,59.302c-7.811,7.811-7.812,20.474-0.001,28.284c7.813,7.812,20.476,7.809,28.284,0L256,284.284l59.303,59.302
+                                    c7.808,7.81,20.473,7.811,28.284,0C351.398,335.775,351.397,323.112,343.586,315.302z" />
+                                        </g>
+                                    </g>
+                                </svg>
+                            </button>
+
+                        </div>
+
+                    </div>
+                </li>
+                <% end %>
+            </ul>
+
+            <!-- request block end -->
+        </div>
     </div>
-    <!-- requests box end -->
+    <% else %>
+    <div class="m-16 text-center">
+        <svg class=" text-gray-500 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+            fill="currentColor">
+            <path
+                d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+        </svg>
+
+        <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-sm md:mt-5 sm:text-sm md:max-w-2xl">
+            No requests </p>
+        <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-sm md:mt-5 sm:text-sm md:max-w-2xl">
+
+            There are currently no requests registered for this Team.
+        </p>
+
+    </div>
+
+    <% end %>
 </div>

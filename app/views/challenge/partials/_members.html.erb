@@ -1,0 +1,38 @@
+<div class="members pb-60">
+    <!-- Title name -->
+    <h2 class="text-white font-bold text-2xl mb-3"><%= @challenge.kind %>'s challenge members</h2>
+    <!-- Title name end -->
+
+    <!-- members box -->
+    <div class="members-box grid grid-cols-3">
+
+        <% @members.each do |member| %>
+        <!-- member block -->
+        <div class="member mb-5" v-for="n in 11" v-bind:key="n">
+            <a href="#" class="flex-shrink-0 group block focus:outline-none">
+                <div class="flex items-center">
+                    <div>
+                        <% if member.avatar.attached? %>
+                        <img class="inline-block h-12 w-12 rounded-full object-cover" src="<%= url_for(member.avatar) %>" alt />
+                        <% else %>
+                        <img class="inline-block h-12 w-12 rounded-full object-cover" src="/images/icons/no-game.png" alt />
+                        <% end %>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm leading-5 font-medium text-gray-700 group-hover:text-white">
+                            <%= member.username %>
+                        </p>
+                        <p
+                            class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-400 group-focus:underline transition ease-in-out duration-150">
+                            Signed up <%= time_ago_in_words(member.created_at) %>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- member block end -->
+        <% end %>
+
+    </div>
+    <!-- members box end -->
+</div>

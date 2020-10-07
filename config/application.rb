@@ -18,6 +18,7 @@ module SeembaEsports
 
     config.active_storage.content_types_to_serve_as_binary -= ['image/svg+xml']
     config.active_record.belongs_to_required_by_default = false
+    config.assets.initialize_on_precompile = false
 
     Raven.configure do |config|
       config.dsn = 'https://1b7387b78426438882c38af2b7bd9048:b1879e72bb4d4bbc96f3a8536074c711@crash.seemba.com/9'

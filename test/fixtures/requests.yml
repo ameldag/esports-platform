@@ -1,13 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  type: 
+one: 
   status: MyString
   user: one
   team: one
 
 two:
-  type: 
   status: MyString
   user: two
   team: two

@@ -7,7 +7,8 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-
+require('modules') // All good
+require('jquery')
 import '../css/application.css'
 
 
@@ -38,3 +39,6 @@ application.register('modal', Modal)
 application.register('tabs', Tabs)
 application.register('popover', Popover)
 application.register('toggle', Toggle)
+
+//Import Alpine.js
+import 'alpinejs'

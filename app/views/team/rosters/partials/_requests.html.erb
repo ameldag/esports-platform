@@ -1,0 +1,91 @@
+<div class="requests pb-60">
+    <!-- Title name -->
+    <h2 class="text-white font-bold text-2xl mb-3"><%= @team.name %>'s team requests</h2>
+    <!-- Title name end -->
+
+    <!-- requests box -->
+    <div class="requests-box grid grid-cols-3">
+        <!-- request block -->
+        <div data-controller='toggle' class="request mb-5" v-for="n in 11" v-bind:key="n">
+            <% @requests.each do |request| %>
+            <a data-target='toggle.toggleable' href="#" class="flex-shrink-0 group block focus:outline-none">
+                <div data-target='toggle.toggleable' class="flex items-center">
+                    <div>
+                        <% if request.user.avatar.attached? %>
+                        <img class="h-8 w-8 rounded-full object-avatar" src="<%= url_for(request.user.avatar) %>" alt />
+                        <% else %>
+                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                        <path
+                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <% end %>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm leading-5 font-medium text-gray-700 group-hover:text-white">
+                            <%= request.user.username %>
+                        </p>
+                        <p
+                            class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-400 group-focus:underline transition ease-in-out duration-150">
+                            Submitted <%= time_ago_in_words(request.created_at) %> ago
+                        </p>
+                        <p data-action='click->toggle#toggle touch->toggle#toggle'>
+                            <%= link_to(team_request_answer_path(request.id, :answer => "yes"), remote: true) do %>
+                            <svg class="inline justify-end h-5 w-5 text-green-600" viewBox="0 0 512 512"
+                                fill="currentColor">
+
+                                <g>
+                                    <title>background</title>
+                                    <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1" />
+                                </g>
+                                <g>
+                                    <title>Layer 1</title>
+                                    <g id="svg_1">
+                                        <g id="svg_2">
+                                            <path id="svg_3"
+                                                d="m256,0c-141.492,0 -256,114.497 -256,256c0,141.493 114.497,256 256,256c141.492,0 256,-114.497 256,-256c0,-141.493 -114.497,-256 -256,-256zm0,472c-119.384,0 -216,-96.607 -216,-216c0,-119.385 96.607,-216 216,-216c119.384,0 216,96.607 216,216c0,119.385 -96.607,216 -216,216z" />
+                                        </g>
+                                    </g>
+                                    <g id="svg_4">
+                                        <g id="svg_5">
+                                            <path id="svg_6"
+                                                d="m393.586191,183.777941c7.81,-7.81 7.811,-20.473 0.001,-28.284c-7.812,-7.811 -20.475,-7.81 -28.284,0l-159.303,150.302l-59.303,-59.302c-7.809,-7.811 -20.474,-7.811 -28.284,0c-7.81,7.811 -7.81,20.474 0.001,28.284l87.586,87.586l89.586,-87.586z" />
+                                        </g>
+                                    </g>
+
+                            </svg>
+                            <% end %>
+
+                            
+                            <%= link_to(team_request_answer_path(request.id, :answer => "no"), remote: true) do %>
+                            <svg class="inline justify-end h-5 w-5 text-red-600" viewBox="0 0 512 512"
+                                fill="currentColor">
+                                <g>
+                                    <g>
+                                        <path d="M256,0C114.508,0,0,114.497,0,256c0,141.493,114.497,256,256,256c141.492,0,256-114.497,256-256
+			C512,114.507,397.503,0,256,0z M256,472c-119.384,0-216-96.607-216-216c0-119.385,96.607-216,216-216
+			c119.384,0,216,96.607,216,216C472,375.385,375.393,472,256,472z" />
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M343.586,315.302L284.284,256l59.302-59.302c7.81-7.81,7.811-20.473,0.001-28.284c-7.812-7.811-20.475-7.81-28.284,0
+			L256,227.716l-59.303-59.302c-7.809-7.811-20.474-7.811-28.284,0c-7.81,7.811-7.81,20.474,0.001,28.284L227.716,256
+			l-59.302,59.302c-7.811,7.811-7.812,20.474-0.001,28.284c7.813,7.812,20.476,7.809,28.284,0L256,284.284l59.303,59.302
+			c7.808,7.81,20.473,7.811,28.284,0C351.398,335.775,351.397,323.112,343.586,315.302z" />
+                                    </g>
+                                </g>
+
+                            </svg>
+                            <% end %>
+
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <% end %>
+        </div>
+        <!-- request block end -->
+    </div>
+    <!-- requests box end -->
+</div>

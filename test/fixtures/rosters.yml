@@ -1,0 +1,14 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team: one
+  name: 'roster faze'
+  game: one
+  team: one
+  limit: 1
+
+two:
+  team: two
+  name: MyString
+  game: two
+  limit: 1

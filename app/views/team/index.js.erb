@@ -1,0 +1,4 @@
+$("#teams").html("<%= escape_javascript(render :partial => 'team/partials/index') %>");
+
+$("#paginator").html("<%= escape_javascript paginate(@teams, remote: true) %>");
+
