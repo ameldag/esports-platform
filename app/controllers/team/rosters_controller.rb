@@ -125,12 +125,13 @@ class Team::RostersController < ApplicationController
   end
 
   def create
-    @roster = Roster.new()
+    @roster = Roster.new
 
     @roster.name = params[:name]
     @roster.limit = params[:limit]
     @roster.game_id = params[:game].to_i
-    @roster.cover.attach(params[:roster][:cover])
+    @roster.cover.attach(params[:cover])
+
     # control number of restor per game for that team
     @roster.team = current_user.team
     @roster.users << current_user
@@ -158,6 +159,7 @@ class Team::RostersController < ApplicationController
   private
 
   def roster_params
+    # game_id = params[:game].to_i
     params.permit(:name, :limit, :game, :team, :cover)
   end
 
