@@ -10,4 +10,6 @@ class Roster < ApplicationRecord
   has_many :tournaments, through: :roster_tournaments
 
   has_one_attached :cover, dependent: :destroy
+
+  has_many :match
 end

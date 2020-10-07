@@ -23,6 +23,8 @@ class Tournament < ApplicationRecord
   has_many :challenge
   has_one_attached :cover, dependent: :destroy
 
+  has_many :match
+
   validates :season, presence: true
   validates :game, presence: true
   scope :tournaments, ->(active) { where("active = ?", active) }
@@ -30,6 +32,43 @@ class Tournament < ApplicationRecord
   scope :similar_tournaments, ->(game_id) { where("game_id = ?", game_id).last(4) }
 
   
+
+  def shouldcreatebracket
+    return (RosterTournament.joins(:tournament).where('tournament_id = ?', self.id).where.not(confirmed_subscribtion_at: nil).count) == self.slots
+  end
+
+  def createMatch
+    return if !self.shouldcreatebracket
+    ActiveRecord::Base.transaction do
+        roundArray = []
+        subscribtion_rosters = RosterTournament.joins(:tournament).where('tournament_id = ?', self.id).where.not(confirmed_subscribtion_at: nil) 
+        subscribtion_rosters.shuffle
+        subscribtion_rosters.each_slice(2){ |a| 
+          new_match = self.match.create({
+          :round => 1,
+          :next_match_id => nil,
+          left_team: a[0].roster,
+          right_team: a[1].roster
+          })
+          roundArray << new_match
+        }
+        loop do           
+          newRoundArray = []
+          roundArray.each_slice(2){ |match_couple| 
+            new_match = self.match.create({
+            :round => match_couple[0].round + 1
+            })
+            
+            match_couple[0].update_attribute(:next_match_id, new_match.id)
+            match_couple[1].update_attribute(:next_match_id, new_match.id)
+            newRoundArray << new_match
+
+          }
+          roundArray = newRoundArray
+          break if (roundArray.length <= 1)
+        end
+      end
+  end
 
   # def participate(@user, @roster, @is_private, @type)
   #   if(@is_private)

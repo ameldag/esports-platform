@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_14_163915) do
+ActiveRecord::Schema.define(version: 2020_10_02_080605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,34 @@ ActiveRecord::Schema.define(version: 2020_09_14_163915) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_maps_on_game_id"
+  end
+
+  create_table "matche_scores", force: :cascade do |t|
+    t.integer "left_score"
+    t.integer "right_score"
+    t.bigint "map_id"
+    t.bigint "match_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["map_id"], name: "index_matche_scores_on_map_id"
+    t.index ["match_id"], name: "index_matche_scores_on_match_id"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "state"
+    t.integer "left_score"
+    t.integer "right_score"
+    t.integer "round"
+    t.bigint "tournament_id"
+    t.bigint "left_team_id"
+    t.bigint "right_team_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "next_match_id"
+    t.index ["left_team_id"], name: "index_matches_on_left_team_id"
+    t.index ["next_match_id"], name: "index_matches_on_next_match_id"
+    t.index ["right_team_id"], name: "index_matches_on_right_team_id"
+    t.index ["tournament_id"], name: "index_matches_on_tournament_id"
   end
 
   create_table "modes", force: :cascade do |t|
@@ -313,6 +341,12 @@ ActiveRecord::Schema.define(version: 2020_09_14_163915) do
   add_foreign_key "map_tournaments", "maps"
   add_foreign_key "map_tournaments", "tournaments"
   add_foreign_key "maps", "games"
+  add_foreign_key "matche_scores", "maps"
+  add_foreign_key "matche_scores", "matches"
+  add_foreign_key "matches", "matches", column: "next_match_id"
+  add_foreign_key "matches", "rosters", column: "left_team_id"
+  add_foreign_key "matches", "rosters", column: "right_team_id"
+  add_foreign_key "matches", "tournaments"
   add_foreign_key "region_tournaments", "regions"
   add_foreign_key "region_tournaments", "tournaments"
   add_foreign_key "rosters", "games"
