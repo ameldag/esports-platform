@@ -10,6 +10,7 @@ class Team::RostersController < ApplicationController
     @roster = true
     @team = Team.friendly.find(params["team_id"])
     @rosters = @team.rosters
+    @users = User.where("id != ? and team_id = ?", current_user.id, @team.id).all
   end
 
   def show
@@ -135,7 +136,7 @@ class Team::RostersController < ApplicationController
     # control number of restor per game for that team
     @roster.team = current_user.team
     @roster.users << current_user
-    
+
     if @roster.save
       respond_to do |format|
         format.html { redirect_to team_show_roster_path(@roster.team, @roster), notice: "Roster was successfully created." }
