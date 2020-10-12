@@ -25,6 +25,8 @@ class Tournament < ApplicationRecord
 
   has_many :match
 
+  has_many :featured
+
   validates :season, presence: true
   validates :game, presence: true
   scope :tournaments, ->(active) { where("active = ?", active) }
@@ -37,7 +39,7 @@ class Tournament < ApplicationRecord
     return (RosterTournament.joins(:tournament).where('tournament_id = ?', self.id).where.not(confirmed_subscribtion_at: nil).count) == self.slots
   end
 
-  def createMatch
+  def create_matches
     return if !self.shouldcreatebracket
     ActiveRecord::Base.transaction do
         roundArray = []
