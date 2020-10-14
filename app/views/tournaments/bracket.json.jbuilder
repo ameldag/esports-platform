@@ -38,17 +38,25 @@ else
     json.start_datetime nil
     json.end_datetime nil
 
-    json.opponent1 do
-      json.id match.left_team.id
-      json.position 2
-      json.score match.left_score
-      json.result "loss"
+    if match.left_team
+      json.opponent1 do
+        json.id  match.left_team.id
+        json.position 2
+        json.score match.left_score
+        json.result "loss"
+      end
+      else
+        json.opponent1 nil
     end
-    json.opponent2 do
-      json.id match.right_team.id
-      json.position 1
-      json.score match.right_score
-      json.result "win"
+    if match.right_team
+      json.opponent2 do
+        json.id match.right_team.id
+        json.position 1
+        json.score match.right_score
+        json.result "win"
+      end
+    else
+      json.opponent2 nil
     end
   end
 end
