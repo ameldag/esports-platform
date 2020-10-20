@@ -1,4 +1,4 @@
-<div class="tournament-header relative w-full p-10"  data-module="tournament">
+<div class="tournament-header relative w-full p-10" data-module="tournament">
 
 
     <!-- Tournament image background -->
@@ -49,24 +49,22 @@
                     <% end %>
                 </h2>
                 <h3>
+                    <!-- if tour open -->
                     <% if (current_user.team.owner_id == current_user.id) %>
-                    <% if (current_user.rosters.present?) %>
-                    <% current_user.rosters.each do |roster| %>
-                    <% if !(@tournament.rosters.include? roster) %>
+                    <% if ((@tournament.start_date > Date.today) and (@tournament.rosters.count < @tournament.slots)) %>
+                    <%  if !(@tournament.roster_tournaments.map{|a| a.roster_id}.include? (@roster.id)) %>
                     <button class="subscribe bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
                         data-attr='<%= @tournament.id%>'>
                         Subscribe
                     </button>
                     <% end %>
                     <% end %>
-                    <%  @tournament.roster_tournaments.each do |roster_tournament| %>
-                    <% if !(roster_tournament.confirmed_subscribtion_at)%>
-                    <button class="confirm_subscribe bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
+                    <% if %>
+                    <button id="confirm_subscribe"
+                        class="confirm_subscribe bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
                         data-attr='<%= @tournament.id%>'>
                         Confirm subscribe
                     </button>
-                    <% end %>
-                    <% end %>
                     <% end %>
                     <% end %>
                 </h3>
