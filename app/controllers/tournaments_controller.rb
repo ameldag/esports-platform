@@ -8,7 +8,7 @@ class TournamentsController < ApplicationController
   def index
     if params[:game_id]
       @selected_game_id = params[:game_id]
-      @tournaments = Tournament.where('game_id = ?', @selected_game_id)
+      @tournaments = Tournament.where("game_id = ?", @selected_game_id)
     else
       @selected_game_id = nil
       @tournaments = Tournament.all
@@ -35,12 +35,12 @@ class TournamentsController < ApplicationController
         @tournament.rosters << current_user.rosters.where("game_id = ?", @tournament.game.id)
         if (@tournament.save)
           return respond_to do |format|
-                   format.html { redirect_to show_tournament_path(@tournament), notice: "Team is succesfully subscribe to this tournament." }
+                   format.html { }
                  end
         end
       else
         return respond_to do |format|
-                 format.html { redirect_to show_tournament_path(@tournament), alert: "It appears there is no roster for this game in this team." }
+                 format.html { }
                end
       end
     end
@@ -55,11 +55,11 @@ class TournamentsController < ApplicationController
           @confirmed.update(confirmed_subscribtion_at: DateTime.current)
           if (@confirmed.save)
             return respond_to do |format|
-                     format.html { redirect_to show_tournament_path(@tournament), notice: "Subscribtion is succesfully confirmed to this tournament." }
+                     format.html { }
                    end
           else
             return respond_to do |format|
-                     format.html { redirect_to show_tournament_path(@tournament), notice: "It appears there is no roster for this game in this team." }
+                     format.html { }
                    end
           end
         else
