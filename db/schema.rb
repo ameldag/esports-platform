@@ -89,12 +89,6 @@ ActiveRecord::Schema.define(version: 2020_10_02_080605) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
-  create_table "game_game_modes", force: :cascade do |t|
-    t.string "name_mode"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "game_modes", force: :cascade do |t|
     t.bigint "game_id"
     t.bigint "modes_id"
@@ -130,15 +124,15 @@ ActiveRecord::Schema.define(version: 2020_10_02_080605) do
     t.index ["game_id"], name: "index_maps_on_game_id"
   end
 
-  create_table "matche_scores", force: :cascade do |t|
+  create_table "match_scores", force: :cascade do |t|
     t.integer "left_score"
     t.integer "right_score"
     t.bigint "map_id"
     t.bigint "match_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["map_id"], name: "index_matche_scores_on_map_id"
-    t.index ["match_id"], name: "index_matche_scores_on_match_id"
+    t.index ["map_id"], name: "index_match_scores_on_map_id"
+    t.index ["match_id"], name: "index_match_scores_on_match_id"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -341,8 +335,8 @@ ActiveRecord::Schema.define(version: 2020_10_02_080605) do
   add_foreign_key "map_tournaments", "maps"
   add_foreign_key "map_tournaments", "tournaments"
   add_foreign_key "maps", "games"
-  add_foreign_key "matche_scores", "maps"
-  add_foreign_key "matche_scores", "matches"
+  add_foreign_key "match_scores", "maps"
+  add_foreign_key "match_scores", "matches"
   add_foreign_key "matches", "matches", column: "next_match_id"
   add_foreign_key "matches", "rosters", column: "left_team_id"
   add_foreign_key "matches", "rosters", column: "right_team_id"

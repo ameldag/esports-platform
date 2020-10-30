@@ -49,23 +49,29 @@
                     <% end %>
                 </h2>
                 <h3>
-                    <!-- if tour open -->
+                    <!-- if roster nil -->
+                    <% if @roster.blank? %>
+                    <button class="new_roster bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
+                        data-attr='<%= @tournament.id%>'>
+                        Create Roster
+                    </button>
+
+                    <% end %> 
                     <% if (current_user.team.owner_id == current_user.id) %>
-                    <% if ((@tournament.start_date > Date.today) and (@tournament.rosters.count < @tournament.slots)) %>
-                    <%  if !(@tournament.roster_tournaments.map{|a| a.roster_id}.include? (@roster.id)) %>
-                    <button class="subscribe bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
-                        data-attr='<%= @tournament.id%>'>
-                        Subscribe
-                    </button>
-                    <% end %>
-                    <% end %>
-                    <% if %>
-                    <button id="confirm_subscribe"
-                        class="confirm_subscribe bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
-                        data-attr='<%= @tournament.id%>'>
-                        Confirm subscribe
-                    </button>
-                    <% end %>
+                        <% if ((@tournament.start_date > Date.today) and (@tournament.rosters.count < @tournament.slots)) %>
+                            <% if !(@tournament.roster_tournaments.map{|a| a.roster_id}.include? (@roster.id)) %>
+                            <button class="subscribe bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
+                                data-attr='<%= @tournament.id%>'>
+                                Subscribe
+                            </button>
+                            <% end %>
+                        <% end %>
+                        <% if @roster_tournament and @roster_tournament.confirmed_subscribtion_at.blank? %>
+                        <button class="confirm_subscribe bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
+                            data-attr='<%= @tournament.id%>'>
+                            Confirm subscribe
+                        </button>
+                        <% end %>
                     <% end %>
                 </h3>
         </div>
