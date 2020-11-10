@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+    
+    # Necessary include if you plan on access controller instance
+    # in Procs passed to #tracked method in your models
+    include PublicActivity::StoreController
+  
     before_action :configure_permitted_parameters, if: :devise_controller?
     before_action :set_raven_context
   

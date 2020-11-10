@@ -1,0 +1,4 @@
+
+<% if activity.trackable %>
+has left the <%= link_to activity.trackable.name, show_team_path(activity.trackable.id) %> team
+<% end %>

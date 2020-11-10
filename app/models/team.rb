@@ -1,4 +1,6 @@
 class Team < ApplicationRecord
+  include PublicActivity::Common
+  # tracked except: :update, owner: ->(controller, model) { controller && controller.current_user}
   extend FriendlyId
   friendly_id :name, use: :slugged
   validates :name, presence: true

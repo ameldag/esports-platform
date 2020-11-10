@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller && controller.current_user}
+
   # extend FriendlyId
   # friendly_id :username, use: :slugged
   # Include default devise modules. Others available are:

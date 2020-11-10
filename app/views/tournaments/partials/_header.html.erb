@@ -57,7 +57,7 @@
                     </button>
 
                     <% end %> 
-                    <% if (current_user.team.owner_id == current_user.id) %>
+                    <% if  (current_user.team.present?) && (current_user.team.owner_id == current_user.id) %>
                         <% if ((@tournament.start_date > Date.today) and (@tournament.rosters.count < @tournament.slots)) %>
                             <% if !(@tournament.roster_tournaments.map{|a| a.roster_id}.include? (@roster.id)) %>
                             <button class="subscribe bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"

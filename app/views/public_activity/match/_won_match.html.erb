@@ -1,0 +1,4 @@
+ won match
+<% if activity.trackable_type == "Match" %>
+  <%= link_to activity.trackable.id, show_tournament_path(activity.recipient.id) %>
+<% end %>

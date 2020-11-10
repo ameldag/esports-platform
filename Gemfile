@@ -74,3 +74,4 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "tabs_on_rails"
+gem 'public_activity'
