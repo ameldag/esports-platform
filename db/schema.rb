@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_180540) do
+ActiveRecord::Schema.define(version: 2020_11_09_090125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,19 @@ ActiveRecord::Schema.define(version: 2020_10_30_180540) do
     t.index ["recipient_type", "recipient_id"], name: "index_activities_on_recipient_type_and_recipient_id"
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id"
+  end
+
+  create_table "awards", force: :cascade do |t|
+    t.string "title"
+    t.date "achived_at"
+    t.bigint "roster_id"
+    t.bigint "game_id"
+    t.bigint "tournament_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_awards_on_game_id"
+    t.index ["roster_id"], name: "index_awards_on_roster_id"
+    t.index ["tournament_id"], name: "index_awards_on_tournament_id"
   end
 
   create_table "challenge_participants", force: :cascade do |t|
@@ -114,7 +127,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_180540) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_game_modes_on_game_id"
-    t.index ["mode_id"], name: "index_game_modes_on_mode_id"
+    t.index ["mode_id"], name: "index_game_modes_on_modes_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -307,8 +320,8 @@ ActiveRecord::Schema.define(version: 2020_10_30_180540) do
     t.bigint "region_id"
     t.text "rules"
     t.index ["game_id"], name: "index_tournaments_on_game_id"
-    t.index ["mode_id"], name: "index_tournaments_on_mode_id"
-    t.index ["region_id"], name: "index_tournaments_on_region_id"
+    t.index ["mode_id"], name: "index_tournaments_on_modes_id"
+    t.index ["region_id"], name: "index_tournaments_on_regions_id"
     t.index ["season_id"], name: "index_tournaments_on_season_id"
     t.index ["slug"], name: "index_tournaments_on_slug", unique: true
     t.index ["user_id"], name: "index_tournaments_on_user_id"
@@ -347,6 +360,9 @@ ActiveRecord::Schema.define(version: 2020_10_30_180540) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "awards", "games"
+  add_foreign_key "awards", "rosters"
+  add_foreign_key "awards", "tournaments"
   add_foreign_key "challenges", "tournaments"
   add_foreign_key "featureds", "tournaments"
   add_foreign_key "game_modes", "games"
@@ -367,6 +383,6 @@ ActiveRecord::Schema.define(version: 2020_10_30_180540) do
   add_foreign_key "tournament_team_participants", "tournament_teams"
   add_foreign_key "tournament_team_participants", "users"
   add_foreign_key "tournament_teams", "tournaments"
-  add_foreign_key "tournaments", "modes", column: "mode_id"
-  add_foreign_key "tournaments", "regions", column: "region_id"
+  add_foreign_key "tournaments", "modes"
+  add_foreign_key "tournaments", "regions"
 end
