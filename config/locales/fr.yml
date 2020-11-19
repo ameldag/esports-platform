@@ -1,0 +1,223 @@
+fr:
+  global:
+    menu:
+      home: "Accueil"
+      teams: "Équipes"
+      tournaments: "Tournois"
+      games: "Jeux"
+      account: "Paramètres du compte"
+      logout: "Se déconnecter"
+      login: "S'identifier"
+      sign_up: "S'inscrire"
+    signed_in_with: "Connectés avec"
+    signed_up: "Inscrit il y a"
+    upload_file: "Télécharger un fichier"
+  views:
+    pagination:
+      first: "&laquo; Première"
+      last: "Dernier &raquo;"
+      previous: "&lsaquo; Préc."
+      next: "Suiv. &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Trouvé %{entry_name} Aucuns"
+          one: "Affichage <b>1</b> %{entry_name}"
+          other: "Affichage <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Affichage %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> au total"           
+  activerecord:
+    errors:
+      messages:
+        empty_team: Il n’y a pas encore d’équipe. Peut-être voulez-vous en
+        empty_member: Aucun membre
+        empty_search: " Pas de résultat"
+        empty_request: "Aucune demande"
+        empty_match:  "Pas de correspondance"
+        empty_roster: "Aucune liste"
+        empty_activities: "Aucune activité"
+        empty_infos: "Aucune information"
+        empty_rule: "Gratuit pour tous"
+        verifier_search: "Veuillez vous assurer que vos mots sont correctement orthographiés"
+        register_member: "Il n’y a actuellement aucun membre inscrit à cette équipe"
+        register_request: "Il n'y a actuellement aucune demande enregistrée pour cette équipe"
+        register_rosters: "Il n'y a actuellement aucune liste enregistrée pour cette équipe"
+        register_matche: "Il n'y a actuellement aucun match enregistré pour ce tournoi"
+    notice:
+      attention: "Ces informations seront affichées publiquement, alors faites attention à ce que vous partagez"
+      load: "Chargement... " 
+      confirmation: "Êtes-vous sûr de vouloir"
+      added: "n'a pas encore ajouté d'informations"
+      information_tour: "Quelques informations sur le tournoi lui-même et sa présence en dehors de la plateforme"
+      waiting_decided: "Être décidé"
+      waiting: "Attendre"
+      drag_drop: "ou glisser-déposer"
+      file_format: "PNG, JPG, GIF jusqu'à 10 Mo"    
+    attributes:
+      about: "À propos"  
+      activities: "Activités"
+      informations: "Informations"
+      website: "Site web"
+    team:
+      new:
+        create: "Créer une nouvelle équipe"
+        info: "Informations sur l'équipe"
+        name: "Nom"
+        logo: "Logo"
+        cover: "Photo de couverture"
+        description: "Brève description de votre équipe. Les URL contiennent des hyperliens"
+        submit:
+          create: "Créer"
+        label:
+          title: "Équipes"
+          search: "Recherche"   
+          submit: "Soumise"
+          owner: "Propriétaire"
+          captian: "Capitaine"
+          joined: "Inscrit le"
+          create_one: "créer une"
+          infos: "Un peu d'informations concernant votre équipe"
+          member_title: "Membres de l’équipe de"
+          request_title: "'s team requests " 
+          roster_title: "'s team rosters" 
+          one_title: "Équipe"
+        submit:
+          quit: "Quitter l'équipe"
+          join: "Rejoindre l'équipe"
+          request_pending: "Demande d'adhésion en attente"   
+        tabs:
+          give_ownership: "Donner la propriété"
+          overview: "Aperçu"
+          members: "Membres"
+          stats: "Statistiques"
+          rosters: "Liste"
+          requests: "Demandes"
+          create_roster: "Créer une liste"
+        rosters:
+          tabs:
+            quit: "Quitter la liste"
+            join: "Rejoindre la liste"
+            request_pending: "Rejoindre la liste en attente"
+          new:
+            label:
+              title: "Créer une liste"
+              name: "Nom"
+              limit: "Limite"
+              game: "Jeu"
+              cover: "Couverture"
+            submit:
+              change: "Change"
+              save: "Sauvegarder" 
+              cancel: "Annuler"
+              edit: "Éditer"
+    devise:
+      sessions:
+        new:
+          title: "Connectez-vous à votre compte"
+          subtitle1: "Ou simplement"
+          subtitle2: "et profitez de vos meilleurs jeux"
+          info: "Ou continuez avec"
+          email: "Adresse e-mail"
+          password: "Mot de passe"
+          remeber: "Souviens-toi de moi"
+          forget_password: "Mot de passe oublié?"
+          sign_in: "se connecter"
+      registrations:
+        new:
+          title: "Créez votre compte"
+          subtitle: "Ou avec votre email"
+          username: "Nom d'utilisateur"
+          email: "Adresse e-mail"
+          password: "Mot de passe"
+          confirm_password: "Confirmez le mot de passe" 
+    users:
+      show:
+        tabs:
+          overview: "Aperçus"
+          stats: "Statistiques"
+          tournaments: "Tournois" 
+      edit:
+        title: "Mettre à jour le profil utilisateur"
+        profile: "Profil"
+        username: "Nom d'utilisateur"
+        password: "Mot de passe"
+        confirm_password: "Confirmez le mot de passe"
+        photo: Photo
+        cover: "Photo de couverture"
+        personal_info: "Informations personnelles"
+        info: "Utilisez une adresse permanente où vous pouvez recevoir du courrier"
+        first_name: "Prénom"
+        last_name: "Nom"
+        email: "Adresse e-mail"
+        save: "Enregistrer"
+    tournaments:
+      slots: "Slots"
+      title: "Tournoi"
+      similar: "Tournois similaires"
+      participate: "Équipes participantes"
+      specification: "Caractéristiques"
+      check_in_period: "Période d'enregistrement"
+      stats:
+        new: "Nouveau"
+        full: "Plein"
+        open: "Ouvert"
+        completed: "Terminé"
+        registered: "Inscrit"
+        confirmed: "Confirmé"
+      submit: 
+        create_roster: "Créer une liste"
+        subscribe: "Souscrire"
+        confirm_subscribe: "Confirmer l'abonnement"
+      format:
+        title: 
+        unit: "€"
+        game: "Jeu"
+        team_count: "Nombre d'équipe"
+        entry_fee: "Frais d'entrée"
+        prize: "Récompense"
+        region: "Région"
+        na: "N/A"
+        maps: "Plans"
+        rules: "Règles"
+      tabs:
+        overview: "Aperçus"
+        bracket: "Designation"
+        matches: "Match"
+        results: "Résultats"
+      index:
+        title: "Parcourir les tournois"
+        games: "Choisissez votre jeu"
+        list: "Tournois listés"    
+    pages:
+      index:
+        browse_games: "Parcourir les jeux"
+        recommended: "Tournois recommandés"
+        banner_title: "eSports à la demande"
+        banner_subtitle: "Vos jeux préférés, vos tournois préférés, n'importe où, n'importe quand"
+        recommended_price: "Recommandé avec de gros prix"
+        ongoing: "Tournois en cours"
+    game:
+      tournaments:
+        ongoing: "À venir et en cours"    
+        past: "Passé"
+        featured: "Tournois en vedette"
+        info_featured: "Les tournois en vedette seront bientôt proposés"
+        desciption: "Ça se passe ensuite"
+        past_tournament: "Tournois passés"
+    activities:
+      user: 
+        create: "a créé un nouvel utilisateur"  
+        update: "utilisateur mis à jour"
+      tournament:
+        won: "a remporté le tournoi"
+      match:
+        lost: "match perdu"
+        won: "match gagné"
+      roster:
+        create: "a créé une nouvelle liste"
+      team:
+        create: "créé une nouvelle équipe"
+        quit:  "a quitté l'équipe"
+        update: "équipe mise à jour"    

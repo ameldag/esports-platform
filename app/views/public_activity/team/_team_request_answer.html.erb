@@ -1,6 +1,6 @@
 
 <% if activity.trackable %>
-joined on <%= link_to activity.trackable.name, show_team_path(activity.trackable.id) %>'s team
+    <%= t 'team.label.joined'%> <%= link_to activity.trackable.name, show_team_path(activity.trackable.id) %><%= t 'team.label.title'%>
 <% end %>
 
 

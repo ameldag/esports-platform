@@ -4,7 +4,7 @@
   <% if (tournament.created_at > 1.week.ago) %>
   <div
     class="badge bg-red-600 uppercase text-xs rounded-full shadow py-0 px-2 pb-0.5 text-gray-200 font-bold absolute top-2 right-2">
-    New
+    <%= t 'tournaments.stats.new'%>
   </div>
   <% end %>
 
@@ -26,7 +26,8 @@
     </a>
     <span
       class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium leading-5 bg-purple-800 text-purple-100">
-      <%= tournament.slots %> Slots
+      <%= tournament.slots %>
+      <%= t 'tournaments.slots'%>
     </span>
   </h3>
 

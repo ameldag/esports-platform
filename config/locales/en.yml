@@ -1,33 +1,223 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  global:
+    menu:
+      home: "Home"
+      teams: "Teams"
+      tournaments: "Tournaments"
+      games: "Games"
+      account: "Account settings"
+      logout: "Logout"
+      login: Login
+      sign_up: Sign up
+    signed_up: "Signed up"  
+    signed_in_with: "Signed in with"  
+    upload_file: Upload a file  
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} found"
+          one: "Displaying <b>1</b> %{entry_name}"
+          other: "Displaying <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"           
+  activerecord:
+    errors:
+      messages:
+        empty_team: There are no teams yet. Maybe you want to 
+        empty_search: No result
+        empty_request: No requests
+        empty_member: No members
+        empty_match:  No matches
+        empty_roster: No rosters
+        empty_activities: No Activities
+        empty_infos: No Informations
+        empty_rule: Free for all
+        verifier_search: Please make sure your words are spelled correctly.
+        register_member: There are currently no members registered for this Team
+        register_request: There are currently no requests registered for this Team
+        register_rosters: There are currently no rosters registered for this Team
+        register_matche: There are currently no matches registered for this Tournament
+    notice:
+      attention: This information will be displayed publicly so be careful what you share
+      load: "Loading... " 
+      confirmation: " Are you sure you want to"
+      added: has not added any information yet
+      information_tour: Some informations about the tournament itself and it's presence outside of the platform
+      waiting_decided: To be decided
+      waiting: Waiting
+      drag_drop: or drag and drop
+      file_format: "PNG, JPG, GIF up to 10MB"
+    attributes:
+      about: "About"  
+      activities: "Activities"
+      informations: "Informations"
+      website: "Website"
+  team:
+    new:
+      create: "Create New Team" 
+      info: Team Info
+      name: Name
+      logo: Logo
+      cover: Cover photo
+      description: "Brief description for your team. URLs are hyperlinked"
+      submit:  
+        create: create
+    label:  
+      title: "Teams"
+      search: "Search"
+      submit: Submitted   
+      owner: "Owner"  
+      captian: "Captain"
+      joined: "Joined on"
+      create_one: "create one"
+      infos: A little bit of infos concerning your team
+      member_title: "'s team members"
+      request_title: "'s team requests " 
+      roster_title: "'s team rosters" 
+      one_title: Team
+    submit:
+      quit: "Quit Team"
+      join: "Join Team"
+      request_pending: "Join Request Pending"   
+    tabs:
+      give_ownership: "Give Ownership"
+      overview: "Overview"
+      members: "Members"
+      stats: "Stats"
+      rosters: "Rosters"
+      requests: "Requests"
+      create_roster: "Create Roster"
+    rosters:
+      tabs:
+        quit: Quit Roster
+        join: Join Roster
+        request_pending: Join Roster Pending 
+      new:
+        label:
+          title: Creating a roster
+          name: Name
+          limit: Limit
+          game: Game
+          cover: Cover
+      submit:
+        change: Change
+        save: Save 
+        cancel: Cancel
+        edit: Edit
+  devise:
+    sessions:
+      new:
+        title: Sign in to your account
+        subtitle1: Or simply
+        subtitle2: and enjoy your best games
+        info: Or continue with
+        email: Email address
+        password: Password
+        remeber: Remember me
+        forget_password: Forgot your password?
+        sign_in: Sign in
+    registrations:
+      new:
+        title:  Create your account
+        subtitle: Or with your email
+        username: Username
+        email: Email address
+        password: Password
+        confirm_password: Confirm Password
+  users:
+    show:
+      tabs:
+        overview: Overviews
+        stats: Stats
+        tournaments: Tournaments
+    edit:
+      title: Update User Profile  
+      profile: Profile
+      username: Username  
+      password: Password
+      confirm_password: Confirm Password
+      photo: Photo
+      cover: Cover photo
+      personal_info: Personal Information
+      info: Use a permanent address where you can receive mail
+      first_name: First name
+      last_name: Last name
+      email: Email address
+      save: Save
+  tournaments:
+    slots: Slots
+    title: Tournament
+    similar: Similar Tournaments
+    participate: Participating teams
+    specification: Specifications
+    check_in_period: Check-in period
+    stats:
+      new: New
+      full: Full
+      open: Open
+      completed: Completed
+      registered: Registered
+      confirmed: Confirmed
+    submit: 
+      create_roster: Create Roster
+      subscribe: Subscribe 
+      confirm_subscribe: Confirm subscribe
+    format:
+      title: Format
+      unit: "$"
+      game: Game
+      team_count: Team Count
+      entry_fee: Entry Fee
+      prize: Prize Pool
+      region: Region
+      na: NA
+      maps: Maps
+      rules: Rules
+    tabs:
+      overview: Overviews
+      bracket: Bracket
+      matches: Matches
+      results: Results
+    index:
+      title:  Browse Tournaments
+      games: Choose your game
+      list: Listed Tournaments
+  pages:
+    index:
+      browse_games: Browse Games 
+      recommended: Recommended Tournaments
+      banner_title: eSports on Demand
+      banner_subtitle: Your favorite games, favorite tournaments, anywhere, anytime
+      recommended_price: Recommended with Big Prizes
+      ongoing: Ongoing Tournaments
+  game:
+    tournaments:
+      ongoing: Upcoming & ongoing    
+      past: Past
+      featured: Featured Tournaments
+      info_featured: Featured Tournaments will be offer soon
+      desciption: It's happening Next
+      past_tournament: Past Tournaments
+  activities:
+    user: 
+      create: created a new user   
+      update: updated user
+    tournament:
+      won: "won tournament's"
+    match:
+      lost: lost match
+      won: won match
+    roster:
+      create: created a new roster
+    team:
+      create: created a new team  
+      quit: has left the team  
+      update: updated team    

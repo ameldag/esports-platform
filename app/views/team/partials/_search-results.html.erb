@@ -40,14 +40,14 @@
                             <% if (current_user.team.owner_id == current_user.id) %>
                             <span
                                 class="ml-4 inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-red-200 text-red-800">
-                                Owner
+                                <%= t 'team.label.owner'%>
                             </span>
                             <% end %>
                             <% end %>
                         </p>
                         <div class="flex text-sm leading-5 text-gray-500">
                             <time datetime="2020-03-16">
-                                Joined on <%= result.created_at.strftime("%F") %>
+                              <%= t 'team.label.joined'%> <%= result.created_at.strftime("%F") %>
                             </time>
                         </div>
                     </div>
@@ -63,11 +63,12 @@
 <div class="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 md:px-2 py-10 flex  justify-center content-center">
     <div class=" mx-auto lg:grid-cols-4 lg:max-w-none">
 
-        <h3 class="text-white font-bold text-1xl mb-2 lg:col-span-2"> No results
+        <h3 class="text-white font-bold text-1xl mb-2 lg:col-span-2"> 
+            <%= t 'activerecord.errors.messages.empty_search'%> </p>
         </h3>
-
-        <span class="text-white font-bold text-1xl mb-2 lg:col-span-2"> Please make sure your words are
-            spelled correctly.</span>
+        <span class="text-white font-bold text-1xl mb-2 lg:col-span-2">
+            <%= t 'activerecord.errors.messages.verifier_search '%> </p>
+        </span>
     </div>
 
 </div>

@@ -39,14 +39,14 @@
                             <% if (team.owner_id == current_user.id) %>
                             <span
                                 class="ml-4 inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-red-200 text-red-800">
-                                Owner
+                                <%= t 'team.label.owner'%>
                             </span>
                             <% end %>
                             <% end %>
                         </p>
                         <div class="flex text-sm leading-5 text-gray-500">
                             <time datetime="2020-03-16">
-                                Joined on <%= team.created_at.strftime("%F") %>
+                                <%= t 'team.label.joined'%> <%= team.created_at.strftime("%F") %>
                             </time>
                         </div>
                     </div>
@@ -60,14 +60,12 @@
 
 </div>
 <!-- start serach results block -->
-<div id="search-results">
-
-</div>
-
+<div id="search-results"></div>
+ 
 <% else %>
 <div class="border-2 border-dashed border-white text-white text-2xl font-bold rounded-md shadow text-center p-10">
-    There are no teams yet. Maybe you want to <a href="<%= new_team_path() %>"
-        class="bg-orange-500 rounded-md px-3 py-1">create one</a>?
+    <%= t 'activerecord.errors.messages.empty_team'%> <a href="<%= new_team_path() %>"
+        class="bg-orange-500 rounded-md px-3 py-1"><%= t 'team.label.create_one'%></a>?
 </div>
 <% end %>
 <!-- /End replace -->

@@ -19,11 +19,10 @@
             <div class="flex justify-between items-center pb-3">
                 <p class=" text-gray-600 text-2xl font-bold ">
                     <% if (target == "join") %>
-                    Join Team
+                    <%= t 'team.submit.join'%>
                     <% elsif (target == "quit") %>
-                    Quit Team
+                    <%= t 'team.submit.quit'%>
                     <% end %>
-
                 </p>
                 <div class="modal-close cursor-pointer z-50">
                     <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
@@ -37,18 +36,24 @@
 
             <!--Body-->
             <p class=" text-gray-600">
-                Are you sure you want to <%= target %> <%= team.name %> Team.
+                <%= t 'activerecord.notice.confirmation_join'%>
+                    <% if (target == "join") %>
+                    <%= t 'team.submit.join'%>
+                    <% elsif (target == "quit") %>
+                    <%= t 'team.submit.quit'%>
+                    <% end %>
+                <%= team.name %>.
             </p>
 
             <!--Footer-->
             <div class="flex justify-end pt-2">
                 <% if (target == "join") %>
 
-                <%= link_to "Join Team", team_join_path(team.id),
+                <%= link_to "#{I18n.t 'team.submit.join'}", team_join_path(team.id),
                             class: "px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2" %>
 
                 <% elsif (target == "quit") %>
-                <%= link_to "Quit Team", team_quit_path(team.id),
+                <%= link_to "#{I18n.t 'team.submit.quit'}", team_quit_path(team.id),
                             class: "px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2" %>
                 <% end %>
 

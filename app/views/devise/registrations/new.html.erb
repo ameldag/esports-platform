@@ -8,7 +8,7 @@
           <img class="h-12 w-auto" src="/images/logo_w.png" alt="Workflow" />
         </router-link>
         <h2 class="mt-6 text-3xl leading-9 font-extrabold text-gray-900">
-          Create your account
+         <%= t '.title'%>
         </h2>
       </div>
 
@@ -118,7 +118,7 @@
             </div>
             <div class="relative flex justify-center text-sm leading-5">
               <span class="px-2 bg-white text-gray-500">
-                Or with your email
+                <%= t '.subtitle'%>
               </span>
             </div>
           </div>
@@ -131,7 +131,7 @@
                 for="username"
                 class="block text-sm font-medium leading-5 text-gray-700"
               >
-                Username
+                <%= t '.username'%>
               </label>
               <div class="mt-1 rounded-md shadow-sm">
                 <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
@@ -143,7 +143,7 @@
                 for="email"
                 class="block text-sm font-medium leading-5 text-gray-700"
               >
-                Email address
+                <%= t '.email'%>
               </label>
               <div class="mt-1 rounded-md shadow-sm">
                 <%= f.email_field :email, autofocus: true, autocomplete: "email",
@@ -157,7 +157,7 @@
                 for="password"
                 class="block text-sm font-medium leading-5 text-gray-700"
               >
-                Password
+                <%= t '.password'%>
               </label>
               <div class="mt-1 rounded-md shadow-sm">
                 <%= f.password_field :password, autocomplete: "new-password", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
@@ -169,7 +169,7 @@
                 for="password"
                 class="block text-sm font-medium leading-5 text-gray-700"
               >
-                Confirm Password
+                <%= t '.confirm_password'%>
               </label>
               <div class="mt-1 rounded-md shadow-sm">
                 <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
@@ -182,7 +182,7 @@
                   type="submit"
                   class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-800 hover:bg-purple-700 focus:outline-none focus:border-purple-700 focus:shadow-outline-purple active:bg-purple-700 transition duration-150 ease-in-out"
                 >
-                  Sign up
+                  <%= t 'global.menu.sign_up'%>
                 </button>
               </span>
             </div>

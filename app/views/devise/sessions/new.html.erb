@@ -6,18 +6,17 @@
       <div>
         <img class="h-12 w-auto" src="/images/logo_w.png" alt="Workflow" />
         <h2 class="mt-6 text-3xl leading-9 font-extrabold text-gray-900">
-          Sign in to your account
+          <%= t '.title'%>
         </h2>
         <p class="mt-2 text-sm leading-5 text-gray-600 max-w">
-          Or simply
-          
+          <%= t '.subtitle1'%>
             <a
               href="/users/sign_up"
               class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150"
-              >signup and enjoy</a
+              ><%= t 'global.menu.sign_up'%> 
+            </a
             >
-
-          your best games
+          <%= t '.subtitle2'%>
         </p>
       </div>
 
@@ -25,7 +24,7 @@
         <div>
           <div>
             <p class="text-sm leading-5 font-medium text-gray-700">
-              Sign in with
+              <%= t 'global.signed_in_with'%>
             </p>
 
             <div class="mt-1 grid grid-cols-3 gap-3">
@@ -137,7 +136,7 @@
             </div>
             <div class="relative flex justify-center text-sm leading-5">
               <span class="px-2 bg-white text-gray-500"
-                >Or continue with</span
+                ><%= t '.info'%></span
               >
             </div>
           </div>
@@ -148,9 +147,9 @@
             <div>
               <label
                 for="email"
-                class="block text-sm font-medium leading-5 text-gray-700"
-                >Email address</label
-              >
+                class="block text-sm font-medium leading-5 text-gray-700">
+                <%= t '.email'%>
+              </label>
               
               <div class="mt-1 rounded-md shadow-sm">
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
@@ -162,7 +161,7 @@
               <label
                 for="password"
                 class="block text-sm font-medium leading-5 text-gray-700"
-                >Password</label
+                ><%= t '.password'%></label
               >
               <div class="mt-1 rounded-md shadow-sm">
                 <%= f.password_field :password, autocomplete: "current-password", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
@@ -177,7 +176,7 @@
                 <label
                   for="remember_me"
                   class="ml-2 block text-sm leading-5 text-gray-900"
-                  >Remember me</label
+                  ><%= t '.remeber'%></label
                 >
               </div>
               <% end %>
@@ -186,7 +185,7 @@
                 <a
                   href="#"
                   class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150"
-                  >Forgot your password?</a
+                  ><%= t '.forget_password'%></a
                 >
               </div>
             </div>
@@ -197,7 +196,7 @@
                   type="submit"
                   class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-800 hover:bg-purple-700 focus:outline-none focus:border-purple-700 focus:shadow-outline-purple active:bg-purple-700 transition duration-150 ease-in-out"
                 >
-                  Sign in
+                  <%= t '.sign_in'%>
                 </button>
               </span>
             </div>

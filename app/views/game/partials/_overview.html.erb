@@ -3,7 +3,7 @@
 <div class="md:flex md:items-center md:justify-between">
     <div class="flex-1 min-w-0">
         <h2 class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-10">
-            Featured Tournaments
+            <%= t 'game.tournaments.featured'%>
         </h2>
     </div>
 </div>
@@ -15,7 +15,7 @@
         <% end %>
     <% else %>
         <p class="text-gray-300 font-sm">
-            Featured Tournaments will be offer soon 
+            <%= t 'game.tournaments.info_featured'%> 
         </p>
     <% end %>
 </div>
@@ -23,7 +23,7 @@
 <div class="relative w-full grid grid-cols-4 gap-10">
     <div class="col-span-1 text-white border border-gray-800 rounded-lg p-10">
         <h3 class="font-bold text-3xl">
-            It's happening Next
+            <%= t 'game.tournaments.desciption'%>
         </h3>
     </div>
 
@@ -90,7 +90,7 @@
 <div class="md:flex md:items-center md:justify-between">
     <div class="flex-1 min-w-0">
         <h2 class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-10">
-            Ongoing Tournaments
+            <%= t 'pages.index.ongoing'%>
         </h2>
     </div>
 </div>

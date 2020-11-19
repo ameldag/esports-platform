@@ -5,14 +5,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
+    <%= stylesheet_pack_tag "application", 'data-turbolinks-track': "reload" %>
   </head>
-
   <body>
-
-
     <% if notice %>
     <div class="bg-green-600">
       <div class="max-w-screen-xl mx-auto py-3 px-3 sm:px-6 ">
@@ -69,8 +65,11 @@
     </div>
     <% end %>
 
-
-    <div id="app" class="h-screen flex overflow-hidden bg-gray-100">
+    <% if I18n.locale.to_s == "ar" %>
+      <div id="app" dir="rtl" class="h-screen flex overflow-hidden bg-gray-100">
+    <% else %>
+      <div id="app" dir="ltr" class="h-screen flex overflow-hidden bg-gray-100">
+    <% end %>
         <%= render "partials/mobile_sidebar" %>
     
         <%= render "partials/sidebar" %>
@@ -81,18 +80,12 @@
     
           <main
             class="flex-1 relative z-0 overflow-y-auto py-0 focus:outline-none"
-            tabindex="0"
-          >
-    
-
-      <%= yield %>
-
+            tabindex="0">
+    <%= yield %>
           </main>
 
         </div> 
 
-    </div>
-
-      
+    </div>  
   </body>
 </html>

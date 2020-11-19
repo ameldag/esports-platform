@@ -1,0 +1,132 @@
+ar:
+  global:
+    menu:
+      home: "الصفحة الرئيسية"
+      teams: "فرق"
+      tournaments: "البطولات"
+      games: "ألعاب"
+      signed_in_with: "تسجيل الدخول مع"
+      signed_up: "مسجل منذ"
+      account: "إعدادت الحساب"
+      logout: "تسجيل خروج"
+      login: دخول
+  views:
+    pagination:
+      first: "&laquo; الأول"
+      last: "الاخير &raquo;"
+      previous: "&lsaquo; السابق"
+      next: "التالى &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} found"
+          one: "Displaying <b>1</b> %{entry_name}"
+          other: "Displaying <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"           
+  activerecord:
+    errors:
+      messages:
+        empty_team: There are no teams yet. Maybe you want to 
+        empty_member: No members
+        register_member: There are currently no members registered for this Team
+    attributes:
+      about: "حول"  
+      activities: "أنشطة"
+      informations: "معلومات"
+      website: "موقع الكتروني"
+      team:
+        title: "فرق"
+        search: "بحث" 
+        create: "إنشاء فريق جديد"
+        owner: "صاحب"
+        captian: "قبطان"
+        joined: "انضم في"
+        create_one: "اصنع واحدا"
+        tabs:
+          give_ownership: "امنح الملكية"
+          overview: "نظرة عامة"
+          members: "أفراد"
+          stats: "احصائيات"
+          rosters: "القوائم"
+          requests: "الطلبات"
+          create_roster: "إنشاء قائمة"
+          quit: "قم بإنهاء الفريق"
+          join: "انضم إلى الفريق"
+          request_pending: "طلب الانضمام معلق"
+        members:
+          title: "أعضاء"  
+  tournaments:
+      slots: "فتحات"
+      title: "المسابقة"
+      similar: "بطولات مماثلة"
+      participate: "الفرق المشاركة"
+      specification: "مواصفات"
+      check_in_period: "فترة تسجيل الوصول"
+      stats:
+        new: "جديد"
+        full: "ممتلئ"
+        open: "افتح"
+        completed: "منجز"
+        registered: "مسجل"
+        confirmed: "تم تأكيد"
+      submit: 
+        create_roster: "إنشاء قائمة"
+        subscribe: "الإشتراك" 
+        confirm_subscribe: "تأكيد الاشتراك" 
+      format:
+        title: "شكل"
+        unit: "KD"
+        game: "لعبه"
+        team_count: "عدد الفريق"
+        entry_fee: "رسم الدخول"
+        prize: "مجموع جوائز"
+        region: "منطقة"
+        na: "غير متوفر"
+        maps: "خرائط"
+        rules: "قواعد"
+      tabs:
+        overview: "لمحات عامة"
+        bracket: "تعيين"
+        matches: "مباريات"
+        results: "النتائج"
+      index:
+        title:  "تصفح البطولات"
+        games: "اختر لعبتك"
+        list: "البطولات المدرجة"
+    pages:
+      index:
+        browse_games: "تصفح الألعاب"
+        recommended: "البطولات الموصى بها"
+        banner_title: "الرياضات الإلكترونية عند الطلب"
+        banner_subtitle: "ألعابك المفضلة ، البطولات المفضلة ، في أي مكان وفي أي وقت"
+        recommended_price: "موصى به مع جوائز كبيرة"
+        ongoing: "البطولات الجارية"
+    game:
+      tournaments:
+        ongoing: "القادمة والجارية"
+        past: "الماضي"
+        featured: "البطولات المميزة"
+        info_featured: "سيتم عرض البطولات المميزة قريبًا"
+        desciption: "إنه يحدث بعد ذلك"
+        past_tournament: "البطولات السابقة"
+    activities:
+      user: 
+        create: "إنشاء مستخدم جديد"   
+        update: "مستخدم محدث"
+      tournament:
+        won: "فاز بالبطولة"
+      match:
+        lost: "خسر المباراة"
+        won: "فاز بالمباراة"
+      roster:
+        create: "إنشاء قائمة جديدة"
+      team:
+        create: "أنشأ فريقًا جديدًا" 
+        quit: "غادر الفريق"
+        update: "فريق محدث"    
+            
+
+

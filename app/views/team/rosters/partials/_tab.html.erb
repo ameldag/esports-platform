@@ -34,7 +34,7 @@
         <% if (@team.owner_id == current_user.id) %>
         <button
             class="modal-open px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
-            Give Ownership
+           <%= t 'team.tabs.give_ownership'%>
         </button>
 
         <%= render partial: "team/partials/modal_giveOwnerShip", locals: { team: @team } %>
@@ -42,7 +42,7 @@
         <% else %>
         <button
             class="modal-open px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
-            Quit Team
+            <%= t 'team.tabs.quit'%>
         </button>
         <%= render partial: "team/partials/modal_confirmation", locals: { team: @team, target: "quit" } %>
 
@@ -54,13 +54,12 @@
         <% if (@current_user_request < 1) %>
         <button
             class="modal-open px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
-            Join Team</button>
-        <%= render partial: "team/partials/modal_confirmation", locals: { team: @team ,target: "join" } %>
-
+            <%= t 'team.tabs.join'%></button>
+            <%= render partial: "team/partials/modal_confirmation", locals: { team: @team ,target: "join" } %>
         <% else %>
         <button
             class="px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
-            Join Request Pending</button>
+            <%= t 'team.tabs.request_pending'%></button>
         <% end %>
         <% end %>
         <% end %>
@@ -71,34 +70,34 @@
             <div class="-mb-px flex">
                 <a href="<%= show_team_path(@team.id) %>"
                     class="whitespace-no-wrap py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    Overview
+                    <%= t 'team.tabs.overview'%>
                 </a>
                 <a href="<%= show_team_members_path(@team.id) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    Members
+                    <%= t 'team.tabs.members'%>
                 </a>
                 <a href="<%= show_team_stats_path(@team.id) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    Stats
+                    <%= t 'team.tabs.stats'%>
                 </a>
                 <!-- show this block only for admin -->
                 <% if (@team.owner_id == current_user.id) %>
                 <% if (@team.rosters.present?) %>
                 <a href="<%= team_rosters_path(@team) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    Rosters
+                    <%= t 'team.tabs.rosters'%>
                 </a>
                 <% else %>
                 <span class="inline-flex rounded-md shadow-sm">
                     <a href=<%= team_new_roster_path() %>
                         class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                        Create Roster
+                    <%= t 'team.tabs.create_roster'%>
                     </a>
                 </span>
                 <% end %>
                 <a href="<%= show_team_requests_path(@team.id) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    Requests
+                    <%= t 'team.tabs.requests'%>
                 </a>
                 <% else %>
                 <!-- show this tab only for member have a team -->
@@ -106,7 +105,7 @@
                 <% if current_user.team_id != nil %>
                 <a href="<%= team_rosters_path (@team) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    Rosters
+                    <%= t 'team.tabs.rosters'%>
                 </a>
                 <% end %>
                 <% end %>

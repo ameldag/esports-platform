@@ -33,7 +33,7 @@
         <!-- Tournament header text -->
         <div class="inline-block tournament-text-infos pl-5">
             <!-- Kind -->
-            <h3 class="text-gray-200 font-thin uppercase text-sm">Tournament</h3>
+            <h3 class="text-gray-200 font-thin uppercase text-sm"><%= t 'tournaments.title'%></h3>
 
             <!-- Name -->
             <h1 class="text-gray-100 font-bold uppercase text-3xl"><%= @tournament.name %></h3>
@@ -41,11 +41,11 @@
                 <!-- Time and status -->
                 <h2 class="text-gray-300"><%= @tournament.start_date %> at 19:00 CEST &bull;
                     <% if ((@tournament.start_date > Date.today) and (@tournament.rosters.count < @tournament.slots)) %>
-                    <span class="bg-green-700 text-white text-xs px-2 py-1 rounded-full">Open</span>
+                    <span class="bg-green-700 text-white text-xs px-2 py-1 rounded-full"><%= t 'tournaments.stats.open'%></span>
                     <% elsif (@tournament.rosters.count >= @tournament.slots) %>
-                    <span class="bg-red-700 text-white text-xs px-2 py-1 rounded-full">Full</span>
+                    <span class="bg-red-700 text-white text-xs px-2 py-1 rounded-full"><%= t 'tournaments.stats.full'%></span>
                     <% elsif (@tournament.end_date < Date.today) %>
-                    <span class="bg-red-700 text-white text-xs px-2 py-1 rounded-full">Completed</span>
+                    <span class="bg-red-700 text-white text-xs px-2 py-1 rounded-full"><%= t 'tournaments.stats.completed'%></span>
                     <% end %>
                 </h2>
                 <h3>
@@ -53,7 +53,7 @@
                     <% if @roster.blank? %>
                     <button class="new_roster bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
                         data-attr='<%= @tournament.id%>'>
-                        Create Roster
+                        <%= t 'tournaments.submit.create_roster'%>
                     </button>
 
                     <% end %> 
@@ -62,14 +62,14 @@
                             <% if !(@tournament.roster_tournaments.map{|a| a.roster_id}.include? (@roster.id)) %>
                             <button class="subscribe bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
                                 data-attr='<%= @tournament.id%>'>
-                                Subscribe
+                                <%= t 'tournaments.submit.subscribe'%>
                             </button>
                             <% end %>
                         <% end %>
                         <% if @roster_tournament and @roster_tournament.confirmed_subscribtion_at.blank? %>
                         <button class="confirm_subscribe bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
                             data-attr='<%= @tournament.id%>'>
-                            Confirm subscribe
+                            <%= t 'tournaments.submit.confirm_subscribe'%>
                         </button>
                         <% end %>
                     <% end %>

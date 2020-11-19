@@ -24,8 +24,9 @@ module SeembaEsports
       config.dsn = 'https://1b7387b78426438882c38af2b7bd9048:b1879e72bb4d4bbc96f3a8536074c711@crash.seemba.com/9'
     end
 
-    
     config.filter_parameters << :password
-
+    config.i18n.available_locales = [:en, :fr, :ar]
+    config.i18n.default_locale = :en
+    config.i18n.fallbacks = true
   end
 end
