@@ -1,54 +1,52 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!
-    before_action :set_user, except: [:index]
-  
-    layout "in-app"
-  
-    def index
-      @users = User.all
-    end
-  
-    def show
-    end
+  before_action :authenticate_user!
+  before_action :set_user, except: [:index]
 
-    def tournaments
-        @tournaments =  @user.tournaments
-    end
-      
-    def edit
-    end
+  layout "in-app"
 
-    # PATCH/PUT /users/1
-    # PATCH/PUT /users/1.json
-    def update
+  def index
+    @users = User.all
+  end
 
-        respond_to do |format|
-            if(user_params['password'] != params[:user][:confirm_password])
-                format.html { redirect_to update_user_path(current_user.id), alert: 'Check your password confirmation.' }
-            else
-                if @user.update(user_params)
-                    format.html { redirect_to root_path, notice: 'Your profile was successfully updated.' }
-                    format.json { render :show, status: :ok, location: @user }
-                else
-                    format.html { render :edit }
-                    format.json { render json: @user.errors, status: :unprocessable_entity }
-                end
-            end
-            
+  def show
+    @activities = PublicActivity::Activity.order("created_at DESC").where(owner_type: "User", owner_id: @user.id).where.not(key: "user.update")
+      .or(PublicActivity::Activity.order("created_at DESC").where(trackable_type: "User", trackable_id: @user.id))
+      .or(PublicActivity::Activity.order("created_at DESC").where(recipient_type: "User", recipient_id: @user.id))
+      .or(PublicActivity::Activity.order("created_at DESC").where(owner_type: "Roster", owner_id: @user.id)).all
+  end
 
+  def tournaments
+    @tournaments = @user.tournaments
+  end
+
+  def edit
+  end
+
+  # PATCH/PUT /users/1
+  # PATCH/PUT /users/1.json
+  def update
+    respond_to do |format|
+      if (user_params["password"] != params[:user][:confirm_password])
+        format.html { redirect_to update_user_path(current_user.id), alert: "Check your password confirmation." }
+      else
+        if @user.update(user_params)
+          format.html { redirect_to root_path, notice: "Your profile was successfully updated." }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
         end
+      end
     end
+  end
 
-  
-    private
+  private
 
-    def set_user
-        @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def user_params
-        params.require(:user).permit(:username, :first_name, :last_name, :password, :avatar, :cover, :team_id)
-    end
-
+  def user_params
+    params.require(:user).permit(:username, :first_name, :last_name, :password, :avatar, :cover, :team_id)
+  end
 end
-  

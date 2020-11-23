@@ -1,168 +1,30 @@
-<div class="overview grid grid-cols-3 gap-5">
+<div class="overview grid grid-cols-2 gap-4">
     <div class="col-span-1">
-
-        <!-- Team information and description -->
-        <div
-            class="team-information-box text-center text-gray-600 border-2 border-dashed border-gray-600 rounded-md p-10">
-            <div class="icon">
-                
-
-            </div>
-
-            <p class="font-bold">Informations</p>
-
-            <p class="text-sm"><%= @team.description %> </p>
-        </div>
-        <!-- Team information and description end -->
-
-        <!-- Team sub-teams -->
-        <h2 class="text-white font-bold text-2xl mt-2 mb-2"><%= @team.name %>'s teams per game</h2>
-
-        <!-- Game team -->
-        <div class="mb-5 lg:grid lg:grid-cols-2" v-for="i in 3" v-bind:key="i">
-            <h3 class="text-white font-bold text-1xl mb-2 lg:col-span-2">
-                League of Legends
-                <span
-                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-yellow-100 text-yellow-800">
-                    XII
-                </span>
-            </h3>
-
-            <!-- Team member -->
-            <a href="#" class="flex-shrink-0 group block focus:outline-none mb-2" v-for="i in 5" v-bind:key="i">
-                <div class="flex items-center">
-                    <div>
-                        <img class="inline-block h-9 w-9 rounded-full"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt="" />
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm leading-5 font-medium text-gray-700 group-hover:text-gray-900">
-                            BarbieLove
-                        </p>
-                        <p
-                            class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-700 group-focus:underline transition ease-in-out duration-150">
-                            Western Europe
-                        </p>
-                    </div>
+        <!-- User information and description -->
+        <div class="team-information-box border-dashed border-gray-600 rounded-md p-6  border-2">
+            <h2 class="text-1xl font-bold leading-5 text-gray-200 sm:text-2xl sm:leading-0">
+                About
+            </h2>
+            <div class="text-center text-gray-600">
+                <div class="md:flex md:justify-center mb-6">
+                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                    </svg>
                 </div>
-            </a>
-            <!-- Team member end -->
-
+                <p class="font-bold">Informations</p>
+                <p class="text-sm"><%= @team.description %> </p>
+                <% if @team.website.present? %>
+                <p class="text-sm">Website: <%= @team.website %> </p>
+                <% end %>
+            </div>
         </div>
-
-
-        <!-- Game team end -->
-
-        <!-- Team sub-teams end -->
-
-
-
     </div>
-
-    <div class="col-span-2">
-        <h2 class="text-white font-bold text-2xl mb-2">Activities</h2>
-
-        <div class="activities-list">
-
-            <!-- Activity box -->
-            <div class="bg-gray-900 shadow rounded-md p-5 mb-5" v-for="i in 10" v-bind:key="i">
-                <!-- Activity details section -->
-                <div class="flex items-center">
-                    <div>
-                        <img class="inline-block h-12 w-12 rounded-full"
-                            src="https://image.freepik.com/vecteurs-libre/esports-logo-assassin-team_70404-18.jpg"
-                            alt="" />
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm leading-5 font-medium text-gray-500 group-hover:text-gray-900">
-                            <a href="#" class="text-white font-bold">Assassin</a> played a <a href="#"
-                                class="text-white font-bold">League of Legends game</a> in the <a href="#"
-                                class="text-white font-bold">E-Sports Against Covid-19</a> tournament
-                        </p>
-                        <p
-                            class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-700 group-focus:underline transition ease-in-out duration-150">
-                            13h ago
-                        </p>
-                    </div>
-                </div>
-                <!-- Activity details section END -->
-
-                <!-- Activity graphic -->
-                <div class="bg-gray-900 shadow rounded-md px-5 py-10 mt-5 grid grid-cols-3 text-center relative overflow-hidden font-bold"
-                    style="background-image: url('/images/lol.jpg');">
-                    <div
-                        class="z-0 absolute top-0 left-0 bottom-0 right-0 transform transition duration-500 ease-in-out bg-gray-900 bg-opacity-25 hover:bg-opacity-75">
-
-                    </div>
-
-                    <!-- Left player -->
-                    <div class="z-10">
-                        <div class="flex items-center">
-                            <div>
-                                <img class="inline-block h-16 w-16 rounded-full shadow"
-                                    src="https://image.freepik.com/vecteurs-libre/esports-logo-assassin-team_70404-18.jpg"
-                                    alt="" />
-                            </div>
-                            <div class="ml-3 text-left">
-                                <p
-                                    class="text-1xl leading-4 font-medium text-green-500 group-hover:text-green-700 uppercase group-focus:underline transition ease-in-out duration-150">
-                                    Victory
-                                </p>
-                                <p class="text-lg leading-5 font-medium text-gray-500 group-hover:text-gray-900">
-                                    <a href="#" class="text-white font-bold">Assassin</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Left player END -->
-
-                    <!-- thunder versus element -->
-                    <div class="z-10 flex justify-center">
-                        <svg class="h-16 w-16" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
-                            xml:space="preserve">
-                            <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="258.7921" y1="512.7275"
-                                x2="258.7921" y2="-3.9595"
-                                gradientTransform="matrix(0.9909 0 0 -0.9909 -0.4445 508.0764)">
-                                <stop offset="0" style="stop-color:#2AF598" />
-                                <stop offset="1" style="stop-color:#009EFD" />
-                            </linearGradient>
-                            <path style="fill:url(#SVGID_1_);" d="M196.338,512l37.353-195.385H76.967L337.361,0l-53.652,193.739h151.324L196.338,512z
- M160.886,276.977h120.737l-14.175,74.147l88.311-117.748H231.604l17.695-63.902L160.886,276.977z" />
-                            
-                        </svg>
-                    </div>
-                    <!-- thunder versus element end -->
-
-                    <!-- right player -->
-                    <div class="z-10 flex justify-end">
-                        <div class="flex items-center">
-                            <div class="mr-3 text-right">
-                                <p
-                                    class="text-1xl leading-4 font-medium text-red-500 group-hover:text-red-700 uppercase group-focus:underline transition ease-in-out duration-150">
-                                    Defeat
-                                </p>
-                                <p class="text-lg leading-5 font-medium text-gray-500 group-hover:text-gray-900">
-                                    <a href="#" class="text-white font-bold">Assassin</a>
-                                </p>
-                            </div>
-                            <div>
-                                <img class="inline-block h-16 w-16 rounded-full shadow"
-                                    src="https://image.freepik.com/vecteurs-libre/esports-logo-assassin-team_70404-18.jpg"
-                                    alt="" />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- right player END -->
-
-
-
-                </div>
-                <!-- Activity graphic END -->
-            </div>
-            <!-- Activity box END -->
-
-        </div>
-
+    <div class="col-span-1">
+        <!-- activities -->
+        <h2 class="text-1xl font-bold leading-7 text-gray-200 sm:text-2xl sm:leading-9 sm:truncate mt-0 mb-5">
+            Activities
+        </h2>
+        <%= render "activities/partials/index", locals: { activities: @activities } %>
     </div>
 </div>

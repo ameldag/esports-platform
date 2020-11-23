@@ -1,4 +1,7 @@
 class Roster < ApplicationRecord
+  include PublicActivity::Common
+  # tracked except: :update, owner: ->(controller, model) { controller && controller.current_user}
+
   belongs_to :team
   belongs_to :game
   has_many :requests, dependent: :destroy

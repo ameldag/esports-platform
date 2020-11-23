@@ -17,9 +17,15 @@ class TeamController < ApplicationController
       # layout will be true if request is not an ajax request
       render action: :index, layout: request.xhr? == nil
     end
+ 
   end
 
   def show
+    @activities = PublicActivity::Activity.order("created_at DESC").where(owner_type: "User", owner_id: current_user.id).where.not(key: "user.update")
+    .or(PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Team", trackable_id: @team.id))
+    .or(PublicActivity::Activity.order("created_at DESC").where(recipient_type: "Team", recipient_id: @team.id))
+    .or(PublicActivity::Activity.order("created_at DESC").where(owner_type: "Roster", owner_id: current_user.id)).all
+    
     @requests = Request.all_request(@team.id, current_user.id, "pending").all
     @members = @team.users
     @current_user_request = Request.count_request(@team.id, current_user.id, "pending").count
@@ -66,8 +72,9 @@ class TeamController < ApplicationController
     @team.owner_id = current_user.id
 
     if @team.save
+       @team.create_activity :create, owner: current_user
+       
       current_user.team = @team
-
       respond_to do |format|
         if current_user.save
           format.html { redirect_to show_team_path(@team), notice: "Team was successfully created." }
@@ -120,10 +127,8 @@ class TeamController < ApplicationController
 
   def team_request_answer
     @request = Request.find(params[:request_id])
-
     @team = @request.team
     @roster = @request.roster
-
     @requesting_user = @request.user
 
     if (params[:answer] == "yes")
@@ -135,6 +140,9 @@ class TeamController < ApplicationController
 
       respond_to do |format|
         if @requesting_user.save
+          # add activity join team 
+          @team.create_activity :team_request_answer, owner: @requesting_user 
+
           @request.destroy
           format.html { }
           format.json { render :show, status: :created, location: @team }
@@ -162,6 +170,8 @@ class TeamController < ApplicationController
       current_user.team = nil
 
       if current_user.update(user_params)
+        @team.create_activity :quit, owner: current_user
+
         respond_to do |format|
           format.html { redirect_to show_team_path(@team), notice: "You successfully quit the team" }
           format.json { render :show, location: @team }

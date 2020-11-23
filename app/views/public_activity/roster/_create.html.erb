@@ -1,0 +1,4 @@
+created a new roster
+<% if activity.trackable %>
+  <%= link_to activity.trackable.name, team_show_roster_path(activity.recipient.id, activity.trackable.id) %>
+<% end %>

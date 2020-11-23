@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_080605) do
+ActiveRecord::Schema.define(version: 2020_10_30_180540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,25 @@ ActiveRecord::Schema.define(version: 2020_10_02_080605) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.string "trackable_type"
+    t.bigint "trackable_id"
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.string "key"
+    t.text "parameters"
+    t.string "recipient_type"
+    t.bigint "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
+    t.index ["owner_type", "owner_id"], name: "index_activities_on_owner_type_and_owner_id"
+    t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
+    t.index ["recipient_type", "recipient_id"], name: "index_activities_on_recipient_type_and_recipient_id"
+    t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
+    t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id"
   end
 
   create_table "challenge_participants", force: :cascade do |t|
@@ -91,11 +110,11 @@ ActiveRecord::Schema.define(version: 2020_10_02_080605) do
 
   create_table "game_modes", force: :cascade do |t|
     t.bigint "game_id"
-    t.bigint "modes_id"
+    t.bigint "mode_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_game_modes_on_game_id"
-    t.index ["modes_id"], name: "index_game_modes_on_modes_id"
+    t.index ["mode_id"], name: "index_game_modes_on_mode_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -284,12 +303,12 @@ ActiveRecord::Schema.define(version: 2020_10_02_080605) do
     t.integer "prize"
     t.integer "entry_fee"
     t.string "slug"
-    t.bigint "modes_id"
-    t.string "rules"
-    t.bigint "regions_id"
+    t.bigint "mode_id"
+    t.bigint "region_id"
+    t.text "rules"
     t.index ["game_id"], name: "index_tournaments_on_game_id"
-    t.index ["modes_id"], name: "index_tournaments_on_modes_id"
-    t.index ["regions_id"], name: "index_tournaments_on_regions_id"
+    t.index ["mode_id"], name: "index_tournaments_on_mode_id"
+    t.index ["region_id"], name: "index_tournaments_on_region_id"
     t.index ["season_id"], name: "index_tournaments_on_season_id"
     t.index ["slug"], name: "index_tournaments_on_slug", unique: true
     t.index ["user_id"], name: "index_tournaments_on_user_id"
@@ -331,7 +350,7 @@ ActiveRecord::Schema.define(version: 2020_10_02_080605) do
   add_foreign_key "challenges", "tournaments"
   add_foreign_key "featureds", "tournaments"
   add_foreign_key "game_modes", "games"
-  add_foreign_key "game_modes", "modes", column: "modes_id"
+  add_foreign_key "game_modes", "modes"
   add_foreign_key "map_tournaments", "maps"
   add_foreign_key "map_tournaments", "tournaments"
   add_foreign_key "maps", "games"
@@ -348,6 +367,6 @@ ActiveRecord::Schema.define(version: 2020_10_02_080605) do
   add_foreign_key "tournament_team_participants", "tournament_teams"
   add_foreign_key "tournament_team_participants", "users"
   add_foreign_key "tournament_teams", "tournaments"
-  add_foreign_key "tournaments", "modes", column: "modes_id"
-  add_foreign_key "tournaments", "regions", column: "regions_id"
+  add_foreign_key "tournaments", "modes", column: "mode_id"
+  add_foreign_key "tournaments", "regions", column: "region_id"
 end

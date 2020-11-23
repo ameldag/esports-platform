@@ -1,0 +1,4 @@
+<% if activity.trackable %>
+created a new team
+<%= link_to  activity.trackable.name, show_team_path(activity.trackable.id) %>
+<% end %>

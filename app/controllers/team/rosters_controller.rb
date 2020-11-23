@@ -135,12 +135,9 @@ class Team::RostersController < ApplicationController
       @roster.users << current_user
 
       # control number of restor per game for that team
-      if (Roster.includes(:team, :game).where("games.id = ? and teams.id = ?", @roster.game_id, @roster.team).references(:team, :game)).count > 0
-        respond_to do |format|
-          format.html {}
-        end
-      else
         if @roster.save
+          # add activity create roster
+          @roster.create_activity :create, owner: current_user, recipient: @roster.team 
           respond_to do |format|
             format.html { redirect_to team_show_roster_path(@roster.team, @roster), notice: "Roster was successfully created." }
           end
@@ -151,7 +148,6 @@ class Team::RostersController < ApplicationController
         end
       end
     end
-  end
 
   def delete
     @roster = Roster.find(params[:id])

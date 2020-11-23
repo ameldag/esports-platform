@@ -1,7 +1,7 @@
 class TournamentsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_tournament,:set_roster, except: [:index]
+  before_action :set_tournament, :set_roster, except: [:index]
 
   layout "in-app"
 
@@ -18,6 +18,15 @@ class TournamentsController < ApplicationController
   def show
     @similar_tournaments = Tournament.similar_tournaments(@tournament.game.id)
     @similar_tournaments = @similar_tournaments.delete_if { |tournament| tournament.id == @tournament.id }
+
+    if @roster.present?
+      @activities = PublicActivity::Activity.order("created_at DESC").where(owner_type: "Roster", owner_id: @roster.id)
+      .or(PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Tournament", trackable_id: @tournament.id))
+      .or(PublicActivity::Activity.order("created_at DESC").where(recipient_type: "Tournament", recipient_id: @tournament.id)).all  
+    else
+      @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Tournament", trackable_id: @tournament.id)
+      .or(PublicActivity::Activity.order("created_at DESC").where(recipient_type: "Tournament", recipient_id: @tournament.id)).all  
+    end
   end
 
   def bracket
@@ -25,7 +34,7 @@ class TournamentsController < ApplicationController
   end
 
   def matches
-    @matches = Challenge.where("tournament_id = ?", @tournament.id).all
+    @matches = Match.where("tournament_id = ?", @tournament.id).all
   end
 
   def subscribe
@@ -89,7 +98,7 @@ class TournamentsController < ApplicationController
   end
 
   def set_roster
-    @roster= current_user.rosters.where("game_id = ?", @tournament.game.id).first
+    @roster = current_user.rosters.where("game_id = ?", @tournament.game.id).first
     @roster_tournament = RosterTournament.find_by(roster: @roster, tournament: @tournament)
   end
 end

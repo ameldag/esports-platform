@@ -1,6 +1,9 @@
 require "securerandom"
 
 class Tournament < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { model && controller}
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 
@@ -12,7 +15,7 @@ class Tournament < ApplicationRecord
   has_many :roster_tournaments
   has_many :rosters, through: :roster_tournaments
 
-  belongs_to :mode
+  belongs_to :mode, :class_name => "Mode"
 
   has_many :region_tournaments
   has_many :regions, through: :region_tournaments
