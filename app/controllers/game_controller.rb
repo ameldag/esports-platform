@@ -7,7 +7,10 @@ class GameController < ApplicationController
     # Listing tournaments in the home page
     @count_tournament = Tournament.where("game_id = ?", @game.id).count()
     @ongoing_tournaments = Tournament.ongoing_tournaments(true, @game.id).where("end_date > ?", Date.today).last(4)
-    @featured_tournaments = Tournament.where("active = ? and game_id = ?", true, @game.id).where("start_date > ?", Date.today).last(4)
+    @featured_tournaments = Tournament.joins(:featured)
+    .where("tournaments.game_id = ?", 1).where("featureds.active = ?", true)
+    .where("featureds.start_date < ? and featureds.end_date > ?", Date.today, Date.today)
+    byebug
   end
 
   def tournaments

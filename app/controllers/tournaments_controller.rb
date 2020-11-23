@@ -21,8 +21,7 @@ class TournamentsController < ApplicationController
   end
 
   def bracket
-    @similar_tournaments = Tournament.similar_tournaments(@tournament.game.id)
-    @similar_tournaments = @similar_tournaments.delete_if { |tournament| tournament.id == @tournament.id }
+    respond_to :html, :json
   end
 
   def matches
@@ -54,18 +53,19 @@ class TournamentsController < ApplicationController
           @confirmed = RosterTournament.find_by(roster: @roster, tournament: @tournament)
           @confirmed.update(confirmed_subscribtion_at: DateTime.current)
           if (@confirmed.save)
+            @tournament.create_matches
             return respond_to do |format|
-                     format.html { }
-                   end
+              format.html { redirect_to show_tournament_path(@tournament), notice: "Subscribtion is succesfully confirmed to this tournament." }
+            end
           else
             return respond_to do |format|
-                     format.html { }
-                   end
+              format.html { redirect_to show_tournament_path(@tournament), notice: "It appears there is no roster for this game in this team." }
+            end
           end
         else
           return respond_to do |format|
-                   format.html { redirect_to show_tournament_path(@tournament), alert: "It appears you missed the confirmaton period." }
-                 end
+            format.html { redirect_to show_tournament_path(@tournament), alert: "It appears you missed the confirmaton period." }
+          end
         end
       end
     end
