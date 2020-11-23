@@ -5,11 +5,13 @@ ar:
       teams: "فرق"
       tournaments: "البطولات"
       games: "ألعاب"
-      signed_in_with: "تسجيل الدخول مع"
-      signed_up: "مسجل منذ"
       account: "إعدادت الحساب"
       logout: "تسجيل خروج"
-      login: دخول
+      login: "دخول"
+      sign_up: "سجل"
+    signed_up: "مسجل منذ"  
+    signed_in_with: "تسجيل الدخول مع"
+    upload_file: "قم بتحميل ملف"
   views:
     pagination:
       first: "&laquo; الأول"
@@ -29,35 +31,127 @@ ar:
   activerecord:
     errors:
       messages:
-        empty_team: There are no teams yet. Maybe you want to 
-        empty_member: No members
-        register_member: There are currently no members registered for this Team
+        empty_team: 
+        empty_search: " لا توجد طلبات"
+        empty_request: " لا يوجد أعضاء"
+        empty_member: " لا يوجد تطابق "
+        empty_match:  "لا توجد مباراة"
+        empty_roster: "لا قوائم"
+        empty_activities: "لا توجد أنشطة"
+        empty_infos: "لا توجد معلومات"
+        empty_rule: "مجانا للجميع"
+        verifier_search: "يرجى التأكد من كتابة كلماتك بشكل صحيح."
+        register_member: "لا يوجد حاليا أي أعضاء مسجلين لهذا الفريق"
+        register_request: "لا يوجد حاليا أي طلبات مسجلة لهذا الفريق"
+        register_rosters: "لا يوجد حاليا أي قوائم مسجلة لهذا الفريق"
+        register_matche: "لا يوجد حاليا أي مباريات مسجلة لهذه البطولة"
+    notice:
+      attention: "سيتم عرض هذه المعلومات بشكل عام ، لذا كن حذرًا فيما تشاركه"
+      load: "جار التحميل... " 
+      confirmation: "هل أنت متأكد أنك تريد "
+      added: "لم يضف أي معلومات حتى الآن"
+      information_tour: "بعض المعلومات عن البطولة نفسها ووجودها خارج المنصة"
+      waiting_decided: "لكي تقرر"
+      waiting: "انتظار"
+      drag_drop: "أو السحب والإفلات"
+      file_format: "PNG ، JPG ، GIF يصل حجمه إلى 10 ميجابايت"
     attributes:
       about: "حول"  
       activities: "أنشطة"
       informations: "معلومات"
-      website: "موقع الكتروني"
-      team:
-        title: "فرق"
-        search: "بحث" 
-        create: "إنشاء فريق جديد"
-        owner: "صاحب"
-        captian: "قبطان"
-        joined: "انضم في"
-        create_one: "اصنع واحدا"
-        tabs:
-          give_ownership: "امنح الملكية"
-          overview: "نظرة عامة"
-          members: "أفراد"
-          stats: "احصائيات"
-          rosters: "القوائم"
-          requests: "الطلبات"
-          create_roster: "إنشاء قائمة"
-          quit: "قم بإنهاء الفريق"
-          join: "انضم إلى الفريق"
-          request_pending: "طلب الانضمام معلق"
-        members:
-          title: "أعضاء"  
+      website: "موقع الكتروني" 
+  team:
+    new:
+      create: "إنشاء فريق جديد" 
+      info: "معلومات الفريق"
+      name: "اسم"
+      logo: "الشعار"
+      cover: "صورة الغلاف"
+      description: "وصف موجز لفريقك. عناوين URL ذات ارتباط تشعبي "
+      submit:  
+        create: "خلق"
+    label:  
+      title: "فرق"
+      search: "بحث"
+      submit: "سلم"   
+      owner: "صاحب"  
+      captian: "قبطان"
+      joined: "انضم في"
+      create_one: "اصنع واحدا"
+      infos: "القليل من المعلومات المتعلقة بفريقك"
+      member_title: "أعضاء الفريق"
+      request_title: "طلبات الفريق " 
+      roster_title: "قوائم الفريق" 
+      one_title: "الفريق"
+    submit:
+      quit: "قم بإنهاء الفريق"
+      join: "انضم إلى الفريق"
+      request_pending: "طلب الانضمام معلق"   
+    tabs:
+      give_ownership: "امنح الملكية"
+      overview: "نظرة عامة"
+      members: "أفراد"
+      stats: "احصائيات"
+      rosters: "القوائم"
+      requests: "الطلبات"
+      create_roster: "إنشاء قائمة"
+    rosters:
+      tabs:
+        quit: "قم بإنهاء القائمة"
+        join: "انضم إلى القائمة"
+        request_pending: "الانضمام إلى القائمة المعلقة"
+      new:
+        label:
+          title: "إنشاء قائمة"
+          name: "اسم"
+          limit: "حد"
+          game: "لعبه"
+          cover: "التغطية"
+      submit:
+        change: "تغيير"
+        save:  "حفظ"
+        cancel: "إلغاء"
+        edit: "تعديل"
+  devise:
+    sessions:
+      new:
+        title: "تسجيل الدخول إلى حسابك"
+        subtitle1: "أو ببساطة"
+        subtitle2: "واستمتع بأفضل ألعابك"
+        info: "أو تواصل مع"
+        email: "عنوان بريد الكتروني"
+        password: "كلمه السر"
+        remeber: "تذكرنى"
+        forget_password: "نسيت رقمك السري؟"
+        sign_in: "تسجيل الدخول"
+    registrations:
+      new:
+        title:  "أنشئ حسابك"
+        subtitle: "أو مع بريدك الإلكتروني"
+        username: "اسم المستخدم"
+        email: "عنوان بريد الكتروني"
+        password: "كلمه السر"
+        confirm_password: "تأكيد كلمة المرور"
+  users:
+    show:
+      tabs:
+        overview: "لمحات عامة"
+        stats: "احصائيات"
+        tournaments: "البطولات"
+    edit:
+      title: "تحديث ملف تعريف المستخدم"
+      profile: "الملف الشخصي"
+      username: "اسم المستخدم"
+      password: "كلمه السر"
+      confirm_password: "تأكيد كلمة المرور"
+      photo: "صورة"
+      cover: "التغطية"
+      personal_info: "معلومات شخصية"
+      info: "استخدم عنوانًا دائمًا حيث يمكنك تلقي البريد"
+      first_name: "الاسم الاول"
+      last_name: "الكنية"
+      email: "عنوان بريد الكتروني"
+      save: "حفظ"
   tournaments:
       slots: "فتحات"
       title: "المسابقة"
@@ -96,23 +190,23 @@ ar:
         title:  "تصفح البطولات"
         games: "اختر لعبتك"
         list: "البطولات المدرجة"
-    pages:
-      index:
-        browse_games: "تصفح الألعاب"
-        recommended: "البطولات الموصى بها"
-        banner_title: "الرياضات الإلكترونية عند الطلب"
-        banner_subtitle: "ألعابك المفضلة ، البطولات المفضلة ، في أي مكان وفي أي وقت"
-        recommended_price: "موصى به مع جوائز كبيرة"
-        ongoing: "البطولات الجارية"
-    game:
-      tournaments:
-        ongoing: "القادمة والجارية"
-        past: "الماضي"
-        featured: "البطولات المميزة"
-        info_featured: "سيتم عرض البطولات المميزة قريبًا"
-        desciption: "إنه يحدث بعد ذلك"
-        past_tournament: "البطولات السابقة"
-    activities:
+  pages:
+    index:
+      browse_games: "تصفح الألعاب"
+      recommended: "البطولات الموصى بها"
+      banner_title: "الرياضات الإلكترونية عند الطلب"
+      banner_subtitle: "ألعابك المفضلة ، البطولات المفضلة ، في أي مكان وفي أي وقت"
+      recommended_price: "موصى به مع جوائز كبيرة"
+      ongoing: "البطولات الجارية"
+  game:
+    tournaments:
+      ongoing: "القادمة والجارية"
+      past: "الماضي"
+      featured: "البطولات المميزة"
+      info_featured: "سيتم عرض البطولات المميزة قريبًا"
+      desciption: "إنه يحدث بعد ذلك"
+      past_tournament: "البطولات السابقة"
+  activities:
       user: 
         create: "إنشاء مستخدم جديد"   
         update: "مستخدم محدث"

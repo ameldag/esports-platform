@@ -318,7 +318,9 @@
                     </div>
                     <div class="text-gray-400 p-5">
                         <h4 class="font-medium"><%= t 'tournaments.slots'%></h4>
-                        <%= @tournament.slots - @tournament.roster_tournaments.count %>
+                        <% if (@tournament.slots) &&  (@tournament.roster_tournaments) %>
+                        <%= (@tournament.slots) - (@tournament.roster_tournaments.count) %>
+                        <% end %>
                     </div>
                 </div>
             </div>

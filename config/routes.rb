@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do 
     get 'tournaments', to: "tournaments#index", as: "tournaments"
     get 'tournaments/:game_id', to: "tournaments#index", as: "game_tournaments"
     get 'tournaments/subscribe'
@@ -70,10 +69,7 @@ Rails.application.routes.draw do
   get "user/:id", to: "users#show", as: "show_user"
   get "user/:id/tournaments", to: "users#tournaments", as: "show_user_tournaments"
 
-  get "pages/index"
-
   root "pages#index"
-end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks",
