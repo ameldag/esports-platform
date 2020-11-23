@@ -8,7 +8,7 @@ class TournamentsController < ApplicationController
   def index
     if params[:game_id]
       @selected_game_id = params[:game_id]
-      @tournaments = Tournament.where('game_id = ?', @selected_game_id)
+      @tournaments = Tournament.where("game_id = ?", @selected_game_id)
     else
       @selected_game_id = nil
       @tournaments = Tournament.all
@@ -21,8 +21,7 @@ class TournamentsController < ApplicationController
   end
 
   def bracket
-    @similar_tournaments = Tournament.similar_tournaments(@tournament.game.id)
-    @similar_tournaments = @similar_tournaments.delete_if { |tournament| tournament.id == @tournament.id }
+    respond_to :html, :json
   end
 
   def matches
