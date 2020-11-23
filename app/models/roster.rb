@@ -11,5 +11,4 @@ class Roster < ApplicationRecord
 
   has_one_attached :cover, dependent: :destroy
 
-  has_many :match
 end

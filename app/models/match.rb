@@ -26,6 +26,8 @@ class Match < ApplicationRecord
     else
       winner = self.left_team
     end
+    
+    return if (!self.next_match_id)
     return if (self.next_match_id && (self.next_match.right_team_id == winner.id || self.next_match.left_team_id == winner.id) )
 
     if(!self.next_match.left_team)
