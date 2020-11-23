@@ -3,7 +3,7 @@ class Match < ApplicationRecord
   belongs_to :left_team, :class_name => "Roster"
   belongs_to :right_team, :class_name => "Roster"
   belongs_to :next_match, :class_name => "Match"
-  has_many :match_score, class_name: "MatcheScore", dependent: :destroy
+  has_many :match_score, class_name: "MatchScore", dependent: :destroy
 
 
   def update_score

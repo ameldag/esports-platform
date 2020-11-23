@@ -1,7 +1,7 @@
 class TournamentsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_tournament, except: [:index]
+  before_action :set_tournament,:set_roster, except: [:index]
 
   layout "in-app"
 
@@ -34,12 +34,12 @@ class TournamentsController < ApplicationController
         @tournament.rosters << current_user.rosters.where("game_id = ?", @tournament.game.id)
         if (@tournament.save)
           return respond_to do |format|
-                   format.html { redirect_to show_tournament_path(@tournament), notice: "Team is succesfully subscribe to this tournament." }
+                   format.html { }
                  end
         end
       else
         return respond_to do |format|
-                 format.html { redirect_to show_tournament_path(@tournament), alert: "It appears there is no roster for this game in this team." }
+                 format.html { }
                end
       end
     end
@@ -86,5 +86,10 @@ class TournamentsController < ApplicationController
 
   def set_tournament
     @tournament = Tournament.friendly.find(params[:id])
+  end
+
+  def set_roster
+    @roster= current_user.rosters.where("game_id = ?", @tournament.game.id).first
+    @roster_tournament = RosterTournament.find_by(roster: @roster, tournament: @tournament)
   end
 end

@@ -1,4 +1,4 @@
-class MatcheScore < ApplicationRecord
+class MatchScore < ApplicationRecord
   belongs_to :map
   belongs_to :match
   after_create :update_score

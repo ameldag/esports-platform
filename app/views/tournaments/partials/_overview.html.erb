@@ -123,15 +123,15 @@
                             Region
                         </label>
                         <% if @tournament.regions.present? %>
-                            <% @tournament.regions.each do |region| %>
-                                <h3>
-                                    <%= region.country%>
-                                </h3>
-                            <%end %>
+                        <% @tournament.regions.each do |region| %>
+                        <h3>
+                            <%= region.country%>
+                        </h3>
+                        <%end %>
                         <% else %>
-                            <h3>
-                                NA
-                            </h3>
+                        <h3>
+                            NA
+                        </h3>
                         <% end %>
                     </div>
                     <div class="border border-gray-300 rounded-md p-5">
@@ -147,15 +147,15 @@
                             Maps
                         </label>
                         <% if @tournament.maps.present? %>
-                            <% @tournament.maps.each do |map| %>
-                                <h3>
-                                    <%= map.name%>
-                                </h3>
-                            <%end %>
+                        <% @tournament.maps.each do |map| %>
+                        <h3>
+                            <%= map.name%>
+                        </h3>
+                        <%end %>
                         <% else %>
-                            <h3>
-                                NA
-                            </h3>
+                        <h3>
+                            NA
+                        </h3>
                         <% end %>
                     </div>
                 </div>
@@ -166,24 +166,24 @@
 
                 <div class="covered_rules">
                     <div class="md:flex md:items-center md:justify-between">
-                    <div class="flex-1 min-w-0">
-                        <h2
-                            class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-5 mb-5">
-                            Rules
-                        </h2>
+                        <div class="flex-1 min-w-0">
+                            <h2
+                                class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-5 mb-5">
+                                Rules
+                            </h2>
+                        </div>
                     </div>
-                </div>
 
-                <div class="covered_rules">
-                    <p class="text-gray-300 font-sm">
-                        <% if @tournament.rules.present? %>
-                                <%= @tournament.rules%>
-                        <% else %>
-                                Free for all
-                        <% end %>
-                    </p>
+                    <div class="covered_rules">
+                        <p class="text-gray-300 font-sm">
+                            <% if @tournament.rules.present? %>
+                            <%= @tournament.rules%>
+                            <% else %>
+                            Free for all
+                            <% end %>
+                        </p>
 
-                </div>
+                    </div>
 
 
                 </div>
@@ -224,13 +224,14 @@
 
                     <div class="grid grid-cols-4">
                         <% (@tournament.rosters).each do |roster| %>
-
+                        <% if roster.team %>
                         <a href="#" class="flex-shrink-0 group block focus:outline-none mb-5">
                             <div class="flex items-center">
                                 <div>
+
                                     <% if roster.team.avatar.attached? %>
-                                    <img class="inline-block h-12 w-12 rounded-full" src="<%= url_for(roster.team.avatar) %>"
-                                        alt="" />
+                                    <img class="inline-block h-12 w-12 rounded-full"
+                                        src="<%= url_for(roster.team.avatar) %>" alt="" />
                                     <% end %>
                                 </div>
                                 <div class="ml-3">
@@ -241,7 +242,7 @@
                                 </div>
                             </div>
                         </a>
-
+                        <% end %>
                         <% end %>
 
                     </div>

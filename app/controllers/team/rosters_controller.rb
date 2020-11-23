@@ -123,27 +123,32 @@ class Team::RostersController < ApplicationController
     else
       @roster = Roster.new
     end
-  end
 
-  def create
-    @roster = Roster.new
+    def create
+      @roster = Roster.new
 
-    @roster.name = params[:name]
-    @roster.limit = params[:limit]
-    @roster.game_id = params[:game].to_i
-    @roster.cover.attach(params[:cover])
+      @roster.name = params[:name]
+      @roster.limit = params[:limit]
+      @roster.game_id = params[:game].to_i
+      @roster.cover.attach(params[:cover])
+      @roster.team = current_user.team
+      @roster.users << current_user
 
-    # control number of restor per game for that team
-    @roster.team = current_user.team
-    @roster.users << current_user
-
-    if @roster.save
-      respond_to do |format|
-        format.html { redirect_to team_show_roster_path(@roster.team, @roster), notice: "Roster was successfully created." }
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to new_roster_path(), notice: "It appears an error occured while creating the roster." }
+      # control number of restor per game for that team
+      if (Roster.includes(:team, :game).where("games.id = ? and teams.id = ?", @roster.game_id, @roster.team).references(:team, :game)).count > 0
+        respond_to do |format|
+          format.html {}
+        end
+      else
+        if @roster.save
+          respond_to do |format|
+            format.html { redirect_to team_show_roster_path(@roster.team, @roster), notice: "Roster was successfully created." }
+          end
+        else
+          respond_to do |format|
+            format.html { redirect_to new_roster_path(), notice: "It appears an error occured while creating the roster." }
+          end
+        end
       end
     end
   end
