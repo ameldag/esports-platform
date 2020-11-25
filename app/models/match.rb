@@ -24,7 +24,7 @@ class Match < ApplicationRecord
 
     return if (self.next_match_id && (self.next_match.right_team_id == get_winner.id || self.next_match.left_team_id == get_winner.id))
     # update_next_match
-    self.update_next_match()
+    self.update_next_match() if self.next_match_id
     # add activities
     self.generate_activities()
   end

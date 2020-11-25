@@ -12,6 +12,7 @@ fr:
     signed_in_with: "Connectés avec"
     signed_up: "Inscrit il y a"
     upload_file: "Télécharger un fichier"
+    copyright: "© Copyright 2020."
   views:
     pagination:
       first: "&laquo; Première"
@@ -189,7 +190,12 @@ fr:
     index:
       title: "Parcourir les tournois"
       games: "Choisissez votre jeu"
-      list: "Tournois listés"    
+      list: "Tournois listés" 
+    brackets:
+      final: Final
+      semi: Semi
+      round: Round
+      grand_final: Grand final
   pages:
     index:
       browse_games: "Parcourir les jeux"

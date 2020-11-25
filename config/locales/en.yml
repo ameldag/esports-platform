@@ -11,7 +11,8 @@ en:
       sign_up: Sign up
     signed_up: "Signed up"  
     signed_in_with: "Signed in with"  
-    upload_file: Upload a file  
+    upload_file: Upload a file 
+    copyright: "© Copyright 2020." 
   views:
     pagination:
       first: "&laquo; First"
@@ -190,6 +191,21 @@ en:
       title:  Browse Tournaments
       games: Choose your game
       list: Listed Tournaments
+    brackets:
+      final: Final
+      semi: Semi
+      round: Round
+      grand_final: Grand final
+      loser_wb_semi: Loser of WB Semi
+      loser_wb_final: Loser of WB Final
+      winner_lb_final: Winner of LB Final
+      status:
+        locked: Locked
+        waiting: Waiting
+        ready: Ready
+        running: Running
+        completed: Completed
+        archived: Archived
   pages:
     index:
       browse_games: Browse Games 

@@ -12,6 +12,7 @@ ar:
     signed_up: "مسجل منذ"  
     signed_in_with: "تسجيل الدخول مع"
     upload_file: "قم بتحميل ملف"
+    copyright: "© حقوق الطبع والنشر 2020 "
   views:
     pagination:
       first: "&laquo; الأول"
@@ -153,43 +154,58 @@ ar:
       email: "عنوان بريد الكتروني"
       save: "حفظ"
   tournaments:
-      slots: "فتحات"
-      title: "المسابقة"
-      similar: "بطولات مماثلة"
-      participate: "الفرق المشاركة"
-      specification: "مواصفات"
-      check_in_period: "فترة تسجيل الوصول"
-      stats:
-        new: "جديد"
-        full: "ممتلئ"
-        open: "افتح"
-        completed: "منجز"
-        registered: "مسجل"
-        confirmed: "تم تأكيد"
-      submit: 
-        create_roster: "إنشاء قائمة"
-        subscribe: "الإشتراك" 
-        confirm_subscribe: "تأكيد الاشتراك" 
-      format:
-        title: "شكل"
-        unit: "KD"
-        game: "لعبه"
-        team_count: "عدد الفريق"
-        entry_fee: "رسم الدخول"
-        prize: "مجموع جوائز"
-        region: "منطقة"
-        na: "غير متوفر"
-        maps: "خرائط"
-        rules: "قواعد"
-      tabs:
-        overview: "لمحات عامة"
-        bracket: "تعيين"
-        matches: "مباريات"
-        results: "النتائج"
-      index:
-        title:  "تصفح البطولات"
-        games: "اختر لعبتك"
-        list: "البطولات المدرجة"
+    slots: "فتحات"
+    title: "المسابقة"
+    similar: "بطولات مماثلة"
+    participate: "الفرق المشاركة"
+    specification: "مواصفات"
+    check_in_period: "فترة تسجيل الوصول"
+    stats:
+      new: "جديد"
+      full: "ممتلئ"
+      open: "افتح"
+      completed: "منجز"
+      registered: "مسجل"
+      confirmed: "تم تأكيد"
+    submit: 
+      create_roster: "إنشاء قائمة"
+      subscribe: "الإشتراك" 
+      confirm_subscribe: "تأكيد الاشتراك" 
+    format:
+      title: "شكل"
+      unit: "KD"
+      game: "لعبه"
+      team_count: "عدد الفريق"
+      entry_fee: "رسم الدخول"
+      prize: "مجموع جوائز"
+      region: "منطقة"
+      na: "غير متوفر"
+      maps: "خرائط"
+      rules: "قواعد"
+    tabs:
+      overview: "لمحات عامة"
+      bracket: "تعيين"
+      matches: "مباريات"
+      results: "النتائج"
+    index:
+      title:  "تصفح البطولات"
+      games: "اختر لعبتك"
+      list: "البطولات المدرجة"
+    brackets:
+      final: نهائي
+      semi: نصف
+      round: الجولة
+      grand_final: النهائي الكبير
+      loser_wb_semi: WB الخاسر من نصف 
+      loser_wb_final: WB الخاسر من نهائي 
+      winner_lb_final: LB الفائز بنهائي 
+      status:
+        locked: Locked
+        waiting: Waiting
+        ready: Ready
+        running: Running
+        completed: Completed
+        archived: Archived
   pages:
     index:
       browse_games: "تصفح الألعاب"
@@ -221,6 +237,7 @@ ar:
         create: "أنشأ فريقًا جديدًا" 
         quit: "غادر الفريق"
         update: "فريق محدث"    
-            
+ 
+          
 
 
