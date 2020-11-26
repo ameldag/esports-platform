@@ -34,7 +34,7 @@
                 <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
                     <ul class="w-full max-w-md">
                         <li data-team='<%= @team.id %>' data-owner='<%= user.id %>' id="user"
-                            class="p-2 mb-3 flex justify-between items-center bg-white shadow rounded-lg cursor-move border border-white">
+                            class="mb-0 flex justify-between items-center bg-white shadow rounded-lg cursor-move border border-white">
                             <div class="flex items-center">
                                 <% if user.avatar.present? %>
                                 <img class="w-10 h-10 rounded-full" src="<%= url_for(user.avatar) %>" alt="" />
@@ -44,11 +44,11 @@
                                 <% end %>
                                 <div class="font-medium text-lg leading-6 space-y-1">
                                     <% if user.first_name != nil %>
-                                    <h4 class="ml-2 text-gray-500 text-sm font-bold">
+                                    <h4 class="pr-2 ml-2 text-gray-500 text-sm font-bol">
                                         <%= user.first_name %> <%= user.last_name %>
                                     </h4>
                                     <% else %>
-                                    <h4 class="ml-2 text-gray-500 text-sm font-bold">
+                                    <h4 class="pr-2 ml-2 text-gray-500 text-sm font-bol">
                                         <%= user.username %>
                                     </h4>
                                     <% end %>

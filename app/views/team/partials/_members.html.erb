@@ -1,6 +1,6 @@
 <div class="members pb-60">
     <% if (@members.count > 0) %>
-        <h2 class="text-white font-bold text-2xl mb-3"><%= @team.name %><%= t 'team.label.member_title'%></h2>
+        <h2 class="text-white font-bold text-2xl mb-3"><%= t 'team.label.member_title'%></h2>
     <!-- members box -->
 
     <div class="members-box grid grid-cols-3">
@@ -19,12 +19,12 @@
                             alt />
                         <% end %>
                     </div>
-                    <div class="ml-3">
+                    <div class="pr-3 ml-3">
                         <p class="text-sm leading-5 font-medium text-gray-700 group-hover:text-white">
                             <%= member.username %>
                             <% if (@team.owner_id == member.id) %>
                             <span
-                                class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-yellow-100 text-yellow-800">
+                                class="ml-1 inline-flex items-center px-1 py-0 rounded-full text-xs font-medium leading-4 bg-yellow-100 text-yellow-800">
                                 <%= t 'team.label.captian'%>
                             </span>
                             <% end %>

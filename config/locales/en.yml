@@ -49,7 +49,7 @@ en:
     notice:
       attention: This information will be displayed publicly so be careful what you share
       load: "Loading... " 
-      confirmation: " Are you sure you want to"
+      confirmation: "Are you sure you want to"
       added: has not added any information yet
       information_tour: Some informations about the tournament itself and it's presence outside of the platform
       waiting_decided: To be decided
@@ -61,6 +61,7 @@ en:
       activities: "Activities"
       informations: "Informations"
       website: "Website"
+      ago: ago
   team:
     new:
       create: "Create New Team" 
@@ -80,14 +81,15 @@ en:
       joined: "Joined on"
       create_one: "create one"
       infos: A little bit of infos concerning your team
-      member_title: "'s team members"
-      request_title: "'s team requests " 
-      roster_title: "'s team rosters" 
+      member_title: "Members of the team"
+      request_title: "Team requests" 
+      roster_title: "Team rosters" 
       one_title: Team
     submit:
       quit: "Quit Team"
       join: "Join Team"
       request_pending: "Join Request Pending"   
+      cancel: Cancel
     tabs:
       give_ownership: "Give Ownership"
       overview: "Overview"
@@ -222,6 +224,9 @@ en:
       info_featured: Featured Tournaments will be offer soon
       desciption: It's happening Next
       past_tournament: Past Tournaments
+    tabs:
+      overview: Overviews
+      tournaments: Tournaments
   activities:
     user: 
       create: created a new user   

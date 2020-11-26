@@ -61,6 +61,7 @@ ar:
       activities: "أنشطة"
       informations: "معلومات"
       website: "موقع الكتروني" 
+      ago: منذ
   team:
     new:
       create: "إنشاء فريق جديد" 
@@ -85,9 +86,10 @@ ar:
       roster_title: "قوائم الفريق" 
       one_title: "الفريق"
     submit:
-      quit: "قم بإنهاء الفريق"
+      quit: ترك الفريق
       join: "انضم إلى الفريق"
-      request_pending: "طلب الانضمام معلق"   
+      request_pending: "طلب الانضمام معلق"
+      cancel: "إلغاء"   
     tabs:
       give_ownership: "امنح الملكية"
       overview: "نظرة عامة"
@@ -98,7 +100,7 @@ ar:
       create_roster: "إنشاء قائمة"
     rosters:
       tabs:
-        quit: "قم بإنهاء القائمة"
+        quit: غادر الفريق
         join: "انضم إلى القائمة"
         request_pending: "الانضمام إلى القائمة المعلقة"
       new:
@@ -136,7 +138,7 @@ ar:
   users:
     show:
       tabs:
-        overview: "لمحات عامة"
+        overview: "نظرة عامة"
         stats: "احصائيات"
         tournaments: "البطولات"
     edit:
@@ -183,7 +185,7 @@ ar:
       maps: "خرائط"
       rules: "قواعد"
     tabs:
-      overview: "لمحات عامة"
+      overview: "نظرة عامة"
       bracket: "تعيين"
       matches: "مباريات"
       results: "النتائج"
@@ -212,7 +214,7 @@ ar:
       recommended: "البطولات الموصى بها"
       banner_title: "الرياضات الإلكترونية عند الطلب"
       banner_subtitle: "ألعابك المفضلة ، البطولات المفضلة ، في أي مكان وفي أي وقت"
-      recommended_price: "موصى به مع جوائز كبيرة"
+      recommended_price: "بطولات بجوائز كبيرة"
       ongoing: "البطولات الجارية"
   game:
     tournaments:
@@ -222,6 +224,9 @@ ar:
       info_featured: "سيتم عرض البطولات المميزة قريبًا"
       desciption: "إنه يحدث بعد ذلك"
       past_tournament: "البطولات السابقة"
+    tabs:
+      overview: نظرة عامة
+      tournaments: البطولات      
   activities:
       user: 
         create: "إنشاء مستخدم جديد"   

@@ -25,7 +25,7 @@
                 <% end %>
                 <p class="text-sm  "> <%= t 'team.label.title'%>
                 <% if @user.team %>
-                    <a href="<%= show_team_path(@user.team.id) %>" class="flex-shrink-0 group block focus:outline-none">
+                    <a href="<%= show_team_path(@user.team_id) %>" class="flex-shrink-0 group block focus:outline-none">
                         <% if @user.team.avatar.attached? %>
                         <img class="inline-block h-12 w-12 rounded-full object-cover"
                             src="<%= url_for(@user.team.avatar) %>" alt />

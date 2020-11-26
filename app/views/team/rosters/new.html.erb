@@ -68,7 +68,7 @@
 
                   <div class="mt-2 flex items-center">
 
-                    <span class="h-16 w-16 rounded-full overflow-hidden bg-gray-100">
+                    <span class="ml-2 h-16 w-16 rounded-full overflow-hidden bg-gray-100">
                       <% if @roster.cover.attached? %>
                       <img id="cover" src="<%= url_for(@roster.cover) %>" alt=""
                         class="h-36 w-36 rounded-lg border-4 object-cover">
@@ -95,7 +95,7 @@
                   <span class="inline-flex rounded-md shadow-sm">
                     <%= link_to "#{I18n.t 'team.rosters.submit.cancel'}", :back, class: "py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out" %>
                   </span>
-                  <span class="ml-3 inline-flex rounded-md shadow-sm">
+                  <span class="pr-2 ml-2 inline-flex rounded-md shadow-sm">
                     <button type="submit"
                       class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
                       <%= t 'team.rosters.submit.save'%>
@@ -109,3 +109,4 @@
   </div>
 </div>
 <% end %>
+ml-2 h-16 w-16 rounded-full overflow-hidden bg-gray-100

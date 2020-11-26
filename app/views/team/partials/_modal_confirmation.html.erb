@@ -36,7 +36,7 @@
 
             <!--Body-->
             <p class=" text-gray-600">
-                <%= t 'activerecord.notice.confirmation_join'%>
+                <%= t 'activerecord.notice.confirmation'%>
                     <% if (target == "join") %>
                     <%= t 'team.submit.join'%>
                     <% elsif (target == "quit") %>
@@ -58,7 +58,7 @@
                 <% end %>
 
                 <button
-                    class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button>
+                    class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400"><%= t 'team.submit.cancel'%></button>
             </div>
 
         </div>

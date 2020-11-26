@@ -227,13 +227,14 @@
                     <div class="grid grid-cols-4">
                         <% (@tournament.rosters).each do |roster| %>
                         <% if roster.team %>
-                        <a href="#" class="flex-shrink-0 group block focus:outline-none mb-5">
+                        <a href="<%= team_show_roster_path(roster.team_id, roster.id) %>" class="flex-shrink-0 group block focus:outline-none mb-5">
                             <div class="flex items-center">
                                 <div>
-
                                     <% if roster.team.avatar.attached? %>
                                     <img class="inline-block h-12 w-12 rounded-full"
                                         src="<%= url_for(roster.team.avatar) %>" alt="" />
+                                    <% else %>
+                                    <img class="inline-block h-12 w-12 rounded-full" src="/images/icons/no-game.png" alt="" />
                                     <% end %>
                                 </div>
                                 <div class="ml-3">

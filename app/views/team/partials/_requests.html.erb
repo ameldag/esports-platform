@@ -1,7 +1,7 @@
 <div class="request" data-module="team">
     <% if (@requests.count > 0) %>
     <div class="requests pb-60">
-        <h2 class="text-white font-bold text-2xl mb-3"><%= @team.name %><%= t 'team.label.request_title'%></h2>
+        <h2 class="text-white font-bold text-2xl mb-3"><%= t 'team.label.request_title'%></h2>
         <!-- Title name end -->
         <!-- hide our loading gif image so that we show it when making ajax call via jquery -->
         <div class="loading-gif" style="display:none;margin-left: 33rem;">
@@ -34,7 +34,11 @@
                         </div>
                         <div
                             class="row-span-2 col-span-3 text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-400 group-focus:underline transition ease-in-out duration-150">
-                            <%= t 'team.label.submit'%> <%= time_ago_in_words(request.created_at) %>
+                        <% if I18n.locale.to_s == "en" %>
+                            <%= t 'team.label.submit'%> <%= time_ago_in_words(request.created_at) %> <%= t 'activerecord.attributes.ago'%>
+                        <% else %>
+                        <%= t 'team.label.submit'%> <%= t 'activerecord.attributes.ago'%> <%= time_ago_in_words(request.created_at) %>
+                        <% end %>
                         </div>
                         <div class="row-span-2 col-span-8">
                             <button class="request-btn" data-attr='<%= request.id %>' data-answer="yes"

@@ -6,41 +6,55 @@
         <img class="h-8 w-auto" src="/images/logo.png" alt="Seemba Logo" />
       </router-link>
     </div>
-    <div class="mt-5 h-0 flex-1 flex flex-col overflow-y-auto">
+    <div class=" pr-1 mt-4 h-0 flex-1 flex flex-col overflow-y-auto">
       <!-- Sidebar component, swap this element with another sidebar if you like -->
-      <nav class="flex-1 px-2 bg-gray-900">
+      <nav class="flex-1 px-0 bg-gray-900">
         <a href="<%= root_path %>"
           class="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-white rounded-md focus:outline-none focus:bg-indigo-700 transition ease-in-out duration-150">
-          <svg class="mr-3 h-6 w-6 text-indigo-400 group-focus:text-indigo-300 transition ease-in-out duration-150"
-            stroke="currentColor" fill="none" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6" />
-          </svg>
-            <%= t 'global.menu.home'%>
+          <div class="flex items-center">
+            <svg class="mr-3 h-6 w-6 text-indigo-400 group-focus:text-indigo-300 transition ease-in-out duration-150"
+              stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6" />
+            </svg>
+          </div>
+          <div class="rtl:ml-2 ltr:ml-0 group-hover:bg-gray-700 rounded-md px-2 py-1 pl-1">
+            <p class="text-sm leading-5 font-medium text-gray-200 group-hover:text-gray-400">
+              <%= t 'global.menu.home'%>                 
+            </p>
+          </div>
         </a>
-
         <a href="<%= teams_path() %>"
-          class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-indigo-300 rounded-md hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-          <svg
-            class="mr-3 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-            stroke="currentColor" fill="none" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-            <%= t 'global.menu.teams'%>
+          class="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-white rounded-md focus:outline-none focus:bg-indigo-700 transition ease-in-out duration-150">
+          <div class="flex items-center">
+            <svg class="mr-3 h-6 w-6 text-indigo-400 group-focus:text-indigo-300 transition ease-in-out duration-150"
+              stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>  
+          <div class="rtl:ml-2 ltr:ml-0 group-hover:bg-gray-700 rounded-md px-2 py-1 pl-1">
+            <p class="text-sm leading-5 font-medium text-gray-200 group-hover:text-gray-400">
+              <%= t 'global.menu.teams'%>
+            </p>
+          </div>
         </a>
-
         <a href="<%= tournaments_path() %>"
           class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-indigo-300 rounded-md hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-
-          <svg class="mr-3 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150" viewBox="0 0 1024 1024" fill="currentColor"><path d="M434,908V804h102c4.4000244,0,8-3.5999756,8-8V548h46v108c0,8.7999878,7.2000122,16,16,16h338
+          <div class="flex items-center">
+            <svg class="mr-3 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150" viewBox="0 0 1024 1024" fill="currentColor"><path d="M434,908V804h102c4.4000244,0,8-3.5999756,8-8V548h46v108c0,8.7999878,7.2000122,16,16,16h338
             c8.7999878,0,16-7.2000122,16-16V368c0-8.7999878-7.2000122-16-16-16H606c-8.7999878,0-16,7.2000122-16,16v108h-46V228
             c0-4.3999939-3.6000366-8-8-8H434V116c0-8.8000031-7.2000122-16-16-16H80c-8.7999878,0-16,7.1999969-16,16v288
             c0,8.7999878,7.2000122,16,16,16h338c8.7999878,0,16-7.2000122,16-16V292h38v440h-38V620c0-8.7999878-7.2000122-16-16-16H80
             c-8.7999878,0-16,7.2000122-16,16v288c0,8.7999878,7.2000122,16,16,16h338C426.7999878,924,434,916.7999878,434,908z M358,344H140
-            V176h218V344z M666,428h218v168H666V428z M140,848V680h218v168H140z"></path></svg>
-            
+            V176h218V344z M666,428h218v168H666V428z M140,848V680h218v168H140z"></path>
+            </svg>
+          </div>
+          <div class="rtl:ml-2 ltr:ml-0 group-hover:bg-gray-700 rounded-md px-2 py-1 pl-1">
+            <p class="text-sm leading-5 font-medium text-gray-200 group-hover:text-gray-400">
             <%= t 'global.menu.tournaments'%>
+            </p>
+          </div>
         </a>
 
         <div class="border-t border-gray-800 mt-5"></div>
@@ -63,7 +77,7 @@
                   </div>
                   <% end %>
                 </div>
-                <div class="ml-3 group-hover:bg-gray-700 rounded-md px-4 py-1 pl-2">
+                <div class="ml-2 group-hover:bg-gray-700 rounded-md px-2 py-1 pl-1">
                   <p class="text-sm leading-5 font-medium text-gray-200 group-hover:text-gray-400">
                     <%= game.name %>
                   </p>

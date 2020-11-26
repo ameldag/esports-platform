@@ -61,6 +61,7 @@ fr:
       activities: "Activités"
       informations: "Informations"
       website: "Site web"
+      ago: depuis
   team:
     new:
       create: "Créer une nouvelle équipe"
@@ -80,14 +81,15 @@ fr:
       joined: "Inscrit le"
       create_one: "créer une"
       infos: "Un peu d'informations concernant votre équipe"
-      member_title: "Membres de l’équipe de"
-      request_title: "'s team requests " 
-      roster_title: "'s team rosters" 
+      member_title: "Membres de l’équipe"
+      request_title: "Demandes de l'équipe" 
+      roster_title: "Listes des équipes" 
       one_title: "Équipe"
     submit:
       quit: "Quitter l'équipe"
       join: "Rejoindre l'équipe"
       request_pending: "Demande d'adhésion en attente"   
+      cancel: Annuler
     tabs:
       give_ownership: "Donner la propriété"
       overview: "Aperçu"
@@ -96,23 +98,23 @@ fr:
       rosters: "Liste"
       requests: "Demandes"
       create_roster: "Créer une liste"
-      rosters:
-        tabs:
-          quit: "Quitter la liste"
-          join: "Rejoindre la liste"
-          request_pending: "Rejoindre la liste en attente"
-        new:
-          label:
-            title: "Créer une liste"
-            name: "Nom"
-            limit: "Limite"
-            game: "Jeu"
-            cover: "Couverture"
-          submit:
-            change: "Change"
-            save: "Sauvegarder" 
-            cancel: "Annuler"
-            edit: "Éditer"
+    rosters:
+      tabs:
+        quit: "Quitter la liste"
+        join: "Rejoindre la liste"
+        request_pending: "Rejoindre la liste en attente"
+      new:
+        label:
+          title: "Créer une liste"
+          name: "Nom"
+          limit: "Limite"
+          game: "Jeu"
+          cover: "Couverture"
+      submit:
+        change: "Change"
+        save: "Sauvegarder" 
+        cancel: "Annuler"
+        edit: "Éditer"
   devise:
     sessions:
       new:
@@ -212,6 +214,9 @@ fr:
       info_featured: "Les tournois en vedette seront bientôt proposés"
       desciption: "Ça se passe ensuite"
       past_tournament: "Tournois passés"
+    tabs:
+      overview: Aperçu
+      tournaments: Tournois  
   activities:
     user: 
       create: "a créé un nouvel utilisateur"  

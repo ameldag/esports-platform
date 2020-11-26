@@ -28,8 +28,7 @@
             <% if ((current_user.team.present?) and (current_user.team == @team)) %>
             <% if (@team.owner_id == current_user.id) %>
             <div class="p-3 tooltip flex space-x-2 flex flex-wrap justify-center content-center">
-                <div style="padding-top: 0.1em; padding-bottom: 0.1rem"
-                    class="text-xs px-3 bg-teal-200 text-teal-600 rounded-full"><%= t 'team.label.owner'%>
+                <div class="text-xs px-3 bg-teal-200 text-teal-600 rounded-full"><%= t 'team.label.owner'%>
                     <span class='tooltip-text bg-blue-200 p-3 -mt-6 -ml-4 rounded'><%= @team.name %><%= t 'team.label.owner'%> </span>
                 </div>
             </div>
@@ -40,7 +39,7 @@
 
     </div>
 
-    <div class="text-right">
+    <div class="rtl:text-left ltr:text-right">
         <% if ((current_user.team.present?) and (current_user.team == @team)) %>
         <% if (@team.owner_id == current_user.id) %>
         <button
