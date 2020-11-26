@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_090125) do
+ActiveRecord::Schema.define(version: 2020_11_23_145456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,6 +178,8 @@ ActiveRecord::Schema.define(version: 2020_11_09_090125) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "next_match_id"
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_matches_on_game_id"
     t.index ["left_team_id"], name: "index_matches_on_left_team_id"
     t.index ["next_match_id"], name: "index_matches_on_next_match_id"
     t.index ["right_team_id"], name: "index_matches_on_right_team_id"
@@ -372,6 +374,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_090125) do
   add_foreign_key "maps", "games"
   add_foreign_key "match_scores", "maps"
   add_foreign_key "match_scores", "matches"
+  add_foreign_key "matches", "games"
   add_foreign_key "matches", "matches", column: "next_match_id"
   add_foreign_key "matches", "rosters", column: "left_team_id"
   add_foreign_key "matches", "rosters", column: "right_team_id"
