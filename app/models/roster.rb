@@ -12,6 +12,8 @@ class Roster < ApplicationRecord
   has_many :roster_tournaments
   has_many :tournaments, through: :roster_tournaments
 
+  has_many :awards
+
   has_one_attached :cover, dependent: :destroy
 
   has_many :left_matches, class_name: "Match", foreign_key: :left_team_id

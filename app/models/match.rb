@@ -56,6 +56,13 @@ class Match < ApplicationRecord
 
   def generate_activities
     if (!self.next_match_id)
+      award = Award.new
+      award.title = self.tournament.name
+      award.achived_at = DateTime.current
+      award.roster = self.get_winner
+      award.tournament = self.tournament
+      award.game = self.tournament.game
+      award.save
       return self.tournament.create_activity :won_tournament, recipient: self, owner: self.get_winner
     else
       return (self.create_activity :won_match, recipient: self.tournament, owner: self.get_winner), (self.create_activity :lost_match, recipient: self.tournament, owner: self.get_loser)

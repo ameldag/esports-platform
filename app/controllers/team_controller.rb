@@ -36,12 +36,10 @@ class TeamController < ApplicationController
     @members = @team.users
     @current_user_request = Request.count_request(@team.id, current_user.id, "pending").count
   end
-
+  
   def stats
-    @requests = Request.all_request(@team.id, current_user.id, "pending")
-    @members = @team.users
-    @current_user_request = Request.count_request(@team.id, current_user.id, "pending").count
-  end
+    @stats = @team.global_stats
+  end 
 
   def requests
     @requests = Request.where("user_id != ? and team_id = ? and status = ?", current_user.id, current_user.team.id, "pending").all
