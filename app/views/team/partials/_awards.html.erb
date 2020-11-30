@@ -1,0 +1,65 @@
+<%if @awards.empty?%>
+    <div class="awards">
+        <!-- GAME SECTION -->
+        <div class="mb-10 bg-gray-900 rounded-md py-5 px-5 shadow">
+            this team has no awards yet
+        </div>
+    </div>
+<%end%>
+
+<% @awards.each do |award| %>
+    <div class="awards">
+    <!-- GAME SECTION -->
+    <div class="mb-10 bg-gray-900 rounded-md py-5 px-5 shadow">
+
+        <!-- GAME TITLE -->
+        <div class="grid grid-cols-3 border-opacity-50">
+            <% case award.position %>
+                <% when 1 %>
+                    <div class="col-span-1 py-3 font-bold uppercase border-b">
+                        <img src="/images/gold.svg" alt="" class="h-12 w-12 rounded-lg border-4 object-cover">
+                    </div>
+                <% when 2 %>
+                    <div class="col-span-1 py-3 font-bold uppercase border-b">
+                        <img src="/images/silver.svg" alt="" class="h-12 w-12 rounded-lg border-4 object-cover">
+                    </div>
+            <%end%>
+            <div class="col-span-2 py-3 border-b">
+                <h2 class="text-white font-bold text-2xl mb-3"><%=award.title%></h2>
+            </div>
+        </div>
+    
+        
+        
+        <!-- GAME TITLE END -->
+
+        <!-- STAT DATA -->
+            <div class="grid grid-cols-3 border-opacity-50">
+                <div class="col-span-1 py-3 font-bold uppercase border-b">
+                    Roster
+                </div>
+                <div class="col-span-2 py-3 border-b">
+                    <%=award.roster.name%>
+                </div>
+
+                <div class="col-span-1 py-3 font-bold uppercase border-b">
+                    Games
+                </div>
+                <div class="col-span-2 py-3 border-b">
+                    <%=award.game.name%>
+                </div>
+                <div class="col-span-1 py-3 font-bold uppercase border-b">
+                    Achived At
+                </div>
+                <div class="col-span-2 py-3 border-b">
+                    <%=award.achived_at%>
+                </div>
+
+
+            </div>
+        <!-- STAT DATA END -->
+
+    </div>
+    <!-- GAME SECTION END -->
+    </div>
+<%end%>

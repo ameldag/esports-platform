@@ -12,5 +12,9 @@ class Team < ApplicationRecord
 
   has_many :users
   has_many :rosters
-  
+
+  def get_awards
+    Award.includes(:roster => :team).where(roster: { teams: { id: self.id } })
+  end
+
 end

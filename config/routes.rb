@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   post "team/request/:request_id", to: "team#team_request_answer", as: "team_request_answer"
   get "team/:id", to: "team#show", as: "show_team"
   get "team/:id/stats", to: "team#stats", as: "show_team_stats"
+  get "team/:id/awards", to: "team#awards", as: "show_team_awards"
   get "team/:id/members", to: "team#members", as: "show_team_members"
   get "team/:id/requests", to: "team#requests", as: "show_team_requests"
   get "team/:id/quit", to: "team#quit", as: "team_quit"
