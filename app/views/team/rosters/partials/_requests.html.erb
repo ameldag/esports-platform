@@ -1,6 +1,6 @@
 <div class="requests pb-60">
     <!-- Title name -->
-    <h2 class="text-white font-bold text-2xl mb-3"><%= @team.name %>'s team requests</h2>
+     <h2 class="text-white font-bold text-2xl mb-3"><%= t 'team.label.request_title'%></h2>
     <!-- Title name end -->
 
     <!-- requests box -->
@@ -27,19 +27,16 @@
                         </p>
                         <p
                             class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-400 group-focus:underline transition ease-in-out duration-150">
-                            Submitted <%= time_ago_in_words(request.created_at) %> ago
+                            <%= t 'team.label.submit'%> <%= time_ago_in_words(request.created_at) %> ago
                         </p>
                         <p data-action='click->toggle#toggle touch->toggle#toggle'>
                             <%= link_to(team_request_answer_path(request.id, :answer => "yes"), remote: true) do %>
                             <svg class="inline justify-end h-5 w-5 text-green-600" viewBox="0 0 512 512"
                                 fill="currentColor">
-
                                 <g>
-                                    <title>background</title>
                                     <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1" />
                                 </g>
                                 <g>
-                                    <title>Layer 1</title>
                                     <g id="svg_1">
                                         <g id="svg_2">
                                             <path id="svg_3"

@@ -10,7 +10,6 @@ class GameController < ApplicationController
     @featured_tournaments = Tournament.joins(:featured)
     .where("tournaments.game_id = ?", 1).where("featureds.active = ?", true)
     .where("featureds.start_date < ? and featureds.end_date > ?", Date.today, Date.today)
-    byebug
   end
 
   def tournaments

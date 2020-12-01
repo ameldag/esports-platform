@@ -29,18 +29,20 @@
         <% if ((current_user.rosters.present?) and (current_user.rosters.first.id == @roster.id)) %>
         <button
             class="modal-open bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-2 rounded-full">
-            Quit Roster </button>
+            <%= t 'team.rosters.tabs.quit'%> </button>
         <%= render "team/rosters/partials/modal_quit_roster", roster: @roster %>
 
         <% elsif (@current_user_request < 1) %>
         <button
             class="modal-open bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-2 rounded-full">
-            Join Roster </button>
+             <%= t 'team.rosters.tabs.join'%>
+        </button>
         <%= render "team/rosters/partials/modal_join_roster" , roster: @roster %>
         <% else %>
         <button
             class="modal-open bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-2 rounded-full">
-            Join Roster Pending </button>
+            <%= t 'team.rosters.tabs.request_pending'%>
+        </button>
         <% end %>
         <% end %>
         <% end %>
@@ -52,22 +54,18 @@
             <nav class="-mb-px flex">
                 <a href="<%= show_team_path(@roster.team_id) %>"
                     class="whitespace-no-wrap py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    Overview
+                    <%= t 'team.tabs.overview'%>
                 </a>
                 <a href="<%= show_team_members_path(@roster.team_id) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    Members
+                    <%= t 'team.tabs.members'%>
                 </a>
                 <a href="<%= show_team_stats_path(@roster.team_id) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    Stats
+                    <%= t 'team.tabs.stats'%>
                 </a>
-
+            </nav>
         </div>
-
-
-        </nav>
-
     </div>
 
     <div class="bg-black text-white py-5 px-10">

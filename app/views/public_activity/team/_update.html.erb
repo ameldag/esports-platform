@@ -1,4 +1,4 @@
 <% if activity.trackable %>
-updated
+<%= t 'activities.team.update'%>
 <%= link_to  activity.trackable.name, show_team_path(activity.trackable.id) %>
 <% end %>

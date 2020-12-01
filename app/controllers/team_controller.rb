@@ -36,11 +36,13 @@ class TeamController < ApplicationController
     @members = @team.users
     @current_user_request = Request.count_request(@team.id, current_user.id, "pending").count
   end
-
+  
   def stats
-    @requests = Request.all_request(@team.id, current_user.id, "pending")
-    @members = @team.users
-    @current_user_request = Request.count_request(@team.id, current_user.id, "pending").count
+    @stats = @team.global_stats
+  end 
+
+  def awards
+    @awards = @team.get_awards
   end
 
   def requests

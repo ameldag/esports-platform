@@ -1,12 +1,12 @@
 <% if (@results.count > 0) %>
 
-<div class="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 md:px-2 py-10">
+<div class="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 md:px-2 py-10 bg-black">
 
     <div class="mt-2 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none">
         <% 1.times do %>
         <% @results.each do |result| %>
         <div
-            class="bg-black rounded-md overflow-hidden shadow-md transform hover:scale-110 transition duration-150 ease-in-out">
+            class="bg-gray-900 rounded-md overflow-hidden shadow-md transform hover:scale-110 transition duration-150 ease-in-out">
             <div class="team-cover relative">
 
                 <% if result.cover.attached? %>
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div class="flex-1 bg-black p-3 flex flex-col justify-between">
+            <div class="flex-1 bg-gray-900 p-3 flex flex-col justify-between">
                 <div class="mt-0 flex items-center">
                     <div class="flex-shrink-0">
                         <a href="<%= show_team_path(result) %>">
@@ -32,22 +32,22 @@
                         </a>
                     </div>
                     <div class="ml-3">
-                        <p class="text-sm leading-5 font-bold text-gray-200">
+                        <p class="pr-2 text-sm leading-5 font-bold text-gray-200">
                             <a href="<%= show_team_path(result) %>" class="">
                                 <%= result.name %>
                             </a>
                             <% if ((current_user.team.present?) and (current_user.team == result)) %>
                             <% if (current_user.team.owner_id == current_user.id) %>
                             <span
-                                class="ml-4 inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-red-200 text-red-800">
-                                Owner
+                                class="ml-1 inline-flex items-center px-1 py-0.25 rounded-full text-xs font-medium leading-4 bg-red-200 text-red-800">
+                                <%= t 'team.label.owner'%>
                             </span>
                             <% end %>
                             <% end %>
                         </p>
-                        <div class="flex text-sm leading-5 text-gray-500">
+                        <div class="pr-2 flex text-xs leading-4 text-gray-500">
                             <time datetime="2020-03-16">
-                                Joined on <%= result.created_at.strftime("%F") %>
+                              <%= t 'team.label.joined'%> <%= result.created_at.strftime("%F") %>
                             </time>
                         </div>
                     </div>
@@ -60,14 +60,15 @@
 
 </div>
 <% else %>
-<div class="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 md:px-2 py-10 flex  justify-center content-center">
+<div class="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 md:px-2 py-10 border-black flex justify-center content-center bg-black">">
     <div class=" mx-auto lg:grid-cols-4 lg:max-w-none">
 
-        <h3 class="text-white font-bold text-1xl mb-2 lg:col-span-2"> No results
+        <h3 class="text-white font-bold text-1xl mb-2 lg:col-span-2"> 
+            <%= t 'activerecord.errors.messages.empty_search'%> </p>
         </h3>
-
-        <span class="text-white font-bold text-1xl mb-2 lg:col-span-2"> Please make sure your words are
-            spelled correctly.</span>
+        <span class="text-white font-bold text-1xl mb-2 lg:col-span-2">
+            <%= t 'activerecord.errors.messages.verifier_search'%> </p>
+        </span>
     </div>
 
 </div>

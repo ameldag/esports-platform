@@ -1,0 +1,43 @@
+[dir="rtl"] #brackets-tournament {
+    direction: rtl;
+}
+
+[dir="rtl"] .teams.connect-previous::before {
+    content: "";
+    display: block;
+    position: absolute;
+    right: -26px;
+    width: 25px;
+    height: 50%;
+    border-bottom: 2px solid var(--border-color);
+}
+
+[dir="rtl"] .match.connect-next::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 193px;
+    width: 25px;
+    height: 50%;
+    border-left: 2px solid var(--border-color);
+    border-right: none;
+}
+
+[dir="rtl"] .teams>span {
+    all: initial;
+    position: absolute;
+    top: -10px;
+    right: 3px;
+    font-size: 0.7rem;
+    background: white;
+    padding: 0 5px;
+    color: var(--label-color);
+    border-radius: 3px;
+}
+
+[dir="rtl"] .bracket .round {
+    margin: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column
+}

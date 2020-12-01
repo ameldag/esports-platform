@@ -1,16 +1,17 @@
-<div class="stats">
+<% @stats.each do |stat| %>
+    <div class="stats">
     <!-- GAME SECTION -->
-    <div class="mb-10 bg-gray-900 rounded-md py-5 px-5 shadow" v-for="i in 4" v-bind:key="i">
+    <div class="mb-10 bg-gray-900 rounded-md py-5 px-5 shadow">
 
         <!-- GAME TITLE -->
-        <h2 class="text-white font-bold text-2xl mb-3">League of Legends</h2>
+        <h2 class="text-white font-bold text-2xl mb-3"><%=stat["game"].name%></h2>
         <!-- GAME TITLE END -->
 
         <!-- STAT DATA -->
             <div class="grid grid-cols-3 border-opacity-50">
 
                 <div class="col-span-1 py-3 font-bold uppercase border-b border-t">
-                    Tier
+                    <%= t 'team.stats.tier'%>
                 </div>
                 <div class="col-span-2 py-3 border-b border-t">
                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-yellow-100 text-yellow-800">
@@ -19,26 +20,39 @@
                 </div>
 
                 <div class="col-span-1 py-3 font-bold uppercase border-b">
-                    Win rate
+                   <%= t 'team.stats.win_rate'%>
                 </div>
                 <div class="col-span-2 py-3 border-b">
                     <div class="shadow w-full bg-gray-600 bg-opacity-25 rounded-full mt-0.5">
-                        <div class="bg-purple-900 text-xs leading-none py-1 text-center text-white rounded-full" style="width: 55%">55%</div>
+                        <div class="bg-purple-900 text-xs leading-none py-1 text-center text-white rounded-full" style="width: <%= stat["match_count"] > 0 ? stat["win_count"]*100 / stat["match_count"] : 0 %>%"><%=stat["match_count"] > 0 ? stat["win_count"]*100 / stat["match_count"] : 0%>%</div>
                     </div>
                 </div>
 
                 <div class="col-span-1 py-3 font-bold uppercase border-b">
-                    Wins
+                    <%= t 'team.stats.joined_tournament'%>
                 </div>
                 <div class="col-span-2 py-3 border-b">
-                    117
+                    <%= stat["joined_tournament_count"]%>
+                </div>
+                <div class="col-span-1 py-3 font-bold uppercase border-b">
+                    <%= t 'team.stats.wins'%>
+                </div>
+                <div class="col-span-2 py-3 border-b">
+                    <%= stat["win_count"]%>
                 </div>
 
                 <div class="col-span-1 py-3 font-bold uppercase border-b">
-                    Games played
+                    <%= t 'team.stats.games_played'%>
                 </div>
                 <div class="col-span-2 py-3 border-b">
-                    155
+                    <%= stat["match_count"] %>
+                </div>
+
+                <div class="col-span-1 py-3 font-bold uppercase border-b">
+                    <%= t 'team.stats.awards'%>
+                </div>
+                <div class="col-span-2 py-3 border-b">
+                    <%= stat["award_count"] %>
                 </div>
 
 
@@ -48,3 +62,4 @@
     </div>
     <!-- GAME SECTION END -->
 </div>
+<% end %>

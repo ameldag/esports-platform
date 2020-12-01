@@ -1,0 +1,261 @@
+ar:
+  global:
+    menu:
+      home: "الصفحة الرئيسية"
+      teams: "فرق"
+      tournaments: "البطولات"
+      games: "ألعاب"
+      account: "إعدادت الحساب"
+      logout: "تسجيل خروج"
+      login: "دخول"
+      sign_up: "سجل"
+    signed_up: "مسجل منذ"  
+    signed_in_with: "تسجيل الدخول مع"
+    upload_file: "قم بتحميل ملف"
+    copyright: "© حقوق الطبع والنشر 2020 "
+  views:
+    pagination:
+      first: "&laquo; الأول"
+      last: "الاخير &raquo;"
+      previous: "&lsaquo; السابق"
+      next: "التالى &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} found"
+          one: "Displaying <b>1</b> %{entry_name}"
+          other: "Displaying <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"           
+  activerecord:
+    errors:
+      messages:
+        empty_team: 
+        empty_search: " لا توجد طلبات"
+        empty_request: " لا يوجد أعضاء"
+        empty_member: " لا يوجد تطابق "
+        empty_match:  "لا توجد مباراة"
+        empty_roster: "لا قوائم"
+        empty_activities: "لا توجد أنشطة"
+        empty_infos: "لا توجد معلومات"
+        empty_rule: "مجانا للجميع"
+        empty_awards: هذا الفريق ليس لديه جوائز بعد
+        verifier_search: "يرجى التأكد من كتابة كلماتك بشكل صحيح."
+        register_member: "لا يوجد حاليا أي أعضاء مسجلين لهذا الفريق"
+        register_request: "لا يوجد حاليا أي طلبات مسجلة لهذا الفريق"
+        register_rosters: "لا يوجد حاليا أي قوائم مسجلة لهذا الفريق"
+        register_matche: "لا يوجد حاليا أي مباريات مسجلة لهذه البطولة"
+    notice:
+      attention: "سيتم عرض هذه المعلومات بشكل عام ، لذا كن حذرًا فيما تشاركه"
+      load: "جار التحميل... " 
+      confirmation: "هل أنت متأكد أنك تريد "
+      added: "لم يضف أي معلومات حتى الآن"
+      information_tour: "بعض المعلومات عن البطولة نفسها ووجودها خارج المنصة"
+      waiting_decided: "لكي تقرر"
+      waiting: "انتظار"
+      drag_drop: "أو السحب والإفلات"
+      file_format: "PNG ، JPG ، GIF يصل حجمه إلى 10 ميجابايت"
+    attributes:
+      about: "حول"  
+      activities: "أنشطة"
+      informations: "معلومات"
+      website: "موقع الكتروني" 
+      ago: منذ
+  team:
+    new:
+      create: "إنشاء فريق جديد" 
+      info: "معلومات الفريق"
+      name: "اسم"
+      logo: "الشعار"
+      cover: "صورة الغلاف"
+      description: "وصف موجز لفريقك. عناوين URL ذات ارتباط تشعبي "
+      submit:  
+        create: "خلق"
+    label:  
+      title: "فرق"
+      search: "بحث"
+      submit: "سلم"   
+      owner: "صاحب"  
+      captian: "قبطان"
+      joined: "انضم في"
+      create_one: "اصنع واحدا"
+      infos: "القليل من المعلومات المتعلقة بفريقك"
+      member_title: "أعضاء الفريق"
+      request_title: "طلبات الفريق " 
+      roster_title: "قوائم الفريق" 
+      one_title: "الفريق"
+    submit:
+      quit: ترك الفريق
+      join: "انضم إلى الفريق"
+      request_pending: "طلب الانضمام معلق"
+      cancel: "إلغاء"   
+    tabs:
+      give_ownership: "امنح الملكية"
+      overview: "نظرة عامة"
+      members: "أفراد"
+      stats: "احصائيات"
+      awards: الجوائز
+      rosters: "القوائم"
+      requests: "الطلبات"
+      create_roster: "إنشاء قائمة"
+    rosters:
+      tabs:
+        quit: غادر الفريق
+        join: "انضم إلى القائمة"
+        request_pending: "الانضمام إلى القائمة المعلقة"
+      new:
+        label:
+          title: "إنشاء قائمة"
+          name: "اسم"
+          limit: "حد"
+          game: "لعبه"
+          cover: "التغطية"
+      submit:
+        change: "تغيير"
+        save:  "حفظ"
+        cancel: "إلغاء"
+        edit: "تعديل"
+    stats:
+      tier: المستوى
+      win_rate: معدل الفوز 
+      joined_tournament: البطولات المنضمة
+      wins: انتصارات
+      games_played: تم لعب المباريات
+      awards: الجوائز
+    awards:
+      roster: قائمة
+      games: ألعاب
+      achived_at:  أُنجز في    
+  devise:
+    sessions:
+      new:
+        title: "تسجيل الدخول إلى حسابك"
+        subtitle1: "أو ببساطة"
+        subtitle2: "واستمتع بأفضل ألعابك"
+        info: "أو تواصل مع"
+        email: "عنوان بريد الكتروني"
+        password: "كلمه السر"
+        remeber: "تذكرنى"
+        forget_password: "نسيت رقمك السري؟"
+        sign_in: "تسجيل الدخول"
+    registrations:
+      new:
+        title:  "أنشئ حسابك"
+        subtitle: "أو مع بريدك الإلكتروني"
+        username: "اسم المستخدم"
+        email: "عنوان بريد الكتروني"
+        password: "كلمه السر"
+        confirm_password: "تأكيد كلمة المرور"
+  users:
+    show:
+      tabs:
+        overview: "نظرة عامة"
+        stats: "احصائيات"
+        tournaments: "البطولات"
+    edit:
+      title: "تحديث ملف تعريف المستخدم"
+      profile: "الملف الشخصي"
+      username: "اسم المستخدم"
+      password: "كلمه السر"
+      confirm_password: "تأكيد كلمة المرور"
+      photo: "صورة"
+      cover: "التغطية"
+      personal_info: "معلومات شخصية"
+      info: "استخدم عنوانًا دائمًا حيث يمكنك تلقي البريد"
+      first_name: "الاسم الاول"
+      last_name: "الكنية"
+      email: "عنوان بريد الكتروني"
+      save: "حفظ"
+  tournaments:
+    slots: "فتحات"
+    title: "المسابقة"
+    similar: "بطولات مماثلة"
+    participate: "الفرق المشاركة"
+    specification: "مواصفات"
+    check_in_period: "فترة تسجيل الوصول"
+    status:
+      new: "جديد"
+      full: "ممتلئ"
+      open: "افتح"
+      completed: "منجز"
+      registered: "مسجل"
+      confirmed: "تم تأكيد"
+    submit: 
+      create_roster: "إنشاء قائمة"
+      subscribe: "الإشتراك" 
+      confirm_subscribe: "تأكيد الاشتراك" 
+    format:
+      title: "شكل"
+      unit: "KD"
+      game: "لعبه"
+      team_count: "عدد الفريق"
+      entry_fee: "رسم الدخول"
+      prize: "مجموع جوائز"
+      region: "منطقة"
+      na: "غير متوفر"
+      maps: "خرائط"
+      rules: "قواعد"
+    tabs:
+      overview: "نظرة عامة"
+      bracket: "تعيين"
+      matches: "مباريات"
+      results: "النتائج"
+    index:
+      title:  "تصفح البطولات"
+      games: "اختر لعبتك"
+      list: "البطولات المدرجة"
+    brackets:
+      final: نهائي
+      semi: نصف
+      round: الجولة
+      grand_final: النهائي الكبير
+      loser_wb_semi: WB الخاسر من نصف 
+      loser_wb_final: WB الخاسر من نهائي 
+      winner_lb_final: LB الفائز بنهائي 
+      status:
+        locked: Locked
+        waiting: Waiting
+        ready: Ready
+        running: Running
+        completed: Completed
+        archived: Archived
+  pages:
+    index:
+      browse_games: "تصفح الألعاب"
+      recommended: "البطولات الموصى بها"
+      banner_title: "الرياضات الإلكترونية عند الطلب"
+      banner_subtitle: "ألعابك المفضلة ، البطولات المفضلة ، في أي مكان وفي أي وقت"
+      recommended_price: "بطولات بجوائز كبيرة"
+      ongoing: "البطولات الجارية"
+  game:
+    tournaments:
+      ongoing: "القادمة والجارية"
+      past: "الماضي"
+      featured: "البطولات المميزة"
+      info_featured: "سيتم عرض البطولات المميزة قريبًا"
+      desciption: "إنه يحدث بعد ذلك"
+      past_tournament: "البطولات السابقة"
+    tabs:
+      overview: نظرة عامة
+      tournaments: البطولات      
+  activities:
+      user: 
+        create: "إنشاء مستخدم جديد"   
+        update: "مستخدم محدث"
+      tournament:
+        won: "فاز بالبطولة"
+      match:
+        lost: "خسر المباراة"
+        won: "فاز بالمباراة"
+      roster:
+        create: "إنشاء قائمة جديدة"
+      team:
+        create: "أنشأ فريقًا جديدًا" 
+        quit: "غادر الفريق"
+        update: "فريق محدث"    
+ 
+          
+
+

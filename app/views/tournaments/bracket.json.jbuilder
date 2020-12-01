@@ -37,6 +37,7 @@ else
     json.scheduled_datetime nil
     json.start_datetime nil
     json.end_datetime nil
+    json.number match.round
 
     if match.left_team
       json.opponent1 do

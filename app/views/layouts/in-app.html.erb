@@ -1,18 +1,23 @@
-<!DOCTYPE html>
+<!DOCTYPE html>   
 <html>
   <head>
     <title>SeembaEsports</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-  </head>
-
-  <body>
-
-
+    <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
+    <%= stylesheet_pack_tag "application", 'data-turbolinks-track': "reload" %>
+    <%= javascript_tag do %>
+      I18n.locale = "<%= I18n.locale %>";
+    <% end %>
+    <%= javascript_pack_tag "translations/#{I18n.locale}" %>
+   </head>
+ 
+   <% if I18n.locale.to_s == "ar" %>
+      <body dir="rtl" lang="<%= I18n.locale.to_s%>">
+    <% else %>
+      <body dir="ltr" lang="<%= I18n.locale.to_s%>">
+    <% end %>
     <% if notice %>
     <div class="bg-green-600">
       <div class="max-w-screen-xl mx-auto py-3 px-3 sm:px-6 ">
@@ -69,30 +74,38 @@
     </div>
     <% end %>
 
-
-    <div id="app" class="h-screen flex overflow-hidden bg-gray-100">
+    <div id="app" class="flex overflow-hidden bg-gray-100">
         <%= render "partials/mobile_sidebar" %>
     
         <%= render "partials/sidebar" %>
     
-        <div class="flex flex-col w-0 flex-1 overflow-hidden">
-            
-          <%= render "partials/navbar" %>
-    
-          <main
-            class="flex-1 relative z-0 overflow-y-auto py-0 focus:outline-none"
-            tabindex="0"
-          >
-    
-
-      <%= yield %>
-
-          </main>
-
-        </div> 
-
-    </div>
-
+          <div class="flex flex-col w-0 flex-1 overflow-hidden bg-black">
+              
+            <%= render "partials/navbar" %>
       
+            <main 
+              class="mb-8 flex-1 relative z-0 overflow-y-auto py-0 focus:outline-none"
+              tabindex="0">
+      <%= yield %>
+            </main>
+          </div> 
+    </div> 
+    <footer class="bg-gray-800 w-full py-2 px-4 text-xs border-gray-900">
+          <% if I18n.locale.to_s == "ar" %>
+            <div class="flex items-center justify-between" dir="rtl" lang="<%= I18n.locale.to_s%>">
+          <% else %>
+            <div class="flex items-center justify-between" dir="ltr" lang="<%= I18n.locale.to_s%>">
+          <% end %>
+            <div class="flex items-center text-gray-600">
+              <img class="h-6 w-auto" src="/images/logo.png" alt="Seemba Logo" />
+            </div>
+            <div class="text-gray-500 justify-between"> 
+              <span class="my-2 underline"> <%= link_to "English",locale: "en" %></span>
+              <span class="my-2 underline"> <%= link_to "Francais",locale: "fr" %></span>
+              <span class="my-2 underline"><%= link_to "Arab",locale: "ar" %></span>
+            </div>
+            <p class="text-gray-500"><%= t 'global.copyright'%></p>
+        </div>
+    </footer>
   </body>
 </html>

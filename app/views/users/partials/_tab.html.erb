@@ -1,24 +1,24 @@
-<div class="bg-transparent border-b border-gray-600 mx-5 py-2 my-0 px-5">
+<div class="bg-transparent border-b border-gray-600 mx-5 py-2 my-0 px-0">
 
-    <div class="grid grid-cols-1 gap-4 py-2">
+    <div class="gap-4 py-1">
         <div class="">
             <a href="<%= show_team_path(@team.id) %>"
                 class="whitespace-no-wrap py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-200 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                Overview
+                <%= t 'team.tabs.overview'%>
             </a>
             <a href="<%= show_team_members_path(@team.id) %>"
                 class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-200 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                Members
+                <%= t 'team.tabs.members'%>
             </a>
             <a href="<%= show_team_stats_path(@team.id) %>"
                 class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-200 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                Stats
+                <%= t 'team.tabs.stats'%>
             </a>
 
             <% if (@team.owner_id == current_user.id) %>
             <a href="<%= show_team_requests_path(@team.id) %>"
                 class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-200 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                Requests
+                <%= t 'team.tabs.requests'%>
                 <svg class="inline ml-2 h-4 w-4 p-0" fill="currentColor" viewBox="0 0 47 47" style="enable-background:new 0 0 47 47;">
                     <g>
                         <g>
@@ -52,7 +52,7 @@
             <% if (@team.owner_id != current_user.id) %>
             <% if (@current_user_request < 1) %>
                 <%= link_to team_join_path(@team.id), class: "whitespace-no-wrap ml-8 py-4 px-4 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-200 hover:text-gray-200 bg-green-800 border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800" do %>
-                Join Team
+                <%= t 'team.tabs.join'%>
                 <% end %>
             <% else %>
             <%= link_to "Join Request Pending", team_join_path(@team.id),
@@ -60,14 +60,10 @@
             <% end %>
             <% end %>
             <% end %>
-
-
-
-
             <% if ((current_user.team.present?) and (current_user.team == @team)) %>
             <a href="<%= team_quit_path(@team.id) %>"
                 class="whitespace-no-wrap ml-8 py-4 px-4 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-200 hover:text-gray-200 bg-red-800 border-red-800 focus:outline-none focus:text-red-800 focus:border-red-800">
-                Quit team
+                <%= t 'team.tabs.quit'%>
             </a>
             <% end %>
 

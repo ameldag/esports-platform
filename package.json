@@ -8,7 +8,9 @@
     "@rails/webpacker": "4.2.2",
     "@tailwindcss/ui": "^0.3.0",
     "alpinejs": "^2.6.0",
+    "i18n-js": "^3.8.0",
     "jquery": "^3.5.1",
+    "rails-erb-loader": "^5.5.2",
     "stimulus": "^1.1.1",
     "tailwindcss-stimulus-components": "^1.0.2",
     "turbolinks": "^5.2.0"
@@ -16,6 +18,8 @@
   "version": "0.1.0",
   "devDependencies": {
     "tailwindcss": "^1.4.6",
+    "tailwindcss-dir": "^4.0.0",
+    "tailwindcss-rtl": "^0.6.0",
     "webpack-dev-server": "^3.11.0"
   }
 }

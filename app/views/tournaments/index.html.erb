@@ -1,8 +1,8 @@
 <div class="relative bg-black min-h-screen p-5">
-    <h1 class="text-white font-bold text-3xl mb-5">Browse Tournaments</h1>
+    <h1 class="text-white font-bold text-3xl mb-5"><%= t '.title'%></h1>
 
 <!-- Browse games box -->
-<h2 class="text-white font-sm text-2xl mb-2">Choose your game</h2>
+<h2 class="text-white font-sm text-2xl mb-2"><%= t '.games' %></h2>
 
 <div class="list-games grid grid-cols-12 gap-4">
     <% 3.times do %>
@@ -32,7 +32,7 @@
     <div class="md:flex md:items-center md:justify-between">
         <div class="flex-1 min-w-0">
           <h2 class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-10">
-            Listed Tournaments
+            <%= t '.list'%>
           </h2>
         </div>
       </div>

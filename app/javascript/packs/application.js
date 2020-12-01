@@ -10,7 +10,9 @@ require("channels")
 require('modules') // All good
 require('jquery')
 import '../css/application.css'
+import I18n from "i18n-js";
 
+global.I18n = I18n;
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
