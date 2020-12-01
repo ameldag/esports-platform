@@ -30,20 +30,21 @@ Rails.application.routes.draw do
     get ":game_id/challenge/:id/stats", to: "challenge#stats", as: "show_challenge_stats"
     get ":game_id/challenge/:id/members", to: "challenge#members", as: "show_challenge_members"
 
-    # teams routes
-    get "teams", to: "team#index", as: "teams"
-    get "team/edit/:id", to: "team#edit", as: "edit_team"
-    get "team/new", to: "team#new", as: "new_team"
-    post "team/new", to: "team#create", as: "send_new_team"
-    get "team/join/:team_id", to: "team#join_request", as: "team_join"
-    post "team/request/:request_id", to: "team#team_request_answer", as: "team_request_answer"
-    get "team/:id", to: "team#show", as: "show_team"
-    get "team/:id/stats", to: "team#stats", as: "show_team_stats"
-    get "team/:id/members", to: "team#members", as: "show_team_members"
-    get "team/:id/requests", to: "team#requests", as: "show_team_requests"
-    get "team/:id/quit", to: "team#quit", as: "team_quit"
-    get "team/:id/giveownership/:user_id", to: "team#give_ownerShip", as: "give_ownerShip"
-    # Roster routes
+  # teams routes
+  get "teams", to: "team#index", as: "teams"
+  get "team/edit/:id", to: "team#edit", as: "edit_team"
+  get "team/new", to: "team#new", as: "new_team"
+  post "team/new", to: "team#create", as: "send_new_team"
+  get "team/join/:team_id", to: "team#join_request", as: "team_join"
+  post "team/request/:request_id", to: "team#team_request_answer", as: "team_request_answer"
+  get "team/:id", to: "team#show", as: "show_team"
+  get "team/:id/stats", to: "team#stats", as: "show_team_stats"
+  get "team/:id/awards", to: "team#awards", as: "show_team_awards"
+  get "team/:id/members", to: "team#members", as: "show_team_members"
+  get "team/:id/requests", to: "team#requests", as: "show_team_requests"
+  get "team/:id/quit", to: "team#quit", as: "team_quit"
+  get "team/:id/giveownership/:user_id", to: "team#give_ownerShip", as: "give_ownerShip"
+  # Roster routes
 
   namespace :team do
     get ":team_id/roster/:id", to: "rosters#show", as: "show_roster"

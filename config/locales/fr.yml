@@ -41,6 +41,7 @@ fr:
         empty_activities: "Aucune activité"
         empty_infos: "Aucune information"
         empty_rule: "Gratuit pour tous"
+        empty_awards: Cette équipe n'a pas encore de récompenses
         verifier_search: "Veuillez vous assurer que vos mots sont correctement orthographiés"
         register_member: "Il n’y a actuellement aucun membre inscrit à cette équipe"
         register_request: "Il n'y a actuellement aucune demande enregistrée pour cette équipe"
@@ -95,6 +96,7 @@ fr:
       overview: "Aperçu"
       members: "Membres"
       stats: "Statistiques"
+      awards: Récompenses
       rosters: "Liste"
       requests: "Demandes"
       create_roster: "Créer une liste"
@@ -115,6 +117,17 @@ fr:
         save: "Sauvegarder" 
         cancel: "Annuler"
         edit: "Éditer"
+    stats:
+      tier: Niveau 
+      win_rate: Taux de réussite
+      joined_tournament: Tournoi rejoint
+      wins: Victoires
+      games_played: Parties jouées
+      awards: Récompenses    
+    awards:
+      roster: Liste
+      games: Jeux
+      achived_at: Atteint à
   devise:
     sessions:
       new:
@@ -162,7 +175,7 @@ fr:
     participate: "Équipes participantes"
     specification: "Caractéristiques"
     check_in_period: "Période d'enregistrement"
-    stats:
+    status:
       new: "Nouveau"
       full: "Plein"
       open: "Ouvert"

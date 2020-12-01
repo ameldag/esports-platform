@@ -310,11 +310,11 @@
                 </div>
                 <div class="border border-gray-300 rounded-md grid grid-cols-3 text-center">
                     <div class="text-gray-400 p-5">
-                        <h4 class="font-medium"><%= t 'tournaments.stats.registered'%></h4>
+                        <h4 class="font-medium"><%= t 'tournaments.status.registered'%></h4>
                         <%= @tournament.rosters.count%>
                     </div>
                     <div class="text-gray-400 p-5">
-                        <h4 class="font-medium"><%= t 'tournaments.stats.confirmed'%></h4>
+                        <h4 class="font-medium"><%= t 'tournaments.status.confirmed'%></h4>
                         <%= @tournament.roster_tournaments.count(:confirmed_subscribtion_at) %>
                     </div>
                     <div class="text-gray-400 p-5">

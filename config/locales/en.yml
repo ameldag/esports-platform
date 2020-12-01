@@ -41,6 +41,7 @@ en:
         empty_activities: No Activities
         empty_infos: No Informations
         empty_rule: Free for all
+        empty_awards: This team has no awards yet
         verifier_search: Please make sure your words are spelled correctly.
         register_member: There are currently no members registered for this Team
         register_request: There are currently no requests registered for this Team
@@ -95,6 +96,7 @@ en:
       overview: "Overview"
       members: "Members"
       stats: "Stats"
+      awards: Awards
       rosters: "Rosters"
       requests: "Requests"
       create_roster: "Create Roster"
@@ -115,6 +117,17 @@ en:
         save: Save 
         cancel: Cancel
         edit: Edit
+    stats:
+      tier: Tier
+      win_rate: Win rate
+      joined_tournament: Joined Tournament
+      wins: Wins
+      games_played: Games played
+      awards: Awards
+    awards:
+      roster: Roster
+      games: Games
+      achived_at: Achieved at
   devise:
     sessions:
       new:
@@ -162,7 +175,7 @@ en:
     participate: Participating teams
     specification: Specifications
     check_in_period: Check-in period
-    stats:
+    status:
       new: New
       full: Full
       open: Open

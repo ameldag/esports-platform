@@ -41,6 +41,7 @@ ar:
         empty_activities: "لا توجد أنشطة"
         empty_infos: "لا توجد معلومات"
         empty_rule: "مجانا للجميع"
+        empty_awards: هذا الفريق ليس لديه جوائز بعد
         verifier_search: "يرجى التأكد من كتابة كلماتك بشكل صحيح."
         register_member: "لا يوجد حاليا أي أعضاء مسجلين لهذا الفريق"
         register_request: "لا يوجد حاليا أي طلبات مسجلة لهذا الفريق"
@@ -95,6 +96,7 @@ ar:
       overview: "نظرة عامة"
       members: "أفراد"
       stats: "احصائيات"
+      awards: الجوائز
       rosters: "القوائم"
       requests: "الطلبات"
       create_roster: "إنشاء قائمة"
@@ -115,6 +117,17 @@ ar:
         save:  "حفظ"
         cancel: "إلغاء"
         edit: "تعديل"
+    stats:
+      tier: المستوى
+      win_rate: معدل الفوز 
+      joined_tournament: البطولات المنضمة
+      wins: انتصارات
+      games_played: تم لعب المباريات
+      awards: الجوائز
+    awards:
+      roster: قائمة
+      games: ألعاب
+      achived_at:  أُنجز في    
   devise:
     sessions:
       new:
@@ -162,7 +175,7 @@ ar:
     participate: "الفرق المشاركة"
     specification: "مواصفات"
     check_in_period: "فترة تسجيل الوصول"
-    stats:
+    status:
       new: "جديد"
       full: "ممتلئ"
       open: "افتح"

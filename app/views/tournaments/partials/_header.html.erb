@@ -42,11 +42,11 @@
                 <h2 class="text-gray-300"><%= @tournament.start_date %> at 19:00 CEST &bull;
                 <% if (@tournament.rosters) &&  (@tournament.slots) %>
                     <% if ((@tournament.start_date > Date.today) and (@tournament.rosters.count < @tournament.slots)) %>
-                    <span class="bg-green-700 text-white text-xs px-2 py-1 rounded-full"><%= t 'tournaments.stats.open'%></span>
+                    <span class="bg-green-700 text-white text-xs px-2 py-1 rounded-full"><%= t 'tournaments.status.open'%></span>
                     <% elsif (@tournament.rosters.count >= @tournament.slots) %>
-                    <span class="bg-red-700 text-white text-xs px-2 py-1 rounded-full"><%= t 'tournaments.stats.full'%></span>
+                    <span class="bg-red-700 text-white text-xs px-2 py-1 rounded-full"><%= t 'tournaments.status.full'%></span>
                     <% elsif (@tournament.end_date < Date.today) %>
-                    <span class="bg-red-700 text-white text-xs px-2 py-1 rounded-full"><%= t 'tournaments.stats.completed'%></span>
+                    <span class="bg-red-700 text-white text-xs px-2 py-1 rounded-full"><%= t 'tournaments.status.completed'%></span>
                     <% end %>
                 <% end %>    
                 </h2>

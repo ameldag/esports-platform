@@ -39,7 +39,7 @@
                             <% if ((current_user.team.present?) and (current_user.team == result)) %>
                             <% if (current_user.team.owner_id == current_user.id) %>
                             <span
-                                class="ml-4 inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-red-200 text-red-800">
+                                class="ml-1 inline-flex items-center px-1 py-0.25 rounded-full text-xs font-medium leading-4 bg-red-200 text-red-800">
                                 <%= t 'team.label.owner'%>
                             </span>
                             <% end %>

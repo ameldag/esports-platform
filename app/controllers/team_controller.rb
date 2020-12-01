@@ -41,6 +41,10 @@ class TeamController < ApplicationController
     @stats = @team.global_stats
   end 
 
+  def awards
+    @awards = @team.get_awards
+  end
+
   def requests
     @requests = Request.where("user_id != ? and team_id = ? and status = ?", current_user.id, current_user.team.id, "pending").all
     @current_user_request = Request.count_request(@team.id, current_user.id, "pending").count

@@ -55,4 +55,9 @@ class Team < ApplicationRecord
     roster.tournaments.count
   end
   
+
+  def get_awards
+    Award.includes(:roster => :team).where(roster: { teams: { id: self.id } })
+  end
+
 end
