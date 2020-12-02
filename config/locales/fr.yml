@@ -197,6 +197,8 @@ fr:
       na: "N/A"
       maps: "Plans"
       rules: "Règles"
+      planned_at: "Programée Le"
+      round_delay: "Durée Ronde"
     tabs:
       overview: "Aperçus"
       bracket: "Designation"

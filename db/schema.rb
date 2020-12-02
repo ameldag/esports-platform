@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_124545) do
+ActiveRecord::Schema.define(version: 2020_12_02_190846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,11 +180,14 @@ ActiveRecord::Schema.define(version: 2020_11_30_124545) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "next_match_id"
     t.bigint "game_id"
+    t.datetime "planned_at"
+    t.bigint "winner_id"
     t.index ["game_id"], name: "index_matches_on_game_id"
     t.index ["left_team_id"], name: "index_matches_on_left_team_id"
     t.index ["next_match_id"], name: "index_matches_on_next_match_id"
     t.index ["right_team_id"], name: "index_matches_on_right_team_id"
     t.index ["tournament_id"], name: "index_matches_on_tournament_id"
+    t.index ["winner_id"], name: "index_matches_on_winner_id"
   end
 
   create_table "modes", force: :cascade do |t|
@@ -322,6 +325,8 @@ ActiveRecord::Schema.define(version: 2020_11_30_124545) do
     t.bigint "mode_id"
     t.bigint "region_id"
     t.text "rules"
+    t.datetime "planned_at"
+    t.decimal "round_delay"
     t.index ["game_id"], name: "index_tournaments_on_game_id"
     t.index ["mode_id"], name: "index_tournaments_on_modes_id"
     t.index ["region_id"], name: "index_tournaments_on_regions_id"
@@ -379,6 +384,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_124545) do
   add_foreign_key "matches", "matches", column: "next_match_id"
   add_foreign_key "matches", "rosters", column: "left_team_id"
   add_foreign_key "matches", "rosters", column: "right_team_id"
+  add_foreign_key "matches", "rosters", column: "winner_id"
   add_foreign_key "matches", "tournaments"
   add_foreign_key "region_tournaments", "regions"
   add_foreign_key "region_tournaments", "tournaments"
