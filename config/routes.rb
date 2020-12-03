@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     get "tournament/:id/subscribe", to: "tournaments#subscribe", as: "subscribe_tournament_matches"
     get "tournament/:id/confirm_subscribtion", to: "tournaments#confirm_subscribtion", as: "confirm_subscribtion_tournament_matches"
     get "tournament/:id/participation", to: "tournaments#participation", as: "participation_tournament_matches"
-
+    # matches routes
+    get "tournament/:id/matches/ongoing", to: "tournaments#ongoing_match", as: "ongoing_match"
+    get "tournament/:id/matches/past", to: "tournaments#past_match", as: "past_match"
     #challenges routes
     get ":game_id/challenge", to: "challenge#challenges", as: "challenges"
     get ":game_id/challenge/:id/show", to: "challenge#show", as: "show_challenge"

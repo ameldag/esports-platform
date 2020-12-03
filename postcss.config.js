@@ -12,6 +12,7 @@ module.exports = {
             features: {
                 'focus-within-pseudo-class': false
             }
-        })
+        }),
+        ...(process.env.NODE_ENV === "production" ? [purgecss] : [])
     ]
 }

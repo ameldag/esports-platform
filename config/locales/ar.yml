@@ -13,6 +13,8 @@ ar:
     signed_in_with: "تسجيل الدخول مع"
     upload_file: "قم بتحميل ملف"
     copyright: "© حقوق الطبع والنشر 2020 "
+    ongoing: "القادمة والجارية"
+    past: "الماضي"
   views:
     pagination:
       first: "&laquo; الأول"
@@ -231,8 +233,6 @@ ar:
       ongoing: "البطولات الجارية"
   game:
     tournaments:
-      ongoing: "القادمة والجارية"
-      past: "الماضي"
       featured: "البطولات المميزة"
       info_featured: "سيتم عرض البطولات المميزة قريبًا"
       desciption: "إنه يحدث بعد ذلك"

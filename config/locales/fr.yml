@@ -13,6 +13,8 @@ fr:
     signed_up: "Inscrit il y a"
     upload_file: "Télécharger un fichier"
     copyright: "© Copyright 2020."
+    ongoing: "À venir et en cours"    
+    past: "Passé"
   views:
     pagination:
       first: "&laquo; Première"
@@ -221,8 +223,6 @@ fr:
       ongoing: "Tournois en cours"
   game:
     tournaments:
-      ongoing: "À venir et en cours"    
-      past: "Passé"
       featured: "Tournois en vedette"
       info_featured: "Les tournois en vedette seront bientôt proposés"
       desciption: "Ça se passe ensuite"

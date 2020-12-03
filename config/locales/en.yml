@@ -13,6 +13,8 @@ en:
     signed_in_with: "Signed in with"  
     upload_file: Upload a file 
     copyright: "© Copyright 2020." 
+    ongoing: Upcoming & ongoing    
+    past: Past
   views:
     pagination:
       first: "&laquo; First"
@@ -206,6 +208,12 @@ en:
       title:  Browse Tournaments
       games: Choose your game
       list: Listed Tournaments
+    matches:
+      status:
+        pending: Pending
+        started: Started
+        ended: Ended
+        cancelled: cancelled 
     brackets:
       final: Final
       semi: Semi
@@ -231,8 +239,6 @@ en:
       ongoing: Ongoing Tournaments
   game:
     tournaments:
-      ongoing: Upcoming & ongoing    
-      past: Past
       featured: Featured Tournaments
       info_featured: Featured Tournaments will be offer soon
       desciption: It's happening Next
