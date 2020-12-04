@@ -92,11 +92,13 @@ class TournamentsController < ApplicationController
   end
 
   def ongoing_match
-    @ongoing_match = Match.where("tournament_id = ? and state = ? ", @tournament.id, 1).where("planned_at > ?", Date.today)
+    #ongoing_match next 24hours
+    @ongoing_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id,  DateTime.now, DateTime.now + 1.day)
+    .where(state: [0,1])
   end
 
   def past_match
-    @past_match = Match.where("tournament_id = ? and state = ?", @tournament.id, 2).where("planned_at < ?", Date.today).all
+    @past_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id, 1.day.ago ,  DateTime.now)
   end
 
   private

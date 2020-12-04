@@ -199,6 +199,8 @@ ar:
       na: "غير متوفر"
       maps: "خرائط"
       rules: "قواعد"
+      planned_at: "مبرمجة في"
+      round_delay: "تأخير الجولة"
     tabs:
       overview: "نظرة عامة"
       bracket: "تعيين"

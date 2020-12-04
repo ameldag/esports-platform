@@ -9,7 +9,8 @@ class Match < ApplicationRecord
   has_many :match_score, class_name: "MatchScore", dependent: :destroy
   belongs_to :winner, :class_name => "Roster"
   enum state: [:pending, :started, :ended, :cancelled]
-
+  before_save :default_values
+  
   def update_score
     matchScores = self.match_score
     if (matchScores.length == 0)
@@ -29,7 +30,7 @@ class Match < ApplicationRecord
     end  
 
     self.save
-
+    
     return if (self.next_match_id && (self.next_match.right_team_id == self.winner_id || self.next_match.left_team_id == self.winner_id))
     # update_next_match
     self.update_next_match() if self.next_match_id
@@ -67,5 +68,19 @@ class Match < ApplicationRecord
     else
       return (self.create_activity :won_match, recipient: self.tournament, owner: self.winner), (self.create_activity :lost_match, recipient: self.tournament, owner: self.get_loser)
     end
+  end
+
+  def default_values
+    if self.tournament.round_delay && self.planned_at
+      date_end = self.planned_at + self.tournament.round_delay.minutes #2020-12-03 17:37:00 +0100
+     end
+  
+     if  self.tournament.planned_at && (self.tournament.planned_at > DateTime.now)
+      self.state = "pending"
+     elsif  self.planned_at && self.planned_at <=  DateTime.now && ( self.planned_at + self.tournament.round_delay.minutes) >=  DateTime.now
+      self.state = "started"
+     elsif  (self.planned_at + self.tournament.round_delay.minutes) < DateTime.now
+      self.state = "ended"
+     end
   end
 end

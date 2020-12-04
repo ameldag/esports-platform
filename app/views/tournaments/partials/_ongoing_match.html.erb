@@ -6,6 +6,12 @@
            <li>
             <a href="#" class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
                 <div class="m-2 flex flex-row justify-center content-center">
+                 <div class="pr-15 text-xs leading-5 font-medium text-gray-600 truncate py-2 m-2">
+                        <% if match.planned_at %>
+                        <%= match.planned_at.strftime("%A,%Y-%m-%d")  %>
+                        <% end %>
+                    </div>
+
                     <div class="text-sm leading-5 font-medium text-indigo-600 truncate py-2 m-2">
                         <% if match.left_team %>
                         <%= match.left_team.name %>
