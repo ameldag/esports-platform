@@ -70,17 +70,15 @@ class Match < ApplicationRecord
     end
   end
 
-  def default_values
-    if self.tournament.round_delay && self.planned_at
-      date_end = self.planned_at + self.tournament.round_delay.minutes #2020-12-03 17:37:00 +0100
-     end
-  
-     if  self.tournament.planned_at && (self.tournament.planned_at > DateTime.now)
-      self.state = "pending"
-     elsif  self.planned_at && self.planned_at <=  DateTime.now && ( self.planned_at + self.tournament.round_delay.minutes) >=  DateTime.now
+  def default_values  #!auto update
+    if  self.tournament.planned_at >= DateTime.now 
+      if  (self.tournament.planned_at > DateTime.now) || (self.planned_at == nil)
+      self.state = "pending" # waiting (Unscheduled Matches)
+     elsif  self.planned_at && self.planned_at <=  DateTime.now && ((self.planned_at + self.tournament.round_delay.minutes) >=  DateTime.now)
       self.state = "started"
      elsif  (self.planned_at + self.tournament.round_delay.minutes) < DateTime.now
-      self.state = "ended"
-     end
+      self.state = "ended" # finshied (Unscheduled Matches)
+      end
+    end
   end
 end

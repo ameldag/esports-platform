@@ -65,6 +65,12 @@ fr:
       informations: "Informations"
       website: "Site web"
       ago: depuis
+  date:
+    today: Aujourd'hui
+    yesterday: Hier
+    at: à
+    next_24: 24 Heures suivantes
+    unscheduled: Matchs non programmés
   team:
     new:
       create: "Créer une nouvelle équipe"
@@ -210,6 +216,12 @@ fr:
       title: "Parcourir les tournois"
       games: "Choisissez votre jeu"
       list: "Tournois listés" 
+    matches:
+      status:
+        pending: Attendre
+        started: Commencé
+        ended: Terminé
+        cancelled: Annulé   
     brackets:
       final: Final
       semi: Semi

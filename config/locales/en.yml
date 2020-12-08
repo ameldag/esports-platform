@@ -65,6 +65,12 @@ en:
       informations: "Informations"
       website: "Website"
       ago: ago
+  date:
+    today: Today
+    yesterday: Yesterday
+    at: at
+    next_24: Next 24 hours
+    unscheduled: Unscheduled Matches
   team:
     new:
       create: "Create New Team" 
@@ -215,7 +221,7 @@ en:
         pending: Pending
         started: Started
         ended: Ended
-        cancelled: cancelled 
+        cancelled: Cancelled 
     brackets:
       final: Final
       semi: Semi

@@ -65,6 +65,12 @@ ar:
       informations: "معلومات"
       website: "موقع الكتروني" 
       ago: منذ
+  date:
+    today: اليوم
+    yesterday: في الامس
+    at:  في
+    next_24: الـ 24 ساعة القادمة
+    unscheduled: مباريات غير مجدولة    
   team:
     new:
       create: "إنشاء فريق جديد" 
@@ -210,6 +216,12 @@ ar:
       title:  "تصفح البطولات"
       games: "اختر لعبتك"
       list: "البطولات المدرجة"
+    matches:
+      status:
+        pending: انتظار
+        started: بدأت
+        ended: انتهى
+        cancelled: ألغيت       
     brackets:
       final: نهائي
       semi: نصف

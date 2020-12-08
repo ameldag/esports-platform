@@ -39,7 +39,17 @@
             <h1 class="text-gray-100 font-bold uppercase text-3xl"><%= @tournament.name %></h3>
 
                 <!-- Time and status -->
-                <h2 class="text-gray-300"><%= @tournament.start_date %> at 19:00 CEST &bull;
+                <h2 class="text-gray-300">
+                 <% if @tournament.planned_at %>
+                    <% if @tournament.planned_at.to_date == Date.today %>
+                        <%= t 'date.today'%> <%= t 'date.at'%> <%= @tournament.planned_at.strftime("%H:%M")%>
+                        <% elsif  @tournament.planned_at.to_date == Date.yesterday %> 
+                        <%= t 'date.yesterday'%> <%= t 'date.at'%> <%= @tournament.planned_at.strftime("%H:%M")%>
+                        <% else %>
+                        <%= I18n.l(@tournament.planned_at, format: '%A,%Y-%m-%d %H:%M')%>
+                    <% end %>
+                <% end %>
+                
                 <% if (@tournament.rosters) &&  (@tournament.slots) %>
                     <% if ((@tournament.start_date > Date.today) and (@tournament.rosters.count < @tournament.slots)) %>
                     <span class="bg-green-700 text-white text-xs px-2 py-1 rounded-full"><%= t 'tournaments.status.open'%></span>

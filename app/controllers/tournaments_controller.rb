@@ -35,6 +35,11 @@ class TournamentsController < ApplicationController
 
   def matches
     @matches = Match.where("tournament_id = ?", @tournament.id).all
+    @ongoing_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id,  DateTime.now, DateTime.now + 1.day)
+    .where(state: [0,1])
+    @past_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id, 1.day.ago ,  DateTime.now)
+    ## Unscheduled Matches 
+    @matches_unscheduled =  @matches - (@ongoing_match + @past_match)
   end
 
   def subscribe
