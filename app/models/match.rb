@@ -9,7 +9,6 @@ class Match < ApplicationRecord
   has_many :match_score, class_name: "MatchScore", dependent: :destroy
   belongs_to :winner, :class_name => "Roster"
   enum state: [:pending, :started, :ended, :cancelled]
-  before_save :default_values
   
   def update_score
     matchScores = self.match_score
@@ -32,6 +31,7 @@ class Match < ApplicationRecord
     self.save
     
     return if (self.next_match_id && (self.next_match.right_team_id == self.winner_id || self.next_match.left_team_id == self.winner_id))
+    return if self.state = "started"
     # update_next_match
     self.update_next_match() if self.next_match_id
     # add activities
@@ -67,18 +67,6 @@ class Match < ApplicationRecord
       return self.tournament.create_activity :won_tournament, recipient: self, owner: self.winner
     else
       return (self.create_activity :won_match, recipient: self.tournament, owner: self.winner), (self.create_activity :lost_match, recipient: self.tournament, owner: self.get_loser)
-    end
-  end
-
-  def default_values  #!auto update
-    if  self.tournament.planned_at >= DateTime.now 
-      if  (self.tournament.planned_at > DateTime.now) || (self.planned_at == nil)
-      self.state = "pending" # waiting (Unscheduled Matches)
-     elsif  self.planned_at && self.planned_at <=  DateTime.now && ((self.planned_at + self.tournament.round_delay.minutes) >=  DateTime.now)
-      self.state = "started"
-     elsif  (self.planned_at + self.tournament.round_delay.minutes) < DateTime.now
-      self.state = "ended" # finshied (Unscheduled Matches)
-      end
     end
   end
 end
