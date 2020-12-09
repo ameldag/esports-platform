@@ -99,7 +99,6 @@ class TournamentsController < ApplicationController
   def ongoing_match
     #ongoing_match next 24hours
     @ongoing_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id,  DateTime.now, DateTime.now + 1.day)
-    .where(state: [0,1])
   end
 
   def past_match
