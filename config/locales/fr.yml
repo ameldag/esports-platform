@@ -217,11 +217,19 @@ fr:
       games: "Choisissez votre jeu"
       list: "Tournois listés" 
     matches:
+      label: Match
       status:
         pending: Attendre
         started: Commencé
         ended: Terminé
-        cancelled: Annulé   
+        cancelled: Annulé  
+    submit_score: 
+      title: Soumettre le score de match
+      roster: Liste
+      score: Score
+      comment: Commentaire
+      screenshot: Capture d'écran
+      submit: Soumettre Score 
     brackets:
       final: Final
       semi: Semi

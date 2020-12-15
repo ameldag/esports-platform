@@ -217,11 +217,19 @@ ar:
       games: "اختر لعبتك"
       list: "البطولات المدرجة"
     matches:
+      label: مباراة
       status:
         pending: انتظار
         started: بدأت
         ended: انتهى
-        cancelled: ألغيت       
+        cancelled: ألغيت  
+    submit_score: 
+      title: إرسال نتيجة المباراة
+      roster: القوائم
+      score: نتيجة
+      comment: تعليق
+      screenshot: لقطة شاشة
+      submit: تقديم النتيجة      
     brackets:
       final: نهائي
       semi: نصف

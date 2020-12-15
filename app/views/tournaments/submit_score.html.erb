@@ -1,0 +1,53 @@
+<%= form_with(url: score_submission_path, method: :post, local: true) do |f| %>
+
+<div class="bg-gray-800 min-h-screen-full pb-10">
+  <div class="md:flex md:items-center md:justify-between px-10 py-5 bg-gray-500">
+    <div class="flex-1 min-w-0">
+      <h2 class="text-2xl font-bold leading-7 text-white sm:text-3xl sm:leading-9 sm:truncate"><%= t '.title'%> </h2>
+    </div>
+  </div>
+
+  <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 mx-10 my-10">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="mt-5 md:mt-0 md:col-span-2">
+          <div class="grid grid-cols-3 gap-6">
+            <div class="col-span-3 sm:col-span-2">
+              <label  class="block text-sm font-medium leading-5 text-gray-700"><%= t '.roster'%>: 
+              <% if  @current_roster%>
+              <%= @current_roster.name %>  
+              <% end %>
+              </label>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-6 mt-6">
+            <div class="col-span-3 sm:col-span-2">
+              <label for="website" class="block text-sm font-medium leading-5 text-gray-700"><%= t '.score'%></label>
+              <div class="mt-1 flex rounded-md shadow-sm">
+                <%= f.number_field :score, class: "form-input flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label for="about" class="block text-sm leading-5 font-medium text-gray-700"><%= t '.comment'%></label>
+            <div class="rounded-md shadow-sm">
+              <%= f.text_area :comment, class: "form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", placeholder: "", rows: 3 %>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label class="block text-sm leading-5 font-medium text-gray-700"><%= t '.screenshot'%></label>
+            <div class="mt-2 flex items-center">
+              <span class="ml-5 rounded-md shadow-sm">
+                <input type="file" class="hidden" />
+                <%= f.file_field :image, class:"py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out" %>
+              </span>
+            </div>
+          </div>
+           <%= f.submit "<%= t '.submit' %>",
+            class: "btn btn-primary mt-5 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-700 hover:bg-gray-600 focus:outline-none focus:shadow-outline-gray focus:border-gray-600 active:bg-gray-600 transition duration-150 ease-in-out"%>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
