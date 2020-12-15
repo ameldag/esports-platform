@@ -7,6 +7,8 @@ class Match < ApplicationRecord
   belongs_to :right_team, :class_name => "Roster"
   belongs_to :next_match, :class_name => "Match"
   has_many :match_score, class_name: "MatchScore", dependent: :destroy
+  belongs_to :winner, :class_name => "Roster"
+  enum state: [:pending, :started, :ended, :cancelled]
 
   def update_score
     matchScores = self.match_score
@@ -20,9 +22,15 @@ class Match < ApplicationRecord
       self.left_score = 0
       self.right_score = 0
     end
+    if (self.left_score < self.right_score)
+      self.winner = self.right_team
+    else
+      self.winner = self.left_team
+    end  
+
     self.save
 
-    return if (self.next_match_id && (self.next_match.right_team_id == get_winner.id || self.next_match.left_team_id == get_winner.id))
+    return if (self.next_match_id && (self.next_match.right_team_id == self.winner_id || self.next_match.left_team_id == self.winner_id))
     # update_next_match
     self.update_next_match() if self.next_match_id
     # add activities
@@ -31,25 +39,17 @@ class Match < ApplicationRecord
 
   def update_next_match
     if (!self.next_match.left_team)
-      self.next_match.left_team = get_winner
+      self.next_match.left_team = self.winner
     elsif (!self.next_match.right_team)
-      self.next_match.right_team = get_winner
+      self.next_match.right_team = self.winner
     end
     self.next_match.save
   end
 
-  def get_winner
-    if (self.left_score < self.right_score)
-      return self.right_team
-    else
-      return self.left_team
-    end
-  end
-
   def get_loser
-    if (self.right_team == get_winner)
+    if (self.right_team == self.winner)
       return self.left_team
-    elsif (self.left_team == get_winner)
+    elsif (self.left_team == self.winner)
       return self.right_team
     end
   end
@@ -59,13 +59,13 @@ class Match < ApplicationRecord
       award = Award.new
       award.title = self.tournament.name
       award.achived_at = DateTime.current
-      award.roster = self.get_winner
+      award.roster = self.winner
       award.tournament = self.tournament
       award.game = self.tournament.game
       award.save
-      return self.tournament.create_activity :won_tournament, recipient: self, owner: self.get_winner
+      return self.tournament.create_activity :won_tournament, recipient: self, owner: self.winner
     else
-      return (self.create_activity :won_match, recipient: self.tournament, owner: self.get_winner), (self.create_activity :lost_match, recipient: self.tournament, owner: self.get_loser)
+      return (self.create_activity :won_match, recipient: self.tournament, owner: self.winner), (self.create_activity :lost_match, recipient: self.tournament, owner: self.get_loser)
     end
   end
 end

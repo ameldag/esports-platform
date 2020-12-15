@@ -91,6 +91,14 @@ class TournamentsController < ApplicationController
     @tournament.save
   end
 
+  def ongoing_match
+    @ongoing_match = Match.where("tournament_id = ? and state = ? ", @tournament.id, 1).where("planned_at > ?", Date.today)
+  end
+
+  def past_match
+    @past_match = Match.where("tournament_id = ? and state = ?", @tournament.id, 2).where("planned_at < ?", Date.today).all
+  end
+
   private
 
   def set_tournament
