@@ -47,6 +47,20 @@ class TournamentsController < ApplicationController
       format.js { render :partial => "tournaments/match_details.js.erb", locals: { tournament_id: @tournament.id, match: @match } }
     end
   end
+  
+  def submit_score
+    @match = Match.find(params[:match_id])
+    @submission = SubmissionMatchScore.new(params.permit(:match_id, :user_id, :roster_id, :comment, :score, :image))
+    if (current_user.rosters.exists?(@match.left_team.id))
+      @current_roster = Roster.find(@match.left_team.id)
+    end
+    if (current_user.rosters.exists?(@match.right_team.id))
+      @current_roster = Roster.find(@match.right_team.id)
+    end 
+    respond_to do |format|
+      format.html {}
+    end
+  end
 
   def score_submission
     @match = Match.find(params[:match_id])
@@ -69,19 +83,6 @@ class TournamentsController < ApplicationController
       render "submit_score"
     end
   
-  end
-  def submit_score
-    @match = Match.find(params[:match_id])
-    @submission = SubmissionMatchScore.new(params.permit(:match_id, :user_id, :roster_id, :comment, :score, :image))
-    if (current_user.rosters.exists?(@match.left_team.id))
-      @current_roster = Roster.find(@match.left_team.id)
-    end
-    if (current_user.rosters.exists?(@match.right_team.id))
-      @current_roster = Roster.find(@match.right_team.id)
-    end 
-    respond_to do |format|
-      format.html {}
-    end
   end
 
   def subscribe
