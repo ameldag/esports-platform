@@ -128,10 +128,10 @@ class Team::RostersController < ApplicationController
     def create
       @roster = Roster.new
 
-      @roster.name = params[:name]
-      @roster.limit = params[:limit]
-      @roster.game_id = params[:game].to_i
-      @roster.cover.attach(params[:cover])
+      @roster.limit = params[:roster][:limit]
+      @roster.name = params[:roster][:name]
+      @roster.game_id = params[:roster][:game]
+      @roster.cover.attach(params[:roster][:cover])
       @roster.team = current_user.team
       @roster.users << current_user
 
