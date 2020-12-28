@@ -63,14 +63,16 @@ class TeamController < ApplicationController
     end
   end
 
-  # GET /teams/1/edit
-  def edit
-  end
-
   # POST /teams
   # POST /teams.json
   def create
-    @team = Team.new(team_params)
+    @team = Team.new
+
+    @team.name = params[:team][:name]
+    @team.website = params[:team][:website]
+    @team.description = params[:team][:description]
+    @team.cover.attach(params[:team][:cover])
+    @team.avatar.attach(params[:team][:avatar])
     @team.owner_id = current_user.id
 
     if @team.save
@@ -89,6 +91,26 @@ class TeamController < ApplicationController
     else
       format.html { render :new }
       format.json { render json: @team.errors, status: :unprocessable_entity }
+    end
+  end
+
+  # GET /teams/1/edit
+  def edit
+    @team = Team.find(params[:id])
+  end
+
+  def update
+    @team = Team.find(params[:id])
+    @team.name = params[:team][:name]
+    @team.website = params[:team][:website]
+    @team.description = params[:team][:description]
+    @team.cover=params[:team][:cover]
+    @team.avatar.attach(params[:team][:avatar])
+    
+    if @team.update(team_params)
+      redirect_to show_team_path(@team.id)
+    else
+      render :edit
     end
   end
 

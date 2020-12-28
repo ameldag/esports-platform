@@ -94,6 +94,7 @@ fr:
       request_title: "Demandes de l'équipe" 
       roster_title: "Listes des équipes" 
       one_title: "Équipe"
+      edit: Mettre à jour l'équipe
     submit:
       quit: "Quitter l'équipe"
       join: "Rejoindre l'équipe"
@@ -120,6 +121,9 @@ fr:
           limit: "Limite"
           game: "Jeu"
           cover: "Couverture"
+      edit:
+        label:
+          title: Modifier une liste
       submit:
         change: "Change"
         save: "Sauvegarder" 

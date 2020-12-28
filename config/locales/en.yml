@@ -80,7 +80,7 @@ en:
       cover: Cover photo
       description: "Brief description for your team. URLs are hyperlinked"
       submit:  
-        create: create
+        create: create    
     label:  
       title: "Teams"
       search: "Search"
@@ -94,6 +94,7 @@ en:
       request_title: "Team requests" 
       roster_title: "Team rosters" 
       one_title: Team
+      edit: Update team 
     submit:
       quit: "Quit Team"
       join: "Join Team"
@@ -120,6 +121,9 @@ en:
           limit: Limit
           game: Game
           cover: Cover
+      edit:
+        label:
+          title: Editing a roster
       submit:
         change: Change
         save: Save 

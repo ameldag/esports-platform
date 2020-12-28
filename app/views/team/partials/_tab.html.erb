@@ -24,12 +24,27 @@
             </div>
             <div class="flex flex-wrap justify-center content-center text-3xl text-white font-bold">
                 <%= @team.name %>
+                <!-- edit team-->
+                <% if (@team.owner_id == current_user.id) %>
+                <a href="<%= edit_team_path(@team.id) %>">
+                <button
+                    class="inline-flex items-center justify-center w-6 h-6 m-3 mt-4 text-teal-200 transition-colors duration-150 bg-gray-700 rounded-full focus:shadow-outline hover:bg-gray-500">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path
+                            d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
+                        </path>
+                    </svg>
+                </button>
+                </a>
+                <% end %>
             </div>
             <% if ((current_user.team.present?) and (current_user.team == @team)) %>
             <% if (@team.owner_id == current_user.id) %>
             <div class="p-3 tooltip flex space-x-2 flex flex-wrap justify-center content-center">
-                <div class="text-xs px-3 bg-teal-200 text-teal-600 rounded-full"><%= t 'team.label.owner'%>
-                    <span class='tooltip-text bg-blue-200 p-3 -mt-6 -ml-4 rounded'><%= @team.name %><%= t 'team.label.owner'%> </span>
+                <div class="text-xs px-3 bg-teal-200 text-teal-600 rounded-full"><%= t "team.label.owner" %>
+                    <span
+                        class='tooltip-text bg-blue-200 p-3 -mt-6 -ml-4 rounded'><%= @team.name %><%= t "team.label.owner" %>
+                    </span>
                 </div>
             </div>
             <% end %>
@@ -44,7 +59,7 @@
         <% if (@team.owner_id == current_user.id) %>
         <button
             class="modal-open px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
-            <%= t 'team.tabs.give_ownership'%>
+            <%= t "team.tabs.give_ownership" %>
         </button>
 
         <%= render partial: "team/partials/modal_giveOwnerShip", locals: { team: @team } %>
@@ -52,7 +67,7 @@
         <% else %>
         <button
             class="modal-open px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
-            <%= t 'team.submit.quit'%>
+            <%= t "team.submit.quit" %>
         </button>
         <%= render partial: "team/partials/modal_confirmation", locals: { team: @team, target: "quit" } %>
 
@@ -64,13 +79,13 @@
         <% if (@current_user_request < 1) %>
         <button
             class="modal-open px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
-            <%= t 'team.submit.join'%>
+            <%= t "team.submit.join" %>
         </button>
         <%= render partial: "team/partials/modal_confirmation", locals: { team: @team, target: "join" } %>
         <% else %>
         <button
             class="px-3 py-2 font-medium text-sm leading-5 rounded-full transition duration-150 ease-in-out text-gray-200 border-2 hover:bg-purple-800 shadow">
-            <%= t 'team.submit.request_pending'%>
+            <%= t "team.submit.request_pending" %>
         </button>
         <% end %>
         <% end %>
@@ -82,38 +97,38 @@
             <div class="-mb-px flex">
                 <a href="<%= show_team_path(@team.id) %>"
                     class="whitespace-no-wrap py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    <%= t 'team.tabs.overview'%>
+                    <%= t "team.tabs.overview" %>
                 </a>
                 <a href="<%= show_team_members_path(@team.id) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    <%= t 'team.tabs.members'%>
+                    <%= t "team.tabs.members" %>
                 </a>
                 <a href="<%= show_team_stats_path(@team.id) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    <%= t 'team.tabs.stats'%>
+                    <%= t "team.tabs.stats" %>
                 </a>
                 <a href="<%= show_team_awards_path(@team.id) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    <%= t 'team.tabs.awards'%>
+                    <%= t "team.tabs.awards" %>
                 </a>
                 <!-- show this block only for admin -->
                 <% if (@team.owner_id == current_user.id) %>
                 <% if (@team.rosters.present?) %>
                 <a href="<%= team_rosters_path(@team) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    <%= t 'team.tabs.rosters'%>
+                    <%= t "team.tabs.rosters" %>
                 </a>
                 <% else %>
                 <span class="inline-flex rounded-md shadow-sm">
                     <a href=<%= team_new_roster_path() %>
                         class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    <%= t 'team.tabs.create_roster'%>
+                        <%= t "team.tabs.create_roster" %>
                     </a>
                 </span>
                 <% end %>
                 <a href="<%= show_team_requests_path(@team.id) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    <%= t 'team.tabs.requests'%>
+                    <%= t "team.tabs.requests" %>
                 </a>
                 <% else %>
                 <!-- show this tab only for member have a team -->
@@ -121,7 +136,7 @@
                 <% if current_user.team_id != nil %>
                 <a href="<%= team_rosters_path (@team) %>"
                     class="whitespace-no-wrap ml-8 py-4 px-1 border-b-4 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-purple-800 focus:outline-none focus:text-purple-800 focus:border-purple-800">
-                    <%= t 'team.tabs.rosters'%>
+                    <%= t "team.tabs.rosters" %>
                 </a>
                 <% end %>
                 <% end %>

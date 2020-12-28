@@ -94,6 +94,7 @@ ar:
       request_title: "طلبات الفريق " 
       roster_title: "قوائم الفريق" 
       one_title: "الفريق"
+      edit: تعديل الفريق
     submit:
       quit: ترك الفريق
       join: "انضم إلى الفريق"
@@ -120,6 +121,9 @@ ar:
           limit: "حد"
           game: "لعبه"
           cover: "التغطية"
+      edit:
+        label:
+          title: تعديل قائمة  
       submit:
         change: "تغيير"
         save:  "حفظ"

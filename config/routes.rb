@@ -38,9 +38,10 @@ Rails.application.routes.draw do
 
   # teams routes
   get "teams", to: "team#index", as: "teams"
-  get "team/edit/:id", to: "team#edit", as: "edit_team"
   get "team/new", to: "team#new", as: "new_team"
   post "team/new", to: "team#create", as: "send_new_team"
+  get "team/:id/edit", to: "team#edit", as: "edit_team"
+  put "team/:id/edit", to: "team#update", as: "update_team"
   get "team/join/:team_id", to: "team#join_request", as: "team_join"
   post "team/request/:request_id", to: "team#team_request_answer", as: "team_request_answer"
   get "team/:id", to: "team#show", as: "show_team"
