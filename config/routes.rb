@@ -71,9 +71,9 @@ Rails.application.routes.draw do
   get "user/:id/tournaments", to: "users#tournaments", as: "show_user_tournaments"
 
   # logs csgo 
-  post "csgolog" , to: "match_event#logscsgo", as: :unauthenticated_root
   
   root "pages#index"
+  post "csgolog" , to: "match_event#csgologs"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks",

@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 2021_01_07_064320) do
   end
 
   create_table "match_events", force: :cascade do |t|
-    t.string "type"
+    t.string "event_type"
     t.json "params"
     t.bigint "match_id"
     t.datetime "created_at", precision: 6, null: false
