@@ -333,6 +333,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   better_errors (~> 2.7, >= 2.7.1)
@@ -375,4 +376,4 @@ RUBY VERSION
    ruby 2.7.1p83
 
 BUNDLED WITH
-   2.1.4
+   2.2.2
