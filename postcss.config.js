@@ -2,7 +2,7 @@ module.exports = {
     plugins: [
         require('postcss-import'),
         require('postcss-flexbugs-fixes'),
-        require('tailwindcss')('./app/javascript/css/tailwind.js'),
+        require('tailwindcss'),
         require('autoprefixer'),
         require('postcss-preset-env')({
             autoprefixer: {
@@ -12,7 +12,6 @@ module.exports = {
             features: {
                 'focus-within-pseudo-class': false
             }
-        }),
-        ...(process.env.NODE_ENV === "production" ? [purgecss] : [])
+        })
     ]
 }
