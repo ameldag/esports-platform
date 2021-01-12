@@ -4,9 +4,9 @@ module.exports = {
         extend: {},
     },
     variants: {
-        // transformOrigin: ['direction'],
-        // inset: ['direction'],
-        // textAlign: ['direction'],
+        transformOrigin: ['direction'],
+        inset: ['direction'],
+        textAlign: ['direction'],
         // margin: ['responsive', 'direction'],
     },
     plugins: [
