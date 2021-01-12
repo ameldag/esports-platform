@@ -1,7 +1,9 @@
 const purgecss = require("@fullhuman/postcss-purgecss")({
     // paths to all of the template files in the project
     content: ['./app/**/*.html.erb'],
-
+    // options: {
+    //     whitelist: ["dir", "rtl", "ltr"],
+    // },
     // default extractor including tailwind's special characters
     defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
 });
