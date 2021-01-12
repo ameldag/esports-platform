@@ -11,7 +11,6 @@ module.exports = {
     },
     plugins: [
         require('@tailwindcss/ui'),
-        require('tailwindcss-rtl'),
-        require('tailwindcss-dir')(),
+        require('tailwindcss-rtl')
     ],
 }
