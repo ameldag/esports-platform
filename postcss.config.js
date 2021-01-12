@@ -1,3 +1,10 @@
+const purgecss = require("@fullhuman/postcss-purgecss")({
+    // paths to all of the template files in the project
+    content: ['./app/**/*.html.erb'],
+
+    // default extractor including tailwind's special characters
+    defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
+});
 module.exports = {
     plugins: [
         require('postcss-import'),
@@ -12,6 +19,7 @@ module.exports = {
             features: {
                 'focus-within-pseudo-class': false
             }
-        })
+        }),
+        ...(process.env.NODE_ENV === "production" ? [purgecss] : [])
     ]
 }
