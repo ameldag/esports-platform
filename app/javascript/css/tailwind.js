@@ -4,14 +4,10 @@ module.exports = {
         extend: {},
     },
     variants: {
-        transformOrigin: ['direction'],
-        inset: ['direction'],
-        textAlign: ['direction'],
-        margin: ['responsive', 'direction'],
+        margin: ['responsive']
     },
     plugins: [
         require('@tailwindcss/ui'),
-        require('tailwindcss-rtl'),
-        require('tailwindcss-dir')(),
+        require('tailwindcss-rtl')
     ],
 }
