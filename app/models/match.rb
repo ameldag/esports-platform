@@ -9,7 +9,7 @@ class Match < ApplicationRecord
   has_many :match_score, class_name: "MatchScore", dependent: :destroy
   belongs_to :winner, :class_name => "Roster"
   enum state: [:pending, :started, :ended, :cancelled]
-
+  
   def update_score
     matchScores = self.match_score
     if (matchScores.length == 0)
