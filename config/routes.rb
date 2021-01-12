@@ -21,6 +21,10 @@ Rails.application.routes.draw do
     # matches routes
     get "tournament/:id/matches/ongoing", to: "tournaments#ongoing_match", as: "ongoing_match"
     get "tournament/:id/matches/past", to: "tournaments#past_match", as: "past_match"
+    get "tournament/:id/match/:match_id", to: "tournaments#match_details", as: 'match_details'
+    get "tournament/:id/match/:match_id/score_submission", to: "tournaments#submit_score", as: 'submit_score'
+    post "tournament/:id/match/:match_id/score_submission", to: "tournaments#score_submission", as: "score_submission"
+
     #challenges routes
     get ":game_id/challenge", to: "challenge#challenges", as: "challenges"
     get ":game_id/challenge/:id/show", to: "challenge#show", as: "show_challenge"

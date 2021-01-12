@@ -21,11 +21,11 @@ class TournamentsController < ApplicationController
 
     if @roster.present?
       @activities = PublicActivity::Activity.order("created_at DESC").where(owner_type: "Roster", owner_id: @roster.id)
-      .or(PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Tournament", trackable_id: @tournament.id))
-      .or(PublicActivity::Activity.order("created_at DESC").where(recipient_type: "Tournament", recipient_id: @tournament.id)).all  
+        .or(PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Tournament", trackable_id: @tournament.id))
+        .or(PublicActivity::Activity.order("created_at DESC").where(recipient_type: "Tournament", recipient_id: @tournament.id)).all
     else
       @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Tournament", trackable_id: @tournament.id)
-      .or(PublicActivity::Activity.order("created_at DESC").where(recipient_type: "Tournament", recipient_id: @tournament.id)).all  
+        .or(PublicActivity::Activity.order("created_at DESC").where(recipient_type: "Tournament", recipient_id: @tournament.id)).all
     end
   end
 
@@ -35,11 +35,54 @@ class TournamentsController < ApplicationController
 
   def matches
     @matches = Match.where("tournament_id = ?", @tournament.id).all
-    @ongoing_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id,  DateTime.now, DateTime.now + 1.day)
-    .where(state: [0,1])
-    @past_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id, 1.day.ago ,  DateTime.now)
-    ## Unscheduled Matches 
-    @matches_unscheduled =  @matches - (@ongoing_match + @past_match)
+    @ongoing_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id, DateTime.now, DateTime.now + 1.day)
+    @past_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id, 1.day.ago, DateTime.now)
+    ## Unscheduled Matches
+    @matches_unscheduled = @matches - (@ongoing_match + @past_match)
+  end
+
+  def match_details
+    @match = Match.find(params[:match_id])
+    respond_to do |format|
+      format.js { render :partial => "tournaments/match_details.js.erb", locals: { tournament_id: @tournament.id, match: @match } }
+    end
+  end
+  
+  def submit_score
+    @match = Match.find(params[:match_id])
+    @submission = SubmissionMatchScore.new(params.permit(:match_id, :user_id, :roster_id, :comment, :score, :image))
+    if (current_user.rosters.exists?(@match.left_team.id))
+      @current_roster = Roster.find(@match.left_team.id)
+    end
+    if (current_user.rosters.exists?(@match.right_team.id))
+      @current_roster = Roster.find(@match.right_team.id)
+    end 
+    respond_to do |format|
+      format.html {}
+    end
+  end
+
+  def score_submission
+    @match = Match.find(params[:match_id])
+    @submission = SubmissionMatchScore.new(params.permit(:match_id, :user_id, :roster_id, :comment, :score, :image))
+    if (current_user.rosters.exists?(@match.left_team.id))
+      @submission.roster_id = @match.left_team.id
+    end
+    if (current_user.rosters.exists?(@match.right_team.id))
+      @submission.roster_id = @match.right_team.id
+    end
+    @submission.user_id = current_user.id
+    @submission.match_id = @match.id
+    @submission.score = params[:score]
+    @submission.comment = params[:comment]
+    @submission.image.attach(params[:image])
+    @submission.save
+    if @submission.score != nil
+      redirect_to show_tournament_matches_path(@tournament), notice: "Your request was successfully sent." 
+    else
+      render "submit_score"
+    end
+  
   end
 
   def subscribe
@@ -69,17 +112,17 @@ class TournamentsController < ApplicationController
           if (@confirmed.save)
             @tournament.create_matches
             return respond_to do |format|
-              format.html { redirect_to show_tournament_path(@tournament), notice: "Subscribtion is succesfully confirmed to this tournament." }
-            end
+                     format.html { redirect_to show_tournament_path(@tournament), notice: "Subscribtion is succesfully confirmed to this tournament." }
+                   end
           else
             return respond_to do |format|
-              format.html { redirect_to show_tournament_path(@tournament), notice: "It appears there is no roster for this game in this team." }
-            end
+                     format.html { redirect_to show_tournament_path(@tournament), notice: "It appears there is no roster for this game in this team." }
+                   end
           end
         else
           return respond_to do |format|
-            format.html { redirect_to show_tournament_path(@tournament), alert: "It appears you missed the confirmaton period." }
-          end
+                   format.html { redirect_to show_tournament_path(@tournament), alert: "It appears you missed the confirmaton period." }
+                 end
         end
       end
     end
@@ -102,7 +145,7 @@ class TournamentsController < ApplicationController
   end
 
   def past_match
-    @past_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id, 1.day.ago ,  DateTime.now)
+    @past_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id, 1.day.ago, DateTime.now)
   end
 
   private

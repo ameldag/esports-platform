@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_02_190846) do
+ActiveRecord::Schema.define(version: 2020_12_09_141545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -275,6 +275,19 @@ ActiveRecord::Schema.define(version: 2020_12_02_190846) do
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
+  create_table "submission_match_scores", force: :cascade do |t|
+    t.text "comment"
+    t.bigint "match_id"
+    t.bigint "user_id"
+    t.bigint "roster_id"
+    t.integer "score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["match_id"], name: "index_submission_match_scores_on_match_id"
+    t.index ["roster_id"], name: "index_submission_match_scores_on_roster_id"
+    t.index ["user_id"], name: "index_submission_match_scores_on_user_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -390,6 +403,9 @@ ActiveRecord::Schema.define(version: 2020_12_02_190846) do
   add_foreign_key "region_tournaments", "tournaments"
   add_foreign_key "rosters", "games"
   add_foreign_key "rosters", "teams"
+  add_foreign_key "submission_match_scores", "matches"
+  add_foreign_key "submission_match_scores", "rosters"
+  add_foreign_key "submission_match_scores", "users"
   add_foreign_key "tournament_team_participants", "tournament_teams"
   add_foreign_key "tournament_team_participants", "users"
   add_foreign_key "tournament_teams", "tournaments"

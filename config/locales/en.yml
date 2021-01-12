@@ -217,11 +217,19 @@ en:
       games: Choose your game
       list: Listed Tournaments
     matches:
+      label: Match
       status:
         pending: Pending
         started: Started
         ended: Ended
         cancelled: Cancelled 
+    submit_score:
+      title: Submit match score  
+      roster: Roster
+      score: Score
+      comment: Comment
+      screenshot: Screenshot
+      submit: Submit Score
     brackets:
       final: Final
       semi: Semi

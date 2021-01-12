@@ -26,10 +26,10 @@ class Match < ApplicationRecord
       self.winner = self.right_team
     else
       self.winner = self.left_team
-    end  
+    end
 
     self.save
-    
+
     return if (self.next_match_id && (self.next_match.right_team_id == self.winner_id || self.next_match.left_team_id == self.winner_id))
     return if self.state = "started"
     # update_next_match
