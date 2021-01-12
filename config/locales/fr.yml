@@ -65,6 +65,12 @@ fr:
       informations: "Informations"
       website: "Site web"
       ago: depuis
+  date:
+    today: Aujourd'hui
+    yesterday: Hier
+    at: à
+    next_24: 24 Heures suivantes
+    unscheduled: Matchs non programmés
   team:
     new:
       create: "Créer une nouvelle équipe"
@@ -199,6 +205,8 @@ fr:
       na: "N/A"
       maps: "Plans"
       rules: "Règles"
+      planned_at: "Programée Le"
+      round_delay: "Durée Ronde"
     tabs:
       overview: "Aperçus"
       bracket: "Designation"
@@ -208,6 +216,20 @@ fr:
       title: "Parcourir les tournois"
       games: "Choisissez votre jeu"
       list: "Tournois listés" 
+    matches:
+      label: Match
+      status:
+        pending: Attendre
+        started: Commencé
+        ended: Terminé
+        cancelled: Annulé  
+    submit_score: 
+      title: Soumettre le score de match
+      roster: Liste
+      score: Score
+      comment: Commentaire
+      screenshot: Capture d'écran
+      submit: Soumettre Score 
     brackets:
       final: Final
       semi: Semi
