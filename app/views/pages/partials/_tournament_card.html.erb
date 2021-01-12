@@ -15,11 +15,18 @@
       <img class="h-48 w-full object-cover" src="/images/icons/no-game.png" alt="" />
       <% end %>
     </div>
-
     <time class="uppercase text-xs text-gray-500 font-bold mt-1">
-      Today 18:30
+      <% if tournament.planned_at %>
+        <% if tournament.planned_at.to_date == Date.today %>
+            <%= t 'date.today'%> <%= t 'date.at'%> <%= tournament.planned_at.strftime("%H:%M")%>
+            <% elsif  tournament.planned_at.to_date == Date.yesterday %> 
+            <%= t 'date.yesterday'%> <%= t 'date.at'%> <%= tournament.planned_at.strftime("%H:%M")%>
+            <% else %>
+            <%= I18n.l(tournament.planned_at, format: '%A,%Y-%m-%d %H:%M')%>
+        <% end %>
+      <% end %>
+                
     </time>
-
     <h3 class="uppercase text-sm text-gray-200 font-bold mb-0">
       <%= tournament.name %>
       <span
