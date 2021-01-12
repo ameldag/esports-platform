@@ -2,6 +2,8 @@ class Match < ApplicationRecord
   include PublicActivity::Model
   tracked owner: ->(controller, model) { model && controller }
 
+  after_save :calculate_dates
+
   belongs_to :tournament
   belongs_to :left_team, :class_name => "Roster"
   belongs_to :right_team, :class_name => "Roster"
@@ -68,5 +70,13 @@ class Match < ApplicationRecord
     else
       return (self.create_activity :won_match, recipient: self.tournament, owner: self.winner), (self.create_activity :lost_match, recipient: self.tournament, owner: self.get_loser)
     end
+  end
+
+  def calculate_dates
+    planned_dates ={
+      "first_round" => self.tournament.planned_at,
+      "next_round" => self.round = 1 ? self.tournament.planned_at + (self.tournament.round_delay*60) : self.tournament.planned_at + (self.round - 1 ) * (self.tournament.round_delay * 60) 
+    }
+    planned_dates
   end
 end

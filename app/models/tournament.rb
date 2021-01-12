@@ -54,7 +54,8 @@ class Tournament < ApplicationRecord
           :next_match_id => nil,
           :game_id => self.game_id,
           left_team: a[0].roster,
-          right_team: a[1].roster
+          right_team: a[1].roster,
+          :planned_at => self.planned_at
           })
           roundArray << new_match
         }
@@ -63,7 +64,8 @@ class Tournament < ApplicationRecord
           roundArray.each_slice(2){ |match_couple| 
             new_match = self.match.create({
             :round => match_couple[0].round + 1,
-            :game_id => self.game_id
+            :game_id => self.game_id,
+            :planned_at => match_couple[0].planned_at + (match_couple[0].round - 1 ) * (self.round_delay * 60)
             })
             
             match_couple[0].update_attribute(:next_match_id, new_match.id)
