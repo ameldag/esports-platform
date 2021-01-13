@@ -1,13 +1,13 @@
 <% # if ongoing_match !empty %>
 <% if @ongoing_match && @ongoing_match.count > 0 %>
 <div class="mt-8 flex bg-transparent mx-2 my-0 px-0">
-  <div class="w-1/2 rtl:text-left ltr:text-right">
+  <div class="w-1/2 text-end">
     <a href="<%= ongoing_match_path(@tournament) %>"
       class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 w-full">
       <%= t "global.ongoing" %>
     </a>
   </div>
-  <div class="w-1/2 rtl:text-left ltr:text-right">
+  <div class="w-1/2 text-end">
     <a href="<%= past_match_path(@tournament) %>"
       class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white  w-full">
       <%= t "global.past" %>
