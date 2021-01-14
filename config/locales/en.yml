@@ -168,10 +168,11 @@ en:
       username: Username  
       password: Password
       confirm_password: Confirm Password
+      new_password: New password
       photo: Photo
       cover: Cover photo
-      personal_info: Personal Information
-      info: Use a permanent address where you can receive mail
+      change_password: Change password
+      info: It's a good idea to use a strong password that you're not using elsewhere
       first_name: First name
       last_name: Last name
       email: Email address

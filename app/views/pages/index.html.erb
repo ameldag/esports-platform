@@ -15,14 +15,13 @@
 
     </div>
 
-    <div class="relative w-full mx-0 pt-12 bg-dark-gradient lg:pt-12">
-      <div class="md:ml-auto md:w-full pt-16 px-5 mt-0">
+    <div class="relative w-full mx-0 pt-0 bg-dark-gradient lg:pt-0">
+      <div class="md:ml-auto md:w-full pt-4 px-5 mt-0">
         <a href="<%= show_game_path(@featured.tournament.game.id) %>">
           <% if @featured.tournament.game.card.present? %>
-          <img class="h-64 w-42 rounded-md object-cover shadow" src="<%= url_for(@featured.tournament.game.card) %>"
-            alt="" />
-          <% else %>
-          <img class="h-64 w-42 rounded-md object-cover shadow" src="/images/icons/no-game.png" alt="" />
+          <div class="bg-cover h-3/5	 bg-gray-900 object-cover shadow"
+            style="background-image: url(<%= url_for(@featured.tournament.game.card) %>); background-size: cover;     height: 24rem;">
+          </div>
           <% end %>
         </a>
         <h2 class="mt-5 text-white text-5xl leading-9 font-extrabold tracking-tight sm:text-4xl sm:leading-10">
@@ -134,6 +133,6 @@
       <% end %>
     </div>
     <% end %>
-  
-   </div>
+
+  </div>
 </div>
