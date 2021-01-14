@@ -168,10 +168,11 @@ fr:
       username: "Nom d'utilisateur"
       password: "Mot de passe"
       confirm_password: "Confirmez le mot de passe"
+      new_password: Nouveau mot de passe
       photo: Photo
       cover: "Photo de couverture"
-      personal_info: "Informations personnelles"
-      info: "Utilisez une adresse permanente où vous pouvez recevoir du courrier"
+      change_password: Changer le mot de passe
+      info: C'est une bonne idée d'utiliser un mot de passe fort que vous n'utilisez pas ailleurs
       first_name: "Prénom"
       last_name: "Nom"
       email: "Adresse e-mail"

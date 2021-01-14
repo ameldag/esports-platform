@@ -46,7 +46,7 @@
                         <% elsif  @tournament.planned_at.to_date == Date.yesterday %> 
                         <%= t 'date.yesterday'%> <%= t 'date.at'%> <%= @tournament.planned_at.strftime("%H:%M")%>
                         <% else %>
-                        <%= I18n.l(@tournament.planned_at, format: '%A,%Y-%m-%d %H:%M')%>
+                        <%= I18n.l(@tournament.planned_at, format: '%A, %Y-%m-%d %H:%M')%>
                     <% end %>
                 <% end %>
                 

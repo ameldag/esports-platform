@@ -1,23 +1,4 @@
-<% if (@similar_tournaments.present? and (@similar_tournaments.count > 0)) %>
-<div class="md:flex md:items-center md:justify-between">
-    <div class="flex-1 min-w-0">
-        <h2 class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-10">
-            <%= t 'tournaments.similar'%>
-        </h2>
-    </div>
-</div>
-
-<% if @similar_tournaments.count > 0 %>
-<div class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none">
-    <% @similar_tournaments.each do |tournament| %>
-    <%= render "pages/partials/tournament_card", tournament: tournament %>
-    <% end %>
-
-</div>
-<% end %>
-<% end %>
-
-<div class="bg-transparent mx-0 py-2 my-0 px-0">
+<div class="bg-transparent mx-0 py-0 my-0 px-0">
     <!-- Main columns container -->
     <div class="grid grid-cols-3 gap-6">
 
@@ -331,11 +312,36 @@
                                 </span>
                             </p>
                             <p class="text-sm leading-5 font-medium text-gray-300 group-hover:text-gray-500">
-                                <%=@tournament.start_date - 1.days%>
+                                <%=@tournament.start_date - 1.days%>nnnnnn
                             </p>
                         </div>
                         <% end %>
                     </div>
+                </div>
+            </div>
+            <!-- similar_tournaments-->
+            <div class="similartournaments border-t border-gray-600 pt-0 mt-10 w-full">
+
+                <% if (@similar_tournaments.present? and (@similar_tournaments.count > 0)) %>
+                <div class="md:flex md:items-center md:justify-between">
+                    <div class="flex-1 min-w-0">
+                        <h2
+                            class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-10">
+                            <%= t 'tournaments.similar'%>
+                        </h2>
+                    </div>
+                </div>
+
+                <% if @similar_tournaments.count > 0 %>
+                <div class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none">
+                    <% @similar_tournaments.each do |tournament| %>
+                    <%= render "pages/partials/tournament_card", tournament: tournament %>
+                    <% end %>
+                    <div>
+                    </div>
+                    <% end %>
+                    <% end %>
+
                 </div>
             </div>
         </div>
