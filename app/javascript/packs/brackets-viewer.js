@@ -1,5 +1,6 @@
-import "../css/brackets-viewer.css";
 import "../css/brackets-viewer-rtl.css";
+import '../css/brackets-viewer.css';
+console.log("testttt");
 ! function(e) {
     var t = {};
 
