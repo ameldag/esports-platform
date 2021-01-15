@@ -1,22 +1,22 @@
-<% if @ongoing_match.count >0 %>
+<% if @ongoing_match.count > 0 %>
 <div class="relative w-full bg-black">
   <h3 class="m-5 text-m text-gray-200 font-bold mb-0">
-      <%= t 'date.next_24'%>
+      <%= t "date.next_24" %>
   </h3>
     <ul class="pb-16"> <% 1.times do %>
       <% @ongoing_match.each do |match| %>
         <li class="border-b border-gray-500">
-            <a href="#" class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+          <%= link_to match_details_path(@tournament.id, match.id), remote: true do %>
                 <div class="m-2 flex flex-row justify-center content-center">
                   <div class="pr-15 text-xs leading-5 font-medium text-gray-600 truncate py-2 m-2">
                         <% if match.planned_at %>
-                        <%= match.planned_at.strftime("%H:%M")%>
+                        <%= match.planned_at.strftime("%H:%M") %>
                         <% end %>
                   </div>
                     <div class="text-sm leading-5 font-medium text-indigo-600 truncate py-2 m-2">
                         <% if match.left_team %>
                         <%= match.left_team.name %>
-                          <% else %> <%= t 'activerecord.notice.waiting_decided'%>
+                          <% else %> <%= t "activerecord.notice.waiting_decided" %>
                         <% end %>
                     </div>
 
@@ -30,13 +30,13 @@
                         class="bg-gray-700 text-white text-xs px-4 py-1 rounded-full  px-4 pb-0.5 shadow py-1 m-4 text-gray-200 font-bold ">
                         <% if match.state %>
                           <%= t("tournaments.matches.status.#{match.state}") %>
-                          <% else %> <%= t 'activerecord.notice.waiting'%>
+                          <% else %> <%= t "activerecord.notice.waiting" %>
                         <% end %>
                     </div>
                     <div class="text-sm leading-5 font-medium text-indigo-600 truncate py-2 m-2">
                         <% if match.right_team %>
                         <%= match.right_team.name %>
-                        <% else %>  <%= t 'activerecord.notice.waiting_decided'%>
+                        <% else %>  <%= t "activerecord.notice.waiting_decided" %>
                         <% end %>
                     </div>
                     <div class="text-sm leading-5 font-medium text-indigo-600 truncate py-2 m-2">
@@ -46,7 +46,7 @@
                         <% end %>
                     </div>
                 </div>
-            </a>
+          <% end %>
         </li>
         <% end %>
       <% end %>
