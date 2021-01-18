@@ -1,6 +1,6 @@
 import "../css/brackets-viewer-rtl.css";
 import '../css/brackets-viewer.css';
-
+console.log("test");
 ! function(e) {
     var t = {};
 
