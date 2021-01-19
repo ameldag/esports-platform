@@ -1,6 +1,8 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import 'styles/components/brackets-viewer.css';
+@import 'styles/components/brackets-viewer-rtl.css';
 html {
     overflow-y: scroll;
 }
