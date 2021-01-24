@@ -13,7 +13,8 @@ ar:
     signed_in_with: "تسجيل الدخول مع"
     upload_file: "قم بتحميل ملف"
     copyright: "© حقوق الطبع والنشر 2020 "
-    ongoing: "القادمة والجارية"
+    ongoing: البطولات الحالية
+    upcoming: البطولات القادمة
     past: "الماضي"
   views:
     pagination:
@@ -262,7 +263,7 @@ ar:
       past_tournament: "البطولات السابقة"
     tabs:
       overview: نظرة عامة
-      tournaments: البطولات      
+      past_tournaments: البطولات السابقة
   activities:
       user: 
         create: "إنشاء مستخدم جديد"   

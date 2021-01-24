@@ -1,0 +1,7 @@
+$("#tournaments").html("<%= escape_javascript(render :partial => 'game/partials/overview') %>");
+
+$("#paginate_upcoming").html("<%= escape_javascript paginate(@upcoming_tournaments,param_name: :upcoming_tournaments, remote: true) %>");
+
+$("#paginate_ongoing").html("<%= escape_javascript paginate(@ongoing_tournaments,param_name: :ongoing_tournaments, remote: true) %>");
+
+$("#paginate_featured").html("<%= escape_javascript paginate(@featured_tournaments,param_name: :featured_tournaments, remote: true) %>");

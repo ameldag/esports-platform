@@ -4,8 +4,6 @@ Rails.application.routes.draw do
     get 'tournaments/subscribe'
     # games routes
     get "game/:id", to: "game#show", as: "show_game"
-    get "game/:id/tournaments", to: "game#tournaments", as: "show_game_tournaments"
-    get "game/:id/tournaments/ongoing", to: "game#ongoing_tournament", as: "ongoing_tournament"
     get "game/:id/tournaments/past", to: "game#past_tournament", as: "past_tournament"
 
     # admin routes
@@ -73,6 +71,10 @@ Rails.application.routes.draw do
 
   get "user/:id/edit", to: "users#edit", as: "edit_user"
   patch "user/:id/edit", to: "users#update", as: "update_user"
+
+  post 'password/forgot', to: 'password#forgot', as: "forget_password"
+  post 'password/reset', to: 'password#reset', as: "reset_password"
+
   get "user/:id", to: "users#show", as: "show_user"
   get "user/:id/tournaments", to: "users#tournaments", as: "show_user_tournaments"
 

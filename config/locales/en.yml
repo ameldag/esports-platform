@@ -13,7 +13,8 @@ en:
     signed_in_with: "Signed in with"  
     upload_file: Upload a file 
     copyright: "© Copyright 2020." 
-    ongoing: Upcoming & ongoing    
+    ongoing: Ongoing Tournaments   
+    upcoming: Upcoming Tournaments    
     past: Past
   views:
     pagination:
@@ -262,7 +263,7 @@ en:
       past_tournament: Past Tournaments
     tabs:
       overview: Overviews
-      tournaments: Tournaments
+      past_tournaments: Past Tournaments
   activities:
     user: 
       create: created a new user   

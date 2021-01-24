@@ -13,7 +13,8 @@ fr:
     signed_up: "Inscrit il y a"
     upload_file: "Télécharger un fichier"
     copyright: "© Copyright 2020."
-    ongoing: "À venir et en cours"    
+    ongoing: Tournois en cours
+    upcoming: Tournois à venir    
     past: "Passé"
   views:
     pagination:
@@ -236,6 +237,16 @@ fr:
       semi: Semi
       round: Round
       grand_final: Grand final
+      loser_wb_semi: Perdant de WB Semi
+      loser_wb_final: Perdant de la finale WB
+      winner_lb_final: Vainqueur de la finale LB
+      status:
+        locked: Fermé 
+        waiting: Attendre
+        ready: Prêt
+        running: Fonctionnement
+        completed: Terminé
+        archived: Archivé
   pages:
     index:
       browse_games: "Parcourir les jeux"
@@ -252,7 +263,7 @@ fr:
       past_tournament: "Tournois passés"
     tabs:
       overview: Aperçu
-      tournaments: Tournois  
+      past_tournaments: Tournois passés
   activities:
     user: 
       create: "a créé un nouvel utilisateur"  
