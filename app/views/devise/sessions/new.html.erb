@@ -182,14 +182,9 @@
               <% end %>
 
               <div class="text-sm leading-5">
-                <a
-                  href="#"
-                  class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150"
-                  ><%= t '.forget_password'%></a
-                >
+                <%= link_to t(".forgot_password"), new_password_path(resource_name), class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" %><br />
               </div>
             </div>
-
             <div class="mt-6">
               <span class="block w-full rounded-md shadow-sm">
                 <button

@@ -11,6 +11,7 @@ fr:
       sign_up: "S'inscrire"
     signed_in_with: "Connectés avec"
     signed_up: "Inscrit il y a"
+    find_us_on: Trouvez-nous sur
     upload_file: "Télécharger un fichier"
     copyright: "© Copyright 2020."
     ongoing: Tournois en cours
@@ -147,7 +148,7 @@ fr:
         email: "Adresse e-mail"
         password: "Mot de passe"
         remeber: "Souviens-toi de moi"
-        forget_password: "Mot de passe oublié?"
+        forgot_password: "Mot de passe oublié?"
         sign_in: "se connecter"
     registrations:
       new:
@@ -157,6 +158,15 @@ fr:
         email: "Adresse e-mail"
         password: "Mot de passe"
         confirm_password: "Confirmez le mot de passe" 
+    passwords:
+      new:
+        email: Adresse e-mail
+        forgot_password: Mot de passe oublié
+      edit:
+        change_password: Changez votre mot de passe
+        new_password: Nouveau mot de passe
+        characters_minimum: caractères minimum  
+        confirm_new_password: Confirmer le nouveau mot de passe
   users:
     show:
       tabs:

@@ -72,9 +72,6 @@ Rails.application.routes.draw do
   get "user/:id/edit", to: "users#edit", as: "edit_user"
   patch "user/:id/edit", to: "users#update", as: "update_user"
 
-  post 'password/forgot', to: 'password#forgot', as: "forget_password"
-  post 'password/reset', to: 'password#reset', as: "reset_password"
-
   get "user/:id", to: "users#show", as: "show_user"
   get "user/:id/tournaments", to: "users#tournaments", as: "show_user_tournaments"
 
