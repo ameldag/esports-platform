@@ -10,10 +10,12 @@ en:
       login: Login
       sign_up: Sign up
     signed_up: "Signed up"  
-    signed_in_with: "Signed in with"  
+    signed_in_with: "Signed in with" 
+    find_us_on: Find us on 
     upload_file: Upload a file 
     copyright: "© Copyright 2020." 
-    ongoing: Upcoming & ongoing    
+    ongoing: Ongoing Tournaments   
+    upcoming: Upcoming Tournaments    
     past: Past
   views:
     pagination:
@@ -146,7 +148,7 @@ en:
         email: Email address
         password: Password
         remeber: Remember me
-        forget_password: Forgot your password?
+        forgot_password: Forgot your password?
         sign_in: Sign in
     registrations:
       new:
@@ -156,6 +158,15 @@ en:
         email: Email address
         password: Password
         confirm_password: Confirm Password
+    passwords:
+      new:
+        email: Email address  
+        forgot_password: Forgot password
+      edit:
+        change_password: Change your password
+        new_password: New password
+        characters_minimum: characters minimum  
+        confirm_new_password: Confirm new password
   users:
     show:
       tabs:
@@ -262,7 +273,7 @@ en:
       past_tournament: Past Tournaments
     tabs:
       overview: Overviews
-      tournaments: Tournaments
+      past_tournaments: Past Tournaments
   activities:
     user: 
       create: created a new user   

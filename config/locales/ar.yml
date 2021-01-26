@@ -11,9 +11,11 @@ ar:
       sign_up: "سجل"
     signed_up: "مسجل منذ"  
     signed_in_with: "تسجيل الدخول مع"
+    find_us_on: تجدنا على
     upload_file: "قم بتحميل ملف"
     copyright: "© حقوق الطبع والنشر 2020 "
-    ongoing: "القادمة والجارية"
+    ongoing: البطولات الحالية
+    upcoming: البطولات القادمة
     past: "الماضي"
   views:
     pagination:
@@ -146,7 +148,7 @@ ar:
         email: "عنوان بريد الكتروني"
         password: "كلمه السر"
         remeber: "تذكرنى"
-        forget_password: "نسيت رقمك السري؟"
+        forgot_password: "نسيت رقمك السري؟"
         sign_in: "تسجيل الدخول"
     registrations:
       new:
@@ -156,6 +158,15 @@ ar:
         email: "عنوان بريد الكتروني"
         password: "كلمه السر"
         confirm_password: "تأكيد كلمة المرور"
+    passwords:
+      new:
+        email: عنوان البريد الالكترونى  
+        forgot_password: هل نسيت كلمة المرور
+      edit:
+        change_password: غير كلمة المرور الخاصة بك
+        new_password: كلمة مرور جديدة
+        characters_minimum: الحد الأدنى من الأحرف 
+        confirm_new_password: تأكيد كلمة المرور الجديدة     
   users:
     show:
       tabs:
@@ -262,7 +273,7 @@ ar:
       past_tournament: "البطولات السابقة"
     tabs:
       overview: نظرة عامة
-      tournaments: البطولات      
+      past_tournaments: البطولات السابقة
   activities:
       user: 
         create: "إنشاء مستخدم جديد"   

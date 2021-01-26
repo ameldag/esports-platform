@@ -1,0 +1,9 @@
+.pagination * {
+    @apply px-0.5 py-0.5 mx-0.5;
+    @apply bg-black rounded-lg text-white;
+}
+
+.pagination a:hover {
+    @apply font-semibold text-gray-200 bg-gray-700;
+    @apply rounded-lg font-semibold bg-gray-200 text-black;
+}

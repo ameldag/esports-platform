@@ -3,11 +3,12 @@
 @import "tailwindcss/utilities";
 @import 'styles/components/brackets-viewer.css';
 @import 'styles/components/brackets-viewer-rtl.css';
+@import "styles/components/pagination.css";
 html {
     overflow-y: scroll;
 }
 
-::-webkit-scrollbar {
+ ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
     /* make scrollbar transparent */

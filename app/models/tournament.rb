@@ -29,15 +29,13 @@ class Tournament < ApplicationRecord
   has_many :match
 
   has_many :featured
+  enum status: [:ongoing, :upcoming, :finished, :cancelled]
 
   validates :season, presence: true
   validates :game, presence: true
   scope :tournaments, ->(active) { where("active = ?", active) }
-  scope :ongoing_tournaments, ->(active, game_id) { where("active = ? and game_id = ?", active, game_id) }
+  scope :active_tournaments, ->(active, game_id) { where("active = ? and game_id = ?", active, game_id) }
   scope :similar_tournaments, ->(game_id) { where("game_id = ?", game_id).last(4) }
-
-  
-
   def shouldcreatebracket
     return (RosterTournament.joins(:tournament).where('tournament_id = ?', self.id).where.not(confirmed_subscribtion_at: nil).count) == self.slots
   end
