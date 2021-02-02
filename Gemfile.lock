@@ -245,6 +245,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rconrb (0.1.2)
     regexp_parser (1.7.0)
     remotipart (1.4.4)
     responders (3.0.0)
@@ -357,6 +358,7 @@ DEPENDENCIES
   rails-erd
   rails-i18n
   rails_admin
+  rconrb
   rspec-rails (~> 3.9)
   sass-rails (>= 6)
   selenium-webdriver

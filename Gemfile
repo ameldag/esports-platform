@@ -16,6 +16,10 @@ gem "sentry-raven"
 
 gem "friendly_id"
 
+# rcon gem
+gem 'rconrb'
+
+
 #gem for pagination
 gem 'kaminari'
 
