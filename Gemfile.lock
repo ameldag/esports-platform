@@ -175,6 +175,12 @@ GEM
     omniauth-oauth2 (1.6.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
+    omniauth-openid (2.0.1)
+      omniauth (>= 1.0, < 3.0)
+      rack-openid (~> 1.4.0)
+    omniauth-steam (1.0.6)
+      multi_json
+      omniauth-openid
     omniauth-twitch (1.1.0)
       omniauth-oauth2 (~> 1.6)
     orm_adapter (0.5.0)
@@ -188,6 +194,9 @@ GEM
     puma (4.3.3)
       nio4r (~> 2.0)
     rack (2.2.2)
+    rack-openid (1.4.2)
+      rack (>= 1.1.0)
+      ruby-openid (>= 2.1.8)
     rack-pjax (1.1.0)
       nokogiri (~> 1.5)
       rack (>= 1.1)
@@ -271,6 +280,7 @@ GEM
     rspec-support (3.9.3)
     ruby-graphviz (1.2.5)
       rexml
+    ruby-openid (2.9.2)
     ruby_dep (1.5.0)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
@@ -350,6 +360,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
+  omniauth-steam
   omniauth-twitch
   pg
   public_activity

@@ -10,7 +10,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # devise :omniauthable, omniauth_providers: %i[facebook, google_oauth2 ]  
-  devise :omniauthable, :omniauth_providers => [:facebook , :google_oauth2, :twitch]
+  devise :omniauthable, :omniauth_providers => [:facebook , :google_oauth2, :twitch, :steam]
 
   validates :username, presence:true, uniqueness: true
   validates :email, presence:true, uniqueness: true

@@ -1,4 +1,5 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+    protect_from_forgery with: :null_session
     before_action :set_service
     before_action :set_user
 
@@ -22,6 +23,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     def twitch
       handle_auth "Twitch"
+    end
+    def steam
+      handle_auth "Steam"
     end
 
     # def google_oauth2
@@ -89,10 +93,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     def create_user
+      name = auth.info.name
+      email = auth.info.email
+      
+      email = auth.uid + "@steamcommunity.com" if auth.provider == "steam" 
+      
       User.create(
-        email: auth.info.email,
-        username: auth.info.name,
+        email: email,
+        username: name,
         password: Devise.friendly_token[0,20]
       )
+
     end
 end

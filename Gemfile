@@ -9,6 +9,7 @@ gem "omniauth"
 gem "omniauth-facebook"
 gem "omniauth-google-oauth2"
 gem "omniauth-twitch"
+gem 'omniauth-steam'
 
 gem "rails_admin"
 
@@ -18,6 +19,8 @@ gem "friendly_id"
 
 # rcon gem
 gem 'rconrb'
+
+
 
 
 #gem for pagination
