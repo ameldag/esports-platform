@@ -12,5 +12,6 @@ class CsgoMatchManager < SeembaEsports::MatchManager
     client.execute("mp_teamname_1 " + match.left_team.name)
     client.execute("mp_teamname_2 " + match.right_team.name)
     client.execute("bot_add_t")
+    puts "*********csgo*****"
   end
 end
