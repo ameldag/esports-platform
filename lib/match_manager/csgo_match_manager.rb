@@ -4,7 +4,7 @@ require "./lib/match_manager/match_manager"
 class CsgoMatchManager < SeembaEsports::MatchManager
   game_name = "CSGO"
   def self.start_match(match)
-    client = Rcon::Client.new(host: "127.0.0.1", port: match.server.port.to_i, password: match.server.rcon_password)
+    client = Rcon::Client.new(host: match.server.hostname, port: match.server.port.to_i, password: match.server.rcon_password)
     client.authenticate!
     client.execute("cvarlist")
     client.execute("log on")
