@@ -2,7 +2,7 @@ require "securerandom"
 
 class Tournament < ApplicationRecord
   include PublicActivity::Model
-  tracked owner: ->(controller, model) { model && controller}
+  tracked owner: ->(controller, model) { model && controller }
 
   extend FriendlyId
   friendly_id :name, use: :slugged
@@ -29,6 +29,7 @@ class Tournament < ApplicationRecord
   has_many :match
 
   has_many :featured
+  belongs_to :server, :class_name => "Server"
   enum status: [:ongoing, :upcoming, :finished, :cancelled]
 
   validates :season, presence: true
@@ -36,45 +37,54 @@ class Tournament < ApplicationRecord
   scope :tournaments, ->(active) { where("active = ?", active) }
   scope :active_tournaments, ->(active, game_id) { where("active = ? and game_id = ?", active, game_id) }
   scope :similar_tournaments, ->(game_id) { where("game_id = ?", game_id).last(4) }
+  after_save :add_server_matches
+
   def shouldcreatebracket
-    return (RosterTournament.joins(:tournament).where('tournament_id = ?', self.id).where.not(confirmed_subscribtion_at: nil).count) == self.slots
+    return (RosterTournament.joins(:tournament).where("tournament_id = ?", self.id).where.not(confirmed_subscribtion_at: nil).count) == self.slots
   end
 
   def create_matches
     return if !self.shouldcreatebracket
     ActiveRecord::Base.transaction do
-        roundArray = []
-        subscribtion_rosters = RosterTournament.joins(:tournament).where('tournament_id = ?', self.id).where.not(confirmed_subscribtion_at: nil) 
-        subscribtion_rosters.shuffle
-        subscribtion_rosters.each_slice(2){ |a| 
-          new_match = self.match.create({
+      roundArray = []
+      subscribtion_rosters = RosterTournament.joins(:tournament).where("tournament_id = ?", self.id).where.not(confirmed_subscribtion_at: nil)
+      subscribtion_rosters.shuffle
+      subscribtion_rosters.each_slice(2) { |a|
+        new_match = self.match.create({
           :round => 1,
           :next_match_id => nil,
           :game_id => self.game_id,
           left_team: a[0].roster,
           right_team: a[1].roster,
-          :planned_at => self.planned_at
-          })
-          roundArray << new_match
-        }
-        loop do           
-          newRoundArray = []
-          roundArray.each_slice(2){ |match_couple| 
-            new_match = self.match.create({
+          :planned_at => self.planned_at,
+          server_id: self.server_id,
+        })
+        roundArray << new_match
+      }
+      loop do
+        newRoundArray = []
+        roundArray.each_slice(2) { |match_couple|
+          new_match = self.match.create({
             :round => match_couple[0].round + 1,
             :game_id => self.game_id,
-            :planned_at => match_couple[0].planned_at + (match_couple[0].round - 1 ) * (self.round_delay * 60)
-            })
-            
-            match_couple[0].update_attribute(:next_match_id, new_match.id)
-            match_couple[1].update_attribute(:next_match_id, new_match.id)
-            newRoundArray << new_match
+            :planned_at => match_couple[0].planned_at + (match_couple[0].round - 1) * (self.round_delay * 60),
+            server_id: self.server_id,
+          })
 
-          }
-          roundArray = newRoundArray
-          break if (roundArray.length <= 1)
-        end
+          match_couple[0].update_attribute(:next_match_id, new_match.id)
+          match_couple[1].update_attribute(:next_match_id, new_match.id)
+          newRoundArray << new_match
+        }
+        roundArray = newRoundArray
+        break if (roundArray.length <= 1)
       end
+    end
+  end
+
+  def add_server_matches
+    self.match.each do |match_id|
+      match_id.update(server: self.server)
+    end
   end
 
   # def participate(@user, @roster, @is_private, @type)

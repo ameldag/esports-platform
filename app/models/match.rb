@@ -3,15 +3,16 @@ class Match < ApplicationRecord
   tracked owner: ->(controller, model) { model && controller }
 
   after_save :calculate_dates
-
   belongs_to :tournament
+  belongs_to :game, :class_name => "Game"
   belongs_to :left_team, :class_name => "Roster"
   belongs_to :right_team, :class_name => "Roster"
   belongs_to :next_match, :class_name => "Match"
   has_many :match_score, class_name: "MatchScore", dependent: :destroy
   belongs_to :winner, :class_name => "Roster"
+  belongs_to :server, :class_name => "Server"
   enum state: [:pending, :started, :ended, :cancelled]
-  
+
   def update_score
     matchScores = self.match_score
     if (matchScores.length == 0)
@@ -73,9 +74,9 @@ class Match < ApplicationRecord
   end
 
   def calculate_dates
-    planned_dates ={
+    planned_dates = {
       "first_round" => self.tournament.planned_at,
-      "next_round" => self.round = 1 ? self.tournament.planned_at + (self.tournament.round_delay*60) : self.tournament.planned_at + (self.round - 1 ) * (self.tournament.round_delay * 60) 
+      "next_round" => self.round = 1 ? self.tournament.planned_at + (self.tournament.round_delay * 60) : self.tournament.planned_at + (self.round - 1) * (self.tournament.round_delay * 60)
     }
     planned_dates
   end

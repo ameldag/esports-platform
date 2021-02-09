@@ -72,8 +72,9 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+gem 'require_all'
 gem "tabs_on_rails"
 gem 'public_activity'
 gem 'rails-i18n'
 gem 'i18n-js'
+gem 'rconrb'
