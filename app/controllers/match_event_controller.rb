@@ -46,15 +46,31 @@ class MatchEventController < ApplicationController
       t_score = last_scores[1].params["score"].to_i
       if last_switch.params["new_team"].to_s == "CT"
         if @match.left_team.team.name == team.name
-          @match.update(left_score: ct_score, right_score: t_score)
+          MatchScore.create(
+            left_score: ct_score,
+            right_score: t_score,
+            match: @match
+          )
         else
-          @match.update(left_score: t_score, right_score: ct_score)
+          MatchScore.create(
+            left_score: t_score,
+            right_score: ct_score,
+            match: @match
+          )
         end
       else
         if @match.left_team.team.name == team.name
-          @match.update(left_score: t_score, right_score: ct_score)
+          MatchScore.create(
+            left_score: t_score,
+            right_score: ct_score,
+            match: @match
+          )
         else
-          @match.update(left_score: ct_score, right_score: t_score)
+          MatchScore.create(
+            left_score: ct_score,
+            right_score: t_score,
+            match: @match
+          )
         end
       end
     end
