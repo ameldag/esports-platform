@@ -42,25 +42,20 @@ class MatchEventController < ApplicationController
       team = Team.joins(:users).where(users: { username: last_switch.params["user_name"] }).first
       
 
-      ct_score = last_scores[0].params["score"]
-      t_score = last_scores[1].params["score"]
+      ct_score = last_scores[0].params["score"].to_i
+      t_score = last_scores[1].params["score"].to_i
       if last_switch.params["new_team"].to_s == "CT"
         if @match.left_team.team.name == team.name
-          @match.left_score = ct_score
-          @match.right_score = t_score
+          @match.update(left_score: ct_score, right_score: t_score)
         else
-          @match.left_score = t_score
-          @match.right_score = ct_score
+          @match.update(left_score: t_score, right_score: ct_score)
         end
       else
         if @match.left_team.team.name == team.name
-          @match.left_score = t_score
-          @match.right_score = ct_score
+          @match.update(left_score: t_score, right_score: ct_score)
         else
-          @match.left_score = ct_score
-          @match.right_score = t_score
+          @match.update(left_score: ct_score, right_score: t_score)
         end
-        byebug
       end
     end
 
