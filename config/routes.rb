@@ -1,34 +1,38 @@
 Rails.application.routes.draw do
-    get 'tournaments', to: "tournaments#index", as: "tournaments"
-    get 'tournaments/:game_id', to: "tournaments#index", as: "game_tournaments"
-    get 'tournaments/subscribe'
-    # games routes
-    get "game/:id", to: "game#show", as: "show_game"
-    get "game/:id/tournaments", to: "game#tournaments", as: "show_game_tournaments"
-    get "game/:id/tournaments/ongoing", to: "game#ongoing_tournament", as: "ongoing_tournament"
-    get "game/:id/tournaments/past", to: "game#past_tournament", as: "past_tournament"
+  get 'tournaments', to: "tournaments#index", as: "tournaments"
+  get 'tournaments/:game_id', to: "tournaments#index", as: "game_tournaments"
+  get 'tournaments/subscribe'
+  # games routes
+  get "game/:id", to: "game#show", as: "show_game"
+  get "game/:id/tournaments/past", to: "game#past_tournament", as: "past_tournament"
 
-    # admin routes
-    mount RailsAdmin::Engine => "/admin", as: "rails_admin"
+  # admin routes
+  mount RailsAdmin::Engine => "/admin", as: "rails_admin"
 
-    # tournaments routes
-    get "tournament/:id", to: "tournaments#show", as: "show_tournament"
-    get "tournament/:id/bracket", to: "tournaments#bracket", as: "show_tournament_bracket"
-    get "tournament/:id/matches", to: "tournaments#matches", as: "show_tournament_matches"
-    get "tournament/:id/subscribe", to: "tournaments#subscribe", as: "subscribe_tournament_matches"
-    get "tournament/:id/confirm_subscribtion", to: "tournaments#confirm_subscribtion", as: "confirm_subscribtion_tournament_matches"
-    get "tournament/:id/participation", to: "tournaments#participation", as: "participation_tournament_matches"
+  # tournaments routes
+  get "tournament/:id", to: "tournaments#show", as: "show_tournament"
+  get "tournament/:id/bracket", to: "tournaments#bracket", as: "show_tournament_bracket"
+  get "tournament/:id/matches", to: "tournaments#matches", as: "show_tournament_matches"
+  get "tournament/:id/subscribe", to: "tournaments#subscribe", as: "subscribe_tournament_matches"
+  get "tournament/:id/confirm_subscribtion", to: "tournaments#confirm_subscribtion", as: "confirm_subscribtion_tournament_matches"
+  get "tournament/:id/participation", to: "tournaments#participation", as: "participation_tournament_matches"
+  # matches routes
+  get "tournament/:id/matches/ongoing", to: "tournaments#ongoing_match", as: "ongoing_match"
+  get "tournament/:id/matches/past", to: "tournaments#past_match", as: "past_match"
+  get "tournament/:id/match/:match_id", to: "tournaments#match_details", as: 'match_details'
+  get "tournament/:id/match/:match_id/score_submission", to: "tournaments#submit_score", as: 'submit_score'
+  post "tournament/:id/match/:match_id/score_submission", to: "tournaments#score_submission", as: "score_submission"
 
-    #challenges routes
-    get ":game_id/challenge", to: "challenge#challenges", as: "challenges"
-    get ":game_id/challenge/:id/show", to: "challenge#show", as: "show_challenge"
-    get ":game_id/challenge/join/:slots_per_team/:kind", to: "challenge#join", as: "join_challenge"
-    get ":game_id/challenge/:id/compose/:invited_id", to: "challenge#compose_team", as: "compose_team_challenge"
-    get ":game_id/challenge/:id/confirm/:confirmation_code", to: "challenge#confirm_challenge_invitation", as: "confirm_challenge_invitation"
-    get ":game_id/challenge/:id/participants", to: "challenge#participants", as: "participants_challenge"
-    get ":game_id/challenge/:id/feed", to: "challenge#feed", as: "feed_challenge"
-    get ":game_id/challenge/:id/stats", to: "challenge#stats", as: "show_challenge_stats"
-    get ":game_id/challenge/:id/members", to: "challenge#members", as: "show_challenge_members"
+  #challenges routes
+  get ":game_id/challenge", to: "challenge#challenges", as: "challenges"
+  get ":game_id/challenge/:id/show", to: "challenge#show", as: "show_challenge"
+  get ":game_id/challenge/join/:slots_per_team/:kind", to: "challenge#join", as: "join_challenge"
+  get ":game_id/challenge/:id/compose/:invited_id", to: "challenge#compose_team", as: "compose_team_challenge"
+  get ":game_id/challenge/:id/confirm/:confirmation_code", to: "challenge#confirm_challenge_invitation", as: "confirm_challenge_invitation"
+  get ":game_id/challenge/:id/participants", to: "challenge#participants", as: "participants_challenge"
+  get ":game_id/challenge/:id/feed", to: "challenge#feed", as: "feed_challenge"
+  get ":game_id/challenge/:id/stats", to: "challenge#stats", as: "show_challenge_stats"
+  get ":game_id/challenge/:id/members", to: "challenge#members", as: "show_challenge_members"
 
   # teams routes
   get "teams", to: "team#index", as: "teams"
@@ -67,6 +71,7 @@ Rails.application.routes.draw do
 
   get "user/:id/edit", to: "users#edit", as: "edit_user"
   patch "user/:id/edit", to: "users#update", as: "update_user"
+
   get "user/:id", to: "users#show", as: "show_user"
   get "user/:id/tournaments", to: "users#tournaments", as: "show_user_tournaments"
 
@@ -74,6 +79,8 @@ Rails.application.routes.draw do
   
   root "pages#index"
   post "csgolog/:id" , to: "match_event#csgologs", defaults: { format: 'text' }
+
+  get 'start-match/:id', to: "server#start_match", defaults: { format: 'text' }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks",

@@ -11,8 +11,12 @@ fr:
       sign_up: "S'inscrire"
     signed_in_with: "Connectés avec"
     signed_up: "Inscrit il y a"
+    find_us_on: Trouvez-nous sur
     upload_file: "Télécharger un fichier"
     copyright: "© Copyright 2020."
+    ongoing: Tournois en cours
+    upcoming: Tournois à venir    
+    past: "Passé"
   views:
     pagination:
       first: "&laquo; Première"
@@ -63,6 +67,12 @@ fr:
       informations: "Informations"
       website: "Site web"
       ago: depuis
+  date:
+    today: Aujourd'hui
+    yesterday: Hier
+    at: à
+    next_24: 24 Heures suivantes
+    unscheduled: Matchs non programmés
   team:
     new:
       create: "Créer une nouvelle équipe"
@@ -138,7 +148,7 @@ fr:
         email: "Adresse e-mail"
         password: "Mot de passe"
         remeber: "Souviens-toi de moi"
-        forget_password: "Mot de passe oublié?"
+        forgot_password: "Mot de passe oublié?"
         sign_in: "se connecter"
     registrations:
       new:
@@ -148,6 +158,15 @@ fr:
         email: "Adresse e-mail"
         password: "Mot de passe"
         confirm_password: "Confirmez le mot de passe" 
+    passwords:
+      new:
+        email: Adresse e-mail
+        forgot_password: Mot de passe oublié
+      edit:
+        change_password: Changez votre mot de passe
+        new_password: Nouveau mot de passe
+        characters_minimum: caractères minimum  
+        confirm_new_password: Confirmer le nouveau mot de passe
   users:
     show:
       tabs:
@@ -160,10 +179,11 @@ fr:
       username: "Nom d'utilisateur"
       password: "Mot de passe"
       confirm_password: "Confirmez le mot de passe"
+      new_password: Nouveau mot de passe
       photo: Photo
       cover: "Photo de couverture"
-      personal_info: "Informations personnelles"
-      info: "Utilisez une adresse permanente où vous pouvez recevoir du courrier"
+      change_password: Changer le mot de passe
+      info: C'est une bonne idée d'utiliser un mot de passe fort que vous n'utilisez pas ailleurs
       first_name: "Prénom"
       last_name: "Nom"
       email: "Adresse e-mail"
@@ -197,6 +217,8 @@ fr:
       na: "N/A"
       maps: "Plans"
       rules: "Règles"
+      planned_at: "Programée Le"
+      round_delay: "Durée Ronde"
     tabs:
       overview: "Aperçus"
       bracket: "Designation"
@@ -206,11 +228,35 @@ fr:
       title: "Parcourir les tournois"
       games: "Choisissez votre jeu"
       list: "Tournois listés" 
+    matches:
+      label: Match
+      status:
+        pending: Attendre
+        started: Commencé
+        ended: Terminé
+        cancelled: Annulé  
+    submit_score: 
+      title: Soumettre le score de match
+      roster: Liste
+      score: Score
+      comment: Commentaire
+      screenshot: Capture d'écran
+      submit: Soumettre Score 
     brackets:
       final: Final
       semi: Semi
       round: Round
       grand_final: Grand final
+      loser_wb_semi: Perdant de WB Semi
+      loser_wb_final: Perdant de la finale WB
+      winner_lb_final: Vainqueur de la finale LB
+      status:
+        locked: Fermé 
+        waiting: Attendre
+        ready: Prêt
+        running: Fonctionnement
+        completed: Terminé
+        archived: Archivé
   pages:
     index:
       browse_games: "Parcourir les jeux"
@@ -221,15 +267,13 @@ fr:
       ongoing: "Tournois en cours"
   game:
     tournaments:
-      ongoing: "À venir et en cours"    
-      past: "Passé"
       featured: "Tournois en vedette"
       info_featured: "Les tournois en vedette seront bientôt proposés"
       desciption: "Ça se passe ensuite"
       past_tournament: "Tournois passés"
     tabs:
       overview: Aperçu
-      tournaments: Tournois  
+      past_tournaments: Tournois passés
   activities:
     user: 
       create: "a créé un nouvel utilisateur"  

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_07_064320) do
+ActiveRecord::Schema.define(version: 2021_02_04_101447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,10 +191,12 @@ ActiveRecord::Schema.define(version: 2021_01_07_064320) do
     t.bigint "game_id"
     t.datetime "planned_at"
     t.bigint "winner_id"
+    t.bigint "server_id"
     t.index ["game_id"], name: "index_matches_on_game_id"
     t.index ["left_team_id"], name: "index_matches_on_left_team_id"
     t.index ["next_match_id"], name: "index_matches_on_next_match_id"
     t.index ["right_team_id"], name: "index_matches_on_right_team_id"
+    t.index ["server_id"], name: "index_matches_on_server_id"
     t.index ["tournament_id"], name: "index_matches_on_tournament_id"
     t.index ["winner_id"], name: "index_matches_on_winner_id"
   end
@@ -270,6 +272,18 @@ ActiveRecord::Schema.define(version: 2021_01_07_064320) do
     t.index ["game_id"], name: "index_seasons_on_game_id"
   end
 
+  create_table "servers", force: :cascade do |t|
+    t.string "hostname"
+    t.string "port"
+    t.boolean "is_rcon"
+    t.string "rcon_password"
+    t.boolean "is_ready"
+    t.bigint "game_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_servers_on_game_id"
+  end
+
   create_table "services", force: :cascade do |t|
     t.bigint "user_id"
     t.string "provider"
@@ -331,9 +345,9 @@ ActiveRecord::Schema.define(version: 2021_01_07_064320) do
   create_table "tournaments", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.date "start_date"
-    t.date "end_date"
-    t.string "status"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "status"
     t.boolean "active"
     t.integer "slots"
     t.integer "user_id"
@@ -349,10 +363,12 @@ ActiveRecord::Schema.define(version: 2021_01_07_064320) do
     t.text "rules"
     t.datetime "planned_at"
     t.decimal "round_delay"
+    t.bigint "server_id"
     t.index ["game_id"], name: "index_tournaments_on_game_id"
     t.index ["mode_id"], name: "index_tournaments_on_modes_id"
     t.index ["region_id"], name: "index_tournaments_on_regions_id"
     t.index ["season_id"], name: "index_tournaments_on_season_id"
+    t.index ["server_id"], name: "index_tournaments_on_server_id"
     t.index ["slug"], name: "index_tournaments_on_slug", unique: true
     t.index ["user_id"], name: "index_tournaments_on_user_id"
   end
@@ -408,11 +424,13 @@ ActiveRecord::Schema.define(version: 2021_01_07_064320) do
   add_foreign_key "matches", "rosters", column: "left_team_id"
   add_foreign_key "matches", "rosters", column: "right_team_id"
   add_foreign_key "matches", "rosters", column: "winner_id"
+  add_foreign_key "matches", "servers"
   add_foreign_key "matches", "tournaments"
   add_foreign_key "region_tournaments", "regions"
   add_foreign_key "region_tournaments", "tournaments"
   add_foreign_key "rosters", "games"
   add_foreign_key "rosters", "teams"
+  add_foreign_key "servers", "games"
   add_foreign_key "submission_match_scores", "matches"
   add_foreign_key "submission_match_scores", "rosters"
   add_foreign_key "submission_match_scores", "users"
@@ -421,4 +439,5 @@ ActiveRecord::Schema.define(version: 2021_01_07_064320) do
   add_foreign_key "tournament_teams", "tournaments"
   add_foreign_key "tournaments", "modes"
   add_foreign_key "tournaments", "regions"
+  add_foreign_key "tournaments", "servers"
 end

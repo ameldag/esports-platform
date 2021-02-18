@@ -10,24 +10,31 @@
   <a href="<%= show_tournament_path(tournament.slug) %>">
     <div class="flex-shrink-0 rounded-lg shadow-lg overflow-hidden">
       <% if tournament.cover.attached? %>
-      <img class="h-48 w-full object-cover" src="<%= url_for(tournament.cover) %>" alt="" />
+      <img class="h-36 w-full object-cover" src="<%= url_for(tournament.cover) %>" alt="" />
       <% else %>
-      <img class="h-48 w-full object-cover" src="/images/icons/no-game.png" alt="" />
+      <img class="h-36 w-full object-cover" src="/images/icons/no-game.png" alt="" />
       <% end %>
     </div>
-
     <time class="uppercase text-xs text-gray-500 font-bold mt-1">
-      Today 18:30
+      <% if tournament.planned_at %>
+        <% if tournament.planned_at.to_date == Date.today %>
+            <%= t 'date.today'%> <%= t 'date.at'%> <%= tournament.planned_at.strftime("%H:%M")%>
+            <% elsif  tournament.planned_at.to_date == Date.yesterday %> 
+            <%= t 'date.yesterday'%> <%= t 'date.at'%> <%= tournament.planned_at.strftime("%H:%M")%>
+            <% else %>
+            <%= I18n.l(tournament.planned_at, format: '%A, %Y-%m-%d %H:%M')%>
+        <% end %>
+      <% end %>
+                
     </time>
-
-    <h3 class="uppercase text-sm text-gray-200 font-bold mb-0">
+    <p class="uppercase text-sm text-gray-200 font-bold mb-0">
       <%= tournament.name %>
       <span
-        class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium leading-5 bg-purple-800 text-purple-100">
+        class="ml-5 inline-flex items-center px-1 p-0 rounded-full text-xs font-medium leading-5 bg-purple-800 text-purple-100">
         <%= tournament.slots %>
         <%= t 'tournaments.slots'%>
       </span>
-    </h3>
+    </p>
   </a>
   <p class="uppercase text-xs text-gray-500 font-bold">
     EU &bull; 1v1

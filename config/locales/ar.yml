@@ -11,8 +11,12 @@ ar:
       sign_up: "سجل"
     signed_up: "مسجل منذ"  
     signed_in_with: "تسجيل الدخول مع"
+    find_us_on: تجدنا على
     upload_file: "قم بتحميل ملف"
     copyright: "© حقوق الطبع والنشر 2020 "
+    ongoing: البطولات الحالية
+    upcoming: البطولات القادمة
+    past: "الماضي"
   views:
     pagination:
       first: "&laquo; الأول"
@@ -63,6 +67,12 @@ ar:
       informations: "معلومات"
       website: "موقع الكتروني" 
       ago: منذ
+  date:
+    today: اليوم
+    yesterday: في الامس
+    at:  في
+    next_24: الـ 24 ساعة القادمة
+    unscheduled: مباريات غير مجدولة    
   team:
     new:
       create: "إنشاء فريق جديد" 
@@ -138,7 +148,7 @@ ar:
         email: "عنوان بريد الكتروني"
         password: "كلمه السر"
         remeber: "تذكرنى"
-        forget_password: "نسيت رقمك السري؟"
+        forgot_password: "نسيت رقمك السري؟"
         sign_in: "تسجيل الدخول"
     registrations:
       new:
@@ -148,6 +158,15 @@ ar:
         email: "عنوان بريد الكتروني"
         password: "كلمه السر"
         confirm_password: "تأكيد كلمة المرور"
+    passwords:
+      new:
+        email: عنوان البريد الالكترونى  
+        forgot_password: هل نسيت كلمة المرور
+      edit:
+        change_password: غير كلمة المرور الخاصة بك
+        new_password: كلمة مرور جديدة
+        characters_minimum: الحد الأدنى من الأحرف 
+        confirm_new_password: تأكيد كلمة المرور الجديدة     
   users:
     show:
       tabs:
@@ -160,10 +179,11 @@ ar:
       username: "اسم المستخدم"
       password: "كلمه السر"
       confirm_password: "تأكيد كلمة المرور"
+      new_password: كلمة مرور جديدة
       photo: "صورة"
       cover: "التغطية"
-      personal_info: "معلومات شخصية"
-      info: "استخدم عنوانًا دائمًا حيث يمكنك تلقي البريد"
+      change_password: غير كلمة السر
+      info: من الجيد استخدام كلمة مرور قوية لا تستخدمها في أي مكان آخر
       first_name: "الاسم الاول"
       last_name: "الكنية"
       email: "عنوان بريد الكتروني"
@@ -197,6 +217,8 @@ ar:
       na: "غير متوفر"
       maps: "خرائط"
       rules: "قواعد"
+      planned_at: "مبرمجة في"
+      round_delay: "تأخير الجولة"
     tabs:
       overview: "نظرة عامة"
       bracket: "تعيين"
@@ -206,6 +228,20 @@ ar:
       title:  "تصفح البطولات"
       games: "اختر لعبتك"
       list: "البطولات المدرجة"
+    matches:
+      label: مباراة
+      status:
+        pending: انتظار
+        started: بدأت
+        ended: انتهى
+        cancelled: ألغيت  
+    submit_score: 
+      title: إرسال نتيجة المباراة
+      roster: القوائم
+      score: نتيجة
+      comment: تعليق
+      screenshot: لقطة شاشة
+      submit: تقديم النتيجة      
     brackets:
       final: نهائي
       semi: نصف
@@ -231,15 +267,13 @@ ar:
       ongoing: "البطولات الجارية"
   game:
     tournaments:
-      ongoing: "القادمة والجارية"
-      past: "الماضي"
       featured: "البطولات المميزة"
       info_featured: "سيتم عرض البطولات المميزة قريبًا"
       desciption: "إنه يحدث بعد ذلك"
       past_tournament: "البطولات السابقة"
     tabs:
       overview: نظرة عامة
-      tournaments: البطولات      
+      past_tournaments: البطولات السابقة
   activities:
       user: 
         create: "إنشاء مستخدم جديد"   

@@ -7156,20 +7156,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-tailwindcss-dir@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/tailwindcss-dir/-/tailwindcss-dir-4.0.0.tgz#72ddc8792225426c22de70f6d82a18173d843400"
-  integrity sha512-G5orTODS8sDQOZqKa2Q4Ey/F4nlxK1mTZm02iKHLxZaNjpboPews/h2KUksC5KbgIVrpmOe1hqcNYZJy07ftwA==
-  dependencies:
-    tailwindcss "^1.0.1"
-
-tailwindcss-rtl@^0.6.0:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/tailwindcss-rtl/-/tailwindcss-rtl-0.6.1.tgz#8e243fc8ce38bfb4cfb9ba1435908729e31f40ac"
-  integrity sha512-1oJG+wyMzav3fxAz0YHEY6vQNN+RKUhj9fUCZjhJZxFSN1WVnhd/7tWiNb6EwjQ63RF6ldcZec8LYFZdyspbBg==
-  dependencies:
-    lodash "^4.17.19"
-    tailwindcss "^1.4.0"
+tailwindcss-rtl@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/tailwindcss-rtl/-/tailwindcss-rtl-0.7.3.tgz#d8d3236e446fd7504d9240366aea8a5987e66c12"
+  integrity sha512-4lOuA5HJj/a9qBmnPmzdxJybqmQUKhA4/iDBiGs7YZqJ7eqSziKR035er3ZhGOl08s3FaKwlgNPlgQ13vMs/Tw==
 
 tailwindcss-stimulus-components@^1.0.2:
   version "1.2.0"
@@ -7178,7 +7168,7 @@ tailwindcss-stimulus-components@^1.0.2:
   dependencies:
     stimulus "^1.1.0"
 
-tailwindcss@^1.0.1, tailwindcss@^1.4.0, tailwindcss@^1.4.6:
+tailwindcss@^1.4.6:
   version "1.9.6"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.9.6.tgz#0c5089911d24e1e98e592a31bfdb3d8f34ecf1a0"
   integrity sha512-nY8WYM/RLPqGsPEGEV2z63riyQPcHYZUJpAwdyBzVpxQHOHqHE+F/fvbCeXhdF1+TA5l72vSkZrtYCB9hRcwkQ==

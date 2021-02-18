@@ -248,6 +248,7 @@ GEM
     rconrb (0.1.2)
     regexp_parser (1.7.0)
     remotipart (1.4.4)
+    require_all (3.0.0)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -334,6 +335,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   better_errors (~> 2.7, >= 2.7.1)
@@ -359,6 +361,7 @@ DEPENDENCIES
   rails-i18n
   rails_admin
   rconrb
+  require_all
   rspec-rails (~> 3.9)
   sass-rails (>= 6)
   selenium-webdriver
@@ -377,4 +380,4 @@ RUBY VERSION
    ruby 2.7.1p83
 
 BUNDLED WITH
-   2.1.4
+   2.2.2

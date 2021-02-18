@@ -10,9 +10,13 @@ en:
       login: Login
       sign_up: Sign up
     signed_up: "Signed up"  
-    signed_in_with: "Signed in with"  
+    signed_in_with: "Signed in with" 
+    find_us_on: Find us on 
     upload_file: Upload a file 
     copyright: "© Copyright 2020." 
+    ongoing: Ongoing Tournaments   
+    upcoming: Upcoming Tournaments    
+    past: Past
   views:
     pagination:
       first: "&laquo; First"
@@ -63,6 +67,12 @@ en:
       informations: "Informations"
       website: "Website"
       ago: ago
+  date:
+    today: Today
+    yesterday: Yesterday
+    at: at
+    next_24: Next 24 hours
+    unscheduled: Unscheduled Matches
   team:
     new:
       create: "Create New Team" 
@@ -138,7 +148,7 @@ en:
         email: Email address
         password: Password
         remeber: Remember me
-        forget_password: Forgot your password?
+        forgot_password: Forgot your password?
         sign_in: Sign in
     registrations:
       new:
@@ -148,6 +158,15 @@ en:
         email: Email address
         password: Password
         confirm_password: Confirm Password
+    passwords:
+      new:
+        email: Email address  
+        forgot_password: Forgot password
+      edit:
+        change_password: Change your password
+        new_password: New password
+        characters_minimum: characters minimum  
+        confirm_new_password: Confirm new password
   users:
     show:
       tabs:
@@ -160,10 +179,11 @@ en:
       username: Username  
       password: Password
       confirm_password: Confirm Password
+      new_password: New password
       photo: Photo
       cover: Cover photo
-      personal_info: Personal Information
-      info: Use a permanent address where you can receive mail
+      change_password: Change password
+      info: It's a good idea to use a strong password that you're not using elsewhere
       first_name: First name
       last_name: Last name
       email: Email address
@@ -197,6 +217,8 @@ en:
       na: NA
       maps: Maps
       rules: Rules
+      planned_at: Planned At
+      round_delay: Round Delay
     tabs:
       overview: Overviews
       bracket: Bracket
@@ -206,6 +228,20 @@ en:
       title:  Browse Tournaments
       games: Choose your game
       list: Listed Tournaments
+    matches:
+      label: Match
+      status:
+        pending: Pending
+        started: Started
+        ended: Ended
+        cancelled: Cancelled 
+    submit_score:
+      title: Submit match score  
+      roster: Roster
+      score: Score
+      comment: Comment
+      screenshot: Screenshot
+      submit: Submit Score
     brackets:
       final: Final
       semi: Semi
@@ -231,15 +267,13 @@ en:
       ongoing: Ongoing Tournaments
   game:
     tournaments:
-      ongoing: Upcoming & ongoing    
-      past: Past
       featured: Featured Tournaments
       info_featured: Featured Tournaments will be offer soon
       desciption: It's happening Next
       past_tournament: Past Tournaments
     tabs:
       overview: Overviews
-      tournaments: Tournaments
+      past_tournaments: Past Tournaments
   activities:
     user: 
       create: created a new user   

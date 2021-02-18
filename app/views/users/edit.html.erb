@@ -3,14 +3,14 @@
 <div class="md:flex md:items-center md:justify-between px-10 py-5 bg-orange-500">
   <div class="flex-1 min-w-0">
     <h2 class="text-2xl font-bold leading-7 text-white sm:text-3xl sm:leading-9 sm:truncate">
-     <%= t '.title'%>
+      <%= t '.title'%>
     </h2>
   </div>
   <div class="mt-4 flex md:mt-0 md:ml-4">
     <span class="ml-3 shadow-sm rounded-md">
       <button type="submit"
         class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-700 hover:bg-gray-600 focus:outline-none focus:shadow-outline-gray focus:border-gray-600 active:bg-gray-600 transition duration-150 ease-in-out">
-      <%= t '.save'%>
+        <%= t '.save'%>
       </button>
     </span>
   </div>
@@ -23,35 +23,41 @@
       <div class="md:col-span-1">
         <h3 class="text-lg font-medium leading-6 text-gray-900"><%= t '.profile'%></h3>
         <p class="mt-1 text-sm leading-5 text-gray-500">
-          <%= t 'activerecord.notice.attention'%> 
-       </p>
+          <%= t 'activerecord.notice.attention'%>
+        </p>
       </div>
       <div class="mt-5 md:mt-0 md:col-span-2">
 
         <div class="grid grid-cols-3 gap-6">
           <div class="col-span-3 sm:col-span-2">
             <div class="col-span-6 sm:col-span-3">
-              <label for="username" class="block text-sm font-medium leading-5 text-gray-700"><%= t '.username'%></label>
+              <label for="username"
+                class="block text-sm font-medium leading-5 text-gray-700"><%= t '.username'%></label>
               <%= f.text_field :username, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
               <%= f.hidden_field :user_id, value: current_user.id %>
             </div>
           </div>
-        </div>
-
-        <div class="grid grid-cols-3 gap-6">
           <div class="col-span-3 sm:col-span-2">
             <div class="col-span-6 sm:col-span-3">
-              <label for="password" class="block text-sm font-medium leading-5 text-gray-700"><%= t '.password'%> </label>
-              <%= f.password_field :password, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+              <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700"><%= t '.first_name'%>
+              </label>
+              <%= f.text_field :first_name, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
               <%= f.hidden_field :user_id, value: current_user.id %>
             </div>
           </div>
-        </div>
-        <div class="grid grid-cols-3 gap-6">
           <div class="col-span-3 sm:col-span-2">
             <div class="col-span-6 sm:col-span-3">
-              <label for="confirm_password" class="block text-sm font-medium leading-5 text-gray-700"><%= t '.confirm_password'%> </label>
-              <%= f.password_field :confirm_password, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+              <label for="last_name" class="block text-sm font-medium leading-5 text-gray-700"><%= t '.last_name'%>
+              </label>
+              <%= f.text_field :last_name, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+            </div>
+          </div>
+          <div class="col-span-3 sm:col-span-2">
+            <div class="col-span-6 sm:col-span-3">
+              <label for="email_address"
+                class="block text-sm font-medium leading-5 text-gray-700"><%= t '.email'%></label>
+              <%= f.text_field :email, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
               <%= f.hidden_field :user_id, value: current_user.id %>
             </div>
           </div>
@@ -115,35 +121,33 @@
   <div class="mt-6 bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 mx-10">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
-        <h3 class="text-lg font-medium leading-6 text-gray-900"><%= t '.personal_info'%></h3>
+        <h3 class="text-lg font-medium leading-6 text-gray-900"><%= t '.change_password'%></h3>
         <p class="mt-1 text-sm leading-5 text-gray-500">
           <%= t '.info'%>.
         </p>
       </div>
-      <div class="mt-5 md:mt-0 md:col-span-2">
+      <div class="md:mt-0 md:col-span-2">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6 sm:col-span-3">
-            <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700"><%= t '.first_name'%> </label>
-            <%= f.text_field :first_name, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
-            <%= f.hidden_field :user_id, value: current_user.id %>
+            <label for="current_password" class="block text-sm font-medium leading-5 text-gray-700"><%= t '.password'%>
+            </label>
+            <%= password_field_tag :current_password, params[:current_password], placeholder: "#{I18n.t 'users.edit.password'}" ,class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
           </div>
-          ​
           <div class="col-span-6 sm:col-span-3">
-            <label for="last_name" class="block text-sm font-medium leading-5 text-gray-700"><%= t '.last_name'%> </label>
-            <%= f.text_field :last_name, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
-            <%= f.hidden_field :user_id, value: current_user.id %>
+            <label for="confirm_password"
+              class="block text-sm font-medium leading-5 text-gray-700"><%= t '.new_password'%> </label>
+            </label>
+            <%= f.password_field :password, placeholder: "#{I18n.t 'users.edit.new_password'}", class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
           </div>
-          ​
-          <div class="col-span-6 sm:col-span-4">
-            <label for="email_address" class="block text-sm font-medium leading-5 text-gray-700"><%= t '.email'%></label>
-            <%= f.text_field :email, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
-            <%= f.hidden_field :user_id, value: current_user.id %>
+          <div class="col-span-6 sm:col-span-3">
+            <label for="confirm_password"
+              class="block text-sm font-medium leading-5 text-gray-700"><%= t '.confirm_password'%> </label>
+            </label>
+            <%= f.password_field :confirm_password, placeholder: "#{I18n.t 'users.edit.confirm_password'}", class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-
 </div>
 <% end %>

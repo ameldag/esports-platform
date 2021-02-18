@@ -1,5 +1,3 @@
-import "../css/brackets-viewer.css";
-import "../css/brackets-viewer-rtl.css";
 ! function(e) {
     var t = {};
 

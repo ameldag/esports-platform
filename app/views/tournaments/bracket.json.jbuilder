@@ -35,8 +35,7 @@ else
     json.round_id match.round
     json.status match.state
     json.scheduled_datetime nil
-    json.start_datetime nil
-    json.end_datetime nil
+    json.planned_at match.planned_at
     json.number match.round
 
     if match.left_team

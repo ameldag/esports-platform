@@ -1,62 +1,90 @@
-   <div class="relative w-full mx-0 px-5 pb-10 bg-black">
+<% # if ongoing_match !empty %>
+<% if @ongoing_match && @ongoing_match.count > 0 %>
+<div class="mt-8 flex bg-transparent mx-2 my-0 px-0">
+  <div class="w-1/2 text-end">
+    <a href="<%= ongoing_match_path(@tournament) %>"
+      class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 w-full">
+      <%= t "global.ongoing" %>
+    </a>
+  </div>
+  <div class="w-1/2 text-end">
+    <a href="<%= past_match_path(@tournament) %>"
+      class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white  w-full">
+      <%= t "global.past" %>
+    </a>
+  </div>
+</div>
+<%= render partial: "tournaments/partials/ongoing_match" %>
+<% end %>
+<% # end ongoing_match block %>
+<div class="relative w-full bg-black">
+  <% if (@matches_unscheduled && @matches_unscheduled.count > 0) %>
+  <h3 class="m-5 text-m text-gray-200 font-bold mb-0">
+    <%= t "date.unscheduled" %>
+  </h3>
+</div>
 
-       <% if (@matches.count > 0) %>
-       <ul class=" pos--rel pb-60"> <% 1.times do %>
-           <% @matches.each do |match| %>
-           <li>
-            <a href="#" class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
-                <div class="flex flex-row justify-center content-center">
-                    <div class="text-sm leading-5 font-medium text-indigo-600 truncate py-2 m-2">
-                        <% if match.left_team %>
-                        <%= match.left_team.name %>
-                          <% else %> <%= t 'activerecord.notice.waiting_decided'%>
-                        <% end %>
-                    </div>
+<ul class="text-sm font-bold">
+  <% @matches_unscheduled.each do |match| %>
+  <li class="pt-2 pb-2 border-b border-gray-200 hover:bg-gray-900">
+    <%= link_to match_details_path(@tournament.id,match.id), remote: true do %>
+    <div class="m-2 flex flex-row justify-center content-center">
+      <div class="pr-15 text-xs leading-5 font-medium text-gray-600 truncate py-2 m-2">
+        <% if match.planned_at %>
+        <%= match.planned_at.strftime("%H:%M") %>
+        <% end %>
+      </div>
+      <div class="text-sm leading-5 font-medium text-indigo-600 truncate py-2 m-2">
+        <% if match.left_team %>
+        <%= match.left_team.name %>
+        <% else %> <%= t "activerecord.notice.waiting_decided" %>
+        <% end %>
+      </div>
 
-                    <div class="text-sm leading-5 font-medium text-indigo-600 truncate py-2 m-2">
-                        <% if match.left_score %>
-                        <%= match.left_score %>
-                          <% else %> 0
-                        <% end %>
-                    </div>
-                    <div
-                        class="bg-gray-700 text-white text-xs px-4 py-1 rounded-full  px-4 pb-0.5 shadow py-1 m-4 text-gray-200 font-bold ">
-                        <% if match.state %>
-                          <%= match.state %>
-                          <% else %> <%= t 'activerecord.notice.waiting'%>
-                        <% end %>
-                    </div>
-                    <div class="text-sm leading-5 font-medium text-indigo-600 truncate py-2 m-2">
-                        <% if match.right_team %>
-                        <%= match.right_team.name %>
-                        <% else %>  <%= t 'activerecord.notice.waiting_decided'%>
-                        <% end %>
-                    </div>
-                    <div class="text-sm leading-5 font-medium text-indigo-600 truncate py-2 m-2">
-                        <% if match.right_score %>
-                        <%= match.right_score %>
-                          <% else %> 0
-                        <% end %>
-                    </div>
-                </div>
-            </a>
-           </li>
-           <% end %>
-           <% end %>
-       </ul>
-       <% else %>
-       <div class="m-16 text-center">
-           <svg class=" text-gray-500 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-               fill="currentColor">
-               <path fill-rule="evenodd"
-                   d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                   clip-rule="evenodd" />
-           </svg>
-           <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-sm md:mt-5 sm:text-sm md:max-w-2xl">
-              <%= t 'activerecord.errors.messages.empty_match'%> </p>
-           <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-sm md:mt-5 sm:text-sm md:max-w-2xl">
-               <%= t 'activerecord.errors.messages.register_matche'%>.
-           </p>
-       </div>
-       <% end %>
-   </div>
+      <div class="text-sm leading-5 font-medium text-indigo-600 truncate py-2 m-2">
+        <% if match.left_score %>
+        <%= match.left_score %>
+        <% else %> 0
+        <% end %>
+      </div>
+      <div
+        class="bg-gray-700 text-white text-xs px-4 py-1 rounded-full  px-4 pb-0.5 shadow py-1 m-4 text-gray-200 font-bold ">
+        <% if match.state %>
+        <%= t("tournaments.matches.status.#{match.state}") %>
+        <% else %> <%= t "activerecord.notice.waiting" %>
+        <% end %>
+      </div>
+      <div class="text-sm leading-5 font-medium text-indigo-600 truncate py-2 m-2">
+        <% if match.right_team %>
+        <%= match.right_team.name %>
+        <% else %> <%= t "activerecord.notice.waiting_decided" %>
+        <% end %>
+      </div>
+      <div class="text-sm leading-5 font-medium text-indigo-600 truncate py-2 m-2">
+        <% if match.right_score %>
+        <%= match.right_score %>
+        <% else %> 0
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
+<div id="match_details"></div>
+<% else %>
+<div class="m-16 text-center">
+  <svg class=" text-gray-500 inline-block h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+    fill="currentColor">
+    <path fill-rule="evenodd"
+      d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+      clip-rule="evenodd" />
+  </svg>
+  <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-sm md:mt-5 sm:text-sm md:max-w-2xl">
+    <%= t "activerecord.errors.messages.empty_match" %> </p>
+  <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-sm md:mt-5 sm:text-sm md:max-w-2xl">
+    <%= t "activerecord.errors.messages.register_matche" %>.
+  </p>
+</div>
+<% end %>
+</div>

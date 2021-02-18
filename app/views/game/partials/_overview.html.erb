@@ -1,122 +1,47 @@
-<!-- Featured Tournaments -->
-
-<div class="md:flex md:items-center md:justify-between">
-    <div class="flex-1 min-w-0">
-        <h2 class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-10">
-            <%= t 'game.tournaments.featured'%>
-        </h2>
-    </div>
+<!-- Ongoing Tournaments -->
+<% if @ongoing_tournaments.present? %>
+<div class="md:flex md:items-center md:justify-between mt-10">
+    <h5 class=" flex-1 text-1xl font-bold leading-7 text-white sm:text-2xl sm:leading-9 sm:truncate ">
+        <%= t "global.ongoing" %>
+    </h5>
+    <%= paginate @ongoing_tournaments,param_name: :ongoing_tournaments, remote: true %>
 </div>
-
 <div class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none pb-10">
-    <% if @featured_tournaments.present? %>
-        <% @featured_tournaments.each do |tournament| %>
-            <%= render "pages/partials/tournament_card", tournament: tournament %>
-        <% end %>
-    <% else %>
-        <p class="text-gray-300 font-sm">
-            <%= t 'game.tournaments.info_featured'%> 
-        </p>
+    <% @ongoing_tournaments.each do |tournament| %>
+    <%= render "pages/partials/tournament_card", tournament: tournament %>
     <% end %>
 </div>
-<!-- Game Types Call to action -->
-<div class="relative w-full grid grid-cols-4 gap-10">
-    <div class="col-span-1 text-white border border-gray-800 rounded-lg p-10">
-        <h3 class="font-bold text-3xl">
-            <%= t 'game.tournaments.desciption'%>
-        </h3>
-    </div>
-
-    <div class="col-span-1 text-white border border-gray-800 rounded-lg p-10 text-center">
-        <div class="text-center mb-4 mx-auto">
-            <img class="h-32 mx-auto" src="/images/icons/clash.svg" alt="" />
-        </div>
-        <h3 class="text-gray-600 uppercase font-bold text-1xl">
-            Search and Destroy
-        </h3>
-        <p class="text-gray-300 uppercase font-thin text-xs">
-            Next game in 09:32:12
-        </p>
-
-        <span class="inline-flex mt-2">
-            <button type="button"
-                class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-full text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700 transition ease-in-out duration-150 uppercase">
-                Join this Game
-            </button>
-        </span>
-    </div>
-
-    <div class="col-span-1 text-white border border-gray-800 rounded-lg p-10 text-center">
-        <div class="text-center mb-4 mx-auto">
-            <img class="h-32 mx-auto" src="/images/icons/wingmen.svg" alt="" />
-        </div>
-        <h3 class="text-gray-600 uppercase font-bold text-1xl">
-            Search and Destroy
-        </h3>
-        <p class="text-gray-300 uppercase font-thin text-xs">
-            Next game in 09:32:12
-        </p>
-
-        <span class="inline-flex mt-2">
-            <button type="button"
-                class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-full text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700 transition ease-in-out duration-150 uppercase">
-                Join this Game
-            </button>
-        </span>
-    </div>
-
-    <div class="col-span-1 text-white border border-gray-800 rounded-lg p-10 text-center">
-        <div class="text-center mb-4 mx-auto">
-            <img class="h-32 mx-auto" src="/images/icons/bomb.svg" alt="" />
-        </div>
-        <h3 class="text-gray-600 uppercase font-bold text-1xl">
-            Search and Destroy
-        </h3>
-        <p class="text-gray-300 uppercase font-thin text-xs">
-            Next game in 09:32:12
-        </p>
-
-        <span class="inline-flex mt-2">
-            <button type="button"
-                class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-full text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700 transition ease-in-out duration-150 uppercase">
-                Join this Game
-            </button>
-        </span>
-    </div>
+<% end %>
+<!-- Upcoming Tournaments -->
+<% if @upcoming_tournaments.present? %>
+<div class="md:flex md:items-center md:justify-between mt-10">
+    <h5 class="flex-1 text-1xl font-bold leading-7 text-white sm:text-2xl sm:leading-9 sm:truncate ">
+        <%= t "global.upcoming" %>
+    </h5>
+    <%= paginate @upcoming_tournaments,param_name: :upcoming_tournaments,  remote: true %>
 </div>
-
-<!-- Ongoing Tournaments -->
-
-<div class="md:flex md:items-center md:justify-between">
-    <div class="flex-1 min-w-0">
-        <h2 class="text-1xl font-bold leading-7 text-gray-400 sm:text-2xl sm:leading-9 sm:truncate mt-10">
-            <%= t 'game.tournaments.ongoing'%>
-        </h2>
-    </div>
-</div>
-
 <div class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none pb-10">
-    <div class="flex flex-col overflow-hidden transform hover:scale-110 transition duration-150 ease-in-out"
-        v-for="n in 12" v-bind:key="n">
-        <div class="flex-shrink-0 rounded-lg shadow-lg overflow-hidden">
-            <img class="h-34 w-full object-cover" src="/images/icons/no-game.png" alt="" />
-        </div>
-
-        <time class="uppercase text-xs text-gray-500 font-bold mt-1">
-            Today 18:30
-        </time>
-
-        <h3 class="uppercase text-sm text-gray-800 font-bold mb-0">
-            Tournament Name
-            <span
-                class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium leading-5 bg-purple-800 text-purple-100">
-                16 Slots
-            </span>
-        </h3>
-
-        <p class="uppercase text-xs text-gray-500 font-bold">
-            EU &bull; 1v1
-        </p>
-    </div>
+    <% @upcoming_tournaments.each do |tournament| %>
+    <%= render "pages/partials/tournament_card", tournament: tournament %>
+    <% end %>
 </div>
+<% end %>
+<!-- Featured Tournaments -->
 
+<div class="md:flex md:items-center md:justify-between mt-10">
+    <h5 class="flex-1 text-1xl font-bold leading-7 text-white sm:text-2xl sm:leading-9 sm:truncate ">
+        <%= t "game.tournaments.featured" %>
+    </h5>
+    <%= paginate @featured_tournaments, param_name: :featured_tournaments,remote: true %>
+</div>
+<div class="mt-5 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none pb-10">
+    <% if @featured_tournaments.present? %>
+    <% @featured_tournaments.each do |tournament| %>
+    <%= render "pages/partials/tournament_card", tournament: tournament %>
+    <% end %>
+    <% else %>
+    <p class="text-gray-300 font-sm">
+        <%= t "game.tournaments.info_featured" %>
+    </p>
+    <% end %>
+</div>
