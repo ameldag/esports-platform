@@ -1,6 +1,6 @@
 class Match < ApplicationRecord
   include PublicActivity::Model
-  tracked owner: ->(controller, model) { model && controller }
+  tracked owner: ->(controller, model) { controller && controller.current_user }
 
   belongs_to :tournament
   belongs_to :left_team, :class_name => "Roster"
