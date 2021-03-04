@@ -12,6 +12,8 @@ class Match < ApplicationRecord
   has_many :match_events, class_name: "MatchEvent", dependent: :destroy
   belongs_to :winner, :class_name => "Roster"
   belongs_to :server, :class_name => "Server"
+  belongs_to :group, :class_name => "Group"
+
   enum state: [:pending, :started, :ended, :cancelled]
 
   def update_score
@@ -77,7 +79,7 @@ class Match < ApplicationRecord
   def calculate_dates
     planned_dates = {
       "first_round" => self.tournament.planned_at,
-      "next_round" => self.round = 1 ? self.tournament.planned_at + (self.tournament.round_delay * 60) : self.tournament.planned_at + (self.round - 1) * (self.tournament.round_delay * 60)
+      "next_round" => self.round = 1 ? self.tournament.planned_at + (self.tournament.round_delay * 60) : self.tournament.planned_at + (self.round - 1) * (self.tournament.round_delay * 60),
     }
     planned_dates
   end

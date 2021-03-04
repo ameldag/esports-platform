@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_04_101447) do
+ActiveRecord::Schema.define(version: 2021_03_03_122114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,15 @@ ActiveRecord::Schema.define(version: 2021_02_04_101447) do
     t.index ["slug"], name: "index_games_on_slug", unique: true
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.integer "number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "stage_id"
+    t.index ["stage_id"], name: "index_groups_on_stage_id"
+  end
+
   create_table "map_tournaments", force: :cascade do |t|
     t.bigint "tournament_id"
     t.bigint "map_id"
@@ -192,7 +201,9 @@ ActiveRecord::Schema.define(version: 2021_02_04_101447) do
     t.datetime "planned_at"
     t.bigint "winner_id"
     t.bigint "server_id"
+    t.bigint "group_id"
     t.index ["game_id"], name: "index_matches_on_game_id"
+    t.index ["group_id"], name: "index_matches_on_group_id"
     t.index ["left_team_id"], name: "index_matches_on_left_team_id"
     t.index ["next_match_id"], name: "index_matches_on_next_match_id"
     t.index ["right_team_id"], name: "index_matches_on_right_team_id"
@@ -298,6 +309,14 @@ ActiveRecord::Schema.define(version: 2021_02_04_101447) do
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
+  create_table "stages", force: :cascade do |t|
+    t.string "name"
+    t.string "stage_type"
+    t.integer "number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "submission_match_scores", force: :cascade do |t|
     t.text "comment"
     t.bigint "match_id"
@@ -364,12 +383,14 @@ ActiveRecord::Schema.define(version: 2021_02_04_101447) do
     t.datetime "planned_at"
     t.decimal "round_delay"
     t.bigint "server_id"
+    t.bigint "stage_id"
     t.index ["game_id"], name: "index_tournaments_on_game_id"
     t.index ["mode_id"], name: "index_tournaments_on_modes_id"
     t.index ["region_id"], name: "index_tournaments_on_regions_id"
     t.index ["season_id"], name: "index_tournaments_on_season_id"
     t.index ["server_id"], name: "index_tournaments_on_server_id"
     t.index ["slug"], name: "index_tournaments_on_slug", unique: true
+    t.index ["stage_id"], name: "index_tournaments_on_stage_id"
     t.index ["user_id"], name: "index_tournaments_on_user_id"
   end
 
@@ -413,6 +434,7 @@ ActiveRecord::Schema.define(version: 2021_02_04_101447) do
   add_foreign_key "featureds", "tournaments"
   add_foreign_key "game_modes", "games"
   add_foreign_key "game_modes", "modes"
+  add_foreign_key "groups", "stages"
   add_foreign_key "map_tournaments", "maps"
   add_foreign_key "map_tournaments", "tournaments"
   add_foreign_key "maps", "games"
@@ -420,6 +442,7 @@ ActiveRecord::Schema.define(version: 2021_02_04_101447) do
   add_foreign_key "match_scores", "maps"
   add_foreign_key "match_scores", "matches"
   add_foreign_key "matches", "games"
+  add_foreign_key "matches", "groups"
   add_foreign_key "matches", "matches", column: "next_match_id"
   add_foreign_key "matches", "rosters", column: "left_team_id"
   add_foreign_key "matches", "rosters", column: "right_team_id"
@@ -440,4 +463,5 @@ ActiveRecord::Schema.define(version: 2021_02_04_101447) do
   add_foreign_key "tournaments", "modes"
   add_foreign_key "tournaments", "regions"
   add_foreign_key "tournaments", "servers"
+  add_foreign_key "tournaments", "stages"
 end

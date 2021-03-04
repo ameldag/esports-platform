@@ -30,6 +30,7 @@ class Tournament < ApplicationRecord
 
   has_many :featured
   belongs_to :server, :class_name => "Server"
+  belongs_to :stage
   enum status: [:ongoing, :upcoming, :finished, :cancelled]
 
   validates :season, presence: true
