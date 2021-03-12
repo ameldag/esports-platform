@@ -2,7 +2,7 @@ require "securerandom"
 
 class Tournament < ApplicationRecord
   include PublicActivity::Model
-  tracked owner: ->(controller, model) { model && controller }
+  tracked owner: ->(controller, model) { controller && controller.current_user }
 
   extend FriendlyId
   friendly_id :name, use: :slugged
@@ -38,6 +38,8 @@ class Tournament < ApplicationRecord
   scope :tournaments, ->(active) { where("active = ?", active) }
   scope :active_tournaments, ->(active, game_id) { where("active = ? and game_id = ?", active, game_id) }
   scope :similar_tournaments, ->(game_id) { where("game_id = ?", game_id).last(4) }
+  scope :number_round, ->(number) { where("number = ?", number) }
+
   after_save :add_server_matches
 
   def shouldcreatebracket
@@ -52,7 +54,7 @@ class Tournament < ApplicationRecord
       subscribtion_rosters.shuffle
       subscribtion_rosters.each_slice(2) { |a|
         new_match = self.match.create({
-          :round => 1,
+          :round_id => Round.number_round(1),
           :next_match_id => nil,
           :game_id => self.game_id,
           left_team: a[0].roster,
@@ -66,12 +68,11 @@ class Tournament < ApplicationRecord
         newRoundArray = []
         roundArray.each_slice(2) { |match_couple|
           new_match = self.match.create({
-            :round => match_couple[0].round + 1,
+            :round_id => Round.number_round(match_couple[0].round.number + 1),
             :game_id => self.game_id,
             :planned_at => match_couple[0].planned_at + (match_couple[0].round - 1) * (self.round_delay * 60),
             server_id: self.server_id,
           })
-
           match_couple[0].update_attribute(:next_match_id, new_match.id)
           match_couple[1].update_attribute(:next_match_id, new_match.id)
           newRoundArray << new_match

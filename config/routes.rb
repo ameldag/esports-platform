@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get 'tournaments', to: "tournaments#index", as: "tournaments"
-  get 'tournaments/:game_id', to: "tournaments#index", as: "game_tournaments"
-  get 'tournaments/subscribe'
+  get "tournaments", to: "tournaments#index", as: "tournaments"
+  get "tournaments/:game_id", to: "tournaments#index", as: "game_tournaments"
+  get "tournaments/subscribe"
+  get "tournament/new", to: "tournaments#new", as: "new_tournament"
+  post "tournament/bracket_generator", to: "tournaments#bracket_generator", as: "bracket_generator"
   # games routes
   get "game/:id", to: "game#show", as: "show_game"
   get "game/:id/tournaments/past", to: "game#past_tournament", as: "past_tournament"
@@ -19,8 +21,8 @@ Rails.application.routes.draw do
   # matches routes
   get "tournament/:id/matches/ongoing", to: "tournaments#ongoing_match", as: "ongoing_match"
   get "tournament/:id/matches/past", to: "tournaments#past_match", as: "past_match"
-  get "tournament/:id/match/:match_id", to: "tournaments#match_details", as: 'match_details'
-  get "tournament/:id/match/:match_id/score_submission", to: "tournaments#submit_score", as: 'submit_score'
+  get "tournament/:id/match/:match_id", to: "tournaments#match_details", as: "match_details"
+  get "tournament/:id/match/:match_id/score_submission", to: "tournaments#submit_score", as: "submit_score"
   post "tournament/:id/match/:match_id/score_submission", to: "tournaments#score_submission", as: "score_submission"
 
   #challenges routes
@@ -75,14 +77,14 @@ Rails.application.routes.draw do
   get "user/:id", to: "users#show", as: "show_user"
   get "user/:id/tournaments", to: "users#tournaments", as: "show_user_tournaments"
 
-  # logs csgo 
-  
-  root "pages#index"
-  post "csgolog/:id" , to: "match_event#csgologs", defaults: { format: 'text' }
+  # logs csgo
 
-  get 'start-match/:id', to: "server#start_match", defaults: { format: 'text' }
+  root "pages#index"
+  post "csgolog/:id", to: "match_event#csgologs", defaults: { format: "text" }
+
+  get "start-match/:id", to: "server#start_match", defaults: { format: "text" }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_for :users, controllers: {
-    omniauth_callbacks: "users/omniauth_callbacks",
-  }
+                       omniauth_callbacks: "users/omniauth_callbacks",
+                     }
 end

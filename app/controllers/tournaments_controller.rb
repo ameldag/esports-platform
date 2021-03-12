@@ -1,8 +1,7 @@
 class TournamentsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_tournament, :set_roster, except: [:index]
-
+  before_action :set_tournament, :set_roster, except: [:index, :bracket_generator, :new]
   layout "in-app"
 
   def index
@@ -47,7 +46,7 @@ class TournamentsController < ApplicationController
       format.js { render :partial => "tournaments/match_details.js.erb", locals: { tournament_id: @tournament.id, match: @match } }
     end
   end
-  
+
   def submit_score
     @match = Match.find(params[:match_id])
     @submission = SubmissionMatchScore.new(params.permit(:match_id, :user_id, :roster_id, :comment, :score, :image))
@@ -56,9 +55,9 @@ class TournamentsController < ApplicationController
     end
     if (current_user.rosters.exists?(@match.right_team.id))
       @current_roster = Roster.find(@match.right_team.id)
-    end 
+    end
     respond_to do |format|
-      format.html {}
+      format.html { }
     end
   end
 
@@ -78,11 +77,10 @@ class TournamentsController < ApplicationController
     @submission.image.attach(params[:image])
     @submission.save
     if @submission.score != nil
-      redirect_to show_tournament_matches_path(@tournament), notice: "Your request was successfully sent." 
+      redirect_to show_tournament_matches_path(@tournament), notice: "Your request was successfully sent."
     else
       render "submit_score"
     end
-  
   end
 
   def subscribe
@@ -141,11 +139,27 @@ class TournamentsController < ApplicationController
 
   def ongoing_match
     #ongoing_match next 24hours
-    @ongoing_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id,  DateTime.now, DateTime.now + 1.day)
+    @ongoing_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id, DateTime.now, DateTime.now + 1.day)
   end
 
   def past_match
     @past_match = Match.where("tournament_id = ? and planned_at >= ? AND planned_at <= ?", @tournament.id, 1.day.ago, DateTime.now)
+  end
+
+  def bracket_generator
+    @tournament = Tournament.new
+    @tournament.stage_id = params[:stage]
+    @tournament.name = params[:name]
+    @tournament.game_id = params[:game]
+    @tournament.season_id = 1
+    if @tournament.save
+      redirect_to show_tournament_bracket_path(@tournament)
+    else
+      redirect_to new_tournament_path, alert: "#{@tournament.errors.full_messages}"
+    end
+  end
+
+  def new
   end
 
   private
@@ -157,5 +171,9 @@ class TournamentsController < ApplicationController
   def set_roster
     @roster = current_user.rosters.where("game_id = ?", @tournament.game.id).first
     @roster_tournament = RosterTournament.find_by(roster: @roster, tournament: @tournament)
+  end
+
+  def tournament_params
+    params.permit(:name, :stage_id, :roster_id, :bracket_size, :owner_id)
   end
 end

@@ -1,6 +1,6 @@
 .pagination * {
     @apply px-0.5 py-0.5 mx-0.5;
-    @apply bg-black rounded-lg text-white;
+    @apply bg-gray-700 rounded-lg text-white;
 }
 
 .pagination a:hover {

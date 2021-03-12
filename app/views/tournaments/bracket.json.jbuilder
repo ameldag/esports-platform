@@ -1,8 +1,12 @@
 # participant:[{
-json.participant @tournament.rosters do |roster|
-  json.id roster.id
-  json.tournament_id @tournament.id
-  json.name roster.name
+if @tournament.rosters.count == 0
+  json.participant []
+else
+  json.participant @tournament.rosters do |roster|
+    json.id roster.id
+    json.tournament_id @tournament.id
+    json.name roster.name
+  end
 end
 # }]
 
@@ -16,11 +20,15 @@ end
 # }]
 
 # group:[{
-json.group @tournament.stage.group do |group|
-  json.id group.id
-  json.stage_id @tournament.stage_id
-  json.name group.name
-  json.number group.number
+if @tournament.stage.group.count == 0
+  json.group []
+else
+  json.group @tournament.stage.group do |group|
+    json.id group.id
+    json.stage_id @tournament.stage_id
+    json.name group.name
+    json.number group.number
+  end
 end
 # }]
 
@@ -32,11 +40,11 @@ else
     json.id match.id
     json.stage_id @tournament.stage_id
     json.group_id match.group_id
-    json.round_id match.round
+    json.round_id match.round_id
     json.status match.state
     json.scheduled_datetime nil
     json.planned_at match.planned_at
-    json.number match.round
+    json.number match.round.number
 
     if match.left_team
       json.opponent1 do
@@ -71,10 +79,16 @@ end
 # }]
 
 # round:[{
-json.round @tournament.match do |match|
-  json.number match.round
-  json.stage_id @tournament.stage_id
-  json.group_id match.group_id
+@tournament.stage.group.each do |group|
+  if group.round == nil
+    json.round []
+  else
+    json.round group.round do |round|
+      json.number round.number
+      json.stage_id round.stage_id
+      json.group_id round.group_id
+    end
+  end
 end
 #}]
 

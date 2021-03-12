@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_122114) do
+ActiveRecord::Schema.define(version: 2021_03_11_232902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,7 +190,6 @@ ActiveRecord::Schema.define(version: 2021_03_03_122114) do
     t.integer "state"
     t.integer "left_score"
     t.integer "right_score"
-    t.integer "round"
     t.bigint "tournament_id"
     t.bigint "left_team_id"
     t.bigint "right_team_id"
@@ -202,11 +201,13 @@ ActiveRecord::Schema.define(version: 2021_03_03_122114) do
     t.bigint "winner_id"
     t.bigint "server_id"
     t.bigint "group_id"
+    t.bigint "round_id"
     t.index ["game_id"], name: "index_matches_on_game_id"
     t.index ["group_id"], name: "index_matches_on_group_id"
     t.index ["left_team_id"], name: "index_matches_on_left_team_id"
     t.index ["next_match_id"], name: "index_matches_on_next_match_id"
     t.index ["right_team_id"], name: "index_matches_on_right_team_id"
+    t.index ["round_id"], name: "index_matches_on_round_id"
     t.index ["server_id"], name: "index_matches_on_server_id"
     t.index ["tournament_id"], name: "index_matches_on_tournament_id"
     t.index ["winner_id"], name: "index_matches_on_winner_id"
@@ -271,6 +272,17 @@ ActiveRecord::Schema.define(version: 2021_03_03_122114) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_rosters_on_game_id"
     t.index ["team_id"], name: "index_rosters_on_team_id"
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.string "name"
+    t.integer "number"
+    t.bigint "stage_id"
+    t.bigint "group_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_rounds_on_group_id"
+    t.index ["stage_id"], name: "index_rounds_on_stage_id"
   end
 
   create_table "seasons", force: :cascade do |t|
@@ -447,21 +459,18 @@ ActiveRecord::Schema.define(version: 2021_03_03_122114) do
   add_foreign_key "matches", "rosters", column: "left_team_id"
   add_foreign_key "matches", "rosters", column: "right_team_id"
   add_foreign_key "matches", "rosters", column: "winner_id"
+  add_foreign_key "matches", "rounds"
   add_foreign_key "matches", "servers"
   add_foreign_key "matches", "tournaments"
   add_foreign_key "region_tournaments", "regions"
   add_foreign_key "region_tournaments", "tournaments"
   add_foreign_key "rosters", "games"
   add_foreign_key "rosters", "teams"
+  add_foreign_key "rounds", "groups"
+  add_foreign_key "rounds", "stages"
   add_foreign_key "servers", "games"
   add_foreign_key "submission_match_scores", "matches"
   add_foreign_key "submission_match_scores", "rosters"
   add_foreign_key "submission_match_scores", "users"
   add_foreign_key "tournament_team_participants", "tournament_teams"
   add_foreign_key "tournament_team_participants", "users"
-  add_foreign_key "tournament_teams", "tournaments"
-  add_foreign_key "tournaments", "modes"
-  add_foreign_key "tournaments", "regions"
-  add_foreign_key "tournaments", "servers"
-  add_foreign_key "tournaments", "stages"
-end

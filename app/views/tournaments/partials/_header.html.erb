@@ -1,6 +1,5 @@
 <div class="tournament-header relative w-full p-10" data-module="tournament">
 
-
     <!-- Tournament image background -->
     <div class="absolute top-0 left-0 bottom-0 right-0 dark-gradient overflow-hidden">
         <% if @tournament.cover.attached? %>
@@ -33,7 +32,7 @@
         <!-- Tournament header text -->
         <div class="inline-block tournament-text-infos pl-5">
             <!-- Kind -->
-            <h3 class="text-gray-200 font-thin uppercase text-sm"><%= t 'tournaments.title'%></h3>
+            <h3 class="text-gray-200 font-thin uppercase text-sm"><%= t "tournaments.title" %></h3>
 
             <!-- Name -->
             <h1 class="text-gray-100 font-bold uppercase text-3xl"><%= @tournament.name %></h3>
@@ -42,21 +41,21 @@
                 <h2 class="text-gray-300">
                  <% if @tournament.planned_at %>
                     <% if @tournament.planned_at.to_date == Date.today %>
-                        <%= t 'date.today'%> <%= t 'date.at'%> <%= @tournament.planned_at.strftime("%H:%M")%>
-                        <% elsif  @tournament.planned_at.to_date == Date.yesterday %> 
-                        <%= t 'date.yesterday'%> <%= t 'date.at'%> <%= @tournament.planned_at.strftime("%H:%M")%>
+                        <%= t "date.today" %> <%= t "date.at" %> <%= @tournament.planned_at.strftime("%H:%M") %>
+                        <% elsif @tournament.planned_at.to_date == Date.yesterday %> 
+                        <%= t "date.yesterday" %> <%= t "date.at" %> <%= @tournament.planned_at.strftime("%H:%M") %>
                         <% else %>
-                        <%= I18n.l(@tournament.planned_at, format: '%A, %Y-%m-%d %H:%M')%>
+                        <%= I18n.l(@tournament.planned_at, format: "%A, %Y-%m-%d %H:%M") %>
                     <% end %>
                 <% end %>
                 
-                <% if (@tournament.rosters) &&  (@tournament.slots) %>
+                <% if (@tournament.rosters) && (@tournament.slots) %>
                     <% if ((@tournament.start_date > Date.today) and (@tournament.rosters.count < @tournament.slots)) %>
-                    <span class="bg-green-700 text-white text-xs px-2 py-1 rounded-full"><%= t 'tournaments.status.open'%></span>
+                    <span class="bg-green-700 text-white text-xs px-2 py-1 rounded-full"><%= t "tournaments.status.open" %></span>
                     <% elsif (@tournament.rosters.count >= @tournament.slots) %>
-                    <span class="bg-red-700 text-white text-xs px-2 py-1 rounded-full"><%= t 'tournaments.status.full'%></span>
+                    <span class="bg-red-700 text-white text-xs px-2 py-1 rounded-full"><%= t "tournaments.status.full" %></span>
                     <% elsif (@tournament.end_date < Date.today) %>
-                    <span class="bg-red-700 text-white text-xs px-2 py-1 rounded-full"><%= t 'tournaments.status.completed'%></span>
+                    <span class="bg-red-700 text-white text-xs px-2 py-1 rounded-full"><%= t "tournaments.status.completed" %></span>
                     <% end %>
                 <% end %>    
                 </h2>
@@ -64,30 +63,29 @@
                     <!-- if roster nil -->
                     <% if @roster.blank? %>
                     <button class="new_roster bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
-                        data-attr='<%= @tournament.id%>'>
-                        <%= t 'tournaments.submit.create_roster'%>
+                        data-attr='<%= @tournament.id %>'>
+                        <%= t "tournaments.submit.create_roster" %>
                     </button>
 
                     <% end %> 
-                    <% if  (current_user.team.present?) && (current_user.team.owner_id == current_user.id) %>
-                        <% if ((@tournament.start_date > Date.today) and (@tournament.rosters.count < @tournament.slots)) %>
-                            <% if !(@tournament.roster_tournaments.map{|a| a.roster_id}.include? (@roster.id)) %>
+                    <% if (current_user.team.present?) && (current_user.team.owner_id == current_user.id) %>
+                        <% if (@tournament.start_date) and (@tournament.start_date > Date.today) and (@tournament.rosters.count < @tournament.slots) %>
+                            <% if !(@tournament.roster_tournaments.map { |a| a.roster_id }.include? (@roster.id)) %>
                             <button class="subscribe bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
-                                data-attr='<%= @tournament.id%>'>
-                                <%= t 'tournaments.submit.subscribe'%>
+                                data-attr='<%= @tournament.id %>'>
+                                <%= t "tournaments.submit.subscribe" %>
                             </button>
                             <% end %>
                         <% end %>
                         <% if @roster_tournament and @roster_tournament.confirmed_subscribtion_at.blank? %>
                         <button class="confirm_subscribe bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
-                            data-attr='<%= @tournament.id%>'>
-                            <%= t 'tournaments.submit.confirm_subscribe'%>
+                            data-attr='<%= @tournament.id %>'>
+                            <%= t "tournaments.submit.confirm_subscribe" %>
                         </button>
                         <% end %>
                     <% end %>
                 </h3>
         </div>
-
         <!-- Tournament header text end -->
     </div>
     <!-- Tournament info end -->

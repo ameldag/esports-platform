@@ -7,10 +7,10 @@ module SeembaEsports
       raise NotImplementedError, "Subclasses must define `start_match`."
     end
     def csgologs(str,match)
-      raise NotImplementedError, "Subclasses must define `start_match`."
+      raise NotImplementedError, "Subclasses must define `csgologs`."
     end
     def parse_score(match)
-      raise NotImplementedError, "Subclasses must define `start_match`."
+      raise NotImplementedError, "Subclasses must define `parse_score`."
     end
   end
 end
