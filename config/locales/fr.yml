@@ -279,6 +279,8 @@ fr:
       create: "a créé un nouvel utilisateur"  
       update: "utilisateur mis à jour"
     tournament:
+      create: a créé un nouveau tournoi
+      update: tournoi mis à jour
       won: "a remporté le tournoi"
     match:
       lost: "match perdu"

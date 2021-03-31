@@ -202,7 +202,14 @@ en:
       completed: Completed
       registered: Registered
       confirmed: Confirmed
+    new:
+      title: Tournament Bracket Generator
+      rosters: Participants /Teams
+      type: Tournament Type
+      name: Tournament Name
+      game: Game
     submit: 
+      generate_bracket : Generate It!
       create_roster: Create Roster
       subscribe: Subscribe 
       confirm_subscribe: Confirm subscribe
@@ -279,6 +286,8 @@ en:
       create: created a new user   
       update: updated user
     tournament:
+      create: created a new tournament
+      update: updated tournament
       won: "won tournament's"
     match:
       lost: lost match

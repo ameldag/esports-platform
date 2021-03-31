@@ -2,7 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import 'styles/components/brackets-viewer.css';
-@import 'styles/components/brackets-viewer-rtl.css';
+
+/* @import 'styles/components/brackets-viewer-rtl.css'; */
+
 @import "styles/components/pagination.css";
 html {
     overflow-y: scroll;

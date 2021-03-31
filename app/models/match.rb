@@ -78,10 +78,13 @@ class Match < ApplicationRecord
   end
 
   def calculate_dates
-    planned_dates = {
-      "first_round" => self.tournament.planned_at,
-      "next_round" => self.round.number = 1 ? self.tournament.planned_at + (self.tournament.round_delay * 60) : self.tournament.planned_at + (self.round - 1) * (self.tournament.round_delay * 60),
-    }
-    planned_dates
+    byebug
+    if self.tournament.round_delay != nil && self.tournament.planned_at != nil
+      planned_dates = {
+        "first_round" => self.tournament.planned_at,
+        "next_round" => self.round.number = 1 ? self.tournament.planned_at + (self.tournament.round_delay * 60) : self.tournament.planned_at + (self.round.number - 1) * (self.tournament.round_delay * 60),
+      }
+      planned_dates
+    end
   end
 end

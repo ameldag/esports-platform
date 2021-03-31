@@ -51,7 +51,7 @@ else
         json.id match.left_team.id
         json.position 2
         json.score match.left_score
-        if (match.left_score < match.right_score)
+        if (match.left_score && match.right_score && match.left_score < match.right_score)
           json.result "loss"
         else
           json.result "win"
@@ -65,7 +65,7 @@ else
         json.id match.right_team.id
         json.position 1
         json.score match.right_score
-        if (match.right_score > match.left_score)
+        if (match.left_score && match.right_score && match.right_score > match.left_score)
           json.result "win"
         else
           json.result "loss"

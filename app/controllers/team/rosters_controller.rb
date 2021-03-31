@@ -97,23 +97,8 @@ class Team::RostersController < ApplicationController
     end
   end
 
-  def edit
-    @roster = Roster.find(params["id"])
-  end
 
-  def update
-    @roster = Roster.find(params[:id])
-    @roster.limit = params[:roster][:limit]
-    @roster.name = params[:roster][:name]
-    @roster.game_id = params[:roster][:game]
-    @roster.cover.attach(params[:roster][:cover])
 
-    if @roster.update(roster_params)
-      redirect_to team_rosters_path(@roster.team)
-    else
-      render "edit"
-    end
-  end
 
   def new
     @current_user_teams = Team.where("owner_id = ?", current_user.id).all

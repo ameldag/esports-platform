@@ -279,6 +279,8 @@ ar:
         create: "إنشاء مستخدم جديد"   
         update: "مستخدم محدث"
       tournament:
+        create: أنشأ بطولة جديدة
+        update: البطولة المحدثة
         won: "فاز بالبطولة"
       match:
         lost: "خسر المباراة"

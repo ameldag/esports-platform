@@ -1,0 +1,4 @@
+<% if activity.trackable %>
+<%= t "activities.tournament.update" %>
+<%= link_to activity.trackable.name, show_tournament_path(activity.trackable.id) %>
+<% end %>

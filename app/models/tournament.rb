@@ -38,7 +38,6 @@ class Tournament < ApplicationRecord
   scope :tournaments, ->(active) { where("active = ?", active) }
   scope :active_tournaments, ->(active, game_id) { where("active = ? and game_id = ?", active, game_id) }
   scope :similar_tournaments, ->(game_id) { where("game_id = ?", game_id).last(4) }
-  scope :number_round, ->(number) { where("number = ?", number) }
 
   after_save :add_server_matches
 
@@ -47,19 +46,20 @@ class Tournament < ApplicationRecord
   end
 
   def create_matches
-    return if !self.shouldcreatebracket
+    # return if !self.shouldcreatebracket
     ActiveRecord::Base.transaction do
       roundArray = []
-      subscribtion_rosters = RosterTournament.joins(:tournament).where("tournament_id = ?", self.id).where.not(confirmed_subscribtion_at: nil)
+      subscribtion_rosters = RosterTournament.joins(:tournament).where("tournament_id = ?", self.id)
+      #.where.not(confirmed_subscribtion_at: nil)
       subscribtion_rosters.shuffle
       subscribtion_rosters.each_slice(2) { |a|
         new_match = self.match.create({
-          :round_id => Round.number_round(1),
+          :round_id => Round.find_by(number: 1).id,
           :next_match_id => nil,
           :game_id => self.game_id,
           left_team: a[0].roster,
-          right_team: a[1].roster,
-          :planned_at => self.planned_at,
+          right_team: a[1] ? a[1].roster : nil,
+          :planned_at => self.planned_at ? self.planned_at : nil,
           server_id: self.server_id,
         })
         roundArray << new_match
@@ -68,13 +68,13 @@ class Tournament < ApplicationRecord
         newRoundArray = []
         roundArray.each_slice(2) { |match_couple|
           new_match = self.match.create({
-            :round_id => Round.number_round(match_couple[0].round.number + 1),
+            :round_id => Round.find_by(number: match_couple[0].round.number + 1).id,
             :game_id => self.game_id,
-            :planned_at => match_couple[0].planned_at + (match_couple[0].round - 1) * (self.round_delay * 60),
+            :planned_at => self.round_delay != nil ? match_couple[0].planned_at + (match_couple[0].round.number - 1) * (self.round_delay * 60) : nil,
             server_id: self.server_id,
           })
           match_couple[0].update_attribute(:next_match_id, new_match.id)
-          match_couple[1].update_attribute(:next_match_id, new_match.id)
+          match_couple[1] ? match_couple[1].update_attribute(:next_match_id, new_match.id) : nil
           newRoundArray << new_match
         }
         roundArray = newRoundArray

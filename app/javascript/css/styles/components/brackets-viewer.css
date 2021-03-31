@@ -1,21 +1,7 @@
-*,
-::after,
-::before {
-    box-sizing: border-box
-}
-
-#brackets-tournament {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    color: gray;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: max-content;
-    margin: 0 auto;
-    user-select: none;
+.brackets-viewer {
     --primary-background: #fff;
     --secondary-background: #eceff1;
+    --match-background: var(--primary-background);
     --font-color: #212529;
     --win-color: #50b649;
     --loss-color: #e61a1a;
@@ -23,248 +9,293 @@
     --hint-color: #a7a7a7;
     --connector-color: #9e9e9e;
     --border-color: #d9d9d9;
-    --border-hover-color: #b6b5b5
+    --border-hover-color: #b6b5b5;
+    --round-margin: 50px;
+    --match-width: 192px;
+    --connector-border-width: 2px;
+    --match-border-width: 1px;
+    --match-border-radius: 0.3em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: var(--font-color);
+    background: var(--primary-background);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: max-content;
+    overflow: auto;
+    user-select: none;
+    margin: 0 auto;
+    padding: 10px 50px
 }
 
-h1,
-h2,
-h3 {
-    margin-bottom: 0.5rem;
+.brackets-viewer:empty {
+    display: none
+}
+
+.brackets-viewer *,
+.brackets-viewer ::after,
+.brackets-viewer ::before {
+    box-sizing: border-box
+}
+
+.brackets-viewer h1,
+.brackets-viewer h2,
+.brackets-viewer h3 {
+    margin-bottom: .5em;
     font-weight: 500;
     line-height: 1.2
 }
 
-h1 {
+.brackets-viewer h1 {
     font-size: 26px;
-    margin-bottom: 40px
+    margin-top: 30px;
+    margin-bottom: 20px
 }
 
-h2 {
-    font-size: 23px
+.brackets-viewer h2 {
+    font-size: 21px
 }
 
-h3 {
+.brackets-viewer h3 {
     text-align: center;
-    font-size: 21px;
+    background: var(--secondary-background);
+    font-size: 16px;
     padding: 10px
 }
 
-.round-robin {
-    display: flex
+.brackets-viewer .round-robin {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center
 }
 
-.round-robin .group {
+.brackets-viewer .round-robin h1 {
+    flex-basis: 100%
+}
+
+.brackets-viewer .round-robin h2 {
     text-align: center
 }
 
-.round-robin .group:not(:last-of-type) {
-    margin-right: 50px
+.brackets-viewer .round-robin .group:not(:last-of-type) {
+    margin-right: var(--round-margin)
 }
 
-.round-robin .group h2 {
-    margin-bottom: 25px
+.brackets-viewer .round-robin .group h2 {
+    margin: 0 0 25px 0
 }
 
-.round-robin .group table {
-    margin-top: 25px;
+.brackets-viewer .round-robin .group table {
+    margin: 30px 0 20px 0;
     color: #a7a7a7;
     border-collapse: collapse
 }
 
-.round-robin .group th {
+.brackets-viewer .round-robin .group th {
     font-weight: normal;
     text-align: start;
-    cursor: help
+    cursor: help;
+    border-bottom: var(--match-border-width) solid var(--border-color)
 }
 
-.round-robin .group td {
-    border: none;
-    border-top: 1px solid var(--border-color)
-}
-
-.round-robin .group td.hover {
+.brackets-viewer .round-robin .group td.hover {
     background: #eceff1 !important
 }
 
-.round-robin .group th,
-.round-robin .group td {
+.brackets-viewer .round-robin .group th,
+.brackets-viewer .round-robin .group td {
     padding: 5px
 }
 
-.round-robin .group td:nth-of-type(2),
-.round-robin .group td:last-of-type {
-    color: black;
+.brackets-viewer .round-robin .group td:nth-of-type(2),
+.brackets-viewer .round-robin .group td:last-of-type {
+    color: #000;
     font-weight: 500
 }
 
-.round-robin .round {
+.brackets-viewer .round-robin .round {
     width: fit-content;
     margin: 0 auto
 }
 
-.bracket {
-    flex: 1;
+.brackets-viewer .bracket {
     display: flex
 }
 
-.bracket:not(:last-of-type) {
-    margin-bottom: 30px
+.brackets-viewer .bracket:not(:last-of-type) {
+    margin-bottom: 15px
 }
 
-.bracket .round {
-    flex: 1;
+.brackets-viewer .bracket .round {
     display: flex;
     flex-direction: column
 }
 
-.bracket .round:not(:last-of-type) {
-    margin-right: 50px
+.brackets-viewer .bracket .round:not(:last-of-type) {
+    margin-right: var(--round-margin)
 }
 
-.match {
+.brackets-viewer .match {
     flex: 1;
     display: flex;
     align-items: center;
     margin: 10px 0;
-    width: 192px;
+    width: var(--match-width);
     position: relative
 }
 
-.match.connect-next::after {
+.brackets-viewer .match.connect-next::after {
     content: "";
     display: block;
     position: absolute;
-    right: -25px;
-    width: 25px;
+    right: calc(-1 * var(--round-margin)/2);
+    width: calc(var(--round-margin)/2);
     height: 50%;
-    border-right: 2px solid var(--border-color)
+    border-right: var(--connector-border-width) solid var(--connector-color)
 }
 
-.match.connect-next:nth-of-type(odd)::after {
+.brackets-viewer .match.connect-next:nth-of-type(odd)::after {
     top: 50%;
-    border-top: 2px solid var(--border-color)
+    border-top: var(--connector-border-width) solid var(--connector-color)
 }
 
-.match.connect-next:nth-of-type(even)::after {
+.brackets-viewer .match.connect-next:nth-of-type(even)::after {
     top: 0;
-    border-bottom: 2px solid var(--border-color)
+    border-bottom: var(--connector-border-width) solid var(--connector-color)
 }
 
-.match.connect-next.straight::after {
-    width: 50px;
-    right: -50px;
+.brackets-viewer .match.connect-next.straight::after {
+    width: var(--round-margin);
+    right: calc(-1 * var(--round-margin));
     top: 0;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: var(--connector-border-width) solid var(--connector-color);
     border-top: unset;
     border-right: unset
 }
 
-.teams {
+.brackets-viewer .opponents {
     width: 100%;
     position: relative;
-    border: 1px solid var(--border-color);
-    border-radius: .3rem;
-    background: #252F3F;
+    border: var(--match-border-width) solid var(--border-color);
+    border-radius: var(--match-border-radius);
+    background: var(--match-background)
 }
 
-.teams:hover {
+.brackets-viewer .opponents:hover {
     border: 1px solid var(--border-hover-color)
 }
 
-.teams>span {
+.brackets-viewer .opponents>span {
     position: absolute;
     top: -10px;
-    left: 3px;
-    font-size: 0.7rem;
-    background: white;
+    font-size: .8em;
     padding: 0 5px;
     color: var(--label-color);
+    background: var(--primary-background);
     border-radius: 3px
 }
 
-.teams.connect-previous::before {
+.brackets-viewer .opponents>span:nth-of-type(1) {
+    left: 3px
+}
+
+.brackets-viewer .opponents>span:nth-of-type(2) {
+    right: 3px
+}
+
+.brackets-viewer .opponents.connect-previous::before {
     content: "";
     display: block;
     position: absolute;
-    left: -25px;
-    width: 25px;
+    left: calc(-1 * var(--round-margin)/2);
+    width: calc(var(--round-margin)/2);
     height: 50%;
-    border-bottom: 2px solid var(--border-color)
+    border-bottom: var(--connector-border-width) solid var(--connector-color)
 }
 
-.teams.connect-previous .bracket:nth-of-type(1) .teams.connect-previous.straight::after,
-.bracket:nth-of-type(1) .teams.connect-previous .teams.connect-previous.straight::after,
-.teams.connect-previous .bracket:nth-of-type(2) .teams.connect-previous.straight::before,
-.bracket:nth-of-type(2) .teams.connect-previous .teams.connect-previous.straight::before {
+.bracket:nth-of-type(2) .brackets-viewer .opponents.connect-previous .opponents.connect-previous.straight::before,
+.bracket:nth-of-type(1) .brackets-viewer .opponents.connect-previous .opponents.connect-previous.straight::after {
     border-left: unset;
-    left: -50px;
-    width: 50px
+    left: -var(--round-margin);
+    width: var(--round-margin)
 }
 
-.bracket:nth-of-type(1) .teams.connect-previous.straight::before {
+.bracket:nth-of-type(1) .brackets-viewer .opponents.connect-previous.straight::before {
     content: unset
 }
 
-.bracket:nth-of-type(2) .teams.connect-previous.straight::after {
+.bracket:nth-of-type(2) .brackets-viewer .opponents.connect-previous.straight::after {
     content: unset
 }
 
-.team {
+.brackets-viewer .participant {
     display: flex;
     justify-content: space-between;
     padding: 2px 8px;
-    background: #151e2e;
+    background: var(--match-background)
 }
 
-.team.hover {
+.brackets-viewer .participant.hover {
     background: var(--secondary-background) !important
 }
 
-.team:nth-of-type(1) {
+.brackets-viewer .participant:nth-of-type(1) {
     border-bottom: none;
-    border-top-left-radius: .3rem;
-    border-top-right-radius: .3rem;
+    border-top-left-radius: var(--match-border-radius);
+    border-top-right-radius: var(--match-border-radius);
     padding-top: 8px
 }
 
-.team:nth-of-type(2) {
+.brackets-viewer .participant:nth-of-type(2) {
     border-top: none;
-    border-bottom-left-radius: .3rem;
-    border-bottom-right-radius: .3rem;
+    border-bottom-left-radius: var(--match-border-radius);
+    border-bottom-right-radius: var(--match-border-radius);
     padding-bottom: 8px
 }
 
-.name {
+.brackets-viewer .participant .name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: small;
+    width: 80%
 }
 
-.name.win {
-    font-weight: bold
-}
-
-.name.hint {
+.brackets-viewer .participant .name.hint {
     color: var(--hint-color)
 }
 
-.name>span {
+.brackets-viewer .participant .name>img {
+    width: 1em;
+    height: 1em;
+    margin-right: 4px;
+    object-fit: cover;
+    border-radius: 4px;
+    vertical-align: middle;
+    position: relative;
+    bottom: 1px
+}
+
+.brackets-viewer .participant .name>span {
     color: var(--hint-color);
-    font-size: 0.9rem;
+    font-size: .9em;
     font-weight: initial
 }
 
-.result {
+.brackets-viewer .participant.win .name {
+    font-weight: bold
+}
+
+.brackets-viewer .participant .result {
     margin-left: 10px;
     width: 15%;
     text-align: center
 }
 
-.result.win {
+.brackets-viewer .participant.win .result {
     color: var(--win-color)
 }
 
-.result.loss {
+.brackets-viewer .participant.loss .result {
     color: var(--loss-color)
 }

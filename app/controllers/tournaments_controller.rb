@@ -152,7 +152,13 @@ class TournamentsController < ApplicationController
     @tournament.name = params[:name]
     @tournament.game_id = params[:game]
     @tournament.season_id = 1
+    @tournament.slots = params[:rosters].split(",").count
+    params[:rosters].split(",").each do |r|
+      @roster = Roster.find(r)
+      @tournament.rosters << @roster
+    end
     if @tournament.save
+      @tournament.create_matches
       redirect_to show_tournament_bracket_path(@tournament)
     else
       redirect_to new_tournament_path, alert: "#{@tournament.errors.full_messages}"
@@ -160,6 +166,17 @@ class TournamentsController < ApplicationController
   end
 
   def new
+  end
+
+  def edit
+  end
+
+  def update
+    if @tournament.update(tournament_params)
+      redirect_to show_tournament_path(@tournament)
+    else
+      render "edit"
+    end
   end
 
   private
@@ -174,6 +191,6 @@ class TournamentsController < ApplicationController
   end
 
   def tournament_params
-    params.permit(:name, :stage_id, :roster_id, :bracket_size, :owner_id)
+    params.permit(:name, :description, :planned_at, :game_id, :mode_id, :region_id, :stage_id, :user_id)
   end
 end

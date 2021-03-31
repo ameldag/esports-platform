@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   get "tournaments", to: "tournaments#index", as: "tournaments"
   get "tournaments/:game_id", to: "tournaments#index", as: "game_tournaments"
   get "tournaments/subscribe"
-  get "tournament/new", to: "tournaments#new", as: "new_tournament"
+  get "tournament/bracket_generator", to: "tournaments#new", as: "new_tournament"
   post "tournament/bracket_generator", to: "tournaments#bracket_generator", as: "bracket_generator"
+  get "tournament/:id/edit", to: "tournaments#edit", as: "edit_tournament"
+  put "tournament/:id", to: "tournaments#update"
   # games routes
   get "game/:id", to: "game#show", as: "show_game"
   get "game/:id/tournaments/past", to: "game#past_tournament", as: "past_tournament"

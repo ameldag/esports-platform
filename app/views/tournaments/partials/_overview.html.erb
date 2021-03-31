@@ -70,8 +70,8 @@
                         </label>
 
                         <h3>
-                             <%= t 'tournaments.format.unit'%>
-                             <%= @tournament.entry_fee%>
+                            <%= t 'tournaments.format.unit'%>
+                            <%= @tournament.entry_fee%>
                         </h3>
                     </div>
 
@@ -85,7 +85,7 @@
                         </div>
 
                         <label class="font-bold">
-                           <%= t 'tournaments.format.prize'%>
+                            <%= t 'tournaments.format.prize'%>
                         </label>
 
                         <h3>
@@ -135,7 +135,7 @@
                         </h3>
                         <% else %>
                         <h3>
-                           <%= t 'tournaments.format.na'%>
+                            <%= t 'tournaments.format.na'%>
 
                         </h3>
                         <% end %>
@@ -152,7 +152,7 @@
                         <label class="font-bold">
                             <%= t 'tournaments.format.round_delay'%>
                         </label>
-                        <% if @tournament.round_delay.present? %>            
+                        <% if @tournament.round_delay.present? %>
                         <h3>
                             <%= @tournament.round_delay%>
                         </h3>
@@ -182,7 +182,7 @@
                         <%end %>
                         <% else %>
                         <h3>
-                           <%= t 'tournaments.format.na'%>
+                            <%= t 'tournaments.format.na'%>
 
                         </h3>
                         <% end %>
@@ -253,14 +253,16 @@
                     <div class="grid grid-cols-4">
                         <% (@tournament.rosters).each do |roster| %>
                         <% if roster.team %>
-                        <a href="<%= team_show_roster_path(roster.team_id, roster.id) %>" class="flex-shrink-0 group block focus:outline-none mb-5">
+                        <a href="<%= team_show_roster_path(roster.team_id, roster.id) %>"
+                            class="flex-shrink-0 group block focus:outline-none mb-5">
                             <div class="flex items-center">
                                 <div>
                                     <% if roster.team.avatar.attached? %>
                                     <img class="inline-block h-12 w-12 rounded-full"
                                         src="<%= url_for(roster.team.avatar) %>" alt="" />
                                     <% else %>
-                                    <img class="inline-block h-12 w-12 rounded-full" src="/images/icons/no-game.png" alt="" />
+                                    <img class="inline-block h-12 w-12 rounded-full" src="/images/icons/no-game.png"
+                                        alt="" />
                                     <% end %>
                                 </div>
                                 <div class="ml-3">
@@ -312,7 +314,9 @@
                                 </span>
                             </p>
                             <p class="text-sm leading-5 font-medium text-gray-300 group-hover:text-gray-500">
+                                <% if @tournament.start_date %>
                                 <%=@tournament.start_date - 1.days%>
+                                <% end %>
                             </p>
                         </div>
                         <% end %>

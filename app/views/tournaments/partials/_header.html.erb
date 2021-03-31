@@ -49,7 +49,7 @@
                     <% end %>
                 <% end %>
                 
-                <% if (@tournament.rosters) && (@tournament.slots) %>
+                <% if (@tournament.rosters) && (@tournament.slots) && (@tournament.start_date) %> 
                     <% if ((@tournament.start_date > Date.today) and (@tournament.rosters.count < @tournament.slots)) %>
                     <span class="bg-green-700 text-white text-xs px-2 py-1 rounded-full"><%= t "tournaments.status.open" %></span>
                     <% elsif (@tournament.rosters.count >= @tournament.slots) %>
@@ -66,9 +66,8 @@
                         data-attr='<%= @tournament.id %>'>
                         <%= t "tournaments.submit.create_roster" %>
                     </button>
-
-                    <% end %> 
-                    <% if (current_user.team.present?) && (current_user.team.owner_id == current_user.id) %>
+                    <% end %>
+                    <% if (current_user.team.present? && @tournament.slots) && (current_user.team.owner_id == current_user.id) %> 
                         <% if (@tournament.start_date) and (@tournament.start_date > Date.today) and (@tournament.rosters.count < @tournament.slots) %>
                             <% if !(@tournament.roster_tournaments.map { |a| a.roster_id }.include? (@roster.id)) %>
                             <button class="subscribe bg-indigo-700 text-white text-xs px-2 py-1 rounded-full"
