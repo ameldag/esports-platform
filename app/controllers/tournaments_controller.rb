@@ -147,22 +147,18 @@ class TournamentsController < ApplicationController
   end
 
   def bracket_generator
-    @tournament = Tournament.new
-    @tournament.stage_id = params[:stage]
-    @tournament.name = params[:name]
-    @tournament.game_id = params[:game]
-    @tournament.season_id = 1
-    @tournament.slots = params[:rosters].split(",").count
-    params[:rosters].split(",").each do |r|
-      @roster = Roster.find(r)
-      @tournament.rosters << @roster
-    end
-    if @tournament.save
-      @tournament.create_matches
-      redirect_to show_tournament_bracket_path(@tournament)
-    else
-      redirect_to new_tournament_path, alert: "#{@tournament.errors.full_messages}"
-    end
+    # @tournament = Tournament.new
+    # @tournament.stage_id = params[:stage]
+    # @tournament.name = params[:name]
+    # @tournament.game_id = params[:game]
+    # @tournament.season_id = 1 
+
+    # if @tournament.save
+    #   @tournament.create_matches
+    #   redirect_to show_tournament_bracket_path(@tournament)
+    # else
+    #   redirect_to new_tournament_path, alert: "#{@tournament.errors.full_messages}"
+    # end
   end
 
   def new
