@@ -78,7 +78,6 @@ class Match < ApplicationRecord
   end
 
   def calculate_dates
-    byebug
     if self.tournament.round_delay != nil && self.tournament.planned_at != nil
       planned_dates = {
         "first_round" => self.tournament.planned_at,

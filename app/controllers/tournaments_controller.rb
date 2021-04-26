@@ -1,7 +1,7 @@
 class TournamentsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_tournament, :set_roster, except: [:index, :bracket_generator, :new]
+  before_action :set_tournament, :set_roster, except: [:index, :bracket_generator, :new, :create]
   layout "in-app"
 
   def index
@@ -147,21 +147,39 @@ class TournamentsController < ApplicationController
   end
 
   def bracket_generator
-    # @tournament = Tournament.new
-    # @tournament.stage_id = params[:stage]
-    # @tournament.name = params[:name]
-    # @tournament.game_id = params[:game]
-    # @tournament.season_id = 1 
-
-    # if @tournament.save
-    #   @tournament.create_matches
-    #   redirect_to show_tournament_bracket_path(@tournament)
-    # else
-    #   redirect_to new_tournament_path, alert: "#{@tournament.errors.full_messages}"
-    # end
   end
 
   def new
+    @tournament = Tournament.new
+  end
+
+  def create
+    @tournament = Tournament.new
+    # params["data"]["group"].each do |key, value| puts value["stage_id"] end
+
+    params["data"]["stage"].each do |key, value|
+      stage = Stage.find_by(stage_type: value["type"].to_s)
+      @tournament.stage_id = stage
+    end
+
+    params["data"]["participant"].each do |key, value|
+      participant = Roster.find(value["id"])
+      @tournament.rosters << participant
+    end
+    params["data"]["match"].each do |key, value|
+      match = Match.find(value["id"])
+      @tournament.match << match
+    end
+
+    @tournament.name = params["name"]
+    @tournament.game_id = params["game"].to_i
+    @tournament.season_id = 1
+
+    if @tournament.save
+      redirect_to show_tournament_bracket_path(@tournament)
+    else
+      redirect_to new_tournament_path, alert: "#{@tournament.errors.full_messages}"
+    end
   end
 
   def edit

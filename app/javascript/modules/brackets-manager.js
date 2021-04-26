@@ -8,7 +8,7 @@ const manager = new BracketsManager(storage);
 storage.reset();
 document.getElementById("bracket-tournament").addEventListener("click", function(event) {
     event.preventDefault();
-
+    $('#bracketsViewer').show();
     var name = $('#name').val();
     var type = $('#stage').val();
     var seedings = document.getElementsByName("rosters");
@@ -72,6 +72,25 @@ document.getElementById("bracket-tournament").addEventListener("click", function
             showSlotsOrigin: true,
             showLowerBracketSlotsOrigin: true,
             highlightParticipantOnHover: true,
+        });
+        document.getElementById("bracketsViewer").addEventListener("click", function(event) {
+
+            event.preventDefault();
+
+            var target = "http://localhost:3000/tournament/new";
+            var name = $('#name').val();
+            var game = $('#game').val();
+
+            $.ajax({
+                type: 'POST',
+                url: target,
+                data: {
+                    data: data,
+                    name: name,
+                    game: game
+                },
+            });
+
         });
     })()
 });
