@@ -156,29 +156,36 @@ class TournamentsController < ApplicationController
   def create
     @tournament = Tournament.new
     # params["data"]["group"].each do |key, value| puts value["stage_id"] end
-
-    params["data"]["stage"].each do |key, value|
-      stage = Stage.find_by(stage_type: value["type"].to_s)
+    @tournament.user_id = current_user.id
+    params[:tournament][:stage].each do |key, value|
+      stage = Stage.find_by(stage_type: value[:type].to_s)
       @tournament.stage_id = stage
     end
 
-    params["data"]["participant"].each do |key, value|
-      participant = Roster.find(value["id"])
+    params[:tournament][:participant].each do |key, value|
+      participant = Roster.find(value[:id])
       @tournament.rosters << participant
     end
-    params["data"]["match"].each do |key, value|
-      match = Match.find(value["id"])
+    params[:tournament][:match].each do |key, value|
+      match = Match.new(tournament: @tournament,
+                        group_id: value[:group_id], round_id: value[:round_id], game_id: params[:game].to_i)
       @tournament.match << match
     end
 
-    @tournament.name = params["name"]
-    @tournament.game_id = params["game"].to_i
+    @tournament.name = params[:name]
+    @tournament.game_id = params[:game].to_i
     @tournament.season_id = 1
 
     if @tournament.save
-      redirect_to show_tournament_bracket_path(@tournament)
-    else
-      redirect_to new_tournament_path, alert: "#{@tournament.errors.full_messages}"
+      @rounds = []
+      params[:tournament][:round].each do |key, value|
+        @rounds << Round.new(number: value[:number], stage_id: value[:stage_id], group_id: value[:group_id])
+      end
+      if @rounds.each(&:save)
+        redirect_to show_tournament_bracket_path(@tournament), notice: "New tournament created"
+      else
+        redirect_to new_tournament_path, alert: "#{@tournament.errors.full_messages}"
+      end
     end
   end
 
