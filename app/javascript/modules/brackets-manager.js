@@ -27,7 +27,8 @@ document.getElementById("bracket-tournament").addEventListener("click", function
             seeding: rosters,
             settings: {
                 seedOrdering: ['natural'],
-                grandFinal: 'simple'
+                grandFinal: 'simple',
+                groupCount: 2
             }
         });
         const stage = await storage.select('stage');
