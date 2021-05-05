@@ -202,7 +202,14 @@ fr:
       completed: "Terminé"
       registered: "Inscrit"
       confirmed: "Confirmé"
+    bracket_generator:
+      title: Générateur de support de tournoi
+      rosters: Participants / équipes
+      type: Type de tournoi
+      name: Nom du tournoi
+      game: Jeu
     submit: 
+      generate_bracket: Générez-le!
       create_roster: "Créer une liste"
       subscribe: "Souscrire"
       confirm_subscribe: "Confirmer l'abonnement"

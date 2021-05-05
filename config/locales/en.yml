@@ -202,14 +202,14 @@ en:
       completed: Completed
       registered: Registered
       confirmed: Confirmed
-    new:
+    bracket_generator:
       title: Tournament Bracket Generator
       rosters: Participants /Teams
       type: Tournament Type
       name: Tournament Name
       game: Game
     submit: 
-      generate_bracket : Generate It!
+      generate_bracket: Generate It!
       create_roster: Create Roster
       subscribe: Subscribe 
       confirm_subscribe: Confirm subscribe
