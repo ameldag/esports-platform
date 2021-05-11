@@ -29,6 +29,14 @@ class TournamentsController < ApplicationController
   end
 
   def bracket
+    @rounds = []
+    @tournament.stage.each do |stage|
+      stage.group.each do |g|
+        g.round.each do |r|
+          @rounds << r
+        end
+      end
+    end
     respond_to :html, :json
   end
 
@@ -154,38 +162,57 @@ class TournamentsController < ApplicationController
   end
 
   def create
-    @tournament = Tournament.new
-    # params["data"]["group"].each do |key, value| puts value["stage_id"] end
-    @tournament.user_id = current_user.id
-    params[:tournament][:stage].each do |key, value|
-      stage = Stage.find_by(stage_type: value[:type].to_s)
-      @tournament.stage_id = stage
-    end
-
-    params[:tournament][:participant].each do |key, value|
-      participant = Roster.find(value[:id])
-      @tournament.rosters << participant
-    end
-    params[:tournament][:match].each do |key, value|
-      match = Match.new(tournament: @tournament,
-                        group_id: value[:group_id], round_id: value[:round_id], game_id: params[:game].to_i)
-      @tournament.match << match
-    end
-
-    @tournament.name = params[:name]
-    @tournament.game_id = params[:game].to_i
-    @tournament.season_id = 1
-
-    if @tournament.save
-      @rounds = []
-      params[:tournament][:round].each do |key, value|
-        @rounds << Round.new(number: value[:number], stage_id: value[:stage_id], group_id: value[:group_id])
+    ActiveRecord::Base.transaction do
+      @tournament = Tournament.create(user_id: current_user.id,
+                                      name: params[:name],
+                                      game_id: params[:game].to_i,
+                                      season_id: 1)
+      params[:rosters].each do |roster|
+        participant = Roster.find_by(name: roster.to_s)
+        @tournament.rosters << participant
       end
-      if @rounds.each(&:save)
+      params[:tournament][:stage].each do |key, value|
+        stage_id = value[:id]
+        stage = Stage.create(stage_type: value[:type].to_s, tournament: @tournament, name: value[:name].to_s, number: value[:number].to_i)
+        params[:tournament][:group].each do |key, value|
+          group_id = value[:id]
+          if (stage_id == value[:stage_id])
+            group = Group.create(number: value[:number], stage: stage)
+            params[:tournament][:round].each do |key, value|
+              round_id = value[:id]
+              if (group_id == value[:group_id])
+                round = Round.create(number: value[:number].to_i, group: group, stage: stage)
+                rosters = params[:rosters]
+                array = rosters.each_slice(2).to_a
+                params[:tournament][:match].each do |key, value|
+                  if array != nil
+                    left_team = array[key.to_i] ? Roster.find_by(name: array[key.to_i][0].to_s) : nil
+                    right_team = array[key.to_i] ? Roster.find_by(name: array[key.to_i][1].to_s) : nil
+                    if (stage_id == value[:stage_id] && group_id == value[:group_id] && round_id == value[:round_id])
+                      match = Match.create(tournament: @tournament,
+                                           left_team: left_team,
+                                           right_team: right_team,
+                                           stage: stage,
+                                           group: group,
+                                           round: round,
+                                           game_id: params[:game].to_i)
+                      match_score = MatchScore.create(
+                                                      left_score: 0,
+                                                      right_score: 0,
+                                                      match: match)
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+
+      if @tournament.save
         redirect_to show_tournament_bracket_path(@tournament), notice: "New tournament created"
-      else
-        redirect_to new_tournament_path, alert: "#{@tournament.errors.full_messages}"
       end
+      raise ActiveRecord::RecordInvalid if @tournament.nil?
     end
   end
 
@@ -212,6 +239,6 @@ class TournamentsController < ApplicationController
   end
 
   def tournament_params
-    params.permit(:name, :description, :planned_at, :game_id, :mode_id, :region_id, :stage_id, :user_id)
+    params.permit(:name, :description, :planned_at, :game_id, :mode_id, :region_id, :user_id)
   end
 end

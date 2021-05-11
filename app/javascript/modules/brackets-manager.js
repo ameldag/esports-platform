@@ -2,10 +2,8 @@ import {
     LowDatabase,
     BracketsManager
 } from "@seemba-official/brackets-manager";
-
 const storage = new LowDatabase();
 const manager = new BracketsManager(storage);
-storage.reset();
 document.getElementById("bracket-tournament").addEventListener("click", function(event) {
     event.preventDefault();
     $('#bracketsViewer').show();
@@ -13,12 +11,18 @@ document.getElementById("bracket-tournament").addEventListener("click", function
     var game = $('#game').val();
     var type = $('#stage').val();
     var seedings = document.getElementsByName("rosters");
-    let rosters = []
-    for (var i = 0; i < seedings.length; i++) {
-        rosters.push(seedings[i].value);
-    }
+    var rosters = []
 
+    for (var i = 0; i < seedings.length; i++) {
+        var s = seedings[i].value;
+        var team = s.split(',')
+        for (var a in team) {
+            var variable = team[a]
+            rosters.push(variable)
+        }
+    }
     (async() => {
+        storage.reset();
 
         await manager.create({
             name: name,
@@ -27,8 +31,8 @@ document.getElementById("bracket-tournament").addEventListener("click", function
             seeding: rosters,
             settings: {
                 seedOrdering: ['natural'],
-                grandFinal: 'simple',
-                groupCount: 2
+                skipFirstRound: true,
+                grandFinal: 'double',
             }
         });
         const stage = await storage.select('stage');
@@ -46,7 +50,6 @@ document.getElementById("bracket-tournament").addEventListener("click", function
             participant
         };
         JSON.stringify(data);
-
         // You can manually add locales. English will be used as a fallback if keys are missing.
         // You can force browser language detection by setting the `
         //i18nextLng ` property to a locale key (ex: 'ru') in the localStorage.
@@ -60,7 +63,7 @@ document.getElementById("bracket-tournament").addEventListener("click", function
         // This is optional.You must do it before render().
         bracketsViewer.setParticipantImages(data.participant.map(participant => ({
             participantId: participant.id,
-            imageUrl: 'https://github.githubassets.com/pinned-octocat.svg',
+            imageUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEi-user.svg&psig=AOvVaw0KxBPNeLyppSh_kjiuoRAl&ust=1620737096047000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLjXiaySv_ACFQAAAAAdAAAAABAJ',
         })));
 
         bracketsViewer.render({
@@ -76,15 +79,16 @@ document.getElementById("bracket-tournament").addEventListener("click", function
             showLowerBracketSlotsOrigin: true,
             highlightParticipantOnHover: true,
         });
+
         document.getElementById("bracketsViewer").addEventListener("click", function(event) {
             event.preventDefault();
             var target = "http://localhost:3000/tournament/new";
-            console.log(data, name, game);
             $.ajax({
                 type: 'POST',
                 url: target,
                 data: {
                     tournament: data,
+                    rosters: rosters,
                     name: name,
                     game: game
                 },

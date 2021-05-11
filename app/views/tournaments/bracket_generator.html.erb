@@ -26,7 +26,7 @@
                         <label for="stage_type"
                             class="block text-sm font-medium leading-5 text-gray-700"><%= t ".type" %>:</label>
                         <div class="mt-1 flex rounded-md shadow-sm">
-                            <%= f.select :stage, Stage.all.collect { |g| [g.stage_type] }, {}, { :class => "form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", id: "stage" } %>
+                            <%= f.select :point1, options_for_select(["single_elimination", "double_elimination", "	round_robin"]), { :include_blank => false }, { :class => "form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", id: "stage" } %>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <%= f.submit I18n.t("tournaments.submit.generate_bracket"), id: "bracket-tournament", class: "mt-6 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white  bg-orange-800 hover:bg-orange-700 focus:outline-none focus:border-orange-700 focus:shadow-outline-purple active:bg-orange-700 transition duration-150 ease-in-out" %>
+            <%= f.submit I18n.t("tournaments.submit.generate_bracket"), id: "bracket-tournaments", class: "mt-6 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white  bg-orange-800 hover:bg-orange-700 focus:outline-none focus:border-orange-700 focus:shadow-outline-purple active:bg-orange-700 transition duration-150 ease-in-out" %>
         </div>
     </div>
 </div>

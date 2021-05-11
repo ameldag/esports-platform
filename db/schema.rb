@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_232902) do
+ActiveRecord::Schema.define(version: 2021_05_10_102232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_232902) do
     t.bigint "server_id"
     t.bigint "group_id"
     t.bigint "round_id"
+    t.bigint "stage_id"
     t.index ["game_id"], name: "index_matches_on_game_id"
     t.index ["group_id"], name: "index_matches_on_group_id"
     t.index ["left_team_id"], name: "index_matches_on_left_team_id"
@@ -209,6 +210,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_232902) do
     t.index ["right_team_id"], name: "index_matches_on_right_team_id"
     t.index ["round_id"], name: "index_matches_on_round_id"
     t.index ["server_id"], name: "index_matches_on_server_id"
+    t.index ["stage_id"], name: "index_matches_on_stage_id"
     t.index ["tournament_id"], name: "index_matches_on_tournament_id"
     t.index ["winner_id"], name: "index_matches_on_winner_id"
   end
@@ -327,6 +329,8 @@ ActiveRecord::Schema.define(version: 2021_03_11_232902) do
     t.integer "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "tournament_id"
+    t.index ["tournament_id"], name: "index_stages_on_tournament_id"
   end
 
   create_table "submission_match_scores", force: :cascade do |t|
@@ -395,14 +399,12 @@ ActiveRecord::Schema.define(version: 2021_03_11_232902) do
     t.datetime "planned_at"
     t.decimal "round_delay"
     t.bigint "server_id"
-    t.bigint "stage_id"
     t.index ["game_id"], name: "index_tournaments_on_game_id"
     t.index ["mode_id"], name: "index_tournaments_on_modes_id"
     t.index ["region_id"], name: "index_tournaments_on_regions_id"
     t.index ["season_id"], name: "index_tournaments_on_season_id"
     t.index ["server_id"], name: "index_tournaments_on_server_id"
     t.index ["slug"], name: "index_tournaments_on_slug", unique: true
-    t.index ["stage_id"], name: "index_tournaments_on_stage_id"
     t.index ["user_id"], name: "index_tournaments_on_user_id"
   end
 
@@ -461,6 +463,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_232902) do
   add_foreign_key "matches", "rosters", column: "winner_id"
   add_foreign_key "matches", "rounds"
   add_foreign_key "matches", "servers"
+  add_foreign_key "matches", "stages"
   add_foreign_key "matches", "tournaments"
   add_foreign_key "region_tournaments", "regions"
   add_foreign_key "region_tournaments", "tournaments"
@@ -469,8 +472,14 @@ ActiveRecord::Schema.define(version: 2021_03_11_232902) do
   add_foreign_key "rounds", "groups"
   add_foreign_key "rounds", "stages"
   add_foreign_key "servers", "games"
+  add_foreign_key "stages", "tournaments"
   add_foreign_key "submission_match_scores", "matches"
   add_foreign_key "submission_match_scores", "rosters"
   add_foreign_key "submission_match_scores", "users"
   add_foreign_key "tournament_team_participants", "tournament_teams"
   add_foreign_key "tournament_team_participants", "users"
+  add_foreign_key "tournament_teams", "tournaments"
+  add_foreign_key "tournaments", "modes"
+  add_foreign_key "tournaments", "regions"
+  add_foreign_key "tournaments", "servers"
+end

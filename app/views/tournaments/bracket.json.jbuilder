@@ -11,23 +11,26 @@ end
 # }]
 
 # stage:[{
-json.stage do
-  json.tournament_id @tournament.id
-  json.name @tournament.stage.name
-  json.type @tournament.stage.stage_type
-  json.number @tournament.stage.number
+json.stage @tournament.stage do |stage|
+  json.id stage.id
+  json.tournament_id stage.tournament_id
+  json.name stage.name
+  json.type stage.stage_type
+  json.number stage.number
 end
 # }]
 
 # group:[{
-if @tournament.stage.group.count == 0
-  json.group []
-else
-  json.group @tournament.stage.group do |group|
-    json.id group.id
-    json.stage_id @tournament.stage_id
-    json.name group.name
-    json.number group.number
+@tournament.stage.each do |stage|
+  if stage.group.count == 0
+    json.group []
+  else
+    json.group stage.group.each do |group|
+      json.id group.id
+      json.stage_id group.stage_id
+      json.name group.name
+      json.number group.number
+    end
   end
 end
 # }]
@@ -38,13 +41,13 @@ if @tournament.match.count == 0
 else
   json.match @tournament.match do |match|
     json.id match.id
-    json.stage_id @tournament.stage_id
+    json.stage_id match.stage_id
     json.group_id match.group_id
     json.round_id match.round_id
     json.status match.state
     json.scheduled_datetime nil
     json.planned_at match.planned_at
-    json.number match.round.number
+    json.number match.round ? match.round.number : 0
 
     if match.left_team
       json.opponent1 do
@@ -78,19 +81,12 @@ else
 end
 # }]
 
-# round:[{
-@tournament.stage.group.each do |group|
-  if group.round == nil
-    json.round []
-  else
-    json.round group.round do |round|
-      json.number round.number
-      json.stage_id round.stage_id
-      json.group_id round.group_id
-    end
-  end
+json.round @rounds do |r|
+  json.id r.id
+  json.stage_id r.stage_id
+  json.name r.name
+  json.number r.number
 end
-#}]
 
 # match_game:[{
 json.match_game []

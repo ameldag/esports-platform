@@ -14,7 +14,7 @@ class Match < ApplicationRecord
   belongs_to :server, :class_name => "Server"
   belongs_to :group, :class_name => "Group"
   belongs_to :round, :class_name => "Round"
-
+  belongs_to :stage, :class_name => "Stage"
   enum state: [:pending, :started, :ended, :cancelled]
 
   def update_score
@@ -29,7 +29,7 @@ class Match < ApplicationRecord
       self.left_score = 0
       self.right_score = 0
     end
-    if (self.left_score < self.right_score)
+    if (self.left_score && self.right_score) && (self.left_score < self.right_score)
       self.winner = self.right_team
     else
       self.winner = self.left_team
