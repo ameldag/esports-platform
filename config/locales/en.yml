@@ -9,13 +9,13 @@ en:
       logout: "Logout"
       login: Login
       sign_up: Sign up
-    signed_up: "Signed up"  
-    signed_in_with: "Signed in with" 
-    find_us_on: Find us on 
-    upload_file: Upload a file 
-    copyright: "© Copyright 2020." 
-    ongoing: Ongoing Tournaments   
-    upcoming: Upcoming Tournaments    
+    signed_up: "Signed up"
+    signed_in_with: "Signed in with"
+    find_us_on: Find us on
+    upload_file: Upload a file
+    copyright: "© Copyright 2020."
+    ongoing: Ongoing Tournaments
+    upcoming: Upcoming Tournaments
     past: Past
   views:
     pagination:
@@ -32,15 +32,15 @@ en:
           one: "Displaying <b>1</b> %{entry_name}"
           other: "Displaying <b>all %{count}</b> %{entry_name}"
       more_pages:
-        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"           
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
   activerecord:
     errors:
       messages:
-        empty_team: There are no teams yet. Maybe you want to 
+        empty_team: There are no teams yet. Maybe you want to
         empty_search: No result
         empty_request: No requests
         empty_member: No members
-        empty_match:  No matches
+        empty_match: No matches
         empty_roster: No rosters
         empty_activities: No Activities
         empty_infos: No Informations
@@ -51,9 +51,11 @@ en:
         register_request: There are currently no requests registered for this Team
         register_rosters: There are currently no rosters registered for this Team
         register_matche: There are currently no matches registered for this Tournament
+        empty_participants: Impossible to create a stage with less than 2 participants
+        empty_stage: You must provide a name for the stage
     notice:
       attention: This information will be displayed publicly so be careful what you share
-      load: "Loading... " 
+      load: "Loading... "
       confirmation: "Are you sure you want to"
       added: has not added any information yet
       information_tour: Some informations about the tournament itself and it's presence outside of the platform
@@ -62,7 +64,7 @@ en:
       drag_drop: or drag and drop
       file_format: "PNG, JPG, GIF up to 10MB"
     attributes:
-      about: "About"  
+      about: "About"
       activities: "Activities"
       informations: "Informations"
       website: "Website"
@@ -75,31 +77,31 @@ en:
     unscheduled: Unscheduled Matches
   team:
     new:
-      create: "Create New Team" 
+      create: "Create New Team"
       info: Team Info
       name: Name
       logo: Logo
       cover: Cover photo
       description: "Brief description for your team. URLs are hyperlinked"
-      submit:  
+      submit:
         create: create
-    label:  
+    label:
       title: "Teams"
       search: "Search"
-      submit: Submitted   
-      owner: "Owner"  
+      submit: Submitted
+      owner: "Owner"
       captian: "Captain"
       joined: "Joined on"
       create_one: "create one"
       infos: A little bit of infos concerning your team
       member_title: "Members of the team"
-      request_title: "Team requests" 
-      roster_title: "Team rosters" 
+      request_title: "Team requests"
+      roster_title: "Team rosters"
       one_title: Team
     submit:
       quit: "Quit Team"
       join: "Join Team"
-      request_pending: "Join Request Pending"   
+      request_pending: "Join Request Pending"
       cancel: Cancel
     tabs:
       give_ownership: "Give Ownership"
@@ -114,7 +116,7 @@ en:
       tabs:
         quit: Quit Roster
         join: Join Roster
-        request_pending: Join Roster Pending 
+        request_pending: Join Roster Pending
       new:
         label:
           title: Creating a roster
@@ -124,7 +126,7 @@ en:
           cover: Cover
       submit:
         change: Change
-        save: Save 
+        save: Save
         cancel: Cancel
         edit: Edit
     stats:
@@ -152,7 +154,7 @@ en:
         sign_in: Sign in
     registrations:
       new:
-        title:  Create your account
+        title: Create your account
         subtitle: Or with your email
         username: Username
         email: Email address
@@ -160,12 +162,12 @@ en:
         confirm_password: Confirm Password
     passwords:
       new:
-        email: Email address  
+        email: Email address
         forgot_password: Forgot password
       edit:
         change_password: Change your password
         new_password: New password
-        characters_minimum: characters minimum  
+        characters_minimum: characters minimum
         confirm_new_password: Confirm new password
   users:
     show:
@@ -174,9 +176,9 @@ en:
         stats: Stats
         tournaments: Tournaments
     edit:
-      title: Update User Profile  
+      title: Update User Profile
       profile: Profile
-      username: Username  
+      username: Username
       password: Password
       confirm_password: Confirm Password
       new_password: New password
@@ -208,10 +210,10 @@ en:
       type: Tournament Type
       name: Tournament Name
       game: Game
-    submit: 
+    submit:
       generate_bracket: Generate It!
       create_roster: Create Roster
-      subscribe: Subscribe 
+      subscribe: Subscribe
       confirm_subscribe: Confirm subscribe
     format:
       title: Format
@@ -232,7 +234,7 @@ en:
       matches: Matches
       results: Results
     index:
-      title:  Browse Tournaments
+      title: Browse Tournaments
       games: Choose your game
       list: Listed Tournaments
     matches:
@@ -241,9 +243,9 @@ en:
         pending: Pending
         started: Started
         ended: Ended
-        cancelled: Cancelled 
+        cancelled: Cancelled
     submit_score:
-      title: Submit match score  
+      title: Submit match score
       roster: Roster
       score: Score
       comment: Comment
@@ -266,7 +268,7 @@ en:
         archived: Archived
   pages:
     index:
-      browse_games: Browse Games 
+      browse_games: Browse Games
       recommended: Recommended Tournaments
       banner_title: eSports on Demand
       banner_subtitle: Your favorite games, favorite tournaments, anywhere, anytime
@@ -282,8 +284,8 @@ en:
       overview: Overviews
       past_tournaments: Past Tournaments
   activities:
-    user: 
-      create: created a new user   
+    user:
+      create: created a new user
       update: updated user
     tournament:
       create: created a new tournament
@@ -295,6 +297,6 @@ en:
     roster:
       create: created a new roster
     team:
-      create: created a new team  
-      quit: has left the team  
-      update: updated team    
+      create: created a new team
+      quit: has left the team
+      update: updated team

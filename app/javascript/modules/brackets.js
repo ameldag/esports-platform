@@ -1,13 +1,12 @@
-(async function(id) {
-
+(async() => {
     var tournament_id = $('#brackets-tournament').data('id');
     const data = await fetch('/tournament/' + tournament_id + '/bracket.json').then(res => res.json());
+
     bracketsViewer.addLocale('ru', {
         "origin-hint": {
             "seed": "семя {{position}}",
         }
     });
-
     // This is optional.You must do it before render().
     bracketsViewer.setParticipantImages(data.participant.map(participant => ({
         participantId: participant.id,
@@ -20,7 +19,7 @@
         matchGames: data.match_game,
         participants: data.participant,
     }, {
-        selector: '#bracketsViewer',
+        selector: '#brackets-tournament',
         participantOriginPlacement: 'before',
         separatedChildCountLabel: true,
         showSlotsOrigin: true,

@@ -51,6 +51,8 @@ ar:
         register_request: "لا يوجد حاليا أي طلبات مسجلة لهذا الفريق"
         register_rosters: "لا يوجد حاليا أي قوائم مسجلة لهذا الفريق"
         register_matche: "لا يوجد حاليا أي مباريات مسجلة لهذه البطولة"
+        empty_participants: "من المستحيل إنشاء مسرح مع أقل من مشاركين"
+        empty_stage: "يجب عليك تقديم اسم للمرحلة"
     notice:
       attention: "سيتم عرض هذه المعلومات بشكل عام ، لذا كن حذرًا فيما تشاركه"
       load: "جار التحميل... " 
@@ -210,7 +212,6 @@ ar:
       game: لعبة
     submit: 
       generate_bracket: قم بإنشائه!
-    submit: 
       create_roster: "إنشاء قائمة"
       subscribe: "الإشتراك" 
       confirm_subscribe: "تأكيد الاشتراك" 

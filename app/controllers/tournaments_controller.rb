@@ -197,9 +197,10 @@ class TournamentsController < ApplicationController
                                            round: round,
                                            game_id: params[:game].to_i)
                       match_score = MatchScore.create(
-                                                      left_score: 0,
-                                                      right_score: 0,
-                                                      match: match)
+                        left_score: 0,
+                        right_score: 0,
+                        match: match
+                      )
                     end
                   end
                 end

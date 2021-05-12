@@ -13,10 +13,18 @@ end
 # stage:[{
 json.stage @tournament.stage do |stage|
   json.id stage.id
-  json.tournament_id stage.tournament_id
   json.name stage.name
-  json.type stage.stage_type
   json.number stage.number
+  json.settings do
+    json.consolationFinal false
+    json.grandFinal "double"
+    json.matchesChildCount 0
+    json.seedOrdering do ["natural"] end
+    json.size 2
+    json.skipFirstRound true
+  end
+  json.tournament_id stage.tournament_id
+  json.type stage.stage_type
 end
 # }]
 
@@ -44,7 +52,7 @@ else
     json.stage_id match.stage_id
     json.group_id match.group_id
     json.round_id match.round_id
-    json.status match.state
+    json.status 2
     json.scheduled_datetime nil
     json.planned_at match.planned_at
     json.number match.round ? match.round.number : 0
@@ -89,5 +97,5 @@ json.round @rounds do |r|
 end
 
 # match_game:[{
-json.match_game []
+json.match_group nil
 #}]

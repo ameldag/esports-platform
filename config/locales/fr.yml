@@ -51,6 +51,8 @@ fr:
         register_request: "Il n'y a actuellement aucune demande enregistrée pour cette équipe"
         register_rosters: "Il n'y a actuellement aucune liste enregistrée pour cette équipe"
         register_matche: "Il n'y a actuellement aucun match enregistré pour ce tournoi"
+        empty_participants: Impossible de créer une scène avec moins de 2 participants.
+        empty_stage: Vous devez fournir un nom pour la scène.
     notice:
       attention: "Ces informations seront affichées publiquement, alors faites attention à ce que vous partagez"
       load: "Chargement... " 
