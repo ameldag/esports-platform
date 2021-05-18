@@ -22,6 +22,7 @@ json.stage @tournament.stage do |stage|
     json.seedOrdering do ["natural"] end
     json.size 2
     json.skipFirstRound true
+    json.groupCount 1
   end
   json.tournament_id stage.tournament_id
   json.type stage.stage_type

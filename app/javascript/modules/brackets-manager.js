@@ -2,12 +2,10 @@ import {
     LowDatabase,
     BracketsManager
 } from "@seemba-official/brackets-manager";
-
 const storage = new LowDatabase();
 const manager = new BracketsManager(storage);
 document.getElementById("bracket-tournament").addEventListener("click", function(event) {
     event.preventDefault();
-    $('#bracketsViewer').show();
     var name = $('#name').val();
     var game = $('#game').val();
     var type = $('#stage').val();
@@ -22,8 +20,8 @@ document.getElementById("bracket-tournament").addEventListener("click", function
             rosters.push(variable)
         }
     }
-    storage.reset();
     (async() => {
+        storage.reset();
         try {
             await manager.create({
                 name: name,
@@ -34,6 +32,7 @@ document.getElementById("bracket-tournament").addEventListener("click", function
                     seedOrdering: ['natural'],
                     skipFirstRound: true,
                     grandFinal: 'double',
+                    groupCount: 1,
                 }
             });
             const stage = await storage.select('stage');
@@ -54,7 +53,6 @@ document.getElementById("bracket-tournament").addEventListener("click", function
             // You can manually add locales. English will be used as a fallback if keys are missing.
             // You can force browser language detection by setting the `
             //i18nextLng ` property to a locale key (ex: 'ru') in the localStorage.
-            console.log(data);
             bracketsViewer.addLocale('ru', {
                 "origin-hint": {
                     "seed": "семя {{position}}",
@@ -66,7 +64,6 @@ document.getElementById("bracket-tournament").addEventListener("click", function
                 participantId: participant.id,
                 imageUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEi-user.svg&psig=AOvVaw0KxBPNeLyppSh_kjiuoRAl&ust=1620737096047000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLjXiaySv_ACFQAAAAAdAAAAABAJ',
             })));
-
             bracketsViewer.render({
                 stages: data.stage,
                 matches: data.match,
@@ -80,7 +77,6 @@ document.getElementById("bracket-tournament").addEventListener("click", function
                 showLowerBracketSlotsOrigin: true,
                 highlightParticipantOnHover: true,
             });
-
             document.getElementById("bracketsViewer").addEventListener("click", function(event) {
                 event.preventDefault();
                 var target = "http://localhost:3000/tournament/new";
@@ -96,14 +92,21 @@ document.getElementById("bracket-tournament").addEventListener("click", function
                 });
 
             });
+            var x = document.getElementById("bracketsViewer");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            }
         } catch (err) {
+            console.log(err.message);
             if (err.message == "You must provide a name for the stage.") {
                 $('#name_stage').text(I18n.t('activerecord.errors.messages.empty_stage'));
             } else if (err.message == "Impossible to create a stage with less than 2 participants.") {
                 $('#name_stage').text("");
                 $('#participants').text(I18n.t('activerecord.errors.messages.empty_participants'));
             } else {
+                $('#name_stage').text("");
                 $('#participants').text("");
+                $('#tournament').text(err.message);
             }
         }
     })()

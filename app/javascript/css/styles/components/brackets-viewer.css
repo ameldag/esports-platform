@@ -26,7 +26,8 @@
     overflow: auto;
     user-select: none;
     margin: 0 auto;
-    padding: 10px 50px
+    padding: 10px 50px;
+    margin-top: 5%;
 }
 
 .brackets-viewer:empty {
