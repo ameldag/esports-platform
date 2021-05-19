@@ -50,6 +50,7 @@ document.getElementById("bracket-tournament").addEventListener("click", function
                 participant
             };
             JSON.stringify(data);
+            $("#bracketsViewer").html(data);
             // You can manually add locales. English will be used as a fallback if keys are missing.
             // You can force browser language detection by setting the `
             //i18nextLng ` property to a locale key (ex: 'ru') in the localStorage.
@@ -77,7 +78,7 @@ document.getElementById("bracket-tournament").addEventListener("click", function
                 showLowerBracketSlotsOrigin: true,
                 highlightParticipantOnHover: true,
             });
-            document.getElementById("bracketsViewer").addEventListener("click", function(event) {
+            document.getElementById("run_tournament").addEventListener("click", function(event) {
                 event.preventDefault();
                 var target = "http://localhost:3000/tournament/new";
                 $.ajax({
@@ -92,7 +93,7 @@ document.getElementById("bracket-tournament").addEventListener("click", function
                 });
 
             });
-            var x = document.getElementById("bracketsViewer");
+            var x = document.getElementById("brackets");
             if (x.style.display === "none") {
                 x.style.display = "block";
             }
