@@ -4,6 +4,8 @@ import {
 } from "@seemba-official/brackets-manager";
 const storage = new LowDatabase();
 const manager = new BracketsManager(storage);
+const urlParams = new URLSearchParams(window.location.search);
+const locale = urlParams.get('locale');
 document.getElementById("bracket-tournament").addEventListener("click", function(event) {
     event.preventDefault();
     var name = $('#name').val();
@@ -54,6 +56,7 @@ document.getElementById("bracket-tournament").addEventListener("click", function
             // You can manually add locales. English will be used as a fallback if keys are missing.
             // You can force browser language detection by setting the `
             //i18nextLng ` property to a locale key (ex: 'ru') in the localStorage.
+            localStorage.setItem("i18nextLng", locale);
             bracketsViewer.addLocale('ru', {
                 "origin-hint": {
                     "seed": "семя {{position}}",
