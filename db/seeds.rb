@@ -23,8 +23,8 @@ game.save!
 game = Game.find_or_initialize_by(name: 'Dota2')
 game.name = 'Dota2'
 game.active = true
-game.icon.attach(io: File.open(Rails.root.join('db', 'seedFile','Dota2_logo.jpg')), filename: 'Dota2_logo.jpg')
-game.cover.attach(io: File.open(Rails.root.join('db', 'seedFile','Dota2_cover.jpg')), filename: 'Dota2_cover.jpg')
+game.icon.attach(io: File.open(Rails.root.join('db', 'seedFile','dota2_logo.jpg')), filename: 'dota2_logo.jpg')
+game.cover.attach(io: File.open(Rails.root.join('db', 'seedFile','dota2_cover.jpg')), filename: 'dota2_logo.jpg')
 game.save!  
 
 game = Game.find_or_initialize_by(name: 'Fortnite')
@@ -32,4 +32,4 @@ game.name = 'Fortnite'
 game.active = true
 game.icon.attach(io: File.open(Rails.root.join('db', 'seedFile','fortnite_logo.jpg')), filename: 'fortnite_logo.jpg')
 game.cover.attach(io: File.open(Rails.root.join('db', 'seedFile','fortnite_cover.jpg')), filename: 'fortnite_cover.jpg')
-game.save!  
+game.save! 

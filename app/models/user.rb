@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :username, presence:true, uniqueness: true
   validates :email, presence:true, uniqueness: true
   
-  belongs_to :tournament_team_participant
+  has_many :tournament_team_participants
   has_many :requests, dependent: :destroy
 
   belongs_to :team

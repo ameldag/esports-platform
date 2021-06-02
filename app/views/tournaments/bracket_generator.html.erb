@@ -45,8 +45,7 @@
                         <label for="about" class="block text-sm leading-5 font-medium text-gray-700">
                             <%= t ".rosters" %>:</label>
                         <div class="mt-1 flex rounded-md shadow-sm">
-                            <%= f.select :rosters, Roster.all.collect { |t| [t.name] }, { include_hidden: false }, { size: 6, multiple: true, style: "display: none", id: "select" } %>
-                            <%= render partial: "tournaments/partials/select_rosters" %>
+                            <%= f.number_field :size, id: "size", class: "form-input rounded-none rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
                         </div>
                     </div>
                     <p id="participants" class="text-xs text-red-500"></p>
@@ -60,6 +59,6 @@
 <% end %>
 <!-- This div will be used as the root for the library. It must be **perfectly** empty to prevent a FOUC. -->
 <div id="brackets" style="display: none;">
-    <%= link_to "Run this Tournament", new_tournament_path(), id:"run_tournament",class: "m-auto flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white  bg-orange-800 hover:bg-orange-700 focus:outline-none focus:border-orange-700 focus:shadow-outline-purple active:bg-orange-700 transition duration-150 ease-in-out w-56" %>
+    <%= link_to "Run this Tournament", new_tournament_path(), id: "run_tournament", data: { disable_with: "Please wait..." }, class: "m-auto flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white  bg-orange-800 hover:bg-orange-700 focus:outline-none focus:border-orange-700 focus:shadow-outline-purple active:bg-orange-700 transition duration-150 ease-in-out w-56" %>
     <div id="bracketsViewer" class="brackets-viewer" data-module="brackets-manager"></div>
 </div>

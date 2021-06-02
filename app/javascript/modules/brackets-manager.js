@@ -1,7 +1,8 @@
 import {
     LowDatabase,
     BracketsManager
-} from "@seemba-official/brackets-manager";
+}
+from "@seemba-official/brackets-manager";
 const storage = new LowDatabase();
 const manager = new BracketsManager(storage);
 const urlParams = new URLSearchParams(window.location.search);
@@ -11,17 +12,7 @@ document.getElementById("bracket-tournament").addEventListener("click", function
     var name = $('#name').val();
     var game = $('#game').val();
     var type = $('#stage').val();
-    var seedings = document.getElementsByName("rosters");
-    var rosters = []
-
-    for (var i = 0; i < seedings.length; i++) {
-        var s = seedings[i].value;
-        var team = s.split(',')
-        for (var a in team) {
-            var variable = team[a]
-            rosters.push(variable)
-        }
-    }
+    var number = parseInt($('#size').val());
     (async() => {
         storage.reset();
         try {
@@ -29,12 +20,12 @@ document.getElementById("bracket-tournament").addEventListener("click", function
                 name: name,
                 tournamentId: 0,
                 type: type,
-                seeding: rosters,
                 settings: {
                     seedOrdering: ['natural'],
-                    skipFirstRound: true,
+                    skipFirstRound: false,
                     grandFinal: 'double',
                     groupCount: 1,
+                    size: number
                 }
             });
             const stage = await storage.select('stage');
@@ -89,7 +80,7 @@ document.getElementById("bracket-tournament").addEventListener("click", function
                     url: target,
                     data: {
                         tournament: data,
-                        rosters: rosters,
+                        rosters: number,
                         name: name,
                         game: game
                     },

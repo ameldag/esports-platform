@@ -1,4 +1,40 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users
+    resources :teams
+    resources :submission_match_scores
+    resources :tournaments
+    resources :tournament_teams
+    resources :awards
+    resources :rounds
+    resources :requests
+    resources :region_tournaments
+    resources :matches
+    resources :maps
+    resources :servers
+    resources :stages
+    resources :map_tournaments
+    resources :challenge_participants
+    resources :roster_tournaments
+    resources :game_modes
+    resources :match_events
+    resources :services
+    resources :roster_users
+    resources :regions
+    resources :rosters
+    resources :groups
+    resources :featureds
+    resources :tournament_team_participants
+    resources :match_scores
+    resources :users_teams
+    resources :games
+    resources :modes
+    resources :seasons
+    resources :challenges
+    match "tournament/bracket_generator", to: "tournaments#bracket_generator",as: "new_tournament", via: [:get, :post]
+
+    root to: "users#index"
+  end
   get "tournaments", to: "tournaments#index", as: "tournaments"
   get "tournaments/:game_id", to: "tournaments#index", as: "game_tournaments"
   get "tournaments/subscribe"
@@ -13,7 +49,7 @@ Rails.application.routes.draw do
   get "game/:id/tournaments/past", to: "game#past_tournament", as: "past_tournament"
 
   # admin routes
-  mount RailsAdmin::Engine => "/admin", as: "rails_admin"
+  # mount RailsAdmin::Engine => "/admin", as: "rails_admin"
 
   # tournaments routes
   get "tournament/:id", to: "tournaments#show", as: "show_tournament"
