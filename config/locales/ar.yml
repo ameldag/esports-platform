@@ -197,6 +197,12 @@ ar:
     participate: "الفرق المشاركة"
     specification: "مواصفات"
     check_in_period: "فترة تسجيل الوصول"
+    title_bracket: مولد قوس البطولة
+    run: قم بتشغيل هذه البطولة
+    rosters: عدد المشاركين
+    type: نوع البطولة
+    name: اسم البطولة
+    game: لعبة
     status:
       new: "جديد"
       full: "ممتلئ"

@@ -197,6 +197,12 @@ en:
     participate: Participating teams
     specification: Specifications
     check_in_period: Check-in period
+    title_bracket: Tournament Bracket Generator
+    run: Run this Tournament
+    rosters: Number of Participants
+    type: Tournament Type
+    name: Tournament Name
+    game: Game
     status:
       new: New
       full: Full
@@ -204,12 +210,6 @@ en:
       completed: Completed
       registered: Registered
       confirmed: Confirmed
-    bracket_generator:
-      title: Tournament Bracket Generator
-      rosters: Participants /Teams
-      type: Tournament Type
-      name: Tournament Name
-      game: Game
     submit:
       generate_bracket: Generate It!
       create_roster: Create Roster

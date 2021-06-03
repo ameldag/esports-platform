@@ -75,7 +75,7 @@ document.getElementById("bracket-tournament").addEventListener("click", function
             });
             document.getElementById("run_tournament").addEventListener("click", function(event) {
                 event.preventDefault();
-                var target = "http://localhost:3000/tournament/new";
+                var target = "http://localhost:3000/admin/tournament/new";
                 $.ajax({
                     type: 'POST',
                     url: target,
@@ -94,16 +94,8 @@ document.getElementById("bracket-tournament").addEventListener("click", function
             }
         } catch (err) {
             console.log(err.message);
-            // if (err.message == "You must provide a name for the stage.") {
-            //     $('#name_stage').text(I18n.t('activerecord.errors.messages.empty_stage'));
-            // } else if (err.message == "Impossible to create a stage with less than 2 participants.") {
-            //     $('#name_stage').text("");
-            //     $('#participants').text(I18n.t('activerecord.errors.messages.empty_participants'));
-            // } else {
-            //     $('#name_stage').text("");
-            //     $('#participants').text("");
-            //     $('#tournament').text(err.message);
-            // }
+            $('#error').text(err.message);
+            $('#error').addClass("flash-error");
         }
     })()
 });

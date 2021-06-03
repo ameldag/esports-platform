@@ -197,6 +197,11 @@ fr:
     participate: "Équipes participantes"
     specification: "Caractéristiques"
     check_in_period: "Période d'enregistrement"
+    title_bracket: Générateur de support de tournoi
+    rosters: Nombre de participants
+    type: Type de tournoi
+    name: Nom du tournoi
+    game: Jeu
     status:
       new: "Nouveau"
       full: "Plein"
@@ -204,12 +209,6 @@ fr:
       completed: "Terminé"
       registered: "Inscrit"
       confirmed: "Confirmé"
-    bracket_generator:
-      title: Générateur de support de tournoi
-      rosters: Participants / équipes
-      type: Type de tournoi
-      name: Nom du tournoi
-      game: Jeu
     submit: 
       generate_bracket: Générez-le!
       create_roster: "Créer une liste"
