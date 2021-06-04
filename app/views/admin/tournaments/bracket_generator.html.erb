@@ -1,63 +1,68 @@
+<header class="main-content__header" role="banner">
+    <h1 class="main-content__page-title">
+        <%= t "tournaments.title_bracket" %>
+    </h1>
+    <div>
+        <%= link_to(
+         t(
+        "administrate.actions.back",
+      ),
+          admin_tournaments_path,
+          class: "button") %>
 
-     <header class="main-content__header" role="banner">
-         <h1 class="main-content__page-title">
-             <%= t "tournaments.title_bracket" %>
-         </h1>
-         <div>
-             <a class="button" href="http://localhost:3000/admin/tournaments">Back</a>
-         </div>
-     </header>
-     <section class="main-content__body">
-         <%= form_for @tournament,  html: { class: "form" } do |f| %>
-         <p id="error"></p>
-         <div class="field-unit field-unit--belongs-to field-unit--required">
-             <div class="field-unit__label">
-                 <label for="name"><%= t "tournaments.name" %></label>
-             </div>
-             <div class="field-unit__field">
-                 <%= f.text_field :name, id: "name", class: "form-input flex-1 block w-full rounded-none rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
-             </div>
-         </div>
-         <div class="field-unit field-unit--belongs-to field-unit--required">
-             <div class="field-unit__label">
-                 <label for="game"><%= t "tournaments.game" %></label>
-             </div>
-             <div class="field-unit__field">
-                 <%= f.select :stage, options_for_select(["single_elimination", "double_elimination", "round_robin"]), { :include_blank => false }, { :class => " block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", id: "stage" } %>
-             </div>
-         </div>
-         <div class="field-unit field-unit--belongs-to field-unit--required">
-             <div class="field-unit__label">
-                 <label for="game"><%= t "tournaments.game" %></label>
-             </div>
-             <div class="field-unit__field">
-                 <%= f.select :game, Game.all.collect { |g| [g.name, g.id] }, {}, { :class => "form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", id: "game" } %>
-             </div>
-         </div>
-         <div class="field-unit field-unit--belongs-to field-unit--required">
-             <div class="field-unit__label">
-                 <label for="game"> <%= t "tournaments.rosters" %></label>
-             </div>
-             <div class="field-unit__field">
-                 <%= f.number_field :size, id: "size",style:"width: 10rem", class: "form-input rounded-none rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
-             </div>
-         </div>
-         <%= f.submit I18n.t("tournaments.submit.generate_bracket"), id: "bracket-tournament", remote: true, class: "mt-6 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white  bg-orange-800 hover:bg-orange-700 focus:outline-none focus:border-orange-700 focus:shadow-outline-purple active:bg-orange-700 transition duration-150 ease-in-out" %>
-         <% end %>
-     </section>
-     <div id="brackets" style="display: none;">
-         <div>
-             <%= link_to(
+    </div>
+</header>
+<section class="main-content__body">
+    <%= form_for @tournament,  html: { class: "form" } do |f| %>
+    <p id="error"></p>
+    <div class="field-unit field-unit--belongs-to field-unit--required">
+        <div class="field-unit__label">
+            <label for="name"><%= t "tournaments.name" %></label>
+        </div>
+        <div class="field-unit__field">
+            <%= f.text_field :name, id: "name", class: "form-input flex-1 block w-full rounded-none rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+        </div>
+    </div>
+    <div class="field-unit field-unit--belongs-to field-unit--required">
+        <div class="field-unit__label">
+            <label for="game"><%= t "tournaments.game" %></label>
+        </div>
+        <div class="field-unit__field">
+            <%= f.select :stage, options_for_select(["single_elimination", "double_elimination", "round_robin"]), { :include_blank => false }, { :class => " block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", id: "stage" } %>
+        </div>
+    </div>
+    <div class="field-unit field-unit--belongs-to field-unit--required">
+        <div class="field-unit__label">
+            <label for="game"><%= t "tournaments.game" %></label>
+        </div>
+        <div class="field-unit__field">
+            <%= f.select :game, Game.all.collect { |g| [g.name, g.id] }, {}, { :class => "form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", id: "game" } %>
+        </div>
+    </div>
+    <div class="field-unit field-unit--belongs-to field-unit--required">
+        <div class="field-unit__label">
+            <label for="game"> <%= t "tournaments.rosters" %></label>
+        </div>
+        <div class="field-unit__field">
+            <%= f.number_field :size, id: "size",style:"width: 10rem", class: "form-input rounded-none rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+        </div>
+    </div>
+    <%= f.submit I18n.t("tournaments.submit.generate_bracket"), id: "bracket-tournament", remote: true, class: "mt-6 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white  bg-orange-800 hover:bg-orange-700 focus:outline-none focus:border-orange-700 focus:shadow-outline-purple active:bg-orange-700 transition duration-150 ease-in-out" %>
+    <% end %>
+</section>
+<div id="brackets" style="display: none;">
+    <div>
+        <%= link_to(
           I18n.t("tournaments.run"),
-          admin_bracket_generator_path,
+          admin_tournament_new_path,
           class: "button",
           id: "run_tournament",
           data: { disable_with: "Please wait..." },
         
         ) if valid_action?(:new) && show_action?(:new, new_resource) %>
-         </div>
-         <div id="bracketsViewer" class="brackets-viewer">
-         </div>
-     </div>
-     <%= javascript_pack_tag "brackets-manager", 'data-turbolinks-track': "reload" %>
-     <%= javascript_pack_tag "brackets-viewer", 'data-turbolinks-track': "reload" %>
+    </div>
+    <div id="bracketsViewer" class="brackets-viewer">
+    </div>
+</div>
+<%= javascript_pack_tag "brackets-manager", 'data-turbolinks-track': "reload" %>
+<%= javascript_pack_tag "brackets-viewer", 'data-turbolinks-track': "reload" %>

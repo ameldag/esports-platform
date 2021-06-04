@@ -31,16 +31,14 @@ Rails.application.routes.draw do
     resources :modes
     resources :seasons
     resources :challenges
-    match "tournament/bracket_generator", to: "tournaments#bracket_generator", as: "bracket_generator", via: [:get, :post]
-    post "tournament/new", to: "tournaments#create",as: "new_tournament"
+    match "tournament/bracket_generator", to: "tournaments#bracket_generator", via: [:get, :post]
+    post "tournament/new", to: "tournaments#create"
+    
     root to: "tournaments#index"
   end
   get "tournaments", to: "tournaments#index", as: "tournaments"
   get "tournaments/:game_id", to: "tournaments#index", as: "game_tournaments"
   get "tournaments/subscribe"
-  # get "tournament/bracket_generator", to: "tournaments#bracket_generator", as: "new_tournament"
-  # post "tournament/bracket_generator", to: "tournaments#new", as: "bracket_generator"
-  # post "tournament/new", to: "tournaments#create", as: "send_new_tournament"
 
   get "tournament/:id/edit", to: "tournaments#edit", as: "edit_tournament"
   put "tournament/:id", to: "tournaments#update"

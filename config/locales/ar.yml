@@ -210,12 +210,6 @@ ar:
       completed: "منجز"
       registered: "مسجل"
       confirmed: "تم تأكيد"
-    bracket_generator:    
-      title: مولد قوس البطولة
-      rosters: المشاركون / الفرق
-      type: نوع البطولة
-      name: اسم البطولة
-      game: لعبة
     submit: 
       generate_bracket: قم بإنشائه!
       create_roster: "إنشاء قائمة"
