@@ -1,3 +1,4 @@
+require "resque/server"
 Rails.application.routes.draw do
   namespace :admin do
     resources :users
@@ -32,10 +33,12 @@ Rails.application.routes.draw do
     resources :seasons
     resources :challenges
     match "tournament/bracket_generator", to: "tournaments#bracket_generator", via: [:get, :post]
-    post "tournament/new", to: "tournaments#create"
-    
+    match "tournament/new", to: "tournaments#create", via: :post
+
     root to: "tournaments#index"
   end
+
+  mount Resque::Server.new, at: "/jobs"
   get "tournaments", to: "tournaments#index", as: "tournaments"
   get "tournaments/:game_id", to: "tournaments#index", as: "game_tournaments"
   get "tournaments/subscribe"

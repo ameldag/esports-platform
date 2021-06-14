@@ -284,23 +284,25 @@ ar:
       overview: نظرة عامة
       past_tournaments: البطولات السابقة
   activities:
-      user: 
-        create: "إنشاء مستخدم جديد"   
-        update: "مستخدم محدث"
-      tournament:
-        create: أنشأ بطولة جديدة
-        update: البطولة المحدثة
-        won: "فاز بالبطولة"
-      match:
-        lost: "خسر المباراة"
-        won: "فاز بالمباراة"
-      roster:
-        create: "إنشاء قائمة جديدة"
-      team:
-        create: "أنشأ فريقًا جديدًا" 
-        quit: "غادر الفريق"
-        update: "فريق محدث"    
- 
+    user: 
+      create: "إنشاء مستخدم جديد"   
+      update: "مستخدم محدث"
+    tournament:
+      create: أنشأ بطولة جديدة
+      update: البطولة المحدثة
+      won: "فاز بالبطولة"
+    match:
+      lost: "خسر المباراة"
+      won: "فاز بالمباراة"
+      create: خلق مباراة جديدة
+      update: المباراة المحدثة 
+    roster:
+      create: "إنشاء قائمة جديدة"
+    team:
+      create: "أنشأ فريقًا جديدًا" 
+      quit: "غادر الفريق"
+      update: "فريق محدث"    
+
           
 
 

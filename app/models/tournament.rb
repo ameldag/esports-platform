@@ -40,7 +40,7 @@ class Tournament < ApplicationRecord
   scope :active_tournaments, ->(active, game_id) { where("active = ? and game_id = ?", active, game_id) }
   scope :similar_tournaments, ->(game_id) { where("game_id = ?", game_id).last(4) }
 
-  # after_save :add_server_matches
+  #after_update :add_server_matches
 
   def shouldcreatebracket
     return (RosterTournament.joins(:tournament).where("tournament_id = ?", self.id).where.not(confirmed_subscribtion_at: nil).count) == self.slots

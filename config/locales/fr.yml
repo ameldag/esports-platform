@@ -198,6 +198,7 @@ fr:
     specification: "Caractéristiques"
     check_in_period: "Période d'enregistrement"
     title_bracket: Générateur de support de tournoi
+    run: Organisez ce tournoi
     rosters: Nombre de participants
     type: Type de tournoi
     name: Nom du tournoi
@@ -293,6 +294,8 @@ fr:
     match:
       lost: "match perdu"
       won: "match gagné"
+      create: créé un nouveau match
+      update: mise à jour match
     roster:
       create: "a créé une nouvelle liste"
     team:

@@ -17,7 +17,7 @@ class Team::RostersController < ApplicationController
     @roster = Roster.find(params[:id])
     @team = Team.friendly.find(params["team_id"])
     @current_user_request = Request.count_request(@roster.id, current_user.id, "pending").count
-    @activities = PublicActivity::Activity.order("created_at DESC").where(owner_type: "Roster", owner_id: @roster.id).all
+    @activities = PublicActivity::Activity.order("created_at DESC").where(owner_type: "Roster", owner_id: @roster.id).first(5)
   end
 
   def add_user_to_roster

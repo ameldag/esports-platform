@@ -24,7 +24,7 @@ class TeamController < ApplicationController
     @activities = PublicActivity::Activity.order("created_at DESC").where(owner_type: "User", owner_id: current_user.id).where.not(key: "user.update")
     .or(PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Team", trackable_id: @team.id))
     .or(PublicActivity::Activity.order("created_at DESC").where(recipient_type: "Team", recipient_id: @team.id))
-    .or(PublicActivity::Activity.order("created_at DESC").where(owner_type: "Roster", owner_id: current_user.id)).all
+    .or(PublicActivity::Activity.order("created_at DESC").where(owner_type: "Roster", owner_id: current_user.id)).first(5)
     
     @requests = Request.all_request(@team.id, current_user.id, "pending").all
     @members = @team.users

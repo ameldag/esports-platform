@@ -84,3 +84,5 @@ gem 'i18n-js'
 gem 'rconrb'
 gem "administrate"
 gem 'administrate-field-active_storage', "0.1.8"
+gem 'resque'
+gem 'resque-scheduler'

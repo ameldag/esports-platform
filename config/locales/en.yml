@@ -294,6 +294,8 @@ en:
     match:
       lost: lost match
       won: won match
+      create: created a new match
+      update: updated match
     roster:
       create: created a new roster
     team:

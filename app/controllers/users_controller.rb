@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @activities = PublicActivity::Activity.order("created_at DESC").where(owner_type: "User", owner_id: @user.id).where.not(key: "user.update")
       .or(PublicActivity::Activity.order("created_at DESC").where(trackable_type: "User", trackable_id: @user.id))
       .or(PublicActivity::Activity.order("created_at DESC").where(recipient_type: "User", recipient_id: @user.id))
-      .or(PublicActivity::Activity.order("created_at DESC").where(owner_type: "Roster", owner_id: @user.id)).all
+      .or(PublicActivity::Activity.order("created_at DESC").where(owner_type: "Roster", owner_id: @user.id)).first(5)
   end
 
   def tournaments

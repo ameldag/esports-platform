@@ -58,7 +58,7 @@
                         <% end %>
                     </div>
                 </div>
-                <% if (current_user.rosters.exists?(match.left_team.id) || current_user.rosters.exists?(match.right_team.id)) %>
+                <% if (current_user.rosters.exists?(match.left_team) || current_user.rosters.exists?(match.right_team)) %>
                     <% if match.state != "pending" %>
                     <div class="flex justify-end pt-2">
                         <%= button_to t("tournaments.submit_score.submit"), submit_score_path, class: "focus:outline-none px-2 bg-teal-500 text-sm p-1 ml-1 rounded-xl text-white hover:bg-teal-400" %>
